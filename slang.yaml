@@ -1,0 +1,8 @@
+base_locale: en
+input_directory: assets/translations
+input_file_pattern: .json
+output_directory: lib/generated
+output_file_name: translations.g.dart
+translate_var: tr
+string_interpolation: double_braces
+listenToDeviceLocale: true

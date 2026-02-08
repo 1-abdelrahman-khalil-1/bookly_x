@@ -1,0 +1,37 @@
+import 'package:flutter/material.dart';
+
+class CustomInkWell extends InkWell {
+  const CustomInkWell({
+    super.key,
+    super.child,
+    super.onTap,
+    super.onDoubleTap,
+    super.onLongPress,
+    super.onTapDown,
+    super.onTapUp,
+    super.onTapCancel,
+    super.onSecondaryTap,
+    super.onSecondaryTapUp,
+    super.onSecondaryTapDown,
+    super.onSecondaryTapCancel,
+    super.onHighlightChanged,
+    super.onHover,
+    super.mouseCursor,
+    super.focusColor,
+    super.overlayColor,
+    super.hoverColor = Colors.transparent,
+    super.highlightColor = Colors.transparent,
+    super.splashColor = Colors.transparent,
+    super.splashFactory,
+    super.radius,
+    super.borderRadius,
+    super.customBorder,
+    super.enableFeedback = true,
+    super.excludeFromSemantics,
+    super.focusNode,
+    super.canRequestFocus,
+    super.onFocusChange,
+    super.autofocus,
+    super.statesController,
+  });
+}
