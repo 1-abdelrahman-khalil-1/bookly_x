@@ -35,7 +35,7 @@ class CustomButton extends StatelessWidget {
     super.key,
     required this.title,
     this.titleColor = AppColors.white,
-    this.buttonColor = AppColors.textSub,
+    this.buttonColor = AppColors.azureRadiance,
     this.borderColor = Colors.transparent,
     this.width = double.infinity,
     this.height = Constants.buttonHeight,

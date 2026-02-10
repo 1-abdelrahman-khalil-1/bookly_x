@@ -167,6 +167,8 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 
 	/// en: 'Info'
 	String get info => 'Info';
+
+	late final TranslationsOnboardingEn onboarding = TranslationsOnboardingEn._(_root);
 }
 
 // Path: weekdays
@@ -209,6 +211,42 @@ class TranslationsFieldNamesEn {
 
 	/// en: 'Phone Number'
 	String get phoneNumber => 'Phone Number';
+}
+
+// Path: onboarding
+class TranslationsOnboardingEn {
+	TranslationsOnboardingEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Skip'
+	String get skip => 'Skip';
+
+	/// en: 'Next'
+	String get next => 'Next';
+
+	/// en: 'Get Started'
+	String get getStarted => 'Get Started';
+
+	/// en: 'Find Trusted Doctors'
+	String get doctorTitle => 'Find Trusted Doctors';
+
+	/// en: 'Search and book appointments with top-rated doctors.'
+	String get doctorSubtitle => 'Search and book appointments with top-rated doctors.';
+
+	/// en: 'Discover Professional Barbers'
+	String get barberTitle => 'Discover Professional Barbers';
+
+	/// en: 'Book appointments with the best barbers in town.'
+	String get barberSubtitle => 'Book appointments with the best barbers in town.';
+
+	/// en: 'Relax and Rejuvenate'
+	String get spaTitle => 'Relax and Rejuvenate';
+
+	/// en: 'Book premium spa experiences designed for your comfort.'
+	String get spaSubtitle => 'Book premium spa experiences designed for your comfort.';
 }
 
 /// The flat map containing all translations for locale <en>.
@@ -268,6 +306,15 @@ extension on Translations {
 			'warning' => 'Warning',
 			'error' => 'Error',
 			'info' => 'Info',
+			'onboarding.skip' => 'Skip',
+			'onboarding.next' => 'Next',
+			'onboarding.getStarted' => 'Get Started',
+			'onboarding.doctorTitle' => 'Find Trusted Doctors',
+			'onboarding.doctorSubtitle' => 'Search and book appointments with top-rated doctors.',
+			'onboarding.barberTitle' => 'Discover Professional Barbers',
+			'onboarding.barberSubtitle' => 'Book appointments with the best barbers in town.',
+			'onboarding.spaTitle' => 'Relax and Rejuvenate',
+			'onboarding.spaSubtitle' => 'Book premium spa experiences designed for your comfort.',
 			_ => null,
 		};
 	}

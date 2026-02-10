@@ -51,5 +51,16 @@
   "success": "Success",
   "warning": "Warning",
   "error": "Error",
-  "info": "Info"
+  "info": "Info",
+  "onboarding": {
+    "skip": "Skip",
+    "next": "Next",
+    "getStarted": "Get Started",
+    "doctorTitle": "Find Trusted Doctors",
+    "doctorSubtitle": "Search and book appointments with top-rated doctors.",
+    "barberTitle": "Discover Professional Barbers",
+    "barberSubtitle": "Book appointments with the best barbers in town.",
+    "spaTitle": "Relax and Rejuvenate",
+    "spaSubtitle": "Book premium spa experiences designed for your comfort."
+  }
 }

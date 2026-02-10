@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bookly_x_client/app/core/data/routing_pref.dart';
 import 'package:bookly_x_client/generated/translations.g.dart';
 import 'package:bookly_x_client/router/auto_router.gr.dart';
 import 'package:flutter/widgets.dart';
@@ -7,11 +8,23 @@ import 'package:flutter/widgets.dart';
 class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
-        // Define routes here
-        // Example:
         CustomRoute(
             page: SplashRoute.page,
-            initial: true,
+            initial: isInitialRoute(SplashRoute()),
+            transitionsBuilder: rightToLeftTransition),
+        CustomRoute(
+            page: OnboardingRoute.page,
+            initial: isInitialRoute(OnboardingRoute()),
+            transitionsBuilder: rightToLeftTransition),
+        CustomRoute(
+            page: SignUpRoute.page, transitionsBuilder: rightToLeftTransition),
+        CustomRoute(
+            page: LoginRoute.page,
+            initial: isInitialRoute(LoginRoute()),
+            transitionsBuilder: rightToLeftTransition),
+        CustomRoute(
+            page: MainRoute.page,
+            initial: isInitialRoute(MainRoute()),
             transitionsBuilder: rightToLeftTransition),
       ];
 
@@ -34,5 +47,9 @@ class AppRouter extends RootStackRouter {
       position: offsetAnimation,
       child: child,
     );
+  }
+
+  bool isInitialRoute(PageRouteInfo route) {
+    return route == RoutingPrefs.initialRoute;
   }
 }

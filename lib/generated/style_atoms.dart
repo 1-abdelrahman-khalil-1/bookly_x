@@ -3,12 +3,13 @@
 // Last updated: 2026-02-10 14:49:43.551062
 // Run `dart run generate_styles.dart` to update this file.
 import 'package:flutter/material.dart';
+
 import '../app/core/themes/app_colors.dart';
-  
+
 extension WeightAtoms on BuildContext {
   TextStyle get style => Theme.of(this).textTheme.titleMedium!.copyWith(
         color: Color(0xFF1A1A1A),
-        fontFamily: 'Almarai',
+        fontFamily: 'Arial',
       );
   TextStyle get light => style.copyWith(fontWeight: FontWeight.w300);
   TextStyle get regular => style.copyWith(fontWeight: FontWeight.normal);
@@ -16,13 +17,15 @@ extension WeightAtoms on BuildContext {
   TextStyle get semiBold => style.copyWith(fontWeight: FontWeight.w600);
   TextStyle get bold => style.copyWith(fontWeight: FontWeight.bold);
 }
-  
+
 extension ColorAtoms on TextStyle {
   TextStyle get primary => copyWith(color: AppColors.primary);
   TextStyle get primaryHover => copyWith(color: AppColors.primaryHover);
   TextStyle get primaryLight => copyWith(color: AppColors.primaryLight);
-  TextStyle get primaryLightHover => copyWith(color: AppColors.primaryLightHover);
-  TextStyle get primaryLightActive => copyWith(color: AppColors.primaryLightActive);
+  TextStyle get primaryLightHover =>
+      copyWith(color: AppColors.primaryLightHover);
+  TextStyle get primaryLightActive =>
+      copyWith(color: AppColors.primaryLightActive);
   TextStyle get primaryDark => copyWith(color: AppColors.primaryDark);
   TextStyle get secondary => copyWith(color: AppColors.secondary);
   TextStyle get secondaryLight => copyWith(color: AppColors.secondaryLight);
@@ -64,10 +67,10 @@ extension ColorAtoms on TextStyle {
   TextStyle get salem => copyWith(color: AppColors.salem);
   TextStyle get scandal => copyWith(color: AppColors.scandal);
   TextStyle get slateGray => copyWith(color: AppColors.slateGray);
-  TextStyle get whiteCatskillWhite => copyWith(color: AppColors.whiteCatskillWhite);
+  TextStyle get whiteCatskillWhite =>
+      copyWith(color: AppColors.whiteCatskillWhite);
   TextStyle get zumthor => copyWith(color: AppColors.zumthor);
 }
-
 
 extension FontSizeAtoms on TextStyle {
   TextStyle get px8 => copyWith(fontSize: 8.0);
@@ -86,7 +89,6 @@ extension FontSizeAtoms on TextStyle {
   TextStyle get px36 => copyWith(fontSize: 36.0);
   TextStyle get px40 => copyWith(fontSize: 40.0);
 }
-
 
 extension WeightAndPxMixes on BuildContext {
   TextStyle get light8 => light.px8;
@@ -165,6 +167,7 @@ extension WeightAndPxMixes on BuildContext {
   TextStyle get semiBold40 => semiBold.px40;
   TextStyle get bold40 => bold.px40;
 }
+
 extension LightAtoms on BuildContext {
   TextStyle get light8Primary => light8.primary;
   TextStyle get light8PrimaryHover => light8.primaryHover;
@@ -887,6 +890,7 @@ extension LightAtoms on BuildContext {
   TextStyle get light40WhiteCatskillWhite => light40.whiteCatskillWhite;
   TextStyle get light40Zumthor => light40.zumthor;
 }
+
 extension RegularAtoms on BuildContext {
   TextStyle get regular8Primary => regular8.primary;
   TextStyle get regular8PrimaryHover => regular8.primaryHover;
@@ -1609,6 +1613,7 @@ extension RegularAtoms on BuildContext {
   TextStyle get regular40WhiteCatskillWhite => regular40.whiteCatskillWhite;
   TextStyle get regular40Zumthor => regular40.zumthor;
 }
+
 extension MediumAtoms on BuildContext {
   TextStyle get medium8Primary => medium8.primary;
   TextStyle get medium8PrimaryHover => medium8.primaryHover;
@@ -2331,6 +2336,7 @@ extension MediumAtoms on BuildContext {
   TextStyle get medium40WhiteCatskillWhite => medium40.whiteCatskillWhite;
   TextStyle get medium40Zumthor => medium40.zumthor;
 }
+
 extension SemiBoldAtoms on BuildContext {
   TextStyle get semiBold8Primary => semiBold8.primary;
   TextStyle get semiBold8PrimaryHover => semiBold8.primaryHover;
@@ -3053,6 +3059,7 @@ extension SemiBoldAtoms on BuildContext {
   TextStyle get semiBold40WhiteCatskillWhite => semiBold40.whiteCatskillWhite;
   TextStyle get semiBold40Zumthor => semiBold40.zumthor;
 }
+
 extension BoldAtoms on BuildContext {
   TextStyle get bold8Primary => bold8.primary;
   TextStyle get bold8PrimaryHover => bold8.primaryHover;

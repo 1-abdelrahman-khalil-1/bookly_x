@@ -41,6 +41,7 @@ dependencies:
   crypto: ^3.0.3
   sentry: ^8.0.0
   shimmer: ^3.0.0
+  flutter_native_splash: ^2.4.7
 dev_dependencies:
   flutter_test:
     sdk: flutter

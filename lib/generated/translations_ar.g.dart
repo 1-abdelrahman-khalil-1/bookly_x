@@ -80,6 +80,7 @@ class TranslationsAr with BaseTranslations<AppLocale, Translations> implements T
 	@override String get warning => 'تحذير';
 	@override String get error => 'خطأ';
 	@override String get info => 'معلومات';
+	@override late final _TranslationsOnboardingAr onboarding = _TranslationsOnboardingAr._(_root);
 }
 
 // Path: weekdays
@@ -106,6 +107,24 @@ class _TranslationsFieldNamesAr implements TranslationsFieldNamesEn {
 
 	// Translations
 	@override String get phoneNumber => 'رقم الهاتف';
+}
+
+// Path: onboarding
+class _TranslationsOnboardingAr implements TranslationsOnboardingEn {
+	_TranslationsOnboardingAr._(this._root);
+
+	final TranslationsAr _root; // ignore: unused_field
+
+	// Translations
+	@override String get skip => 'تخطي';
+	@override String get next => 'التالي';
+	@override String get getStarted => 'ابدأ الآن';
+	@override String get doctorTitle => 'ابحث عن أطباء موثوقين';
+	@override String get doctorSubtitle => 'إبحث واحجز المواعيد مع أفضل الأطباء.';
+	@override String get barberTitle => 'اكتشف حلاقين محترفين';
+	@override String get barberSubtitle => 'احجز المواعيد مع أفضل الحلاقين في المدينة.';
+	@override String get spaTitle => 'استرخ واستعد حيويتك';
+	@override String get spaSubtitle => 'احجز سبا فاخرة مصممة خصيصًا لراحتك.';
 }
 
 /// The flat map containing all translations for locale <ar>.
@@ -165,6 +184,15 @@ extension on TranslationsAr {
 			'warning' => 'تحذير',
 			'error' => 'خطأ',
 			'info' => 'معلومات',
+			'onboarding.skip' => 'تخطي',
+			'onboarding.next' => 'التالي',
+			'onboarding.getStarted' => 'ابدأ الآن',
+			'onboarding.doctorTitle' => 'ابحث عن أطباء موثوقين',
+			'onboarding.doctorSubtitle' => 'إبحث واحجز المواعيد مع أفضل الأطباء.',
+			'onboarding.barberTitle' => 'اكتشف حلاقين محترفين',
+			'onboarding.barberSubtitle' => 'احجز المواعيد مع أفضل الحلاقين في المدينة.',
+			'onboarding.spaTitle' => 'استرخ واستعد حيويتك',
+			'onboarding.spaSubtitle' => 'احجز سبا فاخرة مصممة خصيصًا لراحتك.',
 			_ => null,
 		};
 	}

@@ -14,7 +14,13 @@ class Assets {
 
   static const String pngBackGround = "assets/png/back_ground.png";
 
+  static const String pngBarberOnboarding = "assets/png/barber_onboarding.png";
+
+  static const String pngDoctorOnboarding = "assets/png/doctor_onboarding.png";
+
   static const String pngLogo = "assets/png/logo.png";
+
+  static const String pngSpaOnboarding = "assets/png/spa_onboarding.png";
 
   static const String translationsAr = "assets/translations/ar.json";
 

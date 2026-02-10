@@ -36,6 +36,7 @@ class AppColors {
   static const Color alizarinCrimson = Color(0xFFE32636);
 
   static const Color azureRadiance = Color(0xFF007FFF);
+  static const Color azureRadianceDark = Color(0xFF0E43A6);
   static const Color azureRadiance10 = Color(0x1A007FFF); // 10%
   static const Color azureRadiance05 = Color(0x0D007FFF); // 5%
 
