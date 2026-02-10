@@ -19,45 +19,49 @@ class CustomSearch<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TypeAheadField<T>(
-      textFieldConfiguration: TextFieldConfiguration(
-        decoration: InputDecoration(
-          hint: Text('${tr.search}...', style: context.regular14TextSub),
-          prefixIconColor: AppColors.textSub,
-          prefixIcon: const Icon(MyIcons.searchNormalOutline),
-          suffixIcon: onFilterTap != null
-              ? GestureDetector(
-                  onTap: onFilterTap,
-                  child: const Icon(
-                    MyIcons.candle2Outline,
-                    color: AppColors.textSub,
-                  ),
-                )
-              : null,
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide: const BorderSide(color: AppColors.black, width: 1),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide: const BorderSide(color: AppColors.textBorders),
-          ),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide: const BorderSide(color: AppColors.black, width: 1),
-          ),
-        ),
-      ),
-      noItemsFoundBuilder: (context) => Padding(
+      builder: (context, controller, focusNode) {
+        return TextField(
+            controller: controller,
+            focusNode: focusNode,
+            decoration: InputDecoration(
+              hintText: '${tr.search}...',
+              hintStyle: context.regular14TextSub,
+              prefixIconColor: AppColors.textSub,
+              prefixIcon: const Icon(MyIcons.searchNormalOutline),
+              suffixIcon: onFilterTap != null
+                  ? GestureDetector(
+                      onTap: onFilterTap,
+                      child: const Icon(
+                        MyIcons.candle2Outline,
+                        color: AppColors.textSub,
+                      ),
+                    )
+                  : null,
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: const BorderSide(color: AppColors.black, width: 1),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: const BorderSide(color: AppColors.textBorders),
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: const BorderSide(color: AppColors.black, width: 1),
+              ),
+            ));
+      },
+      emptyBuilder: (context) => Padding(
         padding: const EdgeInsets.all(16),
         child: Text(tr.noResultsFound, style: context.regular14TextSub),
       ),
       suggestionsCallback: (pattern) async {
-        return suggestionsCallback?.call(pattern) ?? <T>[];
+        return await suggestionsCallback?.call(pattern) ?? <T>[];
       },
       itemBuilder: (context, suggestion) {
         return ListTile(title: Text(suggestion.toString()));
       },
-      onSuggestionSelected: onSelected,
+      onSelected: onSelected,
     );
   }
 }

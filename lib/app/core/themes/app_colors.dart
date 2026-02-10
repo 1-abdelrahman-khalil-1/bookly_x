@@ -32,5 +32,41 @@ class AppColors {
   static const Color lightPurple = Color(0xffBCB7FA);
   static const Color lightBlue = Color(0xFFD7E5FB);
   static const Color lightPink = Color(0xFFF9E5F0);
+
+  static const Color alizarinCrimson = Color(0xFFE32636);
+
+  static const Color azureRadiance = Color(0xFF007FFF);
+  static const Color azureRadiance10 = Color(0x1A007FFF); // 10%
+  static const Color azureRadiance05 = Color(0x0D007FFF); // 5%
+
+  static const Color beeswax50 = Color(0x80FEE3A2);
+  static const Color butteryWhite50 = Color(0x80FFF3C4);
+
+  static const Color catskillWhite = Color(0xFFF2F5F8);
+  static const Color dodgerBlue = Color(0xFF1E90FF);
+
+  static const Color ebony = Color(0xFF0C0C0C);
+  static const Color fiord = Color(0xFF4A5D73);
+
+  static const Color geyser = Color(0xFFDCE2E6);
+  static const Color gullGray = Color(0xFF9CA8B3);
+
+  static const Color heliotrope = Color(0xFFDF73FF);
+  static const Color jewel = Color(0xFF136F63);
+
+  static const Color mystic = Color(0xFFE6EBEF);
+  static const Color paleSky = Color(0xFF6B7C93);
+
+  static const Color pickledBluewood = Color(0xFF2C3E50);
+  static const Color royalBlue = Color(0xFF4169E1);
+
+  static const Color salem = Color(0xFF0F9D58);
+  static const Color scandal = Color(0xFFCFF4E8);
+
+  static const Color slateGray = Color(0xFF6A7B8B);
+
+  static const Color whiteCatskillWhite = Color(0xFFF8FAFC);
+  static const Color zumthor = Color(0xFFEDF4FF);
+
   AppColors._();
 }

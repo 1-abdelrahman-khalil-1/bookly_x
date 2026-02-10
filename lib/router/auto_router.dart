@@ -1,4 +1,7 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bookly_x_client/generated/translations.g.dart';
+import 'package:bookly_x_client/router/auto_router.gr.dart';
+import 'package:flutter/widgets.dart';
 
 @AutoRouterConfig()
 class AppRouter extends RootStackRouter {
@@ -6,6 +9,30 @@ class AppRouter extends RootStackRouter {
   List<AutoRoute> get routes => [
         // Define routes here
         // Example:
-        // AutoRoute(page: HomeRoute.page),
+        CustomRoute(
+            page: SplashRoute.page,
+            initial: true,
+            transitionsBuilder: rightToLeftTransition),
       ];
+
+  Widget rightToLeftTransition(
+    BuildContext context,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+    Widget child,
+  ) {
+    final isRTL = LocaleSettings.currentLocale != AppLocale.ar;
+
+    final begin = isRTL ? const Offset(1.0, 0.0) : const Offset(-1.0, 0.0);
+    const end = Offset.zero;
+    const curve = Curves.easeInOut;
+
+    var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+    var offsetAnimation = animation.drive(tween);
+
+    return SlideTransition(
+      position: offsetAnimation,
+      child: child,
+    );
+  }
 }
