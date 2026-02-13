@@ -9,94 +9,112 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i6;
-import 'package:bookly_x_client/app/features/client/auth/presentation/screens/login_screen.dart'
-    as _i1;
-import 'package:bookly_x_client/app/features/client/auth/presentation/screens/signUp_screen.dart'
-    as _i4;
-import 'package:bookly_x_client/app/features/client/main_screen/presentation/screens/main_screen.dart'
-    as _i2;
-import 'package:bookly_x_client/app/features/client/onBoarding_screen/onboarding_screen.dart'
+import 'package:auto_route/auto_route.dart' as _i7;
+import 'package:bookly_x_client/app/features/client/main_screen/presentation/screens/client_main_screen.dart'
     as _i3;
-import 'package:bookly_x_client/app/features/client/splash_screen/splash_screen.dart'
+import 'package:bookly_x_client/app/features/common/screens/auth/presentation/screens/auth_screen.dart'
+    as _i1;
+import 'package:bookly_x_client/app/features/common/screens/choose_role/presentation/screens/choose_role_screen.dart'
+    as _i2;
+import 'package:bookly_x_client/app/features/common/screens/onBoarding_screen/onboarding_screen.dart'
+    as _i4;
+import 'package:bookly_x_client/app/features/common/screens/splash_screen/splash_screen.dart'
     as _i5;
+import 'package:bookly_x_client/app/features/staff/main_screen/presentation/screens/staff_main_screen.dart'
+    as _i6;
 
 /// generated route for
-/// [_i1.LoginScreen]
-class LoginRoute extends _i6.PageRouteInfo<void> {
-  const LoginRoute({List<_i6.PageRouteInfo>? children})
-      : super(LoginRoute.name, initialChildren: children);
+/// [_i1.AuthScreen]
+class AuthRoute extends _i7.PageRouteInfo<void> {
+  const AuthRoute({List<_i7.PageRouteInfo>? children})
+      : super(AuthRoute.name, initialChildren: children);
 
-  static const String name = 'LoginRoute';
+  static const String name = 'AuthRoute';
 
-  static _i6.PageInfo page = _i6.PageInfo(
+  static _i7.PageInfo page = _i7.PageInfo(
     name,
     builder: (data) {
-      return const _i1.LoginScreen();
+      return const _i1.AuthScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i2.MainScreen]
-class MainRoute extends _i6.PageRouteInfo<void> {
-  const MainRoute({List<_i6.PageRouteInfo>? children})
-      : super(MainRoute.name, initialChildren: children);
+/// [_i2.ChooseRoleScreen]
+class ChooseRoleRoute extends _i7.PageRouteInfo<void> {
+  const ChooseRoleRoute({List<_i7.PageRouteInfo>? children})
+      : super(ChooseRoleRoute.name, initialChildren: children);
 
-  static const String name = 'MainRoute';
+  static const String name = 'ChooseRoleRoute';
 
-  static _i6.PageInfo page = _i6.PageInfo(
+  static _i7.PageInfo page = _i7.PageInfo(
     name,
     builder: (data) {
-      return const _i2.MainScreen();
+      return const _i2.ChooseRoleScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i3.OnboardingScreen]
-class OnboardingRoute extends _i6.PageRouteInfo<void> {
-  const OnboardingRoute({List<_i6.PageRouteInfo>? children})
+/// [_i3.ClientMainScreen]
+class ClientMainRoute extends _i7.PageRouteInfo<void> {
+  const ClientMainRoute({List<_i7.PageRouteInfo>? children})
+      : super(ClientMainRoute.name, initialChildren: children);
+
+  static const String name = 'ClientMainRoute';
+
+  static _i7.PageInfo page = _i7.PageInfo(
+    name,
+    builder: (data) {
+      return const _i3.ClientMainScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [_i4.OnboardingScreen]
+class OnboardingRoute extends _i7.PageRouteInfo<void> {
+  const OnboardingRoute({List<_i7.PageRouteInfo>? children})
       : super(OnboardingRoute.name, initialChildren: children);
 
   static const String name = 'OnboardingRoute';
 
-  static _i6.PageInfo page = _i6.PageInfo(
+  static _i7.PageInfo page = _i7.PageInfo(
     name,
     builder: (data) {
-      return const _i3.OnboardingScreen();
-    },
-  );
-}
-
-/// generated route for
-/// [_i4.SignUpScreen]
-class SignUpRoute extends _i6.PageRouteInfo<void> {
-  const SignUpRoute({List<_i6.PageRouteInfo>? children})
-      : super(SignUpRoute.name, initialChildren: children);
-
-  static const String name = 'SignUpRoute';
-
-  static _i6.PageInfo page = _i6.PageInfo(
-    name,
-    builder: (data) {
-      return const _i4.SignUpScreen();
+      return const _i4.OnboardingScreen();
     },
   );
 }
 
 /// generated route for
 /// [_i5.SplashScreen]
-class SplashRoute extends _i6.PageRouteInfo<void> {
-  const SplashRoute({List<_i6.PageRouteInfo>? children})
+class SplashRoute extends _i7.PageRouteInfo<void> {
+  const SplashRoute({List<_i7.PageRouteInfo>? children})
       : super(SplashRoute.name, initialChildren: children);
 
   static const String name = 'SplashRoute';
 
-  static _i6.PageInfo page = _i6.PageInfo(
+  static _i7.PageInfo page = _i7.PageInfo(
     name,
     builder: (data) {
       return const _i5.SplashScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [_i6.StaffMainScreen]
+class StaffMainRoute extends _i7.PageRouteInfo<void> {
+  const StaffMainRoute({List<_i7.PageRouteInfo>? children})
+      : super(StaffMainRoute.name, initialChildren: children);
+
+  static const String name = 'StaffMainRoute';
+
+  static _i7.PageInfo page = _i7.PageInfo(
+    name,
+    builder: (data) {
+      return const _i6.StaffMainScreen();
     },
   );
 }

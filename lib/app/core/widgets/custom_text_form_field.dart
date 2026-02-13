@@ -170,7 +170,7 @@ class CustomTextFormField extends StatelessWidget {
 class CustomPasswordTextFormField extends StatefulWidget {
   const CustomPasswordTextFormField({
     super.key,
-    required this.hint,
+    this.hint,
     this.title,
     this.keyboardType,
     this.readOnly = false,
@@ -189,7 +189,7 @@ class CustomPasswordTextFormField extends StatefulWidget {
     this.textInputAction,
   });
 
-  final String hint;
+  final String? hint;
   final TextInputType? keyboardType;
   final String? Function(String?)? validator;
   final Function(String)? onChanged;
@@ -219,8 +219,8 @@ class _CustomPasswordTextFormFieldState
   @override
   Widget build(BuildContext context) {
     return CustomTextFormField(
-      hint: widget.hint,
-      title: widget.title,
+      hint: widget.hint ?? '${tr.enter} ${tr.password}',
+      title: tr.password,
       controller: widget.controller,
       validator: widget.validator,
       onPressed: widget.onPressed,

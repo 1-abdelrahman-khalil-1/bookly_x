@@ -57,6 +57,18 @@ flutter:
     - assets/png/
     - assets/svg/
   fonts:
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Inter-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Inter-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Inter-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Inter-Bold.ttf
+          weight: 700
     - family: first
       fonts:
         - asset: assets/icons/first.ttf
@@ -79,3 +91,5 @@ flutter_assets:
   filename: assets.dart
   ignore_comments: true
   field_prefix: null
+flutter_native_splash:
+  color: "#ffffff"

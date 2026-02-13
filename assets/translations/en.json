@@ -62,5 +62,21 @@
     "barberSubtitle": "Book appointments with the best barbers in town.",
     "spaTitle": "Relax and Rejuvenate",
     "spaSubtitle": "Book premium spa experiences designed for your comfort."
-  }
+  },
+  "chooseYourRole": "Choose your role",
+  "client": "Client",
+  "staff": "Staff",
+  "clientDescription": "Enjoy a seamless booking experience with the best service providers in your area.",
+  "staffDescription": "Manage your bookings effortlessly and expand your reach to customers.",
+  "continue": "Continue",
+  "getStarted": "Get Started Now",
+  "createAnAccountOrLogInToExploreAboutOurApp": "Create an account or log in to explore about our app",
+  "login": "Log In",
+  "signUp": "Sign Up",
+  "email": "Email",
+  "password": "Password",
+  "rememberMe": "Remember Me",
+  "forgotPassword": "Forgot Password?",
+  "continueWithGoogle": "Continue with Google",
+  "or": "OR"
 }

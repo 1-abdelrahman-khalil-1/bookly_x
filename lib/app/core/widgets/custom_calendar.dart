@@ -76,7 +76,7 @@ class _CustomCalendarState extends State<CustomCalendar> {
           outsideTextStyle: context.regular14TextPlaceholder,
           selectedDecoration: widget.selectedDayDecoration ??
               BoxDecoration(
-                color: AppColors.primaryDark.withAlpha(150),
+                color: AppColors.primary2.withAlpha(150),
                 shape: BoxShape.circle,
               ),
           selectedTextStyle: context.regular14White,

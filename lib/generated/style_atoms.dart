@@ -9,7 +9,7 @@ import '../app/core/themes/app_colors.dart';
 extension WeightAtoms on BuildContext {
   TextStyle get style => Theme.of(this).textTheme.titleMedium!.copyWith(
         color: Color(0xFF1A1A1A),
-        fontFamily: 'Arial',
+        fontFamily: 'Inter',
       );
   TextStyle get light => style.copyWith(fontWeight: FontWeight.w300);
   TextStyle get regular => style.copyWith(fontWeight: FontWeight.normal);
@@ -26,7 +26,7 @@ extension ColorAtoms on TextStyle {
       copyWith(color: AppColors.primaryLightHover);
   TextStyle get primaryLightActive =>
       copyWith(color: AppColors.primaryLightActive);
-  TextStyle get primaryDark => copyWith(color: AppColors.primaryDark);
+  TextStyle get primaryDark => copyWith(color: AppColors.primary2);
   TextStyle get secondary => copyWith(color: AppColors.secondary);
   TextStyle get secondaryLight => copyWith(color: AppColors.secondaryLight);
   TextStyle get secondaryDark => copyWith(color: AppColors.secondaryDark);

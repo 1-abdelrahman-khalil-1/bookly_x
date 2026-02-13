@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:bookly_x_client/app/core/constants/constants.dart';
 import 'package:bookly_x_client/app/core/data/pref.dart';
+import 'package:bookly_x_client/app/core/enums/user_type.dart';
 
 const sharedTokenId = 'token';
 const testToken =
@@ -24,6 +25,10 @@ class UserPrefs {
     await prefs.setString('user', jsonEncode(user));
   }
 
+  static Future<void> setUserType(UserType type) async {
+    await prefs.setString('userType', type.name);
+  }
+
   static Future<void> setUserFcmToken(String fcm) async {
     await prefs.setString('fcm', fcm);
   }
@@ -38,7 +43,8 @@ class UserPrefs {
 
   static String getUserToken() => prefs.getString(sharedTokenId) ?? '';
   static String getTempToken() => prefs.getString('temp') ?? '';
-
+  static UserType getUserType() =>
+      UserType.fromString(prefs.getString('userType') ?? '');
   static Future<void> setAddressesMaxCount(int count) =>
       prefs.setInt('addressesMaxCount', count);
 
@@ -50,6 +56,7 @@ class UserPrefs {
     await prefs.remove(sharedTokenId);
     await prefs.remove('user');
     await prefs.remove('temp');
+    await prefs.remove('userType');
   }
 
   static Future<void> setUserTopic(List<String> topics) async {

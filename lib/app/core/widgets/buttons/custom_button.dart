@@ -15,6 +15,7 @@ class CustomButton extends StatelessWidget {
   final Color? buttonColor;
   final double width;
   final double height;
+  final Gradient? gradient;
   final VoidCallback onPress;
   final VoidCallback? onDisabledPressed;
   final double borderRadius;
@@ -35,14 +36,15 @@ class CustomButton extends StatelessWidget {
     super.key,
     required this.title,
     this.titleColor = AppColors.white,
-    this.buttonColor = AppColors.azureRadiance,
+    this.buttonColor = AppColors.primary2,
     this.borderColor = Colors.transparent,
+    this.gradient,
     this.width = double.infinity,
     this.height = Constants.buttonHeight,
     required this.onPress,
     this.onDisabledPressed,
     this.textStyle,
-    this.borderRadius = 25,
+    this.borderRadius = 8,
     this.prefixIconPath,
     this.suffixIconPath,
     this.border,
@@ -85,6 +87,7 @@ class CustomButton extends StatelessWidget {
                       color: isDisabled ? AppColors.textBorders : buttonColor,
                       borderRadius: BorderRadius.circular(borderRadius),
                       border: border ?? Border.all(color: borderColor),
+                      gradient: gradient,
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

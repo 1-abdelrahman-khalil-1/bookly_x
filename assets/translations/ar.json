@@ -62,5 +62,21 @@
     "barberSubtitle": "احجز المواعيد مع أفضل الحلاقين في المدينة.",
     "spaTitle": "استرخ واستعد حيويتك",
     "spaSubtitle": "احجز سبا فاخرة مصممة خصيصًا لراحتك."
-  }
+  },
+  "chooseYourRole": "اختر دورك",
+  "client": "عميل",
+  "staff": "الموظفون",
+  "clientDescription": "استمتع بتجربة حجز سلسة مع أفضل مقدمي الخدمات في منطقتك.",
+  "staffDescription": "قم بإدارة حجوزاتك بسهولة وتوسيع نطاق وصولك إلى العملاء.",
+  "continue": "استمر",
+  "getStarted": "ابدأ الآن",
+  "createAnAccountOrLogInToExploreAboutOurApp": "أنشئ حسابًا أو سجّل الدخول لاستكشاف تطبيقنا",
+  "login": "تسجيل الدخول",
+  "signUp": "التسجيل",
+  "email": "البريد الإلكتروني",
+  "password": "كلمة المرور",
+  "rememberMe": "تذكرني",
+  "forgotPassword": "نسيت كلمة المرور",
+  "continueWithGoogle": "تابع مع Google",
+  "or": "أو"
 }

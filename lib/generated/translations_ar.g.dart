@@ -81,6 +81,22 @@ class TranslationsAr with BaseTranslations<AppLocale, Translations> implements T
 	@override String get error => 'خطأ';
 	@override String get info => 'معلومات';
 	@override late final _TranslationsOnboardingAr onboarding = _TranslationsOnboardingAr._(_root);
+	@override String get chooseYourRole => 'اختر دورك';
+	@override String get client => 'عميل';
+	@override String get staff => 'الموظفون';
+	@override String get clientDescription => 'استمتع بتجربة حجز سلسة مع أفضل مقدمي الخدمات في منطقتك.';
+	@override String get staffDescription => 'قم بإدارة حجوزاتك بسهولة وتوسيع نطاق وصولك إلى العملاء.';
+	@override String get kContinue => 'استمر';
+	@override String get getStarted => 'ابدأ الآن';
+	@override String get createAnAccountOrLogInToExploreAboutOurApp => 'أنشئ حسابًا أو سجّل الدخول لاستكشاف تطبيقنا';
+	@override String get login => 'تسجيل الدخول';
+	@override String get signUp => 'التسجيل';
+	@override String get email => 'البريد الإلكتروني';
+	@override String get password => 'كلمة المرور';
+	@override String get rememberMe => 'تذكرني';
+	@override String get forgotPassword => 'نسيت كلمة المرور';
+	@override String get continueWithGoogle => 'تابع مع Google';
+	@override String get or => 'أو';
 }
 
 // Path: weekdays
@@ -193,6 +209,22 @@ extension on TranslationsAr {
 			'onboarding.barberSubtitle' => 'احجز المواعيد مع أفضل الحلاقين في المدينة.',
 			'onboarding.spaTitle' => 'استرخ واستعد حيويتك',
 			'onboarding.spaSubtitle' => 'احجز سبا فاخرة مصممة خصيصًا لراحتك.',
+			'chooseYourRole' => 'اختر دورك',
+			'client' => 'عميل',
+			'staff' => 'الموظفون',
+			'clientDescription' => 'استمتع بتجربة حجز سلسة مع أفضل مقدمي الخدمات في منطقتك.',
+			'staffDescription' => 'قم بإدارة حجوزاتك بسهولة وتوسيع نطاق وصولك إلى العملاء.',
+			'kContinue' => 'استمر',
+			'getStarted' => 'ابدأ الآن',
+			'createAnAccountOrLogInToExploreAboutOurApp' => 'أنشئ حسابًا أو سجّل الدخول لاستكشاف تطبيقنا',
+			'login' => 'تسجيل الدخول',
+			'signUp' => 'التسجيل',
+			'email' => 'البريد الإلكتروني',
+			'password' => 'كلمة المرور',
+			'rememberMe' => 'تذكرني',
+			'forgotPassword' => 'نسيت كلمة المرور',
+			'continueWithGoogle' => 'تابع مع Google',
+			'or' => 'أو',
 			_ => null,
 		};
 	}

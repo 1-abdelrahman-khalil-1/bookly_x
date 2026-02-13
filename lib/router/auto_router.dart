@@ -10,21 +10,21 @@ class AppRouter extends RootStackRouter {
   List<AutoRoute> get routes => [
         CustomRoute(
             page: SplashRoute.page,
-            initial: isInitialRoute(SplashRoute()),
+            initial: true,
             transitionsBuilder: rightToLeftTransition),
         CustomRoute(
             page: OnboardingRoute.page,
-            initial: isInitialRoute(OnboardingRoute()),
             transitionsBuilder: rightToLeftTransition),
         CustomRoute(
-            page: SignUpRoute.page, transitionsBuilder: rightToLeftTransition),
+            page: AuthRoute.page, transitionsBuilder: rightToLeftTransition),
         CustomRoute(
-            page: LoginRoute.page,
-            initial: isInitialRoute(LoginRoute()),
+            page: ClientMainRoute.page,
             transitionsBuilder: rightToLeftTransition),
         CustomRoute(
-            page: MainRoute.page,
-            initial: isInitialRoute(MainRoute()),
+            page: StaffMainRoute.page,
+            transitionsBuilder: rightToLeftTransition),
+        CustomRoute(
+            page: ChooseRoleRoute.page,
             transitionsBuilder: rightToLeftTransition),
       ];
 

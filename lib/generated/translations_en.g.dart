@@ -169,6 +169,54 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	String get info => 'Info';
 
 	late final TranslationsOnboardingEn onboarding = TranslationsOnboardingEn._(_root);
+
+	/// en: 'Choose your role'
+	String get chooseYourRole => 'Choose your role';
+
+	/// en: 'Client'
+	String get client => 'Client';
+
+	/// en: 'Staff'
+	String get staff => 'Staff';
+
+	/// en: 'Enjoy a seamless booking experience with the best service providers in your area.'
+	String get clientDescription => 'Enjoy a seamless booking experience with the best service providers in your area.';
+
+	/// en: 'Manage your bookings effortlessly and expand your reach to customers.'
+	String get staffDescription => 'Manage your bookings effortlessly and expand your reach to customers.';
+
+	/// en: 'Continue'
+	String get kContinue => 'Continue';
+
+	/// en: 'Get Started Now'
+	String get getStarted => 'Get Started Now';
+
+	/// en: 'Create an account or log in to explore about our app'
+	String get createAnAccountOrLogInToExploreAboutOurApp => 'Create an account or log in to explore about our app';
+
+	/// en: 'Log In'
+	String get login => 'Log In';
+
+	/// en: 'Sign Up'
+	String get signUp => 'Sign Up';
+
+	/// en: 'Email'
+	String get email => 'Email';
+
+	/// en: 'Password'
+	String get password => 'Password';
+
+	/// en: 'Remember Me'
+	String get rememberMe => 'Remember Me';
+
+	/// en: 'Forgot Password?'
+	String get forgotPassword => 'Forgot Password?';
+
+	/// en: 'Continue with Google'
+	String get continueWithGoogle => 'Continue with Google';
+
+	/// en: 'OR'
+	String get or => 'OR';
 }
 
 // Path: weekdays
@@ -315,6 +363,22 @@ extension on Translations {
 			'onboarding.barberSubtitle' => 'Book appointments with the best barbers in town.',
 			'onboarding.spaTitle' => 'Relax and Rejuvenate',
 			'onboarding.spaSubtitle' => 'Book premium spa experiences designed for your comfort.',
+			'chooseYourRole' => 'Choose your role',
+			'client' => 'Client',
+			'staff' => 'Staff',
+			'clientDescription' => 'Enjoy a seamless booking experience with the best service providers in your area.',
+			'staffDescription' => 'Manage your bookings effortlessly and expand your reach to customers.',
+			'kContinue' => 'Continue',
+			'getStarted' => 'Get Started Now',
+			'createAnAccountOrLogInToExploreAboutOurApp' => 'Create an account or log in to explore about our app',
+			'login' => 'Log In',
+			'signUp' => 'Sign Up',
+			'email' => 'Email',
+			'password' => 'Password',
+			'rememberMe' => 'Remember Me',
+			'forgotPassword' => 'Forgot Password?',
+			'continueWithGoogle' => 'Continue with Google',
+			'or' => 'OR',
 			_ => null,
 		};
 	}
