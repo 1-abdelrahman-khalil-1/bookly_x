@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bookly_x_client/app/core/data/routing_pref.dart';
-import 'package:bookly_x_client/app/core/data/user_pref.dart';
 import 'package:bookly_x_client/app/core/widgets/logo_name.dart';
 import 'package:bookly_x_client/app/features/common/screens/onBoarding_screen/widgets/onboarding_page_widget.dart';
 import 'package:bookly_x_client/generated/assets.dart';
@@ -86,7 +85,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     TextButton(
                       onPressed: _onSkip,
                       child: Text(
-                        tr.onboarding.skip,
+                        tr.skip,
                         style: context.bold16White,
                       ),
                     ),

@@ -1,12 +1,10 @@
+import 'package:bookly_x_client/bookly_x_client_app.dart';
 import 'package:flutter/material.dart';
 
 import '../enums/snack_bar.dart';
 import '../extensions/custom_snack_bar.dart';
 
-// Global navigator key for accessing context
-final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-
-BuildContext get currContext => navigatorKey.currentContext!;
+BuildContext get currContext => appRouter.navigatorKey.currentContext!;
 
 void setMessage(
   String message, {

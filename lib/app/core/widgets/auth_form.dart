@@ -4,16 +4,15 @@ import 'package:flutter/material.dart';
 class AuthForm extends StatelessWidget {
   const AuthForm({
     super.key,
-    required this.children,
+    required this.child,
   });
 
-  final List<Widget> children;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
@@ -28,9 +27,7 @@ class AuthForm extends StatelessWidget {
             ),
           ],
         ),
-        child: Column(
-          children: children,
-        ),
+        child: child,
       ),
     );
   }

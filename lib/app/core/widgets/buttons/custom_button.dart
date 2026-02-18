@@ -31,7 +31,7 @@ class CustomButton extends StatelessWidget {
   final bool isHaveCircleOnPrefixIcon;
   final String circleChild;
   final IconData? prefixIcon;
-
+  final double prefixIconSize;
   const CustomButton({
     super.key,
     required this.title,
@@ -56,6 +56,7 @@ class CustomButton extends StatelessWidget {
     this.isHaveCircleOnPrefixIcon = false,
     this.circleChild = '',
     this.prefixIcon,
+    this.prefixIconSize = 24,
   });
 
   @override
@@ -99,7 +100,7 @@ class CustomButton extends StatelessWidget {
                               if (prefixIcon != null)
                                 Icon(
                                   prefixIcon,
-                                  size: 24,
+                                  size: prefixIconSize,
                                   color: prefixIconColor,
                                 )
                               else
@@ -136,7 +137,7 @@ class CustomButton extends StatelessWidget {
                                 ),
                             ],
                           ),
-                          const SizedBox(width: 12),
+                          const SizedBox(width: 4),
                         ],
                         Padding(
                           padding: const EdgeInsets.only(top: 2.0),

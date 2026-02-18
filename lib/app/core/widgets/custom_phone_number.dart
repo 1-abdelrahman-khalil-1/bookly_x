@@ -6,6 +6,7 @@ import 'package:bookly_x_client/app/core/themes/app_colors.dart';
 import 'package:bookly_x_client/generated/style_atoms.dart';
 import 'package:bookly_x_client/generated/translations.g.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/country_picker_dialog.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
@@ -54,8 +55,12 @@ class CustomPhoneNumber extends StatelessWidget {
           textDirection: TextDirection.ltr,
           child: IntlPhoneField(
             initialValue: initialValue,
+            showDropdownIcon: false,
+            inputFormatters: [
+              FilteringTextInputFormatter.digitsOnly,
+            ],
             decoration: InputDecoration(
-              labelText: tr.fieldNames.phoneNumber,
+              labelText: tr.phoneNumber,
               labelStyle: context.regular14,
               alignLabelWithHint: true,
               filled: true,
@@ -93,7 +98,7 @@ class CustomPhoneNumber extends StatelessWidget {
             ),
             // textAlign: TextAlign.right,
             // countries: ['AE'],
-            initialCountryCode: initialCountryCode ?? 'SA',
+            initialCountryCode: initialCountryCode ?? 'EG',
             controller: controller,
             onCountryChanged: onCountryChanged,
             onChanged: onChanged,
@@ -103,42 +108,3 @@ class CustomPhoneNumber extends StatelessWidget {
     );
   }
 }
-
-/**
-    Directionality(
-    textDirection: TextDirection.ltr,
-    child: IntlPhoneField(
-    decoration: InputDecoration(
-    hintText: tr.fieldNames.enter_your_phone_number,
-    hintStyle: context.roman14.copyWith(color: AppColors.gray3),
-    contentPadding: const EdgeInsets.symmetric(
-    horizontal: Constants.horizontalPadding,
-    vertical: Constants.defaultPadding / 1.2,
-    ),
-    border: AppTextFieldBorderStyles.border,
-    enabledBorder: AppTextFieldBorderStyles.border,
-    focusedBorder: AppTextFieldBorderStyles.border,
-    disabledBorder: AppTextFieldBorderStyles.border,
-    errorBorder: AppTextFieldBorderStyles.errorBorder,
-    focusedErrorBorder: AppTextFieldBorderStyles.errorBorder,
-    ),
-    cursorColor: AppColors.primary,
-    invalidNumberMessage: tr.validation.invalidField,
-    disableLengthCheck: disableLengthCheck,
-    pickerDialogStyle: PickerDialogStyle(
-    searchFieldInputDecoration: InputDecoration(
-    hintText: tr.fieldNames.search_country,
-    icon: const Icon(
-    Icons.search,
-    ),
-    ),
-    ),
-    textAlign: TextAlign.start,
-    initialCountryCode: 'EG',
-    controller: controller,
-    onCountryChanged: onCountryChanged,
-    onChanged: onChanged,
-    validator: validator,
-    ),
-    ),
- */

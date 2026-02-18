@@ -1,4 +1,6 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bookly_x_client/app/core/data/user_pref.dart';
+import 'package:bookly_x_client/app/core/enums/user_type.dart';
 import 'package:bookly_x_client/app/core/themes/app_colors.dart';
 import 'package:bookly_x_client/app/core/widgets/buttons/custom_button.dart';
 import 'package:bookly_x_client/app/core/widgets/custom_sized_box.dart';
@@ -69,6 +71,11 @@ class _ChooseRoleScreenState extends State<ChooseRoleScreen> {
               Spacer(),
               CustomButton(
                   onPress: () async {
+                    if (_selected == 1) {
+                      UserPrefs.setUserType(UserType.client);
+                    } else {
+                      UserPrefs.setUserType(UserType.staff);
+                    }
                     AuthRoute().push(context);
                   },
                   isDisabled: _selected == 0,

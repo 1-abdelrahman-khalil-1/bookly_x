@@ -59,7 +59,7 @@ class TranslationsAr with BaseTranslations<AppLocale, Translations> implements T
 	@override String get pleaseSelect => 'يرجى الاختيار';
 	@override String get close => 'إغلاق';
 	@override String get searchAndSelect => 'البحث والاختيار';
-	@override late final _TranslationsFieldNamesAr fieldNames = _TranslationsFieldNamesAr._(_root);
+	@override String get phoneNumber => 'رقم الهاتف';
 	@override String get enterYourPhoneNumber => 'أدخل رقم هاتفك';
 	@override String get pleaseEnterAValidPhone => 'يرجى إدخال رقم هاتف صحيح';
 	@override String get searchCountry => 'البحث عن دولة';
@@ -80,6 +80,8 @@ class TranslationsAr with BaseTranslations<AppLocale, Translations> implements T
 	@override String get warning => 'تحذير';
 	@override String get error => 'خطأ';
 	@override String get info => 'معلومات';
+	@override String get next => 'التالي';
+	@override String get skip => 'تخطي';
 	@override late final _TranslationsOnboardingAr onboarding = _TranslationsOnboardingAr._(_root);
 	@override String get chooseYourRole => 'اختر دورك';
 	@override String get client => 'عميل';
@@ -97,6 +99,86 @@ class TranslationsAr with BaseTranslations<AppLocale, Translations> implements T
 	@override String get forgotPassword => 'نسيت كلمة المرور';
 	@override String get continueWithGoogle => 'تابع مع Google';
 	@override String get or => 'أو';
+	@override String get fullName => 'الاسم الكامل';
+	@override String get fullNameRequired => 'الاسم الكامل مطلوب';
+	@override String get enterYourFullName => 'أدخل اسمك الكامل';
+	@override String get emailRequired => 'البريد الإلكتروني مطلوب';
+	@override String get enterYourEmail => 'أدخل بريدك الإلكتروني';
+	@override String get passwordRequired => 'كلمة المرور مطلوبة';
+	@override String get enterYourPassword => 'أدخل كلمة المرور';
+	@override String get fullNameShouldBeAtLeastTwoWords => 'يجب أن يكون الاسم الكامل مكونًا من كلمتين على الأقل';
+	@override String get youForgotThisField => 'لقد نسيت هذا الحقل';
+	@override String get emailIsNotValid => 'البريد الإلكتروني غير صحيح';
+	@override String get passwordShouldBeAtLeast8 => 'يجب أن تكون كلمة المرور مكونة من 8 أحرف على الأقل';
+	@override String get passwordShouldContainAtLeastOneCharacter => 'يجب أن تحتوي كلمة المرور على حرف واحد على الأقل';
+	@override String get passwordShouldContainAtLeastOneNumber => 'يجب أن تحتوي كلمة المرور على رقم واحد على الأقل';
+	@override String get confirmPassword => 'تأكيد كلمة المرور';
+	@override String get passwordsDoNotMatch => 'كلمة المرور غير متطابقة';
+	@override String get endTimeMustBeAfterStartTime => 'يجب أن يكون وقت الانتهاء بعد وقت البدء';
+	@override String get phoneNumberRequired => 'رقم الهاتف مطلوب';
+	@override String get byCreatingAnAccountYouAgreeToTheTermsOfUse => 'من خلال إنشاء حساب، فإنك توافق على شروط الاستخدام.';
+	@override String get alreadyHaveAnAccount => 'بالفعل لديك حساب؟';
+	@override String get signUpWithGoogle => 'التسجيل باستخدام Google';
+	@override String get resetPassword => 'إعادة تعيين كلمة المرور';
+	@override String get enterYourEmailAddressAndWeWillSendYouALinkToResetYourPassword => 'أدخل عنوان بريدك الإلكتروني وسنرسل لك رابطًا لإعادة تعيين كلمة المرور.';
+	@override String get sendCode => 'إرسال الرمز';
+	@override String get checkYouEmail => 'تحقق من بريدك الإلكتروني';
+	@override String weSentAResetLinkToEmailEnter6DigitCodeThatMentionedInTheEmail({required Object email}) => 'لقد أرسلنا رابط إعادة تعيين كلمة المرور إلى ${email}, أدخل رمز الستة الأرقام المذكورة في البريد الإلكتروني.';
+	@override String get didNotReceiveTheCode => 'لم تستلم الرمز؟';
+	@override String get resendCode => 'إعادة إرسال الرمز';
+	@override String get verifyCode => 'تحقق من الرمز';
+	@override String get setNewPassword => 'تعيين كلمة مرور جديدة';
+	@override String get updatePassword => 'تحديث كلمة المرور';
+	@override String get newPassword => 'كلمة مرور جديدة';
+	@override String get yourIdentityHasBeenSuccessfullyVerifiedPleaseEnterANewPasswordToSecureYourAccount => 'تم التحقق من هويتك بنجاح. يرجى إدخال كلمة مرور جديدة لتأمين حسابك.';
+	@override String get passwordUpdatedSuccessfully => 'تم تحديث كلمة المرور بنجاح';
+	@override String get enter6DigitCode => 'أدخل رمز مكون من 6 أرقام';
+	@override String get weSentVerificationCodeToYourEmail => 'لقد أرسلنا رمز التحقق إلى بريدك الإلكتروني';
+	@override String get weSentVerificationCodeToYourPhone => 'لقد أرسلنا رمز التحقق إلى هاتفك';
+	@override String get haventGotTheCodeYet => 'لم تحصل على الرمز بعد؟';
+	@override String get remaining => 'المتبقي';
+	@override String get resendCodeIn => 'إعادة إرسال الرمز في';
+	@override String get seconds => 'ثانية';
+	@override String get pleaseEnterValidOtp => 'يرجى إدخال رمز OTP صالح';
+	@override String get accountCreatedSuccessfully => 'تم إنشاء الحساب بنجاح';
+	@override String get loginSuccessfuly => 'تم تسجيل الدخول بنجاح';
+	@override String get home => 'الرئيسية';
+	@override String get goodMorning => 'صباح الخير،';
+	@override String get searchServicesProviders => 'ابحث عن خدمات، مزودين...';
+	@override String get limitedTime => 'وقت محدود!';
+	@override String get getSpecialDiscountInToday => 'احصل على خصم خاص اليوم';
+	@override String get upTo => 'حتى';
+	@override String get allServicesAvailable => 'جميع الخدمات متاحة || 16 ساعة واليوم';
+	@override String get claimNow => 'اطلب الآن';
+	@override String get categories => 'الفئات';
+	@override String get nearbyProviders => 'مزودون قريبون';
+	@override String get viewAll => 'عرض الكل';
+	@override String get rating => 'التقييم';
+	@override String get earned => 'المكتسب';
+	@override String get rate => 'السعر';
+	@override String get getInTouch => 'تواصل معنا';
+	@override String get explore => 'استكشاف';
+	@override String get bookings => 'الحجوزات';
+	@override String get offers => 'العروض';
+	@override String get settings => 'الإعدادات';
+	@override String get pending => 'قيد الانتظار';
+	@override String get upcoming => 'القادمة';
+	@override String get complete => 'مكتملة';
+	@override String get waitingForPayment => 'في انتظار الدفع';
+	@override String get totalPaid => 'إجمالي المدفوع';
+	@override String get confirmed => 'مؤكدة';
+	@override String get contact => 'اتصل';
+	@override String get directions => 'الاتجاهات';
+	@override String get pay => 'الدفع';
+	@override String get reschedule => 'إعادة الجدولة';
+	@override String get cancelBookingTitle => 'هل أنت متأكد من أنك تريد إلغاء حجزك بشكل دائم؟';
+	@override String get deleteBookingTitle => 'هل أنت متأكد من أنك تريد حذف حجزك بشكل دائم؟';
+	@override String get cancelBookingMessage => 'من خلال القيام بذلك، سيتم إلغاء إشعاراتك بشكل دائم ولن تتمكن من استعادة إشعاراتك بعد الآن.';
+	@override String get noBookingsYet => 'لا توجد حجوزات بعد';
+	@override String get kWith => 'مع';
+	@override String get minutes => 'دقيقة';
+	@override String get changeLanguage => 'تغيير اللغة';
+	@override String get availableNearYou => 'متوفر بالقرب منك';
 }
 
 // Path: weekdays
@@ -115,16 +197,6 @@ class _TranslationsWeekdaysAr implements TranslationsWeekdaysEn {
 	@override String get sunday => 'الأحد';
 }
 
-// Path: fieldNames
-class _TranslationsFieldNamesAr implements TranslationsFieldNamesEn {
-	_TranslationsFieldNamesAr._(this._root);
-
-	final TranslationsAr _root; // ignore: unused_field
-
-	// Translations
-	@override String get phoneNumber => 'رقم الهاتف';
-}
-
 // Path: onboarding
 class _TranslationsOnboardingAr implements TranslationsOnboardingEn {
 	_TranslationsOnboardingAr._(this._root);
@@ -132,8 +204,6 @@ class _TranslationsOnboardingAr implements TranslationsOnboardingEn {
 	final TranslationsAr _root; // ignore: unused_field
 
 	// Translations
-	@override String get skip => 'تخطي';
-	@override String get next => 'التالي';
 	@override String get getStarted => 'ابدأ الآن';
 	@override String get doctorTitle => 'ابحث عن أطباء موثوقين';
 	@override String get doctorSubtitle => 'إبحث واحجز المواعيد مع أفضل الأطباء.';
@@ -179,7 +249,7 @@ extension on TranslationsAr {
 			'pleaseSelect' => 'يرجى الاختيار',
 			'close' => 'إغلاق',
 			'searchAndSelect' => 'البحث والاختيار',
-			'fieldNames.phoneNumber' => 'رقم الهاتف',
+			'phoneNumber' => 'رقم الهاتف',
 			'enterYourPhoneNumber' => 'أدخل رقم هاتفك',
 			'pleaseEnterAValidPhone' => 'يرجى إدخال رقم هاتف صحيح',
 			'searchCountry' => 'البحث عن دولة',
@@ -200,8 +270,8 @@ extension on TranslationsAr {
 			'warning' => 'تحذير',
 			'error' => 'خطأ',
 			'info' => 'معلومات',
-			'onboarding.skip' => 'تخطي',
-			'onboarding.next' => 'التالي',
+			'next' => 'التالي',
+			'skip' => 'تخطي',
 			'onboarding.getStarted' => 'ابدأ الآن',
 			'onboarding.doctorTitle' => 'ابحث عن أطباء موثوقين',
 			'onboarding.doctorSubtitle' => 'إبحث واحجز المواعيد مع أفضل الأطباء.',
@@ -225,6 +295,86 @@ extension on TranslationsAr {
 			'forgotPassword' => 'نسيت كلمة المرور',
 			'continueWithGoogle' => 'تابع مع Google',
 			'or' => 'أو',
+			'fullName' => 'الاسم الكامل',
+			'fullNameRequired' => 'الاسم الكامل مطلوب',
+			'enterYourFullName' => 'أدخل اسمك الكامل',
+			'emailRequired' => 'البريد الإلكتروني مطلوب',
+			'enterYourEmail' => 'أدخل بريدك الإلكتروني',
+			'passwordRequired' => 'كلمة المرور مطلوبة',
+			'enterYourPassword' => 'أدخل كلمة المرور',
+			'fullNameShouldBeAtLeastTwoWords' => 'يجب أن يكون الاسم الكامل مكونًا من كلمتين على الأقل',
+			'youForgotThisField' => 'لقد نسيت هذا الحقل',
+			'emailIsNotValid' => 'البريد الإلكتروني غير صحيح',
+			'passwordShouldBeAtLeast8' => 'يجب أن تكون كلمة المرور مكونة من 8 أحرف على الأقل',
+			'passwordShouldContainAtLeastOneCharacter' => 'يجب أن تحتوي كلمة المرور على حرف واحد على الأقل',
+			'passwordShouldContainAtLeastOneNumber' => 'يجب أن تحتوي كلمة المرور على رقم واحد على الأقل',
+			'confirmPassword' => 'تأكيد كلمة المرور',
+			'passwordsDoNotMatch' => 'كلمة المرور غير متطابقة',
+			'endTimeMustBeAfterStartTime' => 'يجب أن يكون وقت الانتهاء بعد وقت البدء',
+			'phoneNumberRequired' => 'رقم الهاتف مطلوب',
+			'byCreatingAnAccountYouAgreeToTheTermsOfUse' => 'من خلال إنشاء حساب، فإنك توافق على شروط الاستخدام.',
+			'alreadyHaveAnAccount' => 'بالفعل لديك حساب؟',
+			'signUpWithGoogle' => 'التسجيل باستخدام Google',
+			'resetPassword' => 'إعادة تعيين كلمة المرور',
+			'enterYourEmailAddressAndWeWillSendYouALinkToResetYourPassword' => 'أدخل عنوان بريدك الإلكتروني وسنرسل لك رابطًا لإعادة تعيين كلمة المرور.',
+			'sendCode' => 'إرسال الرمز',
+			'checkYouEmail' => 'تحقق من بريدك الإلكتروني',
+			'weSentAResetLinkToEmailEnter6DigitCodeThatMentionedInTheEmail' => ({required Object email}) => 'لقد أرسلنا رابط إعادة تعيين كلمة المرور إلى ${email}, أدخل رمز الستة الأرقام المذكورة في البريد الإلكتروني.',
+			'didNotReceiveTheCode' => 'لم تستلم الرمز؟',
+			'resendCode' => 'إعادة إرسال الرمز',
+			'verifyCode' => 'تحقق من الرمز',
+			'setNewPassword' => 'تعيين كلمة مرور جديدة',
+			'updatePassword' => 'تحديث كلمة المرور',
+			'newPassword' => 'كلمة مرور جديدة',
+			'yourIdentityHasBeenSuccessfullyVerifiedPleaseEnterANewPasswordToSecureYourAccount' => 'تم التحقق من هويتك بنجاح. يرجى إدخال كلمة مرور جديدة لتأمين حسابك.',
+			'passwordUpdatedSuccessfully' => 'تم تحديث كلمة المرور بنجاح',
+			'enter6DigitCode' => 'أدخل رمز مكون من 6 أرقام',
+			'weSentVerificationCodeToYourEmail' => 'لقد أرسلنا رمز التحقق إلى بريدك الإلكتروني',
+			'weSentVerificationCodeToYourPhone' => 'لقد أرسلنا رمز التحقق إلى هاتفك',
+			'haventGotTheCodeYet' => 'لم تحصل على الرمز بعد؟',
+			'remaining' => 'المتبقي',
+			'resendCodeIn' => 'إعادة إرسال الرمز في',
+			'seconds' => 'ثانية',
+			'pleaseEnterValidOtp' => 'يرجى إدخال رمز OTP صالح',
+			'accountCreatedSuccessfully' => 'تم إنشاء الحساب بنجاح',
+			'loginSuccessfuly' => 'تم تسجيل الدخول بنجاح',
+			'home' => 'الرئيسية',
+			'goodMorning' => 'صباح الخير،',
+			'searchServicesProviders' => 'ابحث عن خدمات، مزودين...',
+			'limitedTime' => 'وقت محدود!',
+			'getSpecialDiscountInToday' => 'احصل على خصم خاص اليوم',
+			'upTo' => 'حتى',
+			'allServicesAvailable' => 'جميع الخدمات متاحة || 16 ساعة واليوم',
+			'claimNow' => 'اطلب الآن',
+			'categories' => 'الفئات',
+			'nearbyProviders' => 'مزودون قريبون',
+			'viewAll' => 'عرض الكل',
+			'rating' => 'التقييم',
+			'earned' => 'المكتسب',
+			'rate' => 'السعر',
+			'getInTouch' => 'تواصل معنا',
+			'explore' => 'استكشاف',
+			'bookings' => 'الحجوزات',
+			'offers' => 'العروض',
+			'settings' => 'الإعدادات',
+			'pending' => 'قيد الانتظار',
+			'upcoming' => 'القادمة',
+			'complete' => 'مكتملة',
+			'waitingForPayment' => 'في انتظار الدفع',
+			'totalPaid' => 'إجمالي المدفوع',
+			'confirmed' => 'مؤكدة',
+			'contact' => 'اتصل',
+			'directions' => 'الاتجاهات',
+			'pay' => 'الدفع',
+			'reschedule' => 'إعادة الجدولة',
+			'cancelBookingTitle' => 'هل أنت متأكد من أنك تريد إلغاء حجزك بشكل دائم؟',
+			'deleteBookingTitle' => 'هل أنت متأكد من أنك تريد حذف حجزك بشكل دائم؟',
+			'cancelBookingMessage' => 'من خلال القيام بذلك، سيتم إلغاء إشعاراتك بشكل دائم ولن تتمكن من استعادة إشعاراتك بعد الآن.',
+			'noBookingsYet' => 'لا توجد حجوزات بعد',
+			'kWith' => 'مع',
+			'minutes' => 'دقيقة',
+			'changeLanguage' => 'تغيير اللغة',
+			'availableNearYou' => 'متوفر بالقرب منك',
 			_ => null,
 		};
 	}

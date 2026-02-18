@@ -25,6 +25,9 @@ class AppColors {
 
   static const Color warning = Color(0xFFF88F2D);
   static const Color warningLight = Color(0xFFFFF6EE);
+  static const Color warningBadge = Color(0xFFFDC700);
+  static const Color successBadge = Color(0xFF10B981);
+  static const Color imageOverlay = Color(0x7A7A7A7A);
 
   static const Color white = Color(0xFFFFFFFF);
   static const Color black = Color(0xFF000000);

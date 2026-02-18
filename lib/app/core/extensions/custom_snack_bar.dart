@@ -1,5 +1,6 @@
 import 'package:bookly_x_client/app/core/extensions/context_extensions.dart';
 import 'package:bookly_x_client/generated/my_icons.dart';
+import 'package:bookly_x_client/generated/style_atoms.dart';
 import 'package:flutter/material.dart';
 
 import '../../../generated/translations.g.dart';
@@ -8,7 +9,6 @@ import '../enums/snack_bar.dart';
 import '../services/internet_connection_service.dart';
 import '../themes/app_colors.dart';
 import '../utils/show_message.dart';
-import '../widgets/animated_snackbar.dart';
 
 extension CustomSnackBar on BuildContext {
   Color getSnackBarColor(SnackBarStatus snackBarStatus) {
@@ -60,16 +60,22 @@ extension CustomSnackBar on BuildContext {
         behavior: SnackBarBehavior.floating,
         backgroundColor: Colors.transparent,
         elevation: 0,
-        content: AnimatedSnackBar(
-          borderColor: bgColor,
-          iconData: getIcons(snackBarStatus),
-          iconColor: bgColor,
-          message: message,
-          desc: desc,
-          messageColor: AppColors.textMain,
-          animatedColor: bgColor,
-          lightAnimatedColor: getSnackBarLightColor(snackBarStatus),
-          verticalColor: bgColor,
+        content: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: bgColor,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Row(
+            children: [
+              Icon(getIcons(snackBarStatus), color: AppColors.white),
+              const SizedBox(width: 16),
+              Text(
+                message,
+                style: currContext.medium14.copyWith(color: AppColors.white),
+              ),
+            ],
+          ),
         ),
       ),
     );

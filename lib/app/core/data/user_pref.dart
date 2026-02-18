@@ -66,7 +66,8 @@ class UserPrefs {
   static List<String>? getUserTopic() => prefs.getStringList('topics');
 
   static bool get isUserLoggedIn => getUserToken().isNotEmpty;
-
+  
+  static bool get isUserStaff => getUserType() == UserType.staff;
   // static UserModel? getCurrentUser() {
   //   final userJson = getUser();
   //   // if (userJson.isEmpty) return null;

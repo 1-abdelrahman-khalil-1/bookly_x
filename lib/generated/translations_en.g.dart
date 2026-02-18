@@ -106,7 +106,8 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	/// en: 'Search and select'
 	String get searchAndSelect => 'Search and select';
 
-	late final TranslationsFieldNamesEn fieldNames = TranslationsFieldNamesEn._(_root);
+	/// en: 'Phone Number'
+	String get phoneNumber => 'Phone Number';
 
 	/// en: 'Enter your phone number'
 	String get enterYourPhoneNumber => 'Enter your phone number';
@@ -168,6 +169,12 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	/// en: 'Info'
 	String get info => 'Info';
 
+	/// en: 'Skip'
+	String get skip => 'Skip';
+
+	/// en: 'Next'
+	String get next => 'Next';
+
 	late final TranslationsOnboardingEn onboarding = TranslationsOnboardingEn._(_root);
 
 	/// en: 'Choose your role'
@@ -217,6 +224,246 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 
 	/// en: 'OR'
 	String get or => 'OR';
+
+	/// en: 'Full Name'
+	String get fullName => 'Full Name';
+
+	/// en: 'Full Name Required'
+	String get fullNameRequired => 'Full Name Required';
+
+	/// en: 'Enter your full name'
+	String get enterYourFullName => 'Enter your full name';
+
+	/// en: 'Email Required'
+	String get emailRequired => 'Email Required';
+
+	/// en: 'Enter Your Email'
+	String get enterYourEmail => 'Enter Your Email';
+
+	/// en: 'Password Required'
+	String get passwordRequired => 'Password Required';
+
+	/// en: 'Enter Your Password'
+	String get enterYourPassword => 'Enter Your Password';
+
+	/// en: 'Full Name Should Be At Least Two Words'
+	String get fullNameShouldBeAtLeastTwoWords => 'Full Name Should Be At Least Two Words';
+
+	/// en: 'You Forgot This Field'
+	String get youForgotThisField => 'You Forgot This Field';
+
+	/// en: 'Email Is Not Valid'
+	String get emailIsNotValid => 'Email Is Not Valid';
+
+	/// en: 'Password Should Be At Least 8 '
+	String get passwordShouldBeAtLeast8 => 'Password Should Be At Least 8 ';
+
+	/// en: 'Password Should Contain At Least One Character'
+	String get passwordShouldContainAtLeastOneCharacter => 'Password Should Contain At Least One Character';
+
+	/// en: 'Password Should Contain At Least One Number'
+	String get passwordShouldContainAtLeastOneNumber => 'Password Should Contain At Least One Number';
+
+	/// en: 'Confirm Password'
+	String get confirmPassword => 'Confirm Password';
+
+	/// en: 'Passwords Do Not Match'
+	String get passwordsDoNotMatch => 'Passwords Do Not Match';
+
+	/// en: 'End Time Must Be After Start Time'
+	String get endTimeMustBeAfterStartTime => 'End Time Must Be After Start Time';
+
+	/// en: 'Phone Number Required'
+	String get phoneNumberRequired => 'Phone Number Required';
+
+	/// en: 'By creating an account, you agree to the Terms of use'
+	String get byCreatingAnAccountYouAgreeToTheTermsOfUse => 'By creating an account, you agree to the Terms of use';
+
+	/// en: 'Already have an account?'
+	String get alreadyHaveAnAccount => 'Already have an account?';
+
+	/// en: 'Sign Up With Google'
+	String get signUpWithGoogle => 'Sign Up With Google';
+
+	/// en: 'Reset Password'
+	String get resetPassword => 'Reset Password';
+
+	/// en: 'Enter your email address and we will send you a link to reset your password.'
+	String get enterYourEmailAddressAndWeWillSendYouALinkToResetYourPassword => 'Enter your email address and we will send you a link to reset your password.';
+
+	/// en: 'Send Code'
+	String get sendCode => 'Send Code';
+
+	/// en: 'Check you email'
+	String get checkYouEmail => 'Check you email';
+
+	/// en: 'We sent a reset link to {{email}}, Enter 6 digit code that mentioned in the email'
+	String weSentAResetLinkToEmailEnter6DigitCodeThatMentionedInTheEmail({required Object email}) => 'We sent a reset link to ${email}, Enter 6 digit code that mentioned in the email';
+
+	/// en: 'Did Not Receive The Code?'
+	String get didNotReceiveTheCode => 'Did Not Receive The Code?';
+
+	/// en: 'Resend Code'
+	String get resendCode => 'Resend Code';
+
+	/// en: 'Verify Code'
+	String get verifyCode => 'Verify Code';
+
+	/// en: 'Set New Password'
+	String get setNewPassword => 'Set New Password';
+
+	/// en: 'Update Password'
+	String get updatePassword => 'Update Password';
+
+	/// en: 'New Password'
+	String get newPassword => 'New Password';
+
+	/// en: 'Your identity has been successfully verified. Please enter a new password to secure your account.'
+	String get yourIdentityHasBeenSuccessfullyVerifiedPleaseEnterANewPasswordToSecureYourAccount => 'Your identity has been successfully verified. Please enter a new password to secure your account.';
+
+	/// en: 'Password Updated Successfully'
+	String get passwordUpdatedSuccessfully => 'Password Updated Successfully';
+
+	/// en: 'Enter 6-digit code'
+	String get enter6DigitCode => 'Enter 6-digit code';
+
+	/// en: 'We sent a verification code to your email'
+	String get weSentVerificationCodeToYourEmail => 'We sent a verification code to your email';
+
+	/// en: 'We sent a verification code to your phone'
+	String get weSentVerificationCodeToYourPhone => 'We sent a verification code to your phone';
+
+	/// en: 'Haven't got the code yet?'
+	String get haventGotTheCodeYet => 'Haven\'t got the code yet?';
+
+	/// en: 'remaining'
+	String get remaining => 'remaining';
+
+	/// en: 'Resend code in'
+	String get resendCodeIn => 'Resend code in';
+
+	/// en: 'seconds'
+	String get seconds => 'seconds';
+
+	/// en: 'Please Enter Valid Otp'
+	String get pleaseEnterValidOtp => 'Please Enter Valid Otp';
+
+	/// en: 'Account Created Successfully'
+	String get accountCreatedSuccessfully => 'Account Created Successfully';
+
+	/// en: 'Login Successfuly'
+	String get loginSuccessfuly => 'Login Successfuly';
+
+	/// en: 'Home'
+	String get home => 'Home';
+
+	/// en: 'Good morning,'
+	String get goodMorning => 'Good morning,';
+
+	/// en: 'Search services, providers...'
+	String get searchServicesProviders => 'Search services, providers...';
+
+	/// en: 'Limited time!'
+	String get limitedTime => 'Limited time!';
+
+	/// en: 'Get Special Discount in today'
+	String get getSpecialDiscountInToday => 'Get Special Discount in today';
+
+	/// en: 'Up to'
+	String get upTo => 'Up to';
+
+	/// en: 'All services Available || 16 hours & today'
+	String get allServicesAvailable => 'All services Available || 16 hours & today';
+
+	/// en: 'Claim Now'
+	String get claimNow => 'Claim Now';
+
+	/// en: 'Categories'
+	String get categories => 'Categories';
+
+	/// en: 'Nearby Providers'
+	String get nearbyProviders => 'Nearby Providers';
+
+	/// en: 'View All'
+	String get viewAll => 'View All';
+
+	/// en: 'Rating'
+	String get rating => 'Rating';
+
+	/// en: 'Earned'
+	String get earned => 'Earned';
+
+	/// en: 'Rate'
+	String get rate => 'Rate';
+
+	/// en: 'Get In Touch'
+	String get getInTouch => 'Get In Touch';
+
+	/// en: 'Explore'
+	String get explore => 'Explore';
+
+	/// en: 'Bookings'
+	String get bookings => 'Bookings';
+
+	/// en: 'Offers'
+	String get offers => 'Offers';
+
+	/// en: 'Settings'
+	String get settings => 'Settings';
+
+	/// en: 'Pending'
+	String get pending => 'Pending';
+
+	/// en: 'Upcoming'
+	String get upcoming => 'Upcoming';
+
+	/// en: 'Complete'
+	String get complete => 'Complete';
+
+	/// en: 'Waiting for payment'
+	String get waitingForPayment => 'Waiting for payment';
+
+	/// en: 'Total Paid'
+	String get totalPaid => 'Total Paid';
+
+	/// en: 'Confirmed'
+	String get confirmed => 'Confirmed';
+
+	/// en: 'Contact'
+	String get contact => 'Contact';
+
+	/// en: 'Directions'
+	String get directions => 'Directions';
+
+	/// en: 'Pay'
+	String get pay => 'Pay';
+
+	/// en: 'Reschedule'
+	String get reschedule => 'Reschedule';
+
+	/// en: 'Are you sure you want to Cancel your Booking permanently?'
+	String get cancelBookingTitle => 'Are you sure you want to Cancel your Booking permanently?';
+
+	/// en: 'Are you sure you want to Delete your Booking permanently?'
+	String get deleteBookingTitle => 'Are you sure you want to Delete your Booking permanently?';
+
+	/// en: 'By doing this, your booking will be cancelled permanently and you will not be able to recover your booking anymore.'
+	String get cancelBookingMessage => 'By doing this, your booking will be cancelled permanently and you will not be able to recover your booking anymore.';
+
+	/// en: 'No bookings yet'
+	String get noBookingsYet => 'No bookings yet';
+
+	/// en: 'With'
+	String get kWith => 'With';
+
+	/// en: 'min'
+	String get minutes => 'min';
+
+	/// en: 'Change Language'
+	String get changeLanguage => 'Change Language';
+
+	/// en: 'Available Near You'
+	String get availableNearYou => 'Available Near You';
 }
 
 // Path: weekdays
@@ -249,18 +496,6 @@ class TranslationsWeekdaysEn {
 	String get sunday => 'Sunday';
 }
 
-// Path: fieldNames
-class TranslationsFieldNamesEn {
-	TranslationsFieldNamesEn._(this._root);
-
-	final Translations _root; // ignore: unused_field
-
-	// Translations
-
-	/// en: 'Phone Number'
-	String get phoneNumber => 'Phone Number';
-}
-
 // Path: onboarding
 class TranslationsOnboardingEn {
 	TranslationsOnboardingEn._(this._root);
@@ -268,12 +503,6 @@ class TranslationsOnboardingEn {
 	final Translations _root; // ignore: unused_field
 
 	// Translations
-
-	/// en: 'Skip'
-	String get skip => 'Skip';
-
-	/// en: 'Next'
-	String get next => 'Next';
 
 	/// en: 'Get Started'
 	String get getStarted => 'Get Started';
@@ -333,7 +562,7 @@ extension on Translations {
 			'pleaseSelect' => 'Please select',
 			'close' => 'Close',
 			'searchAndSelect' => 'Search and select',
-			'fieldNames.phoneNumber' => 'Phone Number',
+			'phoneNumber' => 'Phone Number',
 			'enterYourPhoneNumber' => 'Enter your phone number',
 			'pleaseEnterAValidPhone' => 'Please enter a valid phone number',
 			'searchCountry' => 'Search country',
@@ -354,8 +583,8 @@ extension on Translations {
 			'warning' => 'Warning',
 			'error' => 'Error',
 			'info' => 'Info',
-			'onboarding.skip' => 'Skip',
-			'onboarding.next' => 'Next',
+			'skip' => 'Skip',
+			'next' => 'Next',
 			'onboarding.getStarted' => 'Get Started',
 			'onboarding.doctorTitle' => 'Find Trusted Doctors',
 			'onboarding.doctorSubtitle' => 'Search and book appointments with top-rated doctors.',
@@ -379,6 +608,86 @@ extension on Translations {
 			'forgotPassword' => 'Forgot Password?',
 			'continueWithGoogle' => 'Continue with Google',
 			'or' => 'OR',
+			'fullName' => 'Full Name',
+			'fullNameRequired' => 'Full Name Required',
+			'enterYourFullName' => 'Enter your full name',
+			'emailRequired' => 'Email Required',
+			'enterYourEmail' => 'Enter Your Email',
+			'passwordRequired' => 'Password Required',
+			'enterYourPassword' => 'Enter Your Password',
+			'fullNameShouldBeAtLeastTwoWords' => 'Full Name Should Be At Least Two Words',
+			'youForgotThisField' => 'You Forgot This Field',
+			'emailIsNotValid' => 'Email Is Not Valid',
+			'passwordShouldBeAtLeast8' => 'Password Should Be At Least 8 ',
+			'passwordShouldContainAtLeastOneCharacter' => 'Password Should Contain At Least One Character',
+			'passwordShouldContainAtLeastOneNumber' => 'Password Should Contain At Least One Number',
+			'confirmPassword' => 'Confirm Password',
+			'passwordsDoNotMatch' => 'Passwords Do Not Match',
+			'endTimeMustBeAfterStartTime' => 'End Time Must Be After Start Time',
+			'phoneNumberRequired' => 'Phone Number Required',
+			'byCreatingAnAccountYouAgreeToTheTermsOfUse' => 'By creating an account, you agree to the Terms of use',
+			'alreadyHaveAnAccount' => 'Already have an account?',
+			'signUpWithGoogle' => 'Sign Up With Google',
+			'resetPassword' => 'Reset Password',
+			'enterYourEmailAddressAndWeWillSendYouALinkToResetYourPassword' => 'Enter your email address and we will send you a link to reset your password.',
+			'sendCode' => 'Send Code',
+			'checkYouEmail' => 'Check you email',
+			'weSentAResetLinkToEmailEnter6DigitCodeThatMentionedInTheEmail' => ({required Object email}) => 'We sent a reset link to ${email}, Enter 6 digit code that mentioned in the email',
+			'didNotReceiveTheCode' => 'Did Not Receive The Code?',
+			'resendCode' => 'Resend Code',
+			'verifyCode' => 'Verify Code',
+			'setNewPassword' => 'Set New Password',
+			'updatePassword' => 'Update Password',
+			'newPassword' => 'New Password',
+			'yourIdentityHasBeenSuccessfullyVerifiedPleaseEnterANewPasswordToSecureYourAccount' => 'Your identity has been successfully verified. Please enter a new password to secure your account.',
+			'passwordUpdatedSuccessfully' => 'Password Updated Successfully',
+			'enter6DigitCode' => 'Enter 6-digit code',
+			'weSentVerificationCodeToYourEmail' => 'We sent a verification code to your email',
+			'weSentVerificationCodeToYourPhone' => 'We sent a verification code to your phone',
+			'haventGotTheCodeYet' => 'Haven\'t got the code yet?',
+			'remaining' => 'remaining',
+			'resendCodeIn' => 'Resend code in',
+			'seconds' => 'seconds',
+			'pleaseEnterValidOtp' => 'Please Enter Valid Otp',
+			'accountCreatedSuccessfully' => 'Account Created Successfully',
+			'loginSuccessfuly' => 'Login Successfuly',
+			'home' => 'Home',
+			'goodMorning' => 'Good morning,',
+			'searchServicesProviders' => 'Search services, providers...',
+			'limitedTime' => 'Limited time!',
+			'getSpecialDiscountInToday' => 'Get Special Discount in today',
+			'upTo' => 'Up to',
+			'allServicesAvailable' => 'All services Available || 16 hours & today',
+			'claimNow' => 'Claim Now',
+			'categories' => 'Categories',
+			'nearbyProviders' => 'Nearby Providers',
+			'viewAll' => 'View All',
+			'rating' => 'Rating',
+			'earned' => 'Earned',
+			'rate' => 'Rate',
+			'getInTouch' => 'Get In Touch',
+			'explore' => 'Explore',
+			'bookings' => 'Bookings',
+			'offers' => 'Offers',
+			'settings' => 'Settings',
+			'pending' => 'Pending',
+			'upcoming' => 'Upcoming',
+			'complete' => 'Complete',
+			'waitingForPayment' => 'Waiting for payment',
+			'totalPaid' => 'Total Paid',
+			'confirmed' => 'Confirmed',
+			'contact' => 'Contact',
+			'directions' => 'Directions',
+			'pay' => 'Pay',
+			'reschedule' => 'Reschedule',
+			'cancelBookingTitle' => 'Are you sure you want to Cancel your Booking permanently?',
+			'deleteBookingTitle' => 'Are you sure you want to Delete your Booking permanently?',
+			'cancelBookingMessage' => 'By doing this, your booking will be cancelled permanently and you will not be able to recover your booking anymore.',
+			'noBookingsYet' => 'No bookings yet',
+			'kWith' => 'With',
+			'minutes' => 'min',
+			'changeLanguage' => 'Change Language',
+			'availableNearYou' => 'Available Near You',
 			_ => null,
 		};
 	}
