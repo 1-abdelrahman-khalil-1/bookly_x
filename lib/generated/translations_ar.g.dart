@@ -177,8 +177,21 @@ class TranslationsAr with BaseTranslations<AppLocale, Translations> implements T
 	@override String get noBookingsYet => 'لا توجد حجوزات بعد';
 	@override String get kWith => 'مع';
 	@override String get minutes => 'دقيقة';
+	@override String get notifications => 'الإشعارات';
+	@override String get today => 'اليوم';
+	@override String get yesterday => 'الأمس';
+	@override String get older => 'الأقدم';
+	@override String get markAsRead => 'تحديد كمقروء';
+	@override String get noNotifications => 'لا توجد إشعارات حتى الآن';
 	@override String get changeLanguage => 'تغيير اللغة';
 	@override String get availableNearYou => 'متوفر بالقرب منك';
+	@override String get topOffers => 'أفضل العروض';
+	@override String get availableOffers => 'العروض المتاحة';
+	@override String get allServices => 'جميع الخدمات';
+	@override String get spas => 'السبا';
+	@override String get clinics => 'العيادات';
+	@override String get barbers => 'الحلاقين';
+	@override String get somethingHappenedError => 'حدث خطأ ما';
 }
 
 // Path: weekdays
@@ -373,8 +386,21 @@ extension on TranslationsAr {
 			'noBookingsYet' => 'لا توجد حجوزات بعد',
 			'kWith' => 'مع',
 			'minutes' => 'دقيقة',
+			'notifications' => 'الإشعارات',
+			'today' => 'اليوم',
+			'yesterday' => 'الأمس',
+			'older' => 'الأقدم',
+			'markAsRead' => 'تحديد كمقروء',
+			'noNotifications' => 'لا توجد إشعارات حتى الآن',
 			'changeLanguage' => 'تغيير اللغة',
 			'availableNearYou' => 'متوفر بالقرب منك',
+			'topOffers' => 'أفضل العروض',
+			'availableOffers' => 'العروض المتاحة',
+			'allServices' => 'جميع الخدمات',
+			'spas' => 'السبا',
+			'clinics' => 'العيادات',
+			'barbers' => 'الحلاقين',
+			'somethingHappenedError' => 'حدث خطأ ما',
 			_ => null,
 		};
 	}

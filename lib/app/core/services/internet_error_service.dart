@@ -1,4 +1,5 @@
 import 'package:bookly_x_client/app/core/extensions/context_extensions.dart';
+import 'package:bookly_x_client/app/core/screens_not_related/server_error_screen.dart';
 import 'package:bookly_x_client/app/core/widgets/buttons/custom_button.dart';
 import 'package:bookly_x_client/app/core/widgets/custom_sized_box.dart';
 import 'package:bookly_x_client/bookly_x_client_app.dart';
@@ -16,8 +17,24 @@ class InternetErrorService {
     if (exception is NoInternetConnection) {
       showNoInternetScreen(onRetry: onRetry);
       return true;
+    } else if (exception is InternalServerError) {
+      showServerErrorScreen(onRetry: onRetry);
+      return true;
     }
     return false;
+  }
+
+  static void showServerErrorScreen({VoidCallback? onRetry}) {
+    final context = appRouter.navigatorKey.currentContext;
+    if (context == null) return;
+    context.showCustomAlertDialog(
+        dialog: ServerErrorScreen(
+      isLoading: false,
+      onRetry: () {
+        onRetry?.call();
+        context.pop();
+      },
+    ));
   }
 
   /// Show the no internet screen as a modal dialog

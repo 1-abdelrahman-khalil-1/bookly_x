@@ -459,11 +459,50 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	/// en: 'min'
 	String get minutes => 'min';
 
+	/// en: 'Notifications'
+	String get notifications => 'Notifications';
+
+	/// en: 'Today'
+	String get today => 'Today';
+
+	/// en: 'Yesterday'
+	String get yesterday => 'Yesterday';
+
+	/// en: 'Older'
+	String get older => 'Older';
+
+	/// en: 'Mark as read'
+	String get markAsRead => 'Mark as read';
+
+	/// en: 'No notifications yet'
+	String get noNotifications => 'No notifications yet';
+
 	/// en: 'Change Language'
 	String get changeLanguage => 'Change Language';
 
 	/// en: 'Available Near You'
 	String get availableNearYou => 'Available Near You';
+
+	/// en: 'Top Offers'
+	String get topOffers => 'Top Offers';
+
+	/// en: 'Available Offers'
+	String get availableOffers => 'Available Offers';
+
+	/// en: 'All Services'
+	String get allServices => 'All Services';
+
+	/// en: 'Spas'
+	String get spas => 'Spas';
+
+	/// en: 'Clinics'
+	String get clinics => 'Clinics';
+
+	/// en: 'Barbers'
+	String get barbers => 'Barbers';
+
+	/// en: 'Something Happened Error'
+	String get somethingHappenedError => 'Something Happened Error';
 }
 
 // Path: weekdays
@@ -686,8 +725,21 @@ extension on Translations {
 			'noBookingsYet' => 'No bookings yet',
 			'kWith' => 'With',
 			'minutes' => 'min',
+			'notifications' => 'Notifications',
+			'today' => 'Today',
+			'yesterday' => 'Yesterday',
+			'older' => 'Older',
+			'markAsRead' => 'Mark as read',
+			'noNotifications' => 'No notifications yet',
 			'changeLanguage' => 'Change Language',
 			'availableNearYou' => 'Available Near You',
+			'topOffers' => 'Top Offers',
+			'availableOffers' => 'Available Offers',
+			'allServices' => 'All Services',
+			'spas' => 'Spas',
+			'clinics' => 'Clinics',
+			'barbers' => 'Barbers',
+			'somethingHappenedError' => 'Something Happened Error',
 			_ => null,
 		};
 	}

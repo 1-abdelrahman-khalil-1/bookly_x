@@ -2,11 +2,13 @@ import 'dart:ui';
 
 import 'package:bookly_x_client/app/core/data/lang_pref.dart';
 import 'package:bookly_x_client/app/core/enums/booking_status.dart';
+import 'package:bookly_x_client/app/core/extensions/context_extensions.dart';
 import 'package:bookly_x_client/app/core/extensions/date_time_exensions.dart';
 import 'package:bookly_x_client/app/core/themes/app_colors.dart';
 import 'package:bookly_x_client/app/core/widgets/buttons/custom_button.dart';
 import 'package:bookly_x_client/app/core/widgets/custom_sized_box.dart';
 import 'package:bookly_x_client/app/core/widgets/images/custom_cached_network_image.dart';
+import 'package:bookly_x_client/app/features/client/bookings/presentation/widgets/cancel_booking_dialog.dart';
 import 'package:bookly_x_client/generated/my_icons.dart';
 import 'package:bookly_x_client/generated/style_atoms.dart';
 import 'package:bookly_x_client/generated/translations.g.dart';
@@ -24,10 +26,6 @@ class BookingCard extends StatelessWidget {
   final double? totalPaid;
   final bool isFavorite;
   final VoidCallback onFavoriteToggle;
-  final VoidCallback onContact;
-  final VoidCallback onDirections;
-  final VoidCallback onPrimaryAction;
-  final VoidCallback? onSecondaryAction;
   final String primaryActionLabel;
   final String? secondaryActionLabel;
 
@@ -44,10 +42,6 @@ class BookingCard extends StatelessWidget {
     this.totalPaid,
     required this.isFavorite,
     required this.onFavoriteToggle,
-    required this.onContact,
-    required this.onDirections,
-    required this.onPrimaryAction,
-    this.onSecondaryAction,
     required this.primaryActionLabel,
     required this.secondaryActionLabel,
   });
@@ -168,7 +162,7 @@ class BookingCard extends StatelessWidget {
                     Expanded(
                       child: CustomButton(
                         title: tr.contact,
-                        onPress: onContact,
+                        onPress: () {},
                         textStyle: context.regular11Black,
                         prefixIcon: MyIcons.messageOutline,
                         prefixIconSize: 12,
@@ -183,7 +177,7 @@ class BookingCard extends StatelessWidget {
                     Expanded(
                       child: CustomButton(
                         title: tr.directions,
-                        onPress: onDirections,
+                        onPress: () {},
                         textStyle: context.regular11Black,
                         prefixIcon: MyIcons.locationOutline,
                         prefixIconSize: 12,
@@ -202,7 +196,7 @@ class BookingCard extends StatelessWidget {
                     Expanded(
                       child: CustomButton(
                         title: primaryActionLabel,
-                        onPress: onPrimaryAction,
+                        onPress: () {},
                         textStyle: context.regular12White,
                         height: 30,
                         buttonColor: AppColors.primary,
@@ -215,7 +209,21 @@ class BookingCard extends StatelessWidget {
                       Expanded(
                         child: CustomButton(
                           title: secondaryActionLabel!,
-                          onPress: onSecondaryAction!,
+                          onPress: () {
+                            if (!status.isComplete) {
+                              context.showCustomDialog(
+                                content: CancelBookingDialog(
+                                  onConfirm: () {
+                                    Navigator.pop(context);
+                                    // Handle booking cancellation
+                                  },
+                                  onCancel: () {
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                              );
+                            }
+                          },
                           textStyle: context.regular12Danger,
                           height: 32,
                           buttonColor: AppColors.white,

@@ -33,6 +33,15 @@ class AppRouter extends RootStackRouter {
         CustomRoute(
             page: OtpVerificationRoute.page,
             transitionsBuilder: rightToLeftTransition),
+        CustomRoute(
+            page: ViewAllProvidersRoute.page,
+            transitionsBuilder: rightToLeftTransition),
+        CustomRoute(
+            page: NotificationsRoute.page,
+            transitionsBuilder: rightToLeftTransition),
+        CustomRoute(
+            page: ViewAllOffersRoute.page,
+            transitionsBuilder: rightToLeftTransition),
       ];
 
   Widget rightToLeftTransition(

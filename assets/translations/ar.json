@@ -155,6 +155,19 @@
   "noBookingsYet": "لا توجد حجوزات بعد",
   "with": "مع",
   "minutes": "دقيقة",
+  "notifications": "الإشعارات",
+  "today": "اليوم",
+  "yesterday": "الأمس",
+  "older": "الأقدم",
+  "markAsRead": "تحديد كمقروء",
+  "noNotifications": "لا توجد إشعارات حتى الآن",
   "changeLanguage": "تغيير اللغة",
-  "availableNearYou": "متوفر بالقرب منك"
+  "availableNearYou": "متوفر بالقرب منك",
+  "topOffers": "أفضل العروض",
+  "availableOffers": "العروض المتاحة",
+  "allServices": "جميع الخدمات",
+  "spas": "السبا",
+  "clinics": "العيادات",
+  "barbers": "الحلاقين",
+  "somethingHappenedError": "حدث خطأ ما"
 }

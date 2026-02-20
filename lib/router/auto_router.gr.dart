@@ -9,34 +9,46 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i9;
+import 'package:auto_route/auto_route.dart' as _i13;
+import 'package:bookly_x_client/app/features/client/home/data/models/provider_model.dart'
+    as _i16;
+import 'package:bookly_x_client/app/features/client/home/presentation/screens/view_all_providers_screen.dart'
+    as _i12;
 import 'package:bookly_x_client/app/features/client/main_screen/presentation/screens/client_main_screen.dart'
     as _i3;
+import 'package:bookly_x_client/app/features/client/offers/presentation/screens/offers_screen.dart'
+    as _i6;
+import 'package:bookly_x_client/app/features/client/offers/presentation/screens/view_all_offers_screen.dart'
+    as _i11;
 import 'package:bookly_x_client/app/features/common/screens/auth/presentation/screens/auth_screen.dart'
     as _i1;
 import 'package:bookly_x_client/app/features/common/screens/auth/presentation/screens/otp_verification_screen.dart'
-    as _i6;
+    as _i8;
 import 'package:bookly_x_client/app/features/common/screens/choose_role/presentation/screens/choose_role_screen.dart'
     as _i2;
 import 'package:bookly_x_client/app/features/common/screens/forget_password/presentation/screens/forget_password_screen.dart'
     as _i4;
-import 'package:bookly_x_client/app/features/common/screens/onBoarding_screen/onboarding_screen.dart'
+import 'package:bookly_x_client/app/features/common/screens/notifications/presentation/screens/notifications_screen.dart'
     as _i5;
-import 'package:bookly_x_client/app/features/common/screens/splash_screen/splash_screen.dart'
+import 'package:bookly_x_client/app/features/common/screens/onBoarding_screen/onboarding_screen.dart'
     as _i7;
+import 'package:bookly_x_client/app/features/common/screens/splash_screen/splash_screen.dart'
+    as _i9;
 import 'package:bookly_x_client/app/features/staff/main_screen/presentation/screens/staff_main_screen.dart'
-    as _i8;
-import 'package:flutter/foundation.dart' as _i10;
+    as _i10;
+import 'package:collection/collection.dart' as _i17;
+import 'package:flutter/foundation.dart' as _i14;
+import 'package:flutter/material.dart' as _i15;
 
 /// generated route for
 /// [_i1.AuthScreen]
-class AuthRoute extends _i9.PageRouteInfo<void> {
-  const AuthRoute({List<_i9.PageRouteInfo>? children})
+class AuthRoute extends _i13.PageRouteInfo<void> {
+  const AuthRoute({List<_i13.PageRouteInfo>? children})
       : super(AuthRoute.name, initialChildren: children);
 
   static const String name = 'AuthRoute';
 
-  static _i9.PageInfo page = _i9.PageInfo(
+  static _i13.PageInfo page = _i13.PageInfo(
     name,
     builder: (data) {
       return const _i1.AuthScreen();
@@ -46,13 +58,13 @@ class AuthRoute extends _i9.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.ChooseRoleScreen]
-class ChooseRoleRoute extends _i9.PageRouteInfo<void> {
-  const ChooseRoleRoute({List<_i9.PageRouteInfo>? children})
+class ChooseRoleRoute extends _i13.PageRouteInfo<void> {
+  const ChooseRoleRoute({List<_i13.PageRouteInfo>? children})
       : super(ChooseRoleRoute.name, initialChildren: children);
 
   static const String name = 'ChooseRoleRoute';
 
-  static _i9.PageInfo page = _i9.PageInfo(
+  static _i13.PageInfo page = _i13.PageInfo(
     name,
     builder: (data) {
       return const _i2.ChooseRoleScreen();
@@ -62,13 +74,13 @@ class ChooseRoleRoute extends _i9.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.ClientMainScreen]
-class ClientMainRoute extends _i9.PageRouteInfo<void> {
-  const ClientMainRoute({List<_i9.PageRouteInfo>? children})
+class ClientMainRoute extends _i13.PageRouteInfo<void> {
+  const ClientMainRoute({List<_i13.PageRouteInfo>? children})
       : super(ClientMainRoute.name, initialChildren: children);
 
   static const String name = 'ClientMainRoute';
 
-  static _i9.PageInfo page = _i9.PageInfo(
+  static _i13.PageInfo page = _i13.PageInfo(
     name,
     builder: (data) {
       return const _i3.ClientMainScreen();
@@ -78,13 +90,13 @@ class ClientMainRoute extends _i9.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.ForgetPasswordScreen]
-class ForgetPasswordRoute extends _i9.PageRouteInfo<void> {
-  const ForgetPasswordRoute({List<_i9.PageRouteInfo>? children})
+class ForgetPasswordRoute extends _i13.PageRouteInfo<void> {
+  const ForgetPasswordRoute({List<_i13.PageRouteInfo>? children})
       : super(ForgetPasswordRoute.name, initialChildren: children);
 
   static const String name = 'ForgetPasswordRoute';
 
-  static _i9.PageInfo page = _i9.PageInfo(
+  static _i13.PageInfo page = _i13.PageInfo(
     name,
     builder: (data) {
       return const _i4.ForgetPasswordScreen();
@@ -93,30 +105,63 @@ class ForgetPasswordRoute extends _i9.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i5.OnboardingScreen]
-class OnboardingRoute extends _i9.PageRouteInfo<void> {
-  const OnboardingRoute({List<_i9.PageRouteInfo>? children})
-      : super(OnboardingRoute.name, initialChildren: children);
+/// [_i5.NotificationsScreen]
+class NotificationsRoute extends _i13.PageRouteInfo<void> {
+  const NotificationsRoute({List<_i13.PageRouteInfo>? children})
+      : super(NotificationsRoute.name, initialChildren: children);
 
-  static const String name = 'OnboardingRoute';
+  static const String name = 'NotificationsRoute';
 
-  static _i9.PageInfo page = _i9.PageInfo(
+  static _i13.PageInfo page = _i13.PageInfo(
     name,
     builder: (data) {
-      return const _i5.OnboardingScreen();
+      return const _i5.NotificationsScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i6.OtpVerificationScreen]
-class OtpVerificationRoute extends _i9.PageRouteInfo<OtpVerificationRouteArgs> {
+/// [_i6.OffersScreen]
+class OffersRoute extends _i13.PageRouteInfo<void> {
+  const OffersRoute({List<_i13.PageRouteInfo>? children})
+      : super(OffersRoute.name, initialChildren: children);
+
+  static const String name = 'OffersRoute';
+
+  static _i13.PageInfo page = _i13.PageInfo(
+    name,
+    builder: (data) {
+      return const _i6.OffersScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [_i7.OnboardingScreen]
+class OnboardingRoute extends _i13.PageRouteInfo<void> {
+  const OnboardingRoute({List<_i13.PageRouteInfo>? children})
+      : super(OnboardingRoute.name, initialChildren: children);
+
+  static const String name = 'OnboardingRoute';
+
+  static _i13.PageInfo page = _i13.PageInfo(
+    name,
+    builder: (data) {
+      return const _i7.OnboardingScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [_i8.OtpVerificationScreen]
+class OtpVerificationRoute
+    extends _i13.PageRouteInfo<OtpVerificationRouteArgs> {
   OtpVerificationRoute({
-    _i10.Key? key,
-    required _i6.VerificationType verificationType,
+    _i14.Key? key,
+    required _i8.VerificationType verificationType,
     required String contactInfo,
     String? phoneNumber,
-    List<_i9.PageRouteInfo>? children,
+    List<_i13.PageRouteInfo>? children,
   }) : super(
           OtpVerificationRoute.name,
           args: OtpVerificationRouteArgs(
@@ -130,11 +175,11 @@ class OtpVerificationRoute extends _i9.PageRouteInfo<OtpVerificationRouteArgs> {
 
   static const String name = 'OtpVerificationRoute';
 
-  static _i9.PageInfo page = _i9.PageInfo(
+  static _i13.PageInfo page = _i13.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<OtpVerificationRouteArgs>();
-      return _i6.OtpVerificationScreen(
+      return _i8.OtpVerificationScreen(
         key: args.key,
         verificationType: args.verificationType,
         contactInfo: args.contactInfo,
@@ -152,9 +197,9 @@ class OtpVerificationRouteArgs {
     this.phoneNumber,
   });
 
-  final _i10.Key? key;
+  final _i14.Key? key;
 
-  final _i6.VerificationType verificationType;
+  final _i8.VerificationType verificationType;
 
   final String contactInfo;
 
@@ -184,33 +229,133 @@ class OtpVerificationRouteArgs {
 }
 
 /// generated route for
-/// [_i7.SplashScreen]
-class SplashRoute extends _i9.PageRouteInfo<void> {
-  const SplashRoute({List<_i9.PageRouteInfo>? children})
+/// [_i9.SplashScreen]
+class SplashRoute extends _i13.PageRouteInfo<void> {
+  const SplashRoute({List<_i13.PageRouteInfo>? children})
       : super(SplashRoute.name, initialChildren: children);
 
   static const String name = 'SplashRoute';
 
-  static _i9.PageInfo page = _i9.PageInfo(
+  static _i13.PageInfo page = _i13.PageInfo(
     name,
     builder: (data) {
-      return const _i7.SplashScreen();
+      return const _i9.SplashScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i8.StaffMainScreen]
-class StaffMainRoute extends _i9.PageRouteInfo<void> {
-  const StaffMainRoute({List<_i9.PageRouteInfo>? children})
+/// [_i10.StaffMainScreen]
+class StaffMainRoute extends _i13.PageRouteInfo<void> {
+  const StaffMainRoute({List<_i13.PageRouteInfo>? children})
       : super(StaffMainRoute.name, initialChildren: children);
 
   static const String name = 'StaffMainRoute';
 
-  static _i9.PageInfo page = _i9.PageInfo(
+  static _i13.PageInfo page = _i13.PageInfo(
     name,
     builder: (data) {
-      return const _i8.StaffMainScreen();
+      return const _i10.StaffMainScreen();
     },
   );
+}
+
+/// generated route for
+/// [_i11.ViewAllOffersScreen]
+class ViewAllOffersRoute extends _i13.PageRouteInfo<ViewAllOffersRouteArgs> {
+  ViewAllOffersRoute({
+    _i15.Key? key,
+    required List<_i16.ProviderModel> providers,
+    List<_i13.PageRouteInfo>? children,
+  }) : super(
+          ViewAllOffersRoute.name,
+          args: ViewAllOffersRouteArgs(key: key, providers: providers),
+          initialChildren: children,
+        );
+
+  static const String name = 'ViewAllOffersRoute';
+
+  static _i13.PageInfo page = _i13.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<ViewAllOffersRouteArgs>();
+      return _i11.ViewAllOffersScreen(key: args.key, providers: args.providers);
+    },
+  );
+}
+
+class ViewAllOffersRouteArgs {
+  const ViewAllOffersRouteArgs({this.key, required this.providers});
+
+  final _i15.Key? key;
+
+  final List<_i16.ProviderModel> providers;
+
+  @override
+  String toString() {
+    return 'ViewAllOffersRouteArgs{key: $key, providers: $providers}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ViewAllOffersRouteArgs) return false;
+    return key == other.key &&
+        const _i17.ListEquality().equals(providers, other.providers);
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ const _i17.ListEquality().hash(providers);
+}
+
+/// generated route for
+/// [_i12.ViewAllProvidersScreen]
+class ViewAllProvidersRoute
+    extends _i13.PageRouteInfo<ViewAllProvidersRouteArgs> {
+  ViewAllProvidersRoute({
+    _i15.Key? key,
+    required List<_i16.ProviderModel> providers,
+    List<_i13.PageRouteInfo>? children,
+  }) : super(
+          ViewAllProvidersRoute.name,
+          args: ViewAllProvidersRouteArgs(key: key, providers: providers),
+          initialChildren: children,
+        );
+
+  static const String name = 'ViewAllProvidersRoute';
+
+  static _i13.PageInfo page = _i13.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<ViewAllProvidersRouteArgs>();
+      return _i12.ViewAllProvidersScreen(
+        key: args.key,
+        providers: args.providers,
+      );
+    },
+  );
+}
+
+class ViewAllProvidersRouteArgs {
+  const ViewAllProvidersRouteArgs({this.key, required this.providers});
+
+  final _i15.Key? key;
+
+  final List<_i16.ProviderModel> providers;
+
+  @override
+  String toString() {
+    return 'ViewAllProvidersRouteArgs{key: $key, providers: $providers}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ViewAllProvidersRouteArgs) return false;
+    return key == other.key &&
+        const _i17.ListEquality().equals(providers, other.providers);
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ const _i17.ListEquality().hash(providers);
 }

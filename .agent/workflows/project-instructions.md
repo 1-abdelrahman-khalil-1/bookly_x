@@ -217,9 +217,134 @@ void setupServiceLocator() {
 
 ## State Management
 
-**Framework**: Cubit (flutter_bloc)
+**Framework**: Cubit (flutter_bloc) + Equatable
 
-**Patterns**:
+### Core Principles
+
+1. **Single immutable state class** — No multiple state subclasses. One class per Cubit with all fields.
+2. **`RequestStatus` enum per data section** — Each independently-fetched section has its own status field.
+3. **`copyWith`** — State updates only touch their own fields, never override other sections.
+4. **`Equatable`** — Enables efficient equality checks for `BlocSelector`.
+5. **`BlocSelector`** — UI subscribes to individual slices of state, not the entire state.
+
+### RequestStatus Enum
+
+Define inside the state file (as a `part of` the cubit):
+
+```dart
+enum RequestStatus { initial, loading, success, failure }
+```
+
+### State Class Pattern
+
+```dart
+part of 'feature_cubit.dart';
+
+enum RequestStatus { initial, loading, success, failure }
+
+class FeatureState extends Equatable {
+  final RequestStatus itemsStatus;
+  final List<ItemModel> items;
+  // ... more fields per section
+
+  const FeatureState({
+    this.itemsStatus = RequestStatus.initial,
+    this.items = const [],
+  });
+
+  FeatureState copyWith({
+    RequestStatus? itemsStatus,
+    List<ItemModel>? items,
+  }) {
+    return FeatureState(
+      itemsStatus: itemsStatus ?? this.itemsStatus,
+      items: items ?? this.items,
+    );
+  }
+
+  @override
+  List<Object?> get props => [itemsStatus, items];
+}
+```
+
+### Cubit Pattern
+
+```dart
+class FeatureCubit extends Cubit<FeatureState> {
+  FeatureCubit() : super(const FeatureState());
+
+  Future<void> loadData() async {
+    await Future.wait([_fetchItems(), _fetchOtherData()]);
+  }
+
+  Future<void> _fetchItems() async {
+    emit(state.copyWith(itemsStatus: RequestStatus.loading));
+    try {
+      final result = await repo.getItems();
+      emit(state.copyWith(
+        itemsStatus: RequestStatus.success,
+        items: result,
+      ));
+    } on ApiException catch (e) {
+      setErrorMessage(e.toString());
+      emit(state.copyWith(itemsStatus: RequestStatus.failure));
+    } catch (e) {
+      if (InternetErrorService.handleException(e)) return;
+      setErrorMessage(e.toString());
+      emit(state.copyWith(itemsStatus: RequestStatus.failure));
+    }
+  }
+}
+```
+
+### UI Pattern — BlocSelector
+
+Use `BlocSelector` to rebuild only the section that changed:
+
+```dart
+// Offers section — only rebuilds when offersStatus or offers change
+BlocSelector<HomeCubit, HomeState,
+    ({RequestStatus status, List<OfferModel> offers})>(
+  selector: (state) => (status: state.offersStatus, offers: state.offers),
+  builder: (context, data) {
+    if (data.status == RequestStatus.loading ||
+        data.status == RequestStatus.initial) {
+      return const OffersShimmer();
+    }
+    return OffersList(offers: data.offers);
+  },
+)
+
+// Categories — only rebuilds when selectedCategoryId changes
+BlocSelector<HomeCubit, HomeState, String>(
+  selector: (state) => state.selectedCategoryId,
+  builder: (context, selectedId) {
+    return CategoriesSection(selectedCategory: selectedId);
+  },
+)
+```
+
+### Rules
+
+- **NEVER** use multiple state subclasses (e.g. `FeatureLoading`, `FeatureLoaded`). Use a single class with `RequestStatus` fields.
+- **NEVER** use `BlocBuilder` to listen to the entire state. Use `BlocSelector` per section.
+- **ALWAYS** use `copyWith` for state updates — never construct a new state from scratch.
+- **ALWAYS** extend `Equatable` and list all fields in `props`.
+- **ALWAYS** use `Future.wait` when fetching multiple independent data sources in parallel.
+- **ALWAYS** register cubits in GetIt (`service_locator.dart`) and provide them via `getIt()` in `BlocProvider`:
+
+  ```dart
+  // In service_locator.dart
+  getIt.registerSingleton<HomeCubit>(HomeCubit());
+
+  // In the screen
+  BlocProvider<HomeCubit>(
+    create: (context) => getIt()..loadData(),
+    child: ...
+  )
+  ```
+
+- **Error handling**: Use `InternetErrorService.handleException(e)` for network errors and `setErrorMessage()` for API/general errors.
 
 ## Routing
 
@@ -717,8 +842,8 @@ flutter test
 2. **Never hardcode colors** - Always use `AppColors.*` constants. **CRITICAL**: Do NOT use inline color values like `Color(0xFF648DDB)` or `.copyWith(color: Color(0xFF989898))`. If you need a specific color, search AppColors for the closest match first. If no match exists, add it to AppColors, then use the constant.
 3. **Never edit `style_atoms.dart`** - It's auto-generated; edit `generate_styles.dart` instead
 4. **Use existing widgets** - Check `lib/app/core/widgets/` before creating new ones
-5. **Follow Riverpod patterns** - Use annotations and code generation
-6. **Handle async states** - Use `AsyncValue` for loading/data/error states
+5. **Follow Cubit patterns** - Single state class, `copyWith`, `Equatable`, `BlocSelector` per section
+6. **Handle async states** - Use `RequestStatus` enum for loading/success/failure per section
 7. **Validate forms** - Always validate user input before submission
 8. **Use const constructors** - For better performance
 9. **Follow naming conventions** - snake_case for files, PascalCase for classes
@@ -727,5 +852,7 @@ flutter test
 12. **Never add height to text styles** - DO NOT use `.copyWith(height: X)` or `TextStyle(height: X)` as it causes text overflow issues. Style atoms already have proper line heights.
 13. **Never hardcode font family** - DO NOT use `TextStyle(fontFamily: 'FontName')`. Always use style atoms from `context.*` which already include the correct font family (Inter).
 14. **Use project utilities** - For dialogs use `context.showCustomDialog(content: ...)`, for bottom sheets use `context.showBottomSheet(bottomSheetBody: ...)`, for snackbars use functions from `show_message.dart` (`setSuccessfullyMessage()`, `setErrorMessage()`, `setWarningMessage()`). DO NOT use raw `showDialog()`, `showModalBottomSheet()`, or `ScaffoldMessenger`.
+15. **Use DateTime extensions** - Always use `date_time_extensions.dart` for date formatting. Use `.formattedDate`, `.formattedTime`, `.isToday`, `.isYesterday`, `.isOlder` for consistent date display across the app.
 
----
+16. **Use Enums** - Whenever you have a type or status field (e.g., `NotificationType`, `BookingStatus`), ALWAYS create an `Enum` for it. Do not use Strings or Integers.
+17. **Use MyIcons** - Always use icons from `MyIcons` class (e.g., `MyIcons.calendarBold`). Do not use `Icons` class unless absolutely necessary and `MyIcons` does not have an equivalent.

@@ -93,30 +93,7 @@ class _BookingsScreenState extends State<BookingsScreen> {
                               isFavorite: _favorites[booking.id] ?? false,
                               onFavoriteToggle: () =>
                                   _toggleFavorite(booking.id),
-                              onContact: () {
-                                // Handle contact action
-                              },
-                              onDirections: () {
-                                // Handle directions action
-                              },
-                              onPrimaryAction: () {
-                                // Handle primary action (Pay/Reschedule/Info)
-                              },
-                              onSecondaryAction: () {
-                                if (!booking.status.isComplete) {
-                                  context.showCustomDialog(
-                                    content: CancelBookingDialog(
-                                      onConfirm: () {
-                                        Navigator.pop(context);
-                                        // Handle booking cancellation
-                                      },
-                                      onCancel: () {
-                                        Navigator.pop(context);
-                                      },
-                                    ),
-                                  );
-                                }
-                              },
+                            
                               primaryActionLabel: booking.status.isPending
                                   ? tr.pay
                                   : booking.status.isConfirmed

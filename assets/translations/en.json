@@ -155,6 +155,19 @@
   "noBookingsYet": "No bookings yet",
   "with": "With",
   "minutes": "min",
+  "notifications": "Notifications",
+  "today": "Today",
+  "yesterday": "Yesterday",
+  "older": "Older",
+  "markAsRead": "Mark as read",
+  "noNotifications": "No notifications yet",
   "changeLanguage": "Change Language",
-  "availableNearYou": "Available Near You"
+  "availableNearYou": "Available Near You",
+  "topOffers": "Top Offers",
+  "availableOffers": "Available Offers",
+  "allServices": "All Services",
+  "spas": "Spas",
+  "clinics": "Clinics",
+  "barbers": "Barbers",
+  "somethingHappenedError": "Something Happened Error"
 }

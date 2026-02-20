@@ -13,7 +13,7 @@ void main(List<String> args) async {
 
   // Create folders
   if (args.length == 1) {
-    await Directory('$folderPath/data/model').create(recursive: true);
+    await Directory('$folderPath/data/models').create(recursive: true);
     await Directory('$folderPath/data/service').create(recursive: true);
     await Directory(
       '$folderPath/presentation/controller',

@@ -1,3 +1,4 @@
+import 'package:bookly_x_client/app/core/extensions/context_extensions.dart';
 import 'package:bookly_x_client/app/core/themes/app_colors.dart';
 import 'package:bookly_x_client/app/core/widgets/custom_search.dart';
 import 'package:bookly_x_client/app/core/widgets/custom_sized_box.dart';
@@ -5,6 +6,7 @@ import 'package:bookly_x_client/app/core/widgets/images/custom_cached_network_im
 import 'package:bookly_x_client/generated/my_icons.dart';
 import 'package:bookly_x_client/generated/style_atoms.dart';
 import 'package:bookly_x_client/generated/translations.g.dart';
+import 'package:bookly_x_client/router/auto_router.gr.dart';
 import 'package:flutter/material.dart';
 
 class HeaderSection extends StatelessWidget {
@@ -53,26 +55,31 @@ class HeaderSection extends StatelessWidget {
                 ),
               ),
               // Notification Bell with Badge
-              Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      color: AppColors.white,
-                      shape: BoxShape.circle,
-                      border: Border.all(color: AppColors.textBorders),
+              InkWell(
+                onTap: () {
+                  context.push(const NotificationsRoute());
+                },
+                child: Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: AppColors.white,
+                        shape: BoxShape.circle,
+                        border: Border.all(color: AppColors.textBorders),
+                      ),
+                      child: Icon(
+                        MyIcons.notificationBingOutline,
+                        color: AppColors.textMain,
+                        size: 24,
+                      ),
                     ),
-                    child: Icon(
-                      MyIcons.notificationBingOutline,
-                      color: AppColors.textMain,
-                      size: 24,
+                    Badge.count(
+                      count: 1,
                     ),
-                  ),
-                  Badge.count(
-                    count: 1,
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),
