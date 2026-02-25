@@ -169,5 +169,13 @@
   "spas": "Spas",
   "clinics": "Clinics",
   "barbers": "Barbers",
-  "somethingHappenedError": "Something Happened Error"
+  "somethingHappenedError": "Something Happened Error",
+  "availableServices": "Available Services",
+  "description": "Description",
+  "readMore": "Read More",
+  "review": "Review",
+  "seeAll": "See All",
+  "totalPrice": "Total Price",
+  "bookingNow": "Booking Now",
+  "owner": "Owner"
 }

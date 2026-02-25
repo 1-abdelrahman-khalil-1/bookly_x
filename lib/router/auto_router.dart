@@ -42,6 +42,9 @@ class AppRouter extends RootStackRouter {
         CustomRoute(
             page: ViewAllOffersRoute.page,
             transitionsBuilder: rightToLeftTransition),
+        CustomRoute(
+            page: ProviderDetailsRoute.page,
+            transitionsBuilder: rightToLeftTransition),
       ];
 
   Widget rightToLeftTransition(

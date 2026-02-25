@@ -192,6 +192,14 @@ class TranslationsAr with BaseTranslations<AppLocale, Translations> implements T
 	@override String get clinics => 'العيادات';
 	@override String get barbers => 'الحلاقين';
 	@override String get somethingHappenedError => 'حدث خطأ ما';
+	@override String get availableServices => 'الخدمات المتاحة';
+	@override String get description => 'الوصف';
+	@override String get readMore => 'اقرأ المزيد';
+	@override String get review => 'مراجعة';
+	@override String get seeAll => 'عرض الكل';
+	@override String get totalPrice => 'السعر الإجمالي';
+	@override String get bookingNow => 'احجز الآن';
+	@override String get owner => 'المالك';
 }
 
 // Path: weekdays
@@ -401,6 +409,14 @@ extension on TranslationsAr {
 			'clinics' => 'العيادات',
 			'barbers' => 'الحلاقين',
 			'somethingHappenedError' => 'حدث خطأ ما',
+			'availableServices' => 'الخدمات المتاحة',
+			'description' => 'الوصف',
+			'readMore' => 'اقرأ المزيد',
+			'review' => 'مراجعة',
+			'seeAll' => 'عرض الكل',
+			'totalPrice' => 'السعر الإجمالي',
+			'bookingNow' => 'احجز الآن',
+			'owner' => 'المالك',
 			_ => null,
 		};
 	}

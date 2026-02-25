@@ -1,23 +1,24 @@
-class OfferModel {
+class AvailableServiceModel {
   final String id;
+  final String name;
   final String imageUrl;
-  final String discount;
 
-  const OfferModel({
+  const AvailableServiceModel({
     required this.id,
+    required this.name,
     required this.imageUrl,
-    required this.discount,
   });
 
-  factory OfferModel.fromJson(Map<String, dynamic> json) => OfferModel(
+  factory AvailableServiceModel.fromJson(Map<String, dynamic> json) =>
+      AvailableServiceModel(
         id: json['id']?.toString() ?? '',
+        name: json['name'] as String? ?? '',
         imageUrl: json['imageUrl'] as String? ?? '',
-        discount: json['discount'] as String? ?? '',
       );
 
   Map<String, dynamic> toJson() => {
         'id': id,
+        'name': name,
         'imageUrl': imageUrl,
-        'discount': discount,
       };
 }

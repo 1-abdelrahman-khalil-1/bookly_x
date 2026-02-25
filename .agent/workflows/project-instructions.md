@@ -9,7 +9,7 @@ description: Comprehensive project instructions and Figma-to-Flutter conversion 
 **Name**: bookly_x_client  
 **Type**: Flutter Mobile Application  
 **SDK Version**: ^3.5.0  
-**State Management**: Cubit (flutter_bloc)
+**State Management**: Riverpod (flutter_riverpod)
 **Routing**: auto_route  
 **Dependency Injection**: GetIt  
 **Internationalization**: slang_flutter (English & Arabic)
@@ -161,6 +161,15 @@ Text(tr.confirmPassword)
 
 **Adding New Translations**:
 
+Use the convenience script (handles both JSON files + runs slang automatically):
+
+```bash
+dart run tr.dart myNewKey        # adds a single key
+dart run tr.dart key1; dart run tr.dart key2   # multiple keys separately
+```
+
+Or manually:
+
 1. Add key-value to both `en.json` and `ar.json`
 2. Run: `dart run slang`
 3. Use via `tr.yourNewKey`
@@ -217,134 +226,105 @@ void setupServiceLocator() {
 
 ## State Management
 
-**Framework**: Cubit (flutter_bloc) + Equatable
+**Framework**: Riverpod (flutter_riverpod)
 
 ### Core Principles
 
-1. **Single immutable state class** — No multiple state subclasses. One class per Cubit with all fields.
-2. **`RequestStatus` enum per data section** — Each independently-fetched section has its own status field.
-3. **`copyWith`** — State updates only touch their own fields, never override other sections.
-4. **`Equatable`** — Enables efficient equality checks for `BlocSelector`.
-5. **`BlocSelector`** — UI subscribes to individual slices of state, not the entire state.
+1. **`FutureProvider`** — for async data fetching. Handles loading/error/data states automatically.
+2. **`FutureProvider.family`** — for async data that depends on a parameter (e.g. filtered lists).
+3. **`StateProvider`** — for simple mutable state (tab index, selected category ID, toggles).
+4. **`StateNotifier` + `InternetErrorHandlerMixin`** — for complex multi-step or mutation flows.
+5. **`ref.watchWhen()`** — the preferred UI entry point for `FutureProvider`. Automatically shows shimmer on loading, `NoInternetScreen` or `ServerErrorScreen` on error.
 
-### RequestStatus Enum
+### ref.watchWhen() Extension
 
-Define inside the state file (as a `part of` the cubit):
+Defined in `lib/app/core/screens_not_related/future_provider_screen.dart`. Wraps `watch(provider).when(...)` with automatic error routing:
 
 ```dart
-enum RequestStatus { initial, loading, success, failure }
+ref.watchWhen(
+  provider: offersFutureProvider,
+  loading: () => const OffersShimmer(),   // custom shimmer per section
+  data: (offers) => OffersList(offers: offers),
+)
 ```
 
-### State Class Pattern
+### Provider Patterns
 
 ```dart
-part of 'feature_cubit.dart';
+// Async data (auto-cached, refreshable with ref.invalidate)
+final offersFutureProvider = FutureProvider<List<OfferModel>>((ref) async {
+  return repo.getOffers();
+});
 
-enum RequestStatus { initial, loading, success, failure }
+// Async data with a parameter (e.g. filtered by category)
+final providersFutureProvider =
+    FutureProvider.family<List<ProviderModel>, String>((ref, categoryId) async {
+  return repo.getProviders(categoryId: categoryId);
+});
 
-class FeatureState extends Equatable {
-  final RequestStatus itemsStatus;
-  final List<ItemModel> items;
-  // ... more fields per section
+// Simple mutable state
+final selectedCategoryProvider = StateProvider<String>((ref) => '1');
+final selectedTabProvider = StateProvider<int>((ref) => 0);
+```
 
-  const FeatureState({
-    this.itemsStatus = RequestStatus.initial,
-    this.items = const [],
-  });
+### UI Pattern — ConsumerWidget
 
-  FeatureState copyWith({
-    RequestStatus? itemsStatus,
-    List<ItemModel>? items,
-  }) {
-    return FeatureState(
-      itemsStatus: itemsStatus ?? this.itemsStatus,
-      items: items ?? this.items,
+```dart
+class MyScreen extends ConsumerWidget {
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    // Read simple state
+    final selectedCategory = ref.watch(selectedCategoryProvider);
+
+    // Watch async data with shimmer + error handling
+    return ref.watchWhen(
+      provider: providersFutureProvider(selectedCategory),
+      loading: () => const ProvidersShimmer(),
+      data: (providers) => ProvidersList(providers: providers),
     );
   }
-
-  @override
-  List<Object?> get props => [itemsStatus, items];
 }
 ```
 
-### Cubit Pattern
+### Pull-to-Refresh
+
+Invalidate the provider to re-fetch:
 
 ```dart
-class FeatureCubit extends Cubit<FeatureState> {
-  FeatureCubit() : super(const FeatureState());
-
-  Future<void> loadData() async {
-    await Future.wait([_fetchItems(), _fetchOtherData()]);
-  }
-
-  Future<void> _fetchItems() async {
-    emit(state.copyWith(itemsStatus: RequestStatus.loading));
-    try {
-      final result = await repo.getItems();
-      emit(state.copyWith(
-        itemsStatus: RequestStatus.success,
-        items: result,
-      ));
-    } on ApiException catch (e) {
-      setErrorMessage(e.toString());
-      emit(state.copyWith(itemsStatus: RequestStatus.failure));
-    } catch (e) {
-      if (InternetErrorService.handleException(e)) return;
-      setErrorMessage(e.toString());
-      emit(state.copyWith(itemsStatus: RequestStatus.failure));
-    }
-  }
-}
+RefreshIndicator(
+  onRefresh: () async {
+    ref.invalidate(offersFutureProvider);
+    ref.invalidate(providersFutureProvider(ref.read(selectedCategoryProvider)));
+  },
+  child: ...,
+)
 ```
 
-### UI Pattern — BlocSelector
+### StateNotifier (for complex mutation flows)
 
-Use `BlocSelector` to rebuild only the section that changed:
+For flows with multiple steps or optimistic updates, use `StateNotifier<GeneralState<T>>` + `InternetErrorHandlerMixin`:
 
 ```dart
-// Offers section — only rebuilds when offersStatus or offers change
-BlocSelector<HomeCubit, HomeState,
-    ({RequestStatus status, List<OfferModel> offers})>(
-  selector: (state) => (status: state.offersStatus, offers: state.offers),
-  builder: (context, data) {
-    if (data.status == RequestStatus.loading ||
-        data.status == RequestStatus.initial) {
-      return const OffersShimmer();
-    }
-    return OffersList(offers: data.offers);
-  },
-)
+class MyNotifier extends StateNotifier<GeneralState<MyModel>>
+    with InternetErrorHandlerMixin<MyModel> {
+  MyNotifier() : super(GeneralState.loading());
 
-// Categories — only rebuilds when selectedCategoryId changes
-BlocSelector<HomeCubit, HomeState, String>(
-  selector: (state) => state.selectedCategoryId,
-  builder: (context, selectedId) {
-    return CategoriesSection(selectedCategory: selectedId);
-  },
-)
+  Future<void> doSomething() => execute(() => repo.doSomething());
+}
+
+final myProvider =
+    StateNotifierProvider<MyNotifier, GeneralState<MyModel>>(
+  (_) => MyNotifier(),
+);
 ```
 
 ### Rules
 
-- **NEVER** use multiple state subclasses (e.g. `FeatureLoading`, `FeatureLoaded`). Use a single class with `RequestStatus` fields.
-- **NEVER** use `BlocBuilder` to listen to the entire state. Use `BlocSelector` per section.
-- **ALWAYS** use `copyWith` for state updates — never construct a new state from scratch.
-- **ALWAYS** extend `Equatable` and list all fields in `props`.
-- **ALWAYS** use `Future.wait` when fetching multiple independent data sources in parallel.
-- **ALWAYS** register cubits in GetIt (`service_locator.dart`) and provide them via `getIt()` in `BlocProvider`:
-
-  ```dart
-  // In service_locator.dart
-  getIt.registerSingleton<HomeCubit>(HomeCubit());
-
-  // In the screen
-  BlocProvider<HomeCubit>(
-    create: (context) => getIt()..loadData(),
-    child: ...
-  )
-  ```
-
-- **Error handling**: Use `InternetErrorService.handleException(e)` for network errors and `setErrorMessage()` for API/general errors.
+- **ALWAYS** write a per-section shimmer widget (e.g. `OffersShimmer`, `ProvidersShimmer`).
+- **ALWAYS** pass the shimmer to `ref.watchWhen(loading: () => const XShimmer())`.
+- **NEVER** use `flutter_bloc` or `Cubit` — the project is fully Riverpod.
+- **NEVER** use global `CircularProgressIndicator` for a section that has its own data — use a shimmer.
+- **Error handling**: `ref.watchWhen` automatically handles `NoInternetConnection` → `NoInternetScreen` and other errors → `ServerErrorScreen`.
 
 ## Routing
 
@@ -666,11 +646,11 @@ SvgPicture.asset(
   colorFilter: ColorFilter.mode(AppColors.primary, BlendMode.srcIn),
 )
 
-// Network images
-CachedNetworkImage(
-  imageUrl: imageUrl,
-  placeholder: (context, url) => CircularProgressIndicator(),
-  errorWidget: (context, url, error) => Icon(Icons.error),
+// Network images — ALWAYS use CustomCachedNetworkImage, never raw CachedNetworkImage
+CustomCachedNetworkImage(
+  imgUrl: imageUrl,
+  width: 100,
+  height: 100,
 )
 ```
 
@@ -800,6 +780,8 @@ Before finalizing your Figma-to-Flutter conversion:
 - [ ] All user-facing text uses translations (`tr.*`)
 - [ ] All text inputs use `CustomTextFormField` or variants
 - [ ] All buttons use `CustomButton` or similar
+- [ ] All network images use `CustomCachedNetworkImage` (not raw `CachedNetworkImage`)
+- [ ] Models are placed in `data/models/` inside the feature folder — never inline inside widget files
 - [ ] Layout matches Figma design (spacing, alignment, sizing)
 - [ ] Responsive to different screen sizes (use `MediaQuery` if needed)
 - [ ] Scrollable sections use `SingleChildScrollView` or `ListView`
@@ -842,7 +824,7 @@ flutter test
 2. **Never hardcode colors** - Always use `AppColors.*` constants. **CRITICAL**: Do NOT use inline color values like `Color(0xFF648DDB)` or `.copyWith(color: Color(0xFF989898))`. If you need a specific color, search AppColors for the closest match first. If no match exists, add it to AppColors, then use the constant.
 3. **Never edit `style_atoms.dart`** - It's auto-generated; edit `generate_styles.dart` instead
 4. **Use existing widgets** - Check `lib/app/core/widgets/` before creating new ones
-5. **Follow Cubit patterns** - Single state class, `copyWith`, `Equatable`, `BlocSelector` per section
+5. **State management** — Use Riverpod exclusively (`FutureProvider`, `StateProvider`, `StateNotifier`). Do NOT use `flutter_bloc` or `Cubit`.
 6. **Handle async states** - Use `RequestStatus` enum for loading/success/failure per section
 7. **Validate forms** - Always validate user input before submission
 8. **Use const constructors** - For better performance
@@ -856,3 +838,6 @@ flutter test
 
 16. **Use Enums** - Whenever you have a type or status field (e.g., `NotificationType`, `BookingStatus`), ALWAYS create an `Enum` for it. Do not use Strings or Integers.
 17. **Use MyIcons** - Always use icons from `MyIcons` class (e.g., `MyIcons.calendarBold`). Do not use `Icons` class unless absolutely necessary and `MyIcons` does not have an equivalent.
+18. **Models placement** - Feature-specific model classes MUST live in `lib/app/features/<role>/<feature>/data/models/`. NEVER define model classes inline inside widget or screen files.
+19. **Use CustomCachedNetworkImage** - Always use `CustomCachedNetworkImage` from `lib/app/core/widgets/images/` for network images. Never use raw `CachedNetworkImage`.
+20. **Use tr.dart for translations** - When adding new translation keys, prefer `dart run tr.dart <camelCaseKey>` — it auto-translates into both `en.json` and `ar.json` and runs `slang` for you. Run each key as a separate command.

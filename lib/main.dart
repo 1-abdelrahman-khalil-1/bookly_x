@@ -4,7 +4,6 @@ import 'dart:developer';
 import 'package:bookly_x_client/app/core/data/lang_pref.dart';
 import 'package:bookly_x_client/app/core/data/pref.dart';
 import 'package:bookly_x_client/app/core/data/user_pref.dart';
-import 'package:bookly_x_client/app/core/di/service_locator.dart';
 import 'package:bookly_x_client/app/core/services/unauthorized_service.dart';
 import 'package:bookly_x_client/bookly_x_client_app.dart';
 import 'package:bookly_x_client/generated/translations.g.dart';
@@ -41,7 +40,6 @@ void main() async {
 
 Future<void> boot() async {
   WidgetsFlutterBinding.ensureInitialized();
-  setupServiceLocator();
   await SharedPrefs.init();
   UnAuthorizedService.init();
   log(UserPrefs.getUserToken(), name: 'Main - Token');

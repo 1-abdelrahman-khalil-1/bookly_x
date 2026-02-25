@@ -169,5 +169,13 @@
   "spas": "السبا",
   "clinics": "العيادات",
   "barbers": "الحلاقين",
-  "somethingHappenedError": "حدث خطأ ما"
+  "somethingHappenedError": "حدث خطأ ما",
+  "availableServices": "الخدمات المتاحة",
+  "description": "الوصف",
+  "readMore": "اقرأ المزيد",
+  "review": "مراجعة",
+  "seeAll": "عرض الكل",
+  "totalPrice": "السعر الإجمالي",
+  "bookingNow": "احجز الآن",
+  "owner": "المالك"
 }

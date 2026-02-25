@@ -1,20 +1,22 @@
 import 'package:bookly_x_client/app/core/widgets/custom_sized_box.dart';
 import 'package:bookly_x_client/app/features/client/home/data/models/provider_model.dart';
+import 'package:bookly_x_client/app/features/client/home/presentation/controller/client_home_future_providers.dart';
 import 'package:bookly_x_client/app/features/client/offers/data/model/offer_model.dart';
 import 'package:bookly_x_client/app/features/client/offers/presentation/widgets/offer_vertical_card.dart';
 import 'package:bookly_x_client/generated/style_atoms.dart';
 import 'package:bookly_x_client/generated/translations.g.dart';
 import 'package:bookly_x_client/router/auto_router.gr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AvailableOffers extends StatefulWidget {
+class AvailableOffers extends ConsumerStatefulWidget {
   const AvailableOffers({super.key});
 
   @override
-  State<AvailableOffers> createState() => _AvailableOffersState();
+  ConsumerState<AvailableOffers> createState() => _AvailableOffersState();
 }
 
-class _AvailableOffersState extends State<AvailableOffers>
+class _AvailableOffersState extends ConsumerState<AvailableOffers>
     with TickerProviderStateMixin {
   late final TabController _tabController;
 
@@ -26,6 +28,12 @@ class _AvailableOffersState extends State<AvailableOffers>
 
   @override
   Widget build(BuildContext context) {
+    final selectedCategory = ref.watch(selectedCategoryProvider);
+    final offers = ref.watch(offersFutureProvider).asData?.value ?? <OfferModel>[];
+    final providers =
+        ref.watch(providersFutureProvider(selectedCategory)).asData?.value ??
+        <ProviderModel>[];
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

@@ -13,7 +13,7 @@ extension ONExt on WidgetRef {
     bool skipError = false,
     Widget Function()? loading,
     bool skipLoadingOnReload = false,
-    bool skipLoadingOnRefresh = true,
+    bool skipLoadingOnRefresh = false,
     required Widget Function(T data) data,
     required ProviderBase<AsyncValue<T>> provider,
     Widget Function(Object error, StackTrace stackTrace)? error,

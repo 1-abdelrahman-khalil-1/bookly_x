@@ -503,6 +503,30 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 
 	/// en: 'Something Happened Error'
 	String get somethingHappenedError => 'Something Happened Error';
+
+	/// en: 'Available Services'
+	String get availableServices => 'Available Services';
+
+	/// en: 'Description'
+	String get description => 'Description';
+
+	/// en: 'Read More'
+	String get readMore => 'Read More';
+
+	/// en: 'Review'
+	String get review => 'Review';
+
+	/// en: 'See All'
+	String get seeAll => 'See All';
+
+	/// en: 'Total Price'
+	String get totalPrice => 'Total Price';
+
+	/// en: 'Booking Now'
+	String get bookingNow => 'Booking Now';
+
+	/// en: 'Owner'
+	String get owner => 'Owner';
 }
 
 // Path: weekdays
@@ -740,6 +764,14 @@ extension on Translations {
 			'clinics' => 'Clinics',
 			'barbers' => 'Barbers',
 			'somethingHappenedError' => 'Something Happened Error',
+			'availableServices' => 'Available Services',
+			'description' => 'Description',
+			'readMore' => 'Read More',
+			'review' => 'Review',
+			'seeAll' => 'See All',
+			'totalPrice' => 'Total Price',
+			'bookingNow' => 'Booking Now',
+			'owner' => 'Owner',
 			_ => null,
 		};
 	}
