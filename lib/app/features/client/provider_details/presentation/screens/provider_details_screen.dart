@@ -33,8 +33,6 @@ class ProviderDetailsScreen extends ConsumerWidget {
   }
 }
 
-// ---------------------------------------------------------------------------
-
 class _ProviderDetailsBody extends StatelessWidget {
   const _ProviderDetailsBody({required this.detail});
 

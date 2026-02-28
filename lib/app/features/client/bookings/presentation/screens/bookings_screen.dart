@@ -1,4 +1,5 @@
 import 'package:bookly_x_client/app/core/extensions/context_extensions.dart';
+import 'package:bookly_x_client/app/core/widgets/custom_appbar.dart';
 import 'package:bookly_x_client/app/features/client/bookings/data/models/booking_data.dart';
 import 'package:bookly_x_client/app/features/client/bookings/presentation/widgets/booking_card.dart';
 import 'package:bookly_x_client/app/features/client/bookings/presentation/widgets/booking_tab_bar.dart';
@@ -38,26 +39,46 @@ class _BookingsScreenState extends State<BookingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CustomAppbar(
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(kToolbarHeight),
+          child: BookingTabBar(
+            selectedIndex: _selectedTabIndex,
+            onTabChange: (index) {
+              setState(() {
+                _selectedTabIndex = index;
+              });
+            },
+            tabs: [
+              tr.pending,
+              tr.upcoming,
+              tr.complete,
+            ],
+          ),
+        ),
+        title: '',
+        hasBackButton: false,
+      ),
       body: SafeArea(
         child: Column(
           children: [
             // Tab Bar
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: BookingTabBar(
-                selectedIndex: _selectedTabIndex,
-                onTabChange: (index) {
-                  setState(() {
-                    _selectedTabIndex = index;
-                  });
-                },
-                tabs: [
-                  tr.pending,
-                  tr.upcoming,
-                  tr.complete,
-                ],
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(horizontal: 12),
+            //   child: BookingTabBar(
+            //     selectedIndex: _selectedTabIndex,
+            //     onTabChange: (index) {
+            //       setState(() {
+            //         _selectedTabIndex = index;
+            //       });
+            //     },
+            //     tabs: [
+            //       tr.pending,
+            //       tr.upcoming,
+            //       tr.complete,
+            //     ],
+            //   ),
+            // ),
             // Booking Cards
             Expanded(
               child: SingleChildScrollView(
@@ -92,7 +113,6 @@ class _BookingsScreenState extends State<BookingsScreen> {
                               isFavorite: _favorites[booking.id] ?? false,
                               onFavoriteToggle: () =>
                                   _toggleFavorite(booking.id),
-                            
                               primaryActionLabel: booking.status.isPending
                                   ? tr.pay
                                   : booking.status.isConfirmed
