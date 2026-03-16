@@ -19,9 +19,10 @@ class ClientHomeScreen extends ConsumerWidget {
       backgroundColor: AppColors.white,
       body: Column(
         children: [
+          16.h,
           // Pinned Header Section
           const HeaderSection(),
-
+      
           Expanded(
             child: RefreshIndicator(
               onRefresh: () async {
@@ -36,12 +37,11 @@ class ClientHomeScreen extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         16.h,
-
+      
                         // ── Offers Section ──────────────────────────────
                         ref.watchWhen(
                           provider: offersFutureProvider,
                           loading: () => const OffersShimmer(),
-                        
                           data: (offersList) {
                             if (offersList.isEmpty) {
                               return const SizedBox.shrink();
@@ -67,7 +67,7 @@ class ClientHomeScreen extends ConsumerWidget {
                             );
                           },
                         ),
-
+      
                         // ── Categories Section ──────────────────────────
                         Padding(
                           padding: const EdgeInsets.only(top: 24),
@@ -81,7 +81,7 @@ class ClientHomeScreen extends ConsumerWidget {
                             },
                           ),
                         ),
-
+      
                         // ── Providers Section ───────────────────────────
                         Padding(
                           padding: const EdgeInsets.only(top: 24),

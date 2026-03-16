@@ -17,6 +17,8 @@ class CustomCachedNetworkImage extends StatefulWidget {
     this.width = 213,
     this.height = 167,
     this.borderRadius,
+    this.boxShape = BoxShape.rectangle,
+    this.placeholderWidget,
   });
 
   final double? height;
@@ -24,8 +26,10 @@ class CustomCachedNetworkImage extends StatefulWidget {
 
   final String? imgUrl;
   final String? placeholderPath;
+  final Widget? placeholderWidget;
   final BoxFit? fit;
   final BorderRadiusGeometry? borderRadius;
+  final BoxShape boxShape;
 
   @override
   State<CustomCachedNetworkImage> createState() =>
@@ -52,10 +56,13 @@ class _CustomCachedNetworkImageState extends State<CustomCachedNetworkImage> {
             height: widget.height,
             width: widget.width,
             decoration: BoxDecoration(
-              borderRadius: widget.borderRadius ??
-                  const BorderRadius.all(
-                    Radius.circular(Constants.borderRadius),
-                  ),
+              shape: widget.boxShape,
+              borderRadius: widget.boxShape == BoxShape.circle
+                  ? null
+                  : (widget.borderRadius ??
+                      const BorderRadius.all(
+                        Radius.circular(Constants.borderRadius),
+                      )),
               image: DecorationImage(
                 image: imageProvider,
                 fit: widget.fit ?? BoxFit.cover,
@@ -66,20 +73,28 @@ class _CustomCachedNetworkImageState extends State<CustomCachedNetworkImage> {
             height: widget.height,
             width: widget.width,
             decoration: BoxDecoration(
-              borderRadius: widget.borderRadius ??
-                  const BorderRadius.all(
-                    Radius.circular(Constants.borderRadius),
-                  ),
+              shape: widget.boxShape,
+              borderRadius: widget.boxShape == BoxShape.circle
+                  ? null
+                  : (widget.borderRadius ??
+                      const BorderRadius.all(
+                        Radius.circular(Constants.borderRadius),
+                      )),
               color: Colors.grey,
             ),
             child: ShimmerBox(
-              borderRadius: widget.borderRadius ??
-                  const BorderRadius.all(
-                    Radius.circular(Constants.borderRadius),
-                  ),
-              child: widget.placeholderPath != null
-                  ? Image.asset(widget.placeholderPath!)
-                  : const Icon(Icons.image, size: 32, color: AppColors.textSub),
+              boxShape: widget.boxShape,
+              borderRadius: widget.boxShape == BoxShape.circle
+                  ? null
+                  : (widget.borderRadius ??
+                      const BorderRadius.all(
+                        Radius.circular(Constants.borderRadius),
+                      )),
+              child: widget.placeholderWidget ??
+                  (widget.placeholderPath != null
+                      ? Image.asset(widget.placeholderPath!)
+                      : const Icon(Icons.image,
+                          size: 32, color: AppColors.textSub)),
             ),
 
             /// todo uncomment

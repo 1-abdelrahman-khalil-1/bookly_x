@@ -10,7 +10,7 @@ class AppRouter extends RootStackRouter {
   List<AutoRoute> get routes => [
         CustomRoute(
             page: SplashRoute.page,
-            // initial: true,
+            //initial: true,
             transitionsBuilder: rightToLeftTransition),
         CustomRoute(
             page: OnboardingRoute.page,
@@ -45,6 +45,38 @@ class AppRouter extends RootStackRouter {
         CustomRoute(
             page: ProviderDetailsRoute.page,
             transitionsBuilder: rightToLeftTransition),
+        CustomRoute(
+            page: ClientBookingServiceHostRoute.page,
+            transitionsBuilder: rightToLeftTransition),
+        CustomRoute(
+            page: ClientStaffInfoRoute.page,
+            transitionsBuilder: rightToLeftTransition),
+        CustomRoute(
+            page: ClientBookingSuccessRoute.page,
+            transitionsBuilder: rightToLeftTransition),
+        CustomRoute(
+            page: ClientSecurePaymentRoute.page,
+            transitionsBuilder: rightToLeftTransition),
+        CustomRoute(
+            page: ClientPaymentSuccessRoute.page,
+            transitionsBuilder: rightToLeftTransition),
+        CustomRoute(
+            page: ClientBookingDetailsRoute.page,
+            transitionsBuilder: rightToLeftTransition),
+        CustomRoute(
+            page: ClientEditProfileRoute.page,
+            transitionsBuilder: rightToLeftTransition),
+        CustomRoute(
+            page: ClientManagePreferencesRoute.page,
+            transitionsBuilder: rightToLeftTransition),
+        CustomRoute(
+            page: ClientNotificationPreferencesRoute.page,
+            transitionsBuilder: rightToLeftTransition),
+        CustomRoute(
+            page: ClientPrivacySecurityRoute.page,
+            transitionsBuilder: rightToLeftTransition),
+        CustomRoute(
+            page: SettingRoute.page, transitionsBuilder: rightToLeftTransition),
       ];
 
   Widget rightToLeftTransition(

@@ -69,7 +69,7 @@ extension ScreenExtentions on BuildContext {
   double get width => MediaQuery.of(this).size.width;
 
   double get height => MediaQuery.of(this).size.height;
-
+  EdgeInsets get padding => MediaQuery.of(this).padding;
   double get aspectRatio => MediaQuery.of(this).size.aspectRatio;
 
   void requestFocus([FocusNode? node]) =>
@@ -164,7 +164,7 @@ extension ShowBottomSheet on BuildContext {
                   borderRadius: BorderRadius.circular(16),
                 ),
               ),
-              bottomSheetBody,
+              SafeArea(child: bottomSheetBody),
             ],
           ),
         ),

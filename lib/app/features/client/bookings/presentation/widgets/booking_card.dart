@@ -9,6 +9,7 @@ import 'package:bookly_x_client/app/core/widgets/buttons/custom_button.dart';
 import 'package:bookly_x_client/app/core/widgets/custom_sized_box.dart';
 import 'package:bookly_x_client/app/core/widgets/images/custom_cached_network_image.dart';
 import 'package:bookly_x_client/app/features/client/bookings/presentation/widgets/cancel_booking_dialog.dart';
+import 'package:bookly_x_client/app/features/client/bookings/presentation/widgets/reschudle_booking_dialog.dart';
 import 'package:bookly_x_client/generated/my_icons.dart';
 import 'package:bookly_x_client/generated/style_atoms.dart';
 import 'package:bookly_x_client/generated/translations.g.dart';
@@ -26,6 +27,7 @@ class BookingCard extends StatelessWidget {
   final double? totalPaid;
   final bool isFavorite;
   final VoidCallback onFavoriteToggle;
+  final VoidCallback onTap;
   final String primaryActionLabel;
   final String? secondaryActionLabel;
 
@@ -42,76 +44,80 @@ class BookingCard extends StatelessWidget {
     this.totalPaid,
     required this.isFavorite,
     required this.onFavoriteToggle,
+    required this.onTap,
     required this.primaryActionLabel,
     required this.secondaryActionLabel,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: AppColors.white,
-        border: Border.all(color: AppColors.textSub),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          // Image Section
-          _buildImageSection(context),
-          8.h,
-          // Details Section
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Title and Provider
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            serviceTitle,
-                            style: context.regular12.copyWith(
-                              color: const Color(0xFF101828),
+    return InkWell(
+      borderRadius: BorderRadius.circular(16),
+      onTap: onTap,
+      child: Container(
+        decoration: BoxDecoration(
+          color: AppColors.white,
+          border: Border.all(color: AppColors.textSub),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // Image Section
+            _buildImageSection(context),
+            8.h,
+            // Details Section
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Title and Provider
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              serviceTitle,
+                              style: context.regular12.copyWith(
+                                color: const Color(0xFF101828),
+                              ),
                             ),
-                          ),
-                          Text(
-                            providerName,
-                            style: context.regular11TextSub,
-                          ),
-                        ],
+                            Text(
+                              providerName,
+                              style: context.regular11TextSub,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    8.w,
-                    // Status Badge
-                    Container(
-                      height: 28,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 2),
-                      decoration: BoxDecoration(
-                        color: status.color,
-                        borderRadius: BorderRadius.circular(8),
+                      8.w,
+                      // Status Badge
+                      Container(
+                        height: 28,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 2),
+                        decoration: BoxDecoration(
+                          color: status.color,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        alignment: Alignment.center,
+                        child: Text(
+                          status.name,
+                          style: context.regular12White,
+                        ),
                       ),
-                      alignment: Alignment.center,
-                      child: Text(
-                        status.name,
-                        style: context.regular12White,
-                      ),
-                    ),
-                  ],
-                ),
+                    ],
+                  ),
                 8.h,
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       children: [
-                        Icon(MyIcons.calendarOutline,
+                        const Icon(MyIcons.calendarOutline,
                             size: 12, color: AppColors.textSub),
                         4.w,
                         Text(
@@ -126,7 +132,7 @@ class BookingCard extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            Icon(MyIcons.clockOutline,
+                            const Icon(MyIcons.clockOutline,
                                 size: 12, color: AppColors.textSub),
                             4.w,
                             Text(
@@ -137,7 +143,7 @@ class BookingCard extends StatelessWidget {
                         ),
                         Row(
                           children: [
-                            Icon(MyIcons.clockOutline,
+                            const Icon(MyIcons.clockOutline,
                                 size: 12, color: AppColors.textSub),
                             4.w,
                             Text(
@@ -190,54 +196,61 @@ class BookingCard extends StatelessWidget {
                   ],
                 ),
                 8.h,
-                Row(
-                  children: [
-                    // Primary Action (Pay/Reschedule/Info)
-                    Expanded(
-                      child: CustomButton(
-                        title: primaryActionLabel,
-                        onPress: () {},
-                        textStyle: context.regular12White,
-                        height: 30,
-                        buttonColor: AppColors.primary,
-                        borderRadius: 25,
-                      ),
-                    ),
-                    8.w,
-                    if (!status.isComplete)
-                      // Secondary Action (Cancel/Delete)
+                  Row(
+                    children: [
+                      // Primary Action (Pay/Reschedule/Info)
                       Expanded(
                         child: CustomButton(
-                          title: secondaryActionLabel!,
+                          title: primaryActionLabel,
                           onPress: () {
-                            if (!status.isComplete) {
-                              context.showCustomDialog(
-                                content: CancelBookingDialog(
-                                  onConfirm: () {
-                                    Navigator.pop(context);
-                                    // Handle booking cancellation
-                                  },
-                                  onCancel: () {
-                                    Navigator.pop(context);
-                                  },
-                                ),
-                              );
+                            if (status.isPending) {
+                            } else if (status.isConfirmed) {
+                              ReschudleBookingDialog.showBottomSheet(context);
+                            } else {
                             }
                           },
-                          textStyle: context.regular12Danger,
-                          height: 32,
-                          buttonColor: AppColors.white,
-                          borderColor: AppColors.danger,
+                          textStyle: context.regular12White,
+                          height: 30,
+                          buttonColor: AppColors.primary,
                           borderRadius: 25,
                         ),
                       ),
-                  ],
-                )
-              ],
+                      8.w,
+                      if (!status.isComplete)
+                        // Secondary Action (Cancel/Delete)
+                        Expanded(
+                          child: CustomButton(
+                            title: secondaryActionLabel!,
+                            onPress: () {
+                              if (!status.isComplete) {
+                                context.showCustomDialog(
+                                  content: CancelBookingDialog(
+                                    onConfirm: () {
+                                      Navigator.pop(context);
+                                      // Handle booking cancellation
+                                    },
+                                    onCancel: () {
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                );
+                              }
+                            },
+                            textStyle: context.regular12Danger,
+                            height: 32,
+                            buttonColor: AppColors.white,
+                            borderColor: AppColors.danger,
+                            borderRadius: 25,
+                          ),
+                        ),
+                    ],
+                  )
+                ],
+              ),
             ),
-          ),
-          8.h,
-        ],
+            8.h,
+          ],
+        ),
       ),
     );
   }
@@ -263,7 +276,7 @@ class BookingCard extends StatelessWidget {
             child: GestureDetector(
               onTap: onFavoriteToggle,
               child: Container(
-                padding: EdgeInsets.all(8),
+                padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
                   color: AppColors.white.withValues(alpha: 0.9),
                   border: Border.all(

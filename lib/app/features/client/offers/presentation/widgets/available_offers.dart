@@ -29,10 +29,11 @@ class _AvailableOffersState extends ConsumerState<AvailableOffers>
   @override
   Widget build(BuildContext context) {
     final selectedCategory = ref.watch(selectedCategoryProvider);
-    final offers = ref.watch(offersFutureProvider).asData?.value ?? <OfferModel>[];
+    final offers =
+        ref.watch(offersFutureProvider).asData?.value ?? <OfferModel>[];
     final providers =
         ref.watch(providersFutureProvider(selectedCategory)).asData?.value ??
-        <ProviderModel>[];
+            <ProviderModel>[];
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,7 +51,8 @@ class _AvailableOffersState extends ConsumerState<AvailableOffers>
                 visible: offers.length > 3,
                 child: TextButton(
                   onPressed: () {
-                    ViewAllOffersRoute(providers: providers).push(context);
+                    ViewAllOffersRoute(providers:
+                              providers).push(context);
                   },
                   child: Text(
                     tr.viewAll,

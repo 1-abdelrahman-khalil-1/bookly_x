@@ -1,4 +1,5 @@
 import 'package:bookly_x_client/app/core/themes/app_colors.dart';
+import 'package:bookly_x_client/app/core/widgets/custom_transform_arabic.dart';
 import 'package:bookly_x_client/generated/my_icons.dart';
 import 'package:bookly_x_client/generated/style_atoms.dart';
 import 'package:bookly_x_client/generated/translations.g.dart';
@@ -61,14 +62,17 @@ class _CustomCalendarState extends State<CustomCalendar> {
           formatButtonVisible: false,
           titleCentered: true,
           titleTextStyle: context.regular16TextMain,
-          leftChevronIcon: const Icon(
+          leftChevronIcon: CustomTransformArabic(
+            child: const Icon(
+              MyIcons.arrowLeftOutline,
+              color: AppColors.textMain,
+            ),
+          ),
+          rightChevronIcon: CustomTransformArabic(
+              child: const Icon(
             MyIcons.arrowRightOutline,
             color: AppColors.textMain,
-          ),
-          rightChevronIcon: const Icon(
-            MyIcons.arrowLeftOutline,
-            color: AppColors.textMain,
-          ),
+          )),
         ),
         calendarStyle: CalendarStyle(
           defaultTextStyle: context.regular14TextMain,

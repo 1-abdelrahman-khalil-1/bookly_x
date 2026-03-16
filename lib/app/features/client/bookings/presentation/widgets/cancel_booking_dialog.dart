@@ -1,4 +1,6 @@
+import 'package:bookly_x_client/app/core/extensions/context_extensions.dart';
 import 'package:bookly_x_client/app/core/themes/app_colors.dart';
+import 'package:bookly_x_client/app/core/widgets/buttons/custom_button.dart';
 import 'package:bookly_x_client/app/core/widgets/custom_sized_box.dart';
 import 'package:bookly_x_client/generated/my_icons.dart';
 import 'package:bookly_x_client/generated/style_atoms.dart';
@@ -14,6 +16,11 @@ class CancelBookingDialog extends StatelessWidget {
     required this.onConfirm,
     required this.onCancel,
   });
+  static void showDialog(BuildContext context,
+      {required VoidCallback onConfirm, required VoidCallback onCancel}) {
+    context.showCustomDialog(
+        content: CancelBookingDialog(onConfirm: onConfirm, onCancel: onCancel));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,38 +60,20 @@ class CancelBookingDialog extends StatelessWidget {
         Row(
           children: [
             Expanded(
-              child: GestureDetector(
-                onTap: onCancel,
-                child: Container(
-                  height: 48,
-                  decoration: BoxDecoration(
-                    color: AppColors.textBorders,
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    tr.cancel,
-                    style: context.regular14Black,
-                  ),
-                ),
+              child: CustomButton(
+                title: tr.no,
+                onPress: onCancel,
+                buttonColor: AppColors.textBorders,
+                titleColor: AppColors.black,
               ),
             ),
             12.w,
             Expanded(
-              child: GestureDetector(
-                onTap: onConfirm,
-                child: Container(
-                  height: 48,
-                  decoration: BoxDecoration(
-                    color: AppColors.danger,
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    tr.cancel,
-                    style: context.regular14White,
-                  ),
-                ),
+              child: CustomButton(
+                title: tr.yes,
+                onPress: onConfirm,
+                buttonColor: AppColors.danger,
+                titleColor: AppColors.white,
               ),
             ),
           ],

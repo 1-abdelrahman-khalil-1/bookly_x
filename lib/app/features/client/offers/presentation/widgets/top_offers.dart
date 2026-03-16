@@ -1,10 +1,10 @@
 import 'package:bookly_x_client/app/core/screens_not_related/future_provider_screen.dart';
 import 'package:bookly_x_client/app/core/themes/app_colors.dart';
 import 'package:bookly_x_client/app/core/widgets/custom_sized_box.dart';
-import 'package:bookly_x_client/app/features/client/home/presentation/controller/client_home_future_providers.dart';
 import 'package:bookly_x_client/app/features/client/home/presentation/widgets/client_home_shimmer.dart';
 import 'package:bookly_x_client/app/features/client/offers/data/model/offer_model.dart';
 import 'package:bookly_x_client/app/features/client/offers/presentation/widgets/offer_horizontal_card.dart';
+import 'package:bookly_x_client/app/features/client/offers/providers/client_offers_future_providers.dart';
 import 'package:bookly_x_client/generated/style_atoms.dart';
 import 'package:bookly_x_client/generated/translations.g.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +16,7 @@ class TopOffers extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ref.watchWhen(
-      provider: offersFutureProvider,
+      provider: clientOffersFutureProvider,
       loading: () => const OffersShimmer(),
       data: (offers) => _TopOffersContent(offers: offers),
     );

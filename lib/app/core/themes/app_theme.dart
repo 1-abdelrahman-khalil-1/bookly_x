@@ -22,6 +22,14 @@ class AppTheme {
       ),
       centerTitle: false,
     ),
+    switchTheme: SwitchThemeData(
+      trackColor: WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.selected)) {
+          return AppColors.primary2;
+        }
+        return AppColors.primaryLightHover;
+      }),
+    ),
     canvasColor: AppColors.white,
     primaryColor: AppColors.primary,
     fontFamily: isArabic ? Constants.arFont : Constants.enFont,

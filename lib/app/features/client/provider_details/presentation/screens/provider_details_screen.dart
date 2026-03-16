@@ -1,4 +1,4 @@
-﻿import 'package:auto_route/auto_route.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:bookly_x_client/app/core/screens_not_related/future_provider_screen.dart';
 import 'package:bookly_x_client/app/core/themes/app_colors.dart';
 import 'package:bookly_x_client/app/core/widgets/custom_sized_box.dart';
@@ -12,6 +12,7 @@ import 'package:bookly_x_client/app/features/client/provider_details/presentatio
 import 'package:bookly_x_client/app/features/client/provider_details/presentation/widgets/provider_reviews_section.dart';
 import 'package:bookly_x_client/app/features/client/provider_details/presentation/widgets/provider_seller_section.dart';
 import 'package:bookly_x_client/app/features/client/provider_details/presentation/widgets/provider_service_info_section.dart';
+import 'package:bookly_x_client/router/auto_router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -120,7 +121,9 @@ class _ProviderDetailsBody extends StatelessWidget {
           child: ProviderBookingBar(
             totalPrice: detail.totalPrice,
             currency: detail.currency,
-            onBook: () {},
+            onBook: () => context.pushRoute(
+              const ClientBookingServiceHostRoute(),
+            ),
           ),
         ),
       ],

@@ -51,7 +51,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   void _onSkip() {
     RoutingPrefs.markOnBoardingAsSeen();
-    context.replaceRoute(const AuthRoute());
+    context.replaceRoute(const ChooseRoleRoute());
   }
 
   @override

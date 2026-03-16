@@ -22,6 +22,21 @@ class CustomUploadImage extends StatefulWidget {
     this.initImage,
     this.initImageUrl,
     this.imageBuilder,
+    this.width,
+    this.borderRadius = 5,
+    this.isCircular = false,
+    this.circularRadius = 60,
+    this.icon,
+    this.placeholderIcon,
+    this.placeholderIconSize,
+    this.iconSize = 12,
+    this.profileSize = 60,
+    this.iconColor,
+    this.iconBgColor,
+    this.iconBorderColor,
+    this.placeholderBgColor,
+    this.placeholderBorderColor,
+    this.placeholderIconColor,
   });
 
   /// Local image
@@ -29,14 +44,36 @@ class CustomUploadImage extends StatefulWidget {
 
   /// Network image
   final String? initImageUrl;
-
-  /// Callback when image changes
+  final double? width;
+  final double borderRadius;
+  final double? iconSize;
+  final double? profileSize;
+  final IconData? placeholderIcon;
+  final double? placeholderIconSize;
+  final Color? iconColor;
+  final Color? iconBgColor;
+  final Color? iconBorderColor;
+  final Color? placeholderBgColor;
+  final Color? placeholderBorderColor;
+  final Color? placeholderIconColor;
   final void Function(File? image)? onImageSelected;
 
   /// Custom local image builder
   final Widget Function(File image)? imageBuilder;
 
   final double? height;
+
+  /// When true, renders a circular profile-photo style picker instead of
+  /// the dotted-border document-upload style.
+  final bool isCircular;
+
+  /// Radius used for the circular avatar (half the diameter).
+  /// Defaults to 60 logical pixels.
+  final double circularRadius;
+
+  /// Icon displayed in the placeholder / camera badge.
+  /// Defaults to [FontAwesomeIcons.camera] when null.
+  final IconData? icon;
 
   @override
   State<CustomUploadImage> createState() => _CustomUploadImageState();
@@ -47,6 +84,8 @@ class _CustomUploadImageState extends State<CustomUploadImage> {
   String? _imageUrl;
 
   bool get hasImage => _image != null || (_imageUrl?.isNotEmpty ?? false);
+
+  IconData get _effectiveIcon => widget.icon ?? FontAwesomeIcons.camera;
 
   @override
   void initState() {
@@ -109,6 +148,18 @@ class _CustomUploadImageState extends State<CustomUploadImage> {
                 context.pop();
               },
             ),
+            if (hasImage) ...[
+              const Height(24),
+              _pickOption(
+                icon: FontAwesomeIcons.trash,
+                text: tr.delete,
+                color: AppColors.danger,
+                onTap: () {
+                  _clearImage();
+                  context.pop();
+                },
+              ),
+            ],
           ],
         ),
       ),
@@ -119,14 +170,18 @@ class _CustomUploadImageState extends State<CustomUploadImage> {
     required IconData icon,
     required String text,
     required VoidCallback onTap,
+    Color? color,
   }) {
     return CustomInkWell(
       onTap: onTap,
       child: Row(
         children: [
-          Icon(icon, color: AppColors.textMain),
+          Icon(icon, color: color ?? AppColors.textMain),
           const Width(8),
-          Text(text, style: context.medium16),
+          Text(
+            text,
+            style: context.medium16.copyWith(color: color),
+          ),
         ],
       ),
     );
@@ -142,11 +197,102 @@ class _CustomUploadImageState extends State<CustomUploadImage> {
 
   @override
   Widget build(BuildContext context) {
+    if (widget.isCircular) {
+      return CustomInkWell(
+        onTap: () => _showPickOptions(context),
+        child: _buildCircularPicker(context),
+      );
+    }
+
     return CustomInkWell(
       onTap: () => _showPickOptions(context),
       child: hasImage ? _buildImage(context) : _buildPlaceholder(context),
     );
   }
+
+  // ─────────────────────────── Circular (profile) mode ────────────────────────
+
+  Widget _buildCircularPicker(BuildContext context) {
+    final double diameter = widget.profileSize ?? (widget.circularRadius * 1.5);
+
+    return Badge(
+      alignment: Alignment.centerRight,
+      offset: const Offset(-8, 8),
+      backgroundColor: widget.iconBgColor ?? Colors.transparent,
+      padding: EdgeInsets.zero,
+      label: Container(
+        width: widget.iconSize != null ? widget.iconSize! + 17 : 30,
+        height: widget.iconSize != null ? widget.iconSize! + 17 : 30,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: widget.iconBgColor,
+          border: widget.iconBorderColor != null
+              ? Border.all(
+                  color: widget.iconBorderColor!,
+                  width: 2,
+                )
+              : null,
+        ),
+        child: Icon(
+          _effectiveIcon,
+          size: widget.iconSize ?? 13,
+          color: widget.iconColor,
+        ),
+      ),
+      child: Container(
+        width: diameter,
+        height: diameter,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: widget.placeholderBgColor ?? AppColors.primaryLightHover,
+          border: widget.placeholderBorderColor != null
+              ? Border.all(
+                  color: widget.placeholderBorderColor!,
+                  width: 2,
+                )
+              : null,
+        ),
+        child: ClipOval(child: _buildCircularImageContent(diameter)),
+      ),
+    );
+  }
+
+  Widget _buildCircularImageContent(double diameter) {
+    // Local file
+    if (_image != null) {
+      return Image.file(_image!,
+          fit: BoxFit.cover, width: diameter, height: diameter);
+    }
+
+    // Network URL
+    if (_imageUrl != null && _imageUrl!.isNotEmpty) {
+      return CustomCachedNetworkImage(
+        imgUrl: _imageUrl!,
+        width: diameter,
+        height: diameter,
+        fit: BoxFit.cover,
+        boxShape: BoxShape.circle,
+        placeholderWidget: Center(
+          child: Icon(
+            widget.placeholderIcon ?? Icons.broken_image_outlined,
+            size: widget.placeholderIconSize ?? (diameter * 0.45),
+            color: widget.placeholderIconColor ?? AppColors.primary,
+          ),
+        ),
+      );
+    }
+
+    // Placeholder icon
+    return Center(
+      child: Icon(
+        widget.placeholderIcon ?? Icons.broken_image_outlined,
+        size: widget.placeholderIconSize ?? (diameter * 0.45),
+        color: widget.placeholderIconColor ?? AppColors.primary,
+      ),
+    );
+  }
+
+  // ─────────────────────────── Rectangular (document) mode ────────────────────
 
   Widget _buildPlaceholder(BuildContext context) {
     return DottedBorder(
@@ -159,8 +305,8 @@ class _CustomUploadImageState extends State<CustomUploadImage> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(
-              MyIcons.documentUploadOutline,
+            Icon(
+              widget.icon ?? MyIcons.documentUploadOutline,
               size: 24,
               color: AppColors.textSub,
             ),
@@ -173,7 +319,7 @@ class _CustomUploadImageState extends State<CustomUploadImage> {
             ),
             const Height(8),
             Text(
-              '${tr.imageAllowedFormats} : (JPG, PNG)\n Must be not greater Than 2MB',
+              '${tr.imageAllowedFormats} : (JPG, PNG)\n ${tr.mustBeNotGreaterThan2mb}',
               textAlign: TextAlign.center,
               style: context.regular14TextSub,
             ),
@@ -193,6 +339,7 @@ class _CustomUploadImageState extends State<CustomUploadImage> {
       return CustomUploadLocalImage(
         width: context.width,
         height: widget.height ?? 200,
+        borderRadius: widget.borderRadius,
         imageFile: _image!,
         onClose: _clearImage,
       );
@@ -207,6 +354,8 @@ class _CustomUploadImageState extends State<CustomUploadImage> {
             width: context.width,
             height: widget.height ?? 200,
             fit: BoxFit.cover,
+            borderRadius:
+                BorderRadius.all(Radius.circular(widget.borderRadius)),
           ),
           Positioned(
             top: 8,

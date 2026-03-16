@@ -19,6 +19,18 @@ const _mockOffers = [
         'https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=800&h=400&fit=crop',
     discount: '25%',
   ),
+  OfferModel(
+    id: 'o3',
+    imageUrl:
+        'https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=800&h=400&fit=crop',
+    discount: '25%',
+  ),
+  OfferModel(
+    id: 'o4',
+    imageUrl:
+        'https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=800&h=400&fit=crop',
+    discount: '25%',
+  ),
 ];
 
 const _mockProviders = [

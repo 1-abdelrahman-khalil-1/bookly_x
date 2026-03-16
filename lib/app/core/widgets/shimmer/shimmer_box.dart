@@ -10,6 +10,7 @@ class ShimmerBox extends StatelessWidget {
   final Widget? child;
   final Color? baseColor;
   final Color? highlightColor;
+  final BoxShape boxShape;
 
   const ShimmerBox({
     super.key,
@@ -19,6 +20,7 @@ class ShimmerBox extends StatelessWidget {
     this.child,
     this.baseColor,
     this.highlightColor,
+    this.boxShape = BoxShape.rectangle,
   });
 
   @override
@@ -31,8 +33,11 @@ class ShimmerBox extends StatelessWidget {
         width: width,
         decoration: BoxDecoration(
           color: AppColors.primary2,
-          borderRadius: borderRadius ??
-              BorderRadius.circular(height > 24 ? 8 : height / 4),
+          shape: boxShape,
+          borderRadius: boxShape == BoxShape.circle
+              ? null
+              : (borderRadius ??
+                  BorderRadius.circular(height > 24 ? 8 : height / 4)),
         ),
         child: child,
       ),
@@ -77,5 +82,6 @@ class ShimmerText extends ShimmerBox {
     super.child,
     super.baseColor,
     super.highlightColor,
+    super.boxShape,
   });
 }

@@ -10,10 +10,12 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
     required this.title,
     this.bottom,
     this.hasBackButton = true,
+    this.onBackPress,
   });
   final String title;
   final PreferredSizeWidget? bottom;
   final bool hasBackButton;
+  final VoidCallback? onBackPress;
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -23,10 +25,11 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: AppColors.white,
       leading: hasBackButton
           ? GestureDetector(
-              onTap: () {
-                FocusManager.instance.primaryFocus?.unfocus();
-                context.pop();
-              },
+              onTap: onBackPress ??
+                  () {
+                    FocusManager.instance.primaryFocus?.unfocus();
+                    context.pop();
+                  },
               child: Icon(
                 isArabic
                     ? MyIcons.arrowSquareRightOutline

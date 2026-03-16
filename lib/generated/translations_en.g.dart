@@ -477,8 +477,11 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	/// en: 'No notifications yet'
 	String get noNotifications => 'No notifications yet';
 
-	/// en: 'Change Language'
-	String get changeLanguage => 'Change Language';
+	/// en: 'Language'
+	String get language => 'Language';
+
+	/// en: 'Choose your preferred language'
+	String get chooseYourPreferredLanguage => 'Choose your preferred language';
 
 	/// en: 'Available Near You'
 	String get availableNearYou => 'Available Near You';
@@ -510,11 +513,23 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	/// en: 'Description'
 	String get description => 'Description';
 
+	/// en: 'About Me'
+	String get aboutMe => 'About Me';
+
 	/// en: 'Read More'
 	String get readMore => 'Read More';
 
 	/// en: 'Review'
 	String get review => 'Review';
+
+	/// en: 'Reviews'
+	String get reviews => 'Reviews';
+
+	/// en: 'work place'
+	String get workPlace => 'work place';
+
+	/// en: 'Years Exp'
+	String get yearsExp => 'Years Exp';
 
 	/// en: 'See All'
 	String get seeAll => 'See All';
@@ -527,6 +542,186 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 
 	/// en: 'Owner'
 	String get owner => 'Owner';
+
+	/// en: 'No'
+	String get no => 'No';
+
+	/// en: 'Yes'
+	String get yes => 'Yes';
+
+	/// en: 'Date'
+	String get date => 'Date';
+
+	/// en: 'Time'
+	String get time => 'Time';
+
+	/// en: 'confirm'
+	String get confirm => 'confirm';
+
+	/// en: 'Please Select Date'
+	String get pleaseSelectDate => 'Please Select Date';
+
+	/// en: 'Booking services'
+	String get bookingServices => 'Booking services';
+
+	/// en: 'Select Service'
+	String get selectService => 'Select Service';
+
+	/// en: 'Select Staff'
+	String get selectStaff => 'Select Staff';
+
+	/// en: 'Time & Date'
+	String get timeAndDate => 'Time & Date';
+
+	/// en: 'services'
+	String get services => 'services';
+
+	/// en: 'person'
+	String get person => 'person';
+
+	/// en: 'Book Now'
+	String get bookNow => 'Book Now';
+
+	/// en: 'Service'
+	String get service => 'Service';
+
+	/// en: 'Specialist'
+	String get specialist => 'Specialist';
+
+	/// en: 'Rental Date'
+	String get rentalDate => 'Rental Date';
+
+	/// en: 'Booking information'
+	String get bookingInformation => 'Booking information';
+
+	/// en: 'Booking detail'
+	String get bookingDetail => 'Booking detail';
+
+	/// en: 'Booking ID'
+	String get bookingId => 'Booking ID';
+
+	/// en: 'Booking Date'
+	String get bookingDate => 'Booking Date';
+
+	/// en: 'place service'
+	String get placeService => 'place service';
+
+	/// en: 'Amount'
+	String get amount => 'Amount';
+
+	/// en: 'Service fee'
+	String get serviceFee => 'Service fee';
+
+	/// en: 'Tax'
+	String get tax => 'Tax';
+
+	/// en: 'Booking successful'
+	String get bookingSuccessful => 'Booking  successful';
+
+	/// en: 'Your Booking has been successfully'
+	String get bookingSuccessMessage => 'Your Booking has been successfully';
+
+	/// en: 'Check Booking'
+	String get checkBooking => 'Check Booking';
+
+	/// en: 'Pay now'
+	String get payNow => 'Pay now';
+
+	/// en: 'Secure Payment'
+	String get securePayment => 'Secure Payment';
+
+	/// en: 'BOOKING SUMMARY'
+	String get bookingSummary => 'BOOKING SUMMARY';
+
+	/// en: 'Total Amount'
+	String get totalAmount => 'Total Amount';
+
+	/// en: 'Credit / Debit Card'
+	String get creditDebitCard => 'Credit / Debit Card';
+
+	/// en: 'Card Number'
+	String get cardNumber => 'Card Number';
+
+	/// en: 'Expiry Date'
+	String get expiryDate => 'Expiry Date';
+
+	/// en: 'Secured with 256-bit SSL encryption'
+	String get securedWithSSL => 'Secured with 256-bit SSL encryption';
+
+	/// en: 'Your payment is secure and encrypted'
+	String get yourPaymentIsSecureAndEncrypted => 'Your payment is secure and encrypted';
+
+	/// en: 'Payment Successful'
+	String get paymentSuccessful => 'Payment Successful';
+
+	/// en: 'Your Booking has been confirmed'
+	String get paymentSuccessMessage => 'Your Booking has been confirmed';
+
+	/// en: 'Payment detail'
+	String get paymentDetail => 'Payment detail';
+
+	/// en: 'Payment ID'
+	String get paymentId => 'Payment ID';
+
+	/// en: 'Payment Date'
+	String get paymentDate => 'Payment Date';
+
+	/// en: 'Download Receipt'
+	String get downloadReceipt => 'Download Receipt';
+
+	/// en: 'Shar Your Receipt'
+	String get shareReceipt => 'Shar Your Receipt';
+
+	/// en: 'Back to Home'
+	String get backToHome => 'Back to Home';
+
+	/// en: 'AM'
+	String get am => 'AM';
+
+	/// en: 'PM'
+	String get pm => 'PM';
+
+	/// en: 'Start'
+	String get start => 'Start';
+
+	/// en: 'Please Select Time'
+	String get pleaseSelectTime => 'Please Select Time';
+
+	/// en: 'Must be not greater Than 2MB'
+	String get mustBeNotGreaterThan2mb => 'Must be not greater Than 2MB';
+
+	/// en: 'Edit Profile'
+	String get editProfile => 'Edit Profile';
+
+	/// en: 'Manage notification preferences'
+	String get manageNotificationPreferences => 'Manage notification preferences';
+
+	/// en: 'Privacy & Security'
+	String get privacyAndSecurity => 'Privacy & Security';
+
+	/// en: 'Manage Privacy Settings'
+	String get managePrivacySettings => 'Manage Privacy Settings';
+
+	/// en: 'Invite Friends'
+	String get inviteFriends => 'Invite Friends';
+
+	/// en: 'Invite your friends to join our app'
+	String get inviteYourFriendsToJoinOurApp => 'Invite your friends to join our app';
+
+	/// en: 'This feature is coming soon'
+	String get thisFeatureIsComingSoon => 'This feature is coming soon';
+
+	/// en: 'log out'
+	String get logOut => 'log out';
+
+	/// en: 'favorites'
+	String get favorites => 'favorites';
+
+	/// en: 'Manage Favorites'
+	String get manageFavorites => 'Manage Favorites';
+
+	/// en: 'Profile Updated Successfully'
+	String get profileUpdatedSuccessfully => 'Profile Updated Successfully';
 }
 
 // Path: weekdays
@@ -755,7 +950,8 @@ extension on Translations {
 			'older' => 'Older',
 			'markAsRead' => 'Mark as read',
 			'noNotifications' => 'No notifications yet',
-			'changeLanguage' => 'Change Language',
+			'language' => 'Language',
+			'chooseYourPreferredLanguage' => 'Choose your preferred language',
 			'availableNearYou' => 'Available Near You',
 			'topOffers' => 'Top Offers',
 			'availableOffers' => 'Available Offers',
@@ -766,12 +962,76 @@ extension on Translations {
 			'somethingHappenedError' => 'Something Happened Error',
 			'availableServices' => 'Available Services',
 			'description' => 'Description',
+			'aboutMe' => 'About Me',
 			'readMore' => 'Read More',
 			'review' => 'Review',
+			'reviews' => 'Reviews',
+			'workPlace' => 'work place',
+			'yearsExp' => 'Years Exp',
 			'seeAll' => 'See All',
 			'totalPrice' => 'Total Price',
 			'bookingNow' => 'Booking Now',
 			'owner' => 'Owner',
+			'no' => 'No',
+			'yes' => 'Yes',
+			'date' => 'Date',
+			'time' => 'Time',
+			'confirm' => 'confirm',
+			'pleaseSelectDate' => 'Please Select Date',
+			'bookingServices' => 'Booking services',
+			'selectService' => 'Select Service',
+			'selectStaff' => 'Select Staff',
+			'timeAndDate' => 'Time & Date',
+			'services' => 'services',
+			'person' => 'person',
+			'bookNow' => 'Book Now',
+			'service' => 'Service',
+			'specialist' => 'Specialist',
+			'rentalDate' => 'Rental Date',
+			'bookingInformation' => 'Booking information',
+			'bookingDetail' => 'Booking detail',
+			'bookingId' => 'Booking ID',
+			'bookingDate' => 'Booking Date',
+			'placeService' => 'place service',
+			'amount' => 'Amount',
+			'serviceFee' => 'Service fee',
+			'tax' => 'Tax',
+			'bookingSuccessful' => 'Booking  successful',
+			'bookingSuccessMessage' => 'Your Booking has been successfully',
+			'checkBooking' => 'Check Booking',
+			'payNow' => 'Pay now',
+			'securePayment' => 'Secure Payment',
+			'bookingSummary' => 'BOOKING SUMMARY',
+			'totalAmount' => 'Total Amount',
+			'creditDebitCard' => 'Credit / Debit Card',
+			'cardNumber' => 'Card Number',
+			'expiryDate' => 'Expiry Date',
+			'securedWithSSL' => 'Secured with 256-bit SSL encryption',
+			'yourPaymentIsSecureAndEncrypted' => 'Your payment is secure and encrypted',
+			'paymentSuccessful' => 'Payment Successful',
+			'paymentSuccessMessage' => 'Your Booking has been confirmed',
+			'paymentDetail' => 'Payment detail',
+			'paymentId' => 'Payment ID',
+			'paymentDate' => 'Payment Date',
+			'downloadReceipt' => 'Download Receipt',
+			'shareReceipt' => 'Shar Your Receipt',
+			'backToHome' => 'Back to Home',
+			'am' => 'AM',
+			'pm' => 'PM',
+			'start' => 'Start',
+			'pleaseSelectTime' => 'Please Select Time',
+			'mustBeNotGreaterThan2mb' => 'Must be not greater Than 2MB',
+			'editProfile' => 'Edit Profile',
+			'manageNotificationPreferences' => 'Manage notification preferences',
+			'privacyAndSecurity' => 'Privacy & Security',
+			'managePrivacySettings' => 'Manage Privacy Settings',
+			'inviteFriends' => 'Invite Friends',
+			'inviteYourFriendsToJoinOurApp' => 'Invite your friends to join our app',
+			'thisFeatureIsComingSoon' => 'This feature is coming soon',
+			'logOut' => 'log out',
+			'favorites' => 'favorites',
+			'manageFavorites' => 'Manage Favorites',
+			'profileUpdatedSuccessfully' => 'Profile Updated Successfully',
 			_ => null,
 		};
 	}

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:bookly_x_client/app/core/data/user_pref.dart';
 import 'package:bookly_x_client/router/auto_router.gr.dart'
@@ -21,7 +23,9 @@ class RoutingPrefs {
 
   static PageRouteInfo get initialRoute {
     if (isOnBoardingSeen) {
+      log('Onboarding has been seen, checking user login status...');
       if (UserPrefs.isUserLoggedIn) {
+        log('User is logged in, determining user type...');
         return UserPrefs.getUserType().isClient
             ? const ClientMainRoute()
             : const StaffMainRoute();
