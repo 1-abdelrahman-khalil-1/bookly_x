@@ -29,6 +29,7 @@ class Constants {
 
   static const String enFont = 'Almarai';
   // static const String apiKey = 'AIzaSyBMsTsrGZVlNpB3ufAcDP5cqJAY-UZKJt4';
+  static const String mapsApiKey = 'AIzaSyC54HADVM_oLQwHPeY4AxDbxhFwRuOntUE';
   static const String arFont = 'Almarai';
   static const String defaultCountryCode = '20';
   static const int defaultLenNumber = 10;

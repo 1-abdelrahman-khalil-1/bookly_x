@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sentry/sentry.dart';
 
 import '../api_helper/exceptions.dart';
 import 'no_internet_screen.dart';
@@ -32,8 +31,6 @@ extension ONExt on WidgetRef {
                 onRetry: () => invalidate(provider),
               );
             } else {
-              Sentry.captureException(e, stackTrace: s);
-              log('sent to sentry', name: 'watchWhen');
               return ServerErrorScreen(
                 isLoading: watch(provider).isLoading,
                 onRetry: () => invalidate(provider),

@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
-import 'package:shake_dio_interceptor/shake_dio_interceptor.dart';
 
 import '../data/lang_pref.dart';
 import 'dio_client.dart';
@@ -34,7 +33,6 @@ final dioProvider = Provider<Dio>((ref) {
       requestBody: true,
       logPrint: (error) => log(error.toString(), name: 'API'),
     ),
-    ShakeDioInterceptor(),
     // if (appFlavor.isAliceEnabled) alice.getDioInterceptor(),
     DioInterceptor(),
   ]);

@@ -722,6 +722,12 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 
 	/// en: 'Profile Updated Successfully'
 	String get profileUpdatedSuccessfully => 'Profile Updated Successfully';
+
+	/// en: 'Location Selected'
+	String get locationSelected => 'Location Selected';
+
+	/// en: 'Select Location'
+	String get selectLocation => 'Select Location';
 }
 
 // Path: weekdays
@@ -1032,6 +1038,8 @@ extension on Translations {
 			'favorites' => 'favorites',
 			'manageFavorites' => 'Manage Favorites',
 			'profileUpdatedSuccessfully' => 'Profile Updated Successfully',
+			'locationSelected' => 'Location Selected',
+			'selectLocation' => 'Select Location',
 			_ => null,
 		};
 	}

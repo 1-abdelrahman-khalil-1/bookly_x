@@ -242,5 +242,7 @@
   "logOut": "تسجيل الخروج",
   "favorites": "المفضلة",
   "manageFavorites": "إدارة المفضلة",
-  "profileUpdatedSuccessfully": "تم تحديث الملف الشخصي بنجاح"
+  "profileUpdatedSuccessfully": "تم تحديث الملف الشخصي بنجاح",
+  "locationSelected": "تم تحديد الموقع",
+  "selectLocation": "اختر الموقع"
 }

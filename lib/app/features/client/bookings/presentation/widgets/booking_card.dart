@@ -111,116 +111,119 @@ class BookingCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                8.h,
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        const Icon(MyIcons.calendarOutline,
-                            size: 12, color: AppColors.textSub),
-                        4.w,
-                        Text(
-                          date.formattedDate,
-                          style: context.regular12TextSub,
-                        ),
-                      ],
-                    ),
-                    8.h,
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            const Icon(MyIcons.clockOutline,
-                                size: 12, color: AppColors.textSub),
-                            4.w,
-                            Text(
-                              time.format(context),
-                              style: context.regular12TextSub,
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            const Icon(MyIcons.clockOutline,
-                                size: 12, color: AppColors.textSub),
-                            4.w,
-                            Text(
-                              '$durationMinutes ${tr.minutes}',
-                              style: context.regular12TextSub,
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-                8.h,
-                Text(
-                  '${tr.kWith} $staffName',
-                  style: context.regular12TextSub,
-                ),
-                8.h,
-                Row(
-                  children: [
-                    // Contact Button
-                    Expanded(
-                      child: CustomButton(
-                        title: tr.contact,
-                        onPress: () {},
-                        textStyle: context.regular11Black,
-                        prefixIcon: MyIcons.messageOutline,
-                        prefixIconSize: 12,
-                        height: 30,
-                        buttonColor: AppColors.white,
-                        borderColor: AppColors.textSub,
-                        prefixIconColor: AppColors.textSub,
+                  8.h,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          const Icon(MyIcons.calendarOutline,
+                              size: 12, color: AppColors.textSub),
+                          4.w,
+                          Text(
+                            date.formattedDate,
+                            style: context.regular12TextSub,
+                          ),
+                        ],
                       ),
-                    ),
-                    8.w,
-                    // Directions Button
-                    Expanded(
-                      child: CustomButton(
-                        title: tr.directions,
-                        onPress: () {},
-                        textStyle: context.regular11Black,
-                        prefixIcon: MyIcons.locationOutline,
-                        prefixIconSize: 12,
-                        height: 30,
-                        buttonColor: AppColors.white,
-                        borderColor: AppColors.textSub,
-                        prefixIconColor: AppColors.textSub,
+                      8.h,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              const Icon(MyIcons.clockOutline,
+                                  size: 12, color: AppColors.textSub),
+                              4.w,
+                              Text(
+                                time.format(context),
+                                style: context.regular12TextSub,
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              const Icon(MyIcons.clockOutline,
+                                  size: 12, color: AppColors.textSub),
+                              4.w,
+                              Text(
+                                '$durationMinutes ${tr.minutes}',
+                                style: context.regular12TextSub,
+                              ),
+                            ],
+                          )
+                        ],
                       ),
-                    ),
-                  ],
-                ),
-                8.h,
+                    ],
+                  ),
+                  8.h,
+                  Text(
+                    '${tr.kWith} $staffName',
+                    style: context.regular12TextSub,
+                  ),
+                  8.h,
+                  Row(
+                    children: [
+                      // Contact Button
+                      Expanded(
+                        child: CustomButton(
+                          title: tr.contact,
+                          onPress: () {},
+                          textStyle: context.regular11Black,
+                          prefixIcon: MyIcons.messageOutline,
+                          prefixIconSize: 12,
+                          height: 30,
+                          buttonColor: AppColors.white,
+                          borderColor: AppColors.textSub,
+                          prefixIconColor: AppColors.textSub,
+                        ),
+                      ),
+                      8.w,
+                      // Directions Button
+                      Expanded(
+                        child: CustomButton(
+                          title: tr.directions,
+                          onPress: () {},
+                          textStyle: context.regular11Black,
+                          prefixIcon: MyIcons.locationOutline,
+                          prefixIconSize: 12,
+                          height: 30,
+                          buttonColor: AppColors.white,
+                          borderColor: AppColors.textSub,
+                          prefixIconColor: AppColors.textSub,
+                        ),
+                      ),
+                    ],
+                  ),
+                  8.h,
                   Row(
                     children: [
                       // Primary Action (Pay/Reschedule/Info)
                       Expanded(
                         child: CustomButton(
-                          title: primaryActionLabel,
+                          title: status.isPending
+                              ? tr.pay
+                              : status.isConfirmed
+                                  ? tr.reschedule
+                                  : tr.info,
                           onPress: () {
                             if (status.isPending) {
                             } else if (status.isConfirmed) {
                               ReschudleBookingDialog.showBottomSheet(context);
-                            } else {
-                            }
+                            } else {}
                           },
                           textStyle: context.regular12White,
-                          height: 30,
                           buttonColor: AppColors.primary,
+                          height: 32,
                           borderRadius: 25,
                         ),
                       ),
                       8.w,
                       if (!status.isComplete)
-                        // Secondary Action (Cancel/Delete)
+                        // Secondary Action (Cancel)
                         Expanded(
                           child: CustomButton(
-                            title: secondaryActionLabel!,
+                            title: tr.cancel,
                             onPress: () {
                               if (!status.isComplete) {
                                 context.showCustomDialog(
@@ -237,8 +240,8 @@ class BookingCard extends StatelessWidget {
                               }
                             },
                             textStyle: context.regular12Danger,
-                            height: 32,
                             buttonColor: AppColors.white,
+                            height: 32,
                             borderColor: AppColors.danger,
                             borderRadius: 25,
                           ),

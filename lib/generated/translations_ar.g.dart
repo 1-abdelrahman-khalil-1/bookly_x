@@ -265,6 +265,8 @@ class TranslationsAr with BaseTranslations<AppLocale, Translations> implements T
 	@override String get favorites => 'المفضلة';
 	@override String get manageFavorites => 'إدارة المفضلة';
 	@override String get profileUpdatedSuccessfully => 'تم تحديث الملف الشخصي بنجاح';
+	@override String get locationSelected => 'تم تحديد الموقع';
+	@override String get selectLocation => 'اختر الموقع';
 }
 
 // Path: weekdays
@@ -547,6 +549,8 @@ extension on TranslationsAr {
 			'favorites' => 'المفضلة',
 			'manageFavorites' => 'إدارة المفضلة',
 			'profileUpdatedSuccessfully' => 'تم تحديث الملف الشخصي بنجاح',
+			'locationSelected' => 'تم تحديد الموقع',
+			'selectLocation' => 'اختر الموقع',
 			_ => null,
 		};
 	}

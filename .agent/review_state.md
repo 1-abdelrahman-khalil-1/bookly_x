@@ -2,7 +2,7 @@
 
 ## Last Review Date
 
-2026-03-16
+2026-03-17
 
 ## Scope
 
@@ -13,6 +13,7 @@
 
 | File                                                                                             | Status        | Last Reviewed |
 | ------------------------------------------------------------------------------------------------ | ------------- | ------------- |
+| lib/app/core/widgets/map_screen.dart                                                             | ✅ Clean      | 2026-03-17    |
 | lib/app/core/data/routing_pref.dart                                                              | ⚠️ Has Issues | 2026-03-16    |
 | lib/app/core/screens_not_related/no_internet_screen.dart                                         | ⚠️ Has Issues | 2026-03-16    |
 | lib/app/core/services/internet_connection_service.dart                                           | ⚠️ Has Issues | 2026-03-16    |

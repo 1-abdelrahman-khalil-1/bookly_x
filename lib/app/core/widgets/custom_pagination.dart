@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:riverpod_infinite_scroll/riverpod_infinite_scroll.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
-import '../../../generated/translations.g.dart';
-import '../../../main.dart';
-import 'api_helper/exceptions.dart';
-import 'screens_not_related/no_internet_screen.dart';
-import 'screens_not_related/server_error_screen.dart';
+import '../../../../generated/translations.g.dart';
+import '../../../../main.dart';
+import '../api_helper/exceptions.dart';
+import '../screens_not_related/no_internet_screen.dart';
+import '../screens_not_related/server_error_screen.dart';
 
 class CustomPagination<Model> extends StatelessWidget {
   const CustomPagination({

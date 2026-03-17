@@ -242,5 +242,7 @@
   "logOut": "log out",
   "favorites": "favorites",
   "manageFavorites": "Manage Favorites",
-  "profileUpdatedSuccessfully": "Profile Updated Successfully"
+  "profileUpdatedSuccessfully": "Profile Updated Successfully",
+  "locationSelected": "Location Selected",
+  "selectLocation": "Select Location"
 }

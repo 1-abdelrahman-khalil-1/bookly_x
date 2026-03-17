@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bookly_x_client/app/core/themes/app_colors.dart';
+import 'package:bookly_x_client/app/core/widgets/map_screen.dart';
 import 'package:bookly_x_client/app/features/client/bookings/presentation/screens/bookings_screen.dart';
 import 'package:bookly_x_client/app/features/client/home/presentation/screens/client_home_screen.dart';
 import 'package:bookly_x_client/app/features/client/main_screen/presentation/controller/main_providers.dart';
@@ -11,6 +12,7 @@ import 'package:bookly_x_client/generated/translations.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:map_location_picker/map_location_picker.dart';
 
 @RoutePage()
 class ClientMainScreen extends ConsumerWidget {
@@ -21,9 +23,12 @@ class ClientMainScreen extends ConsumerWidget {
     final selectedIndex = ref.watch(selectedTabProvider);
     final pages = [
       const ClientHomeScreen(),
-      Center(child: Text(tr.explore)),
-      BookingsScreen(),
-      OffersScreen(),
+      MapScreen(
+        currentLatLng: const LatLng(30.1360, 31.7150),
+        onLocationSelected: (latLng, address) {},
+      ),
+      const BookingsScreen(),
+      const OffersScreen(),
       const SettingScreen(),
     ];
     return Scaffold(
@@ -49,7 +54,7 @@ class ClientMainScreen extends ConsumerWidget {
                 offset: const Offset(0, -2),
               ),
             ],
-            border: Border(top: BorderSide(color: AppColors.textBorders)),
+            border: const Border(top: BorderSide(color: AppColors.textBorders)),
           ),
           child: SafeArea(
             child: GNav(
