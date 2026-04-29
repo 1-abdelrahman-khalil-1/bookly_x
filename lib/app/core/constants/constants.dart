@@ -18,11 +18,11 @@ class Constants {
   static const double spaceBetween = 24;
 
   static const String tempImage =
-      'https://media.istockphoto.com/id/1352185969/photo/shot-of-a-young-woman-cheering-while-using-a-laptop-to-study-at-home.webp?s=612x612&w=is&k=20&c=yCI6qUI9Q4162uRowbhKKX1iqIpuAtxns8NhKYVrCpw=';
+      'https://cdn.pixabay.com/photo/2017/02/23/13/05/avatar-2092113_1280.png';
 
   /// Default image URL for UI converter placeholders
   static const String defaultImageUrl =
-      'https://media.istockphoto.com/id/1352185969/photo/shot-of-a-young-woman-cheering-while-using-a-laptop-to-study-at-home.webp?s=612x612&w=is&k=20&c=yCI6qUI9Q4162uRowbhKKX1iqIpuAtxns8NhKYVrCpw=';
+      'https://static.vecteezy.com/system/resources/previews/037/747/463/non_2x/online-hotel-accommodation-booking-website-provide-modish-reservation-system-travel-technology-concept-photo.jpg';
   static const String sentryDSN = '';
 
   //todo add fonts

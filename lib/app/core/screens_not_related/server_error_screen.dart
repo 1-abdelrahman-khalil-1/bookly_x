@@ -18,7 +18,7 @@ class ServerErrorScreen extends StatefulWidget {
   final VoidCallback onRetry;
 
   @override
-  _ServerErrorState createState() => _ServerErrorState();
+  State<ServerErrorScreen> createState() => _ServerErrorState();
 }
 
 class _ServerErrorState extends State<ServerErrorScreen> {
@@ -26,42 +26,33 @@ class _ServerErrorState extends State<ServerErrorScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Center(
-          child: Column(
-            children: [
-              const Expanded(flex: 2, child: SizedBox()),
-              const Icon(
-                MyIcons.warning2Outline,
-                size: 64,
-                color: AppColors.danger,
-              ),
-              const Height(24),
-              Text(tr.aServerErrorOccurred, style: context.regular18Primary),
-              const Height(8),
-              Text(
-                tr.somethingWentWrongWithTheServerPleaseTryAgainLater,
-                textAlign: TextAlign.center,
-                style: context.light14TextMain,
-              ),
-              const Height(24),
-              CustomButton(
-                title: tr.tryAgain,
-                onPress: () {
-                  widget.isLoading = true;
-                  setState(() {});
-                  widget.onRetry();
-                },
-                isLoading: widget.isLoading,
-                width: 165.5,
-              ),
-              const Expanded(flex: 3, child: SizedBox()),
-            ],
-          ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const Icon(
+          MyIcons.warning2Outline,
+          size: 64,
+          color: AppColors.danger,
         ),
-      ),
+        const Height(24),
+        Text(tr.aServerErrorOccurred, style: context.regular18Primary),
+        const Height(8),
+        Text(
+          tr.somethingWentWrongWithTheServerPleaseTryAgainLater,
+          textAlign: TextAlign.center,
+          style: context.light14TextMain,
+        ),
+        const Height(24),
+        CustomButton(
+          title: tr.tryAgain,
+          onPress: () {
+            widget.isLoading = true;
+            setState(() {});
+            widget.onRetry();
+          },
+          isLoading: widget.isLoading,
+        ),
+      ],
     );
   }
 }

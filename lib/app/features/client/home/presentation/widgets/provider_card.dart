@@ -56,7 +56,7 @@ class ProviderCard extends StatelessWidget {
                     ),
                   ),
                   if (provider.verified)
-                    Icon(
+                    const Icon(
                       Icons.verified,
                       color: Colors.blue,
                       size: 18,
@@ -119,7 +119,7 @@ class ProviderCard extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.mail_outline,
+                          const Icon(Icons.mail_outline,
                               size: 16, color: AppColors.textMain),
                           8.w,
                           Text(

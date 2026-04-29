@@ -218,7 +218,7 @@ class _ClientTimeDateBottomSheetState
                         ),
                         controller: _hourController,
                         looping: true,
-                        style: WheelPickerStyle(
+                        style: const WheelPickerStyle(
                           itemExtent: 40,
                           squeeze: 1.0,
                           diameterRatio: 1.2,

@@ -22,7 +22,6 @@ class ClientHomeScreen extends ConsumerWidget {
           16.h,
           // Pinned Header Section
           const HeaderSection(),
-      
           Expanded(
             child: RefreshIndicator(
               onRefresh: () async {

@@ -30,7 +30,7 @@ class RoutingPrefs {
             ? const ClientMainRoute()
             : const StaffMainRoute();
       } else {
-        return ChooseRoleRoute();
+        return const ChooseRoleRoute();
       }
     } else {
       return const OnboardingRoute();

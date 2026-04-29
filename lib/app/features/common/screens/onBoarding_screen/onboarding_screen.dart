@@ -81,7 +81,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    LogoName(),
+                    const LogoName(),
                     TextButton(
                       onPressed: _onSkip,
                       child: Text(

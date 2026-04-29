@@ -267,6 +267,32 @@ class TranslationsAr with BaseTranslations<AppLocale, Translations> implements T
 	@override String get profileUpdatedSuccessfully => 'تم تحديث الملف الشخصي بنجاح';
 	@override String get locationSelected => 'تم تحديد الموقع';
 	@override String get selectLocation => 'اختر الموقع';
+	@override String get sorryYourSessionExpiredPleaseLoginAgain => 'عذرًا، انتهت صلاحية جلستك. يرجى تسجيل الدخول مرة أخرى';
+	@override String get revenue => 'الإيرادات';
+	@override String get completed => 'المكتملة';
+	@override String get thisWeek => 'هذا الأسبوع';
+	@override String get average => 'المتوسط';
+	@override String get weekSchedule => 'جدول الأسبوع';
+	@override String get todaysSchedule => 'جدول اليوم';
+	@override String get viewDetails => 'عرض التفاصيل';
+	@override String get startService => 'بدء الخدمة';
+	@override String get note => 'ملاحظة:';
+	@override String get schedule => 'الجدول';
+	@override String get alerts => 'التنبيهات';
+	@override String get income => 'الدخل';
+	@override String get noUpcomingAppointments => 'لا توجد مواعيد قادمة';
+	@override String get noAppointmentsToday => 'لا توجد مواعيد اليوم';
+	@override String get manageYourBookingRequests => 'إدارة طلبات الحجز والتنبيهات الخاصة بك';
+	@override String get accepted => 'مقبول';
+	@override String get rejected => 'مرفوض';
+	@override String get accept => 'قبول';
+	@override String get reject => 'رفض';
+	@override String get duration => 'المدة';
+	@override String get cancelled => 'ملغى';
+	@override String get bookingCancelledFor => 'تم إلغاء الحجز لـ';
+	@override String get ago => 'منذ';
+	@override String get minAgo => 'دقيقة مضت';
+	@override String get hourAgo => 'ساعة مضت';
 }
 
 // Path: weekdays
@@ -551,6 +577,32 @@ extension on TranslationsAr {
 			'profileUpdatedSuccessfully' => 'تم تحديث الملف الشخصي بنجاح',
 			'locationSelected' => 'تم تحديد الموقع',
 			'selectLocation' => 'اختر الموقع',
+			'sorryYourSessionExpiredPleaseLoginAgain' => 'عذرًا، انتهت صلاحية جلستك. يرجى تسجيل الدخول مرة أخرى',
+			'revenue' => 'الإيرادات',
+			'completed' => 'المكتملة',
+			'thisWeek' => 'هذا الأسبوع',
+			'average' => 'المتوسط',
+			'weekSchedule' => 'جدول الأسبوع',
+			'todaysSchedule' => 'جدول اليوم',
+			'viewDetails' => 'عرض التفاصيل',
+			'startService' => 'بدء الخدمة',
+			'note' => 'ملاحظة:',
+			'schedule' => 'الجدول',
+			'alerts' => 'التنبيهات',
+			'income' => 'الدخل',
+			'noUpcomingAppointments' => 'لا توجد مواعيد قادمة',
+			'noAppointmentsToday' => 'لا توجد مواعيد اليوم',
+			'manageYourBookingRequests' => 'إدارة طلبات الحجز والتنبيهات الخاصة بك',
+			'accepted' => 'مقبول',
+			'rejected' => 'مرفوض',
+			'accept' => 'قبول',
+			'reject' => 'رفض',
+			'duration' => 'المدة',
+			'cancelled' => 'ملغى',
+			'bookingCancelledFor' => 'تم إلغاء الحجز لـ',
+			'ago' => 'منذ',
+			'minAgo' => 'دقيقة مضت',
+			'hourAgo' => 'ساعة مضت',
 			_ => null,
 		};
 	}

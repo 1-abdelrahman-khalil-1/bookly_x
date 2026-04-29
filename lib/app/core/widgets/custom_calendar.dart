@@ -62,14 +62,14 @@ class _CustomCalendarState extends State<CustomCalendar> {
           formatButtonVisible: false,
           titleCentered: true,
           titleTextStyle: context.regular16TextMain,
-          leftChevronIcon: CustomTransformArabic(
-            child: const Icon(
+          leftChevronIcon: const CustomTransformArabic(
+            child: Icon(
               MyIcons.arrowLeftOutline,
               color: AppColors.textMain,
             ),
           ),
-          rightChevronIcon: CustomTransformArabic(
-              child: const Icon(
+          rightChevronIcon: const CustomTransformArabic(
+              child: Icon(
             MyIcons.arrowRightOutline,
             color: AppColors.textMain,
           )),

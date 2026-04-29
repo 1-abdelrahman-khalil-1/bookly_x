@@ -7,13 +7,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 // Mock data – mirrors what the API would return per provider id
 // ---------------------------------------------------------------------------
 final _mockProviderDetails = <String, ProviderDetailModel>{
-  'p1': ProviderDetailModel(
+  'p1': const ProviderDetailModel(
     id: 'p1',
     name: 'Oil Massage',
     serviceCategory: 'Service info',
     coverImageUrl:
         'https://plus.unsplash.com/premium_photo-1670574873484-bf0923c33a24?q=80&w=1170',
-    galleryUrls: const [
+    galleryUrls: [
       'https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=200',
       'https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=200',
       'https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=200',
@@ -32,7 +32,7 @@ final _mockProviderDetails = <String, ProviderDetailModel>{
     isVerified: true,
     totalPrice: 0,
     currency: 'EG',
-    services: const [
+    services: [
       AvailableServiceModel(
         id: 's1',
         name: 'Massage',
@@ -52,7 +52,7 @@ final _mockProviderDetails = <String, ProviderDetailModel>{
             'https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=200',
       ),
     ],
-    reviews: const [
+    reviews: [
       ReviewModel(
         id: 'r1',
         reviewerName: 'Mr. Jack',
@@ -73,13 +73,13 @@ final _mockProviderDetails = <String, ProviderDetailModel>{
       ),
     ],
   ),
-  'p2': ProviderDetailModel(
+  'p2': const ProviderDetailModel(
     id: 'p2',
     name: 'Hair & Nail Care',
     serviceCategory: 'Beauty',
     coverImageUrl:
         'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=1170',
-    galleryUrls: const [
+    galleryUrls: [
       'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=200',
       'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=200',
       'https://images.unsplash.com/photo-1560869713-7d0a29430803?w=200',
@@ -97,7 +97,7 @@ final _mockProviderDetails = <String, ProviderDetailModel>{
     isVerified: false,
     totalPrice: 0,
     currency: 'EG',
-    services: const [
+    services: [
       AvailableServiceModel(
         id: 's4',
         name: 'Gel Nails',
@@ -111,7 +111,7 @@ final _mockProviderDetails = <String, ProviderDetailModel>{
             'https://images.unsplash.com/photo-1560869713-7d0a29430803?w=200',
       ),
     ],
-    reviews: const [
+    reviews: [
       ReviewModel(
         id: 'r3',
         reviewerName: 'Laura',

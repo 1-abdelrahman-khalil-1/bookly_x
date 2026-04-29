@@ -54,7 +54,7 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  LogoName(),
+                  const LogoName(),
                   24.h,
                   Text(
                     tr.getStarted,
@@ -78,7 +78,7 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
                     controller: _tabController,
                     unselectedLabelColor: AppColors.textSub,
                     labelStyle: context.bold16Black,
-                    padding: EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(8),
                     tabs: [
                       Tab(child: Text(tr.login)),
                       if (!UserPrefs.isUserStaff) Tab(child: Text(tr.signUp)),
@@ -89,7 +89,7 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
                       controller: _tabController,
                       //  physics: const NeverScrollableScrollPhysics(),
                       children: [
-                        LoginSection(),
+                        const LoginSection(),
                         if (!UserPrefs.isUserStaff)
                           SignUpSection(
                             onBackButtonPressed: () {

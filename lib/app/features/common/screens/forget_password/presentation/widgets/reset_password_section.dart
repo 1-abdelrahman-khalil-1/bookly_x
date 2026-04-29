@@ -11,7 +11,7 @@ class ResetPasswordSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      minimum: EdgeInsets.all(16),
+      minimum: const EdgeInsets.all(16),
       child: Column(
         children: [
           Expanded(

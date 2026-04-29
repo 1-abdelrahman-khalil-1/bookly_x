@@ -728,6 +728,84 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 
 	/// en: 'Select Location'
 	String get selectLocation => 'Select Location';
+
+	/// en: 'Sorry Your Session Expired Please Login Again'
+	String get sorryYourSessionExpiredPleaseLoginAgain => 'Sorry Your Session Expired Please Login Again';
+
+	/// en: 'Revenue'
+	String get revenue => 'Revenue';
+
+	/// en: 'Completed'
+	String get completed => 'Completed';
+
+	/// en: 'This week'
+	String get thisWeek => 'This week';
+
+	/// en: 'Average'
+	String get average => 'Average';
+
+	/// en: 'Week Schedule'
+	String get weekSchedule => 'Week Schedule';
+
+	/// en: 'Today's Schedule'
+	String get todaysSchedule => 'Today\'s Schedule';
+
+	/// en: 'View Details'
+	String get viewDetails => 'View Details';
+
+	/// en: 'Start Service'
+	String get startService => 'Start Service';
+
+	/// en: 'Note:'
+	String get note => 'Note:';
+
+	/// en: 'Schedule'
+	String get schedule => 'Schedule';
+
+	/// en: 'Alerts'
+	String get alerts => 'Alerts';
+
+	/// en: 'Income'
+	String get income => 'Income';
+
+	/// en: 'No Upcoming Appointments'
+	String get noUpcomingAppointments => 'No Upcoming Appointments';
+
+	/// en: 'No Appointments Today'
+	String get noAppointmentsToday => 'No Appointments Today';
+
+	/// en: 'Manage your booking requests and alerts'
+	String get manageYourBookingRequests => 'Manage your booking requests and alerts';
+
+	/// en: 'Accepted'
+	String get accepted => 'Accepted';
+
+	/// en: 'Rejected'
+	String get rejected => 'Rejected';
+
+	/// en: 'Accept'
+	String get accept => 'Accept';
+
+	/// en: 'Reject'
+	String get reject => 'Reject';
+
+	/// en: 'Duration'
+	String get duration => 'Duration';
+
+	/// en: 'cancelled'
+	String get cancelled => 'cancelled';
+
+	/// en: 'Booking cancelled for'
+	String get bookingCancelledFor => 'Booking cancelled for';
+
+	/// en: 'ago'
+	String get ago => 'ago';
+
+	/// en: 'min ago'
+	String get minAgo => 'min ago';
+
+	/// en: 'hour ago'
+	String get hourAgo => 'hour ago';
 }
 
 // Path: weekdays
@@ -1040,6 +1118,32 @@ extension on Translations {
 			'profileUpdatedSuccessfully' => 'Profile Updated Successfully',
 			'locationSelected' => 'Location Selected',
 			'selectLocation' => 'Select Location',
+			'sorryYourSessionExpiredPleaseLoginAgain' => 'Sorry Your Session Expired Please Login Again',
+			'revenue' => 'Revenue',
+			'completed' => 'Completed',
+			'thisWeek' => 'This week',
+			'average' => 'Average',
+			'weekSchedule' => 'Week Schedule',
+			'todaysSchedule' => 'Today\'s Schedule',
+			'viewDetails' => 'View Details',
+			'startService' => 'Start Service',
+			'note' => 'Note:',
+			'schedule' => 'Schedule',
+			'alerts' => 'Alerts',
+			'income' => 'Income',
+			'noUpcomingAppointments' => 'No Upcoming Appointments',
+			'noAppointmentsToday' => 'No Appointments Today',
+			'manageYourBookingRequests' => 'Manage your booking requests and alerts',
+			'accepted' => 'Accepted',
+			'rejected' => 'Rejected',
+			'accept' => 'Accept',
+			'reject' => 'Reject',
+			'duration' => 'Duration',
+			'cancelled' => 'cancelled',
+			'bookingCancelledFor' => 'Booking cancelled for',
+			'ago' => 'ago',
+			'minAgo' => 'min ago',
+			'hourAgo' => 'hour ago',
 			_ => null,
 		};
 	}

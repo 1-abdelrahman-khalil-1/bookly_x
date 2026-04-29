@@ -71,9 +71,9 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppbar(title: ''),
+      appBar: const CustomAppbar(title: ''),
       body: Padding(
-        padding: EdgeInsets.all(16) +
+        padding: const EdgeInsets.all(16) +
             EdgeInsets.only(bottom: MediaQuery.paddingOf(context).bottom),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,7 +95,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                         ? tr.weSentVerificationCodeToYourEmail
                         : tr.weSentVerificationCodeToYourPhone,
                   ),
-                  TextSpan(text: ' '),
+                  const TextSpan(text: ' '),
                   TextSpan(
                     text: widget.contactInfo,
                     style: context.regular14.primary,
@@ -125,7 +125,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                 selectedColor: AppColors.primary,
                 borderWidth: 1,
               ),
-              animationDuration: Duration(milliseconds: 300),
+              animationDuration: const Duration(milliseconds: 300),
               backgroundColor: Colors.transparent,
               enableActiveFill: true,
               onCompleted: (value) {},

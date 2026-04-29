@@ -53,7 +53,7 @@ class CategoriesSection extends StatelessWidget {
               categories.length,
               (index) => Expanded(
                 child: Padding(
-                  padding: EdgeInsets.only(right: 6),
+                  padding: const EdgeInsets.only(right: 6),
                   child: GestureDetector(
                     onTap: () => onCategorySelected(categories[index].id),
                     child: CategoryChip(

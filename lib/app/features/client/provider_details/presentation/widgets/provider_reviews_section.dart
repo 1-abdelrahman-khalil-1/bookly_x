@@ -84,7 +84,7 @@ class _ReviewCard extends StatelessWidget {
                     Text(review.reviewerName, style: context.semiBold14Black),
               ),
               // Star + rating
-              Icon(Icons.star_rounded, color: AppColors.primaryLight, size: 14),
+              const Icon(Icons.star_rounded, color: AppColors.primaryLight, size: 14),
               2.w,
               Text(review.rating.toString(), style: context.bold14Black),
             ],

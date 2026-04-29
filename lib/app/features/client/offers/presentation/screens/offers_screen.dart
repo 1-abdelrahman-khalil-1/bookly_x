@@ -14,9 +14,9 @@ class OffersScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            TopOffers(),
+            const TopOffers(),
             16.h,
-            Expanded(child: AvailableOffers()),
+            const Expanded(child: AvailableOffers()),
           ],
         ),
       ),

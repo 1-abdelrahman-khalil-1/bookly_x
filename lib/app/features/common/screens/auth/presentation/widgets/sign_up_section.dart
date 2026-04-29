@@ -43,7 +43,7 @@ class _SignUpSectionState extends State<SignUpSection> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: EdgeInsets.all(16) +
+      padding: const EdgeInsets.all(16) +
           EdgeInsets.only(bottom: MediaQuery.of(context).padding.bottom),
       child: Form(
         key: _formKey,
@@ -52,7 +52,7 @@ class _SignUpSectionState extends State<SignUpSection> {
           children: [
             CustomTextFormField(
               title: tr.fullName,
-              prefixIcon: Icon(Icons.person_outline),
+              prefixIcon: const Icon(Icons.person_outline),
               controller: _fullNameController,
               validator: (value) => ValidationHelper.validateFullName(value),
             ),
@@ -64,7 +64,7 @@ class _SignUpSectionState extends State<SignUpSection> {
             ),
             CustomTextFormField(
               title: tr.email,
-              prefixIcon: Icon(Icons.email_outlined),
+              prefixIcon: const Icon(Icons.email_outlined),
               controller: _emailController,
               validator: (value) => ValidationHelper.validateEmail(value),
             ),

@@ -69,7 +69,7 @@ class HeaderSection extends StatelessWidget {
                         shape: BoxShape.circle,
                         border: Border.all(color: AppColors.textBorders),
                       ),
-                      child: Icon(
+                      child: const Icon(
                         MyIcons.notificationBingOutline,
                         color: AppColors.textMain,
                         size: 24,

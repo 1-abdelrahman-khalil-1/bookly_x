@@ -14,7 +14,7 @@ class ReschudleBookingDialog extends StatefulWidget {
   });
 
   static void showBottomSheet(BuildContext context) {
-    context.showBottomSheet(bottomSheetBody: ReschudleBookingDialog());
+    context.showBottomSheet(bottomSheetBody: const ReschudleBookingDialog());
   }
 
   @override
@@ -89,7 +89,7 @@ class _ReschudleBookingDialogState extends State<ReschudleBookingDialog>
 class _DateTab extends StatefulWidget {
   final void Function(DateTime) onConfirm;
 
-  const _DateTab({super.key, required this.onConfirm});
+  const _DateTab({required this.onConfirm});
 
   @override
   State<_DateTab> createState() => _DateTabState();
@@ -131,7 +131,7 @@ class _DateTabState extends State<_DateTab> {
 class _TimeTab extends StatefulWidget {
   final void Function(DateTime) onConfirm;
 
-  const _TimeTab({super.key, required this.onConfirm});
+  const _TimeTab({required this.onConfirm});
 
   @override
   State<_TimeTab> createState() => _TimeTabState();
@@ -148,8 +148,8 @@ class _TimeTabState extends State<_TimeTab> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
+    return const Padding(
+      padding: EdgeInsets.all(8.0),
       child: Column(
         children: [],
       ),

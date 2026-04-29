@@ -9,10 +9,10 @@ class ExploreScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Explore Screen')),
-      body: Center(
+      body: const Center(
         child: Text(
           'Explore Screen Body',
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,
           ),

@@ -50,7 +50,7 @@ class ProviderSellerSection extends StatelessWidget {
                       Text(sellerName, style: context.medium16Black),
                       6.w,
                       if (isVerified)
-                        Icon(
+                        const Icon(
                           Icons.verified_rounded,
                           color: AppColors.primary,
                           size: 16,

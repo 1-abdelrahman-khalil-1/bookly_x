@@ -8,7 +8,7 @@ import '../app/core/themes/app_colors.dart';
 
 extension WeightAtoms on BuildContext {
   TextStyle get style => Theme.of(this).textTheme.titleMedium!.copyWith(
-        color: Color(0xFF1A1A1A),
+        color: const Color(0xFF1A1A1A),
         fontFamily: 'Inter',
       );
   TextStyle get light => style.copyWith(fontWeight: FontWeight.w300);

@@ -2,13 +2,11 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 
 import '../data/agent_pref.dart';
 import '../data/lang_pref.dart';
 import '../data/user_pref.dart';
-import '../services/unauthorized_service.dart';
 import 'exceptions.dart';
 
 /// wrapper around dio to handlers api calls
@@ -37,6 +35,7 @@ class DioClient {
             headers: {
               if (attachToken) 'Authorization': token ?? await userToken,
               ...headers,
+              'platform': "APP",
               'Accept-Language': langPrefs.locale.toString(),
               'User-Agent': UserAgentPrefs.getUserAgent,
               // if (LocationPrefs.getUserDistrictId() != -1)
@@ -63,6 +62,7 @@ class DioClient {
           options: Options(
             headers: {
               'Accept-Language': langPrefs.locale.toString(),
+              'platform': "APP",
               if (attachToken) 'Authorization': token ?? await userToken,
               'User-Agent': UserAgentPrefs.getUserAgent,
               ...headers,
@@ -90,6 +90,7 @@ class DioClient {
           options: Options(
             headers: {
               'Accept-Language': langPrefs.locale.toString(),
+              'platform': "APP",
               if (attachToken) 'Authorization': token ?? await userToken,
               'User-Agent': UserAgentPrefs.getUserAgent,
               ...headers,
@@ -117,6 +118,7 @@ class DioClient {
           options: Options(
             headers: {
               'Accept-Language': langPrefs.locale.toString(),
+              'platform': "APP",
               'User-Agent': UserAgentPrefs.getUserAgent,
               if (attachToken) 'Authorization': token ?? await userToken,
               ...headers,
@@ -165,21 +167,19 @@ Future<Response> validateResponse(Future<Response> Function() zone) async {
         (res.data! as String).isEmpty) {
       throw EmptyBadResponse();
     }
-    switch (res.statusCode) {
-      case HttpStatus.internalServerError:
-        throw InternalServerError();
-      case HttpStatus.unauthorized:
-        UnAuthorizedService.event.fire(0);
-        throw UnAuthorized(res);
-      default:
-        return res;
-    }
+    return res;
   } on DioException catch (e, st) {
     log(e.toString());
     log(st.toString());
     final hasConnection = await InternetConnection().hasInternetAccess;
     if (!hasConnection) {
       throw NoInternetConnection();
+    }
+    if (e.response?.statusCode == HttpStatus.internalServerError) {
+      throw InternalServerError();
+    }
+    if (e.response?.statusCode == HttpStatus.unauthorized) {
+      throw UnAuthorized(e.response!);
     }
     if (e.type == DioExceptionType.connectionTimeout ||
         e.type == DioExceptionType.receiveTimeout ||

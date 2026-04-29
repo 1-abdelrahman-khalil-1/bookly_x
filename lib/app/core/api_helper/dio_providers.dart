@@ -19,7 +19,6 @@ final dioProvider = Provider<Dio>((ref) {
   final dio = Dio(
     BaseOptions(
       baseUrl: Endpoints.baseUrl,
-      validateStatus: (_) => true,
       followRedirects: false,
       headers: {'Accept': 'application/json'},
       connectTimeout: const Duration(seconds: 30),
@@ -31,10 +30,14 @@ final dioProvider = Provider<Dio>((ref) {
     PrettyDioLogger(
       requestHeader: true,
       requestBody: true,
-      logPrint: (error) => log(error.toString(), name: 'API'),
+      logPrint: (error) => log(
+        error.toString(),
+        name: 'API',
+        stackTrace: StackTrace.current,
+      ),
     ),
     // if (appFlavor.isAliceEnabled) alice.getDioInterceptor(),
-    DioInterceptor(),
+    DioInterceptor(dio),
   ]);
   return dio;
 });

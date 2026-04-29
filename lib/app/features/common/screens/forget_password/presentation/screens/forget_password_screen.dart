@@ -53,8 +53,8 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen>
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Header
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24),
               child: LogoName(),
             ),
             24.h,
@@ -70,7 +70,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen>
                       children: [
                         ResetPasswordSection(goToNextPage: goToNextPage),
                         OtpConfirmationSection(goToNextPage: goToNextPage),
-                        SetNewPasswordSection(),
+                        const SetNewPasswordSection(),
                       ],
                     ),
                   )

@@ -35,8 +35,8 @@ class OnboardingPageWidget extends StatelessWidget {
         Expanded(
           child: Container(
             width: double.infinity,
-            padding: EdgeInsets.all(16),
-            decoration: BoxDecoration(
+            padding: const EdgeInsets.all(16),
+            decoration: const BoxDecoration(
               color: AppColors.white,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(16),
@@ -88,7 +88,7 @@ class OnboardingPageWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                Spacer(),
+                const Spacer(),
                 // Next Button
                 Padding(
                   padding: const EdgeInsets.all(16),
@@ -99,8 +99,8 @@ class OnboardingPageWidget extends StatelessWidget {
                     ),
                     child: IconButton(
                       onPressed: onNext,
-                      icon: CustomTransformArabic(
-                        child: const Icon(
+                      icon: const CustomTransformArabic(
+                        child: Icon(
                           Icons.arrow_forward,
                           color: AppColors.white,
                         ),

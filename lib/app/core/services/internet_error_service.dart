@@ -45,7 +45,7 @@ class InternetErrorService {
         dialog: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Icon(
+        const Icon(
           MyIcons.wifiBold,
           size: 100,
           color: Colors.grey,

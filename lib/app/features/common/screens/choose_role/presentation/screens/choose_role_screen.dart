@@ -27,7 +27,7 @@ class _ChooseRoleScreenState extends State<ChooseRoleScreen> {
     return Scaffold(
       body: Container(
         padding: MediaQuery.of(context).padding + const EdgeInsets.all(16),
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage(
               Assets.pngBackGround,
@@ -39,10 +39,10 @@ class _ChooseRoleScreenState extends State<ChooseRoleScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              LogoName(),
+              const LogoName(),
               32.h,
               Text(tr.chooseYourRole, style: context.bold24White),
-              Spacer(),
+              const Spacer(),
               _buildRoleCard(
                 context: context,
                 title: tr.client,
@@ -68,7 +68,7 @@ class _ChooseRoleScreenState extends State<ChooseRoleScreen> {
                 },
                 isSelected: _selected == 2,
               ),
-              Spacer(),
+              const Spacer(),
               CustomButton(
                   onPress: () async {
                     if (_selected == 1) {
@@ -76,7 +76,7 @@ class _ChooseRoleScreenState extends State<ChooseRoleScreen> {
                     } else {
                       UserPrefs.setUserType(UserType.staff);
                     }
-                    AuthRoute().push(context);
+                    const AuthRoute().push(context);
                   },
                   isDisabled: _selected == 0,
                   title: tr.kContinue,
@@ -123,7 +123,7 @@ class _ChooseRoleScreenState extends State<ChooseRoleScreen> {
             ),
           ),
           child: AnimatedSwitcher(
-            duration: Duration(milliseconds: 100),
+            duration: const Duration(milliseconds: 100),
             child: ListTile(
               key: ValueKey(isSelected),
               leading: Container(
@@ -145,12 +145,12 @@ class _ChooseRoleScreenState extends State<ChooseRoleScreen> {
                   ? Container(
                       width: 24,
                       height: 24,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: AppColors.primary,
                         shape: BoxShape.circle,
                       ),
                       child:
-                          Icon(Icons.check, color: AppColors.white, size: 16),
+                          const Icon(Icons.check, color: AppColors.white, size: 16),
                     )
                   : null,
             ),

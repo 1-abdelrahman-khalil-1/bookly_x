@@ -55,7 +55,7 @@ class ProviderDetailsHeader extends StatelessWidget {
                 const Spacer(),
                 _CircleIconButton(
                   onTap: () {},
-                  child: Icon(Icons.favorite_rounded,
+                  child: const Icon(Icons.favorite_rounded,
                       size: 20, color: AppColors.danger),
                 ),
                 const SizedBox(width: 10),

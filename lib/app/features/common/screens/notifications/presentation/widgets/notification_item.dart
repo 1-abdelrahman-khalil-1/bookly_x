@@ -35,7 +35,7 @@ class NotificationItem extends StatelessWidget {
             // Icon based on type
             Container(
               padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: AppColors.catskillWhite,
                 shape: BoxShape.circle,
               ),
@@ -68,7 +68,7 @@ class NotificationItem extends StatelessWidget {
                       ),
                       if (!notification.isRead) ...[
                         8.w,
-                        Badge(
+                        const Badge(
                           backgroundColor: AppColors.primary2,
                         ),
                       ]

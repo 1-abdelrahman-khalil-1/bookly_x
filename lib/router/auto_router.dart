@@ -10,7 +10,7 @@ class AppRouter extends RootStackRouter {
   List<AutoRoute> get routes => [
         CustomRoute(
             page: SplashRoute.page,
-            //initial: true,
+            initial: true,
             transitionsBuilder: rightToLeftTransition),
         CustomRoute(
             page: OnboardingRoute.page,
@@ -19,7 +19,7 @@ class AppRouter extends RootStackRouter {
             page: AuthRoute.page, transitionsBuilder: rightToLeftTransition),
         CustomRoute(
             page: ClientMainRoute.page,
-            initial: true,
+            // initial: true,
             transitionsBuilder: rightToLeftTransition),
         CustomRoute(
             page: StaffMainRoute.page,

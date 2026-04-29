@@ -2,7 +2,7 @@
 
 ## Last Review Date
 
-2026-03-17
+2026-04-27
 
 ## Scope
 
@@ -24,7 +24,14 @@
 | lib/app/features/client/offers/presentation/screens/view_all_offers_screen.dart                  | ⚠️ Has Issues | 2026-03-16    |
 | lib/app/features/client/setting/presentation/screens/client_manage_preferences_screen.dart       | ⚠️ Has Issues | 2026-03-16    |
 | lib/app/features/client/setting/presentation/screens/client_notification_preferences_screen.dart | ⚠️ Has Issues | 2026-03-16    |
-| lib/app/features/client/main_screen/presentation/screens/client_main_screen.dart                 | ⚠️ Has Issues | 2026-03-16    |
+| lib/app/features/staff/main_screen/presentation/screens/staff_main_screen.dart                 | ✅ Clean      | 2026-04-27    |
+| lib/app/features/staff/alerts/presentation/screens/alerts_screen.dart                            | ✅ Clean      | 2026-04-27    |
+| lib/app/features/staff/schedule/presentation/screens/staff_schedule_screen.dart                  | ⚠️ Has Issues | 2026-04-27    |
+| lib/app/features/staff/schedule/presentation/widgets/empty_state_appointments.dart               | ✅ Clean      | 2026-04-27    |
+| lib/app/features/staff/schedule/presentation/widgets/staff_appointment_card.dart                 | ✅ Clean      | 2026-04-27    |
+| lib/app/features/staff/schedule/presentation/widgets/staff_header_section.dart                   | ⚠️ Has Issues | 2026-04-27    |
+| lib/app/features/staff/schedule/presentation/widgets/staff_stats_row.dart                        | ⚠️ Has Issues | 2026-04-27    |
+| lib/app/features/staff/schedule/presentation/widgets/staff_week_schedule_section.dart            | ⚠️ Has Issues | 2026-04-27    |
 | all other in-scope files (157)                                                                   | ✅ Clean      | 2026-03-16    |
 
 ## Notes

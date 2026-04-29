@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../generated/translations.g.dart';
@@ -24,7 +23,12 @@ mixin InternetErrorHandlerMixin<T> on StateNotifier<GeneralState<T>> {
         : tr.somethingWentWrong;
 
     state = GeneralState.error(message);
-    log('Error: $exception', name: '${runtimeType}_handleException');
+    log(
+      'Error: $exception',
+      name: '${runtimeType}_handleException',
+      error: exception,
+      stackTrace: StackTrace.current,
+    );
     if (message != null) {
       setWarningMessage(message);
     }

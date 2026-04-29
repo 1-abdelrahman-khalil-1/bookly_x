@@ -88,7 +88,7 @@ class ClientPaymentSuccessScreen extends StatelessWidget {
               padding: const EdgeInsets.all(20),
               child: CustomButton(
                 title: tr.backToHome,
-                onPress: () => context.pushAndPopAll(ClientMainRoute()),
+                onPress: () => context.pushAndPopAll(const ClientMainRoute()),
               ),
             ),
           ],
