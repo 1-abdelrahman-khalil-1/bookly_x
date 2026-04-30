@@ -32,6 +32,7 @@ class DioClient {
           path,
           queryParameters: {...query},
           options: Options(
+            validateStatus: (_) => true,
             headers: {
               if (attachToken) 'Authorization': token ?? await userToken,
               ...headers,
@@ -60,6 +61,7 @@ class DioClient {
           queryParameters: {...query},
           data: body,
           options: Options(
+            validateStatus: (_) => true,
             headers: {
               'Accept-Language': langPrefs.locale.toString(),
               'platform': "APP",
@@ -88,6 +90,7 @@ class DioClient {
           queryParameters: {...query},
           data: body,
           options: Options(
+            validateStatus: (_) => true,
             headers: {
               'Accept-Language': langPrefs.locale.toString(),
               'platform': "APP",
@@ -116,6 +119,7 @@ class DioClient {
           queryParameters: {...query},
           data: body,
           options: Options(
+            validateStatus: (_) => true,
             headers: {
               'Accept-Language': langPrefs.locale.toString(),
               'platform': "APP",
@@ -144,6 +148,7 @@ class DioClient {
           queryParameters: {...query},
           data: body,
           options: Options(
+            validateStatus: (_) => true,
             headers: {
               'Accept-Language': langPrefs.locale.toString(),
               'User-Agent': UserAgentPrefs.getUserAgent,
@@ -169,7 +174,6 @@ Future<Response> validateResponse(Future<Response> Function() zone) async {
     }
     return res;
   } on DioException catch (e, st) {
-    log(e.toString());
     log(st.toString());
     final hasConnection = await InternetConnection().hasInternetAccess;
     if (!hasConnection) {

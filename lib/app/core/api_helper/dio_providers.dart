@@ -33,7 +33,7 @@ final dioProvider = Provider<Dio>((ref) {
       logPrint: (error) => log(
         error.toString(),
         name: 'API',
-        stackTrace: StackTrace.current,
+        //stackTrace: StackTrace.current,
       ),
     ),
     // if (appFlavor.isAliceEnabled) alice.getDioInterceptor(),

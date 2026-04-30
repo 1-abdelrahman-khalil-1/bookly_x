@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bookly_x_client/app/core/themes/app_colors.dart';
-import 'package:bookly_x_client/app/features/staff/alerts/presentation/screens/alerts_screen.dart';
-import 'package:bookly_x_client/app/features/staff/schedule/presentation/screens/staff_schedule_screen.dart';
+import 'package:bookly_x_client/app/features/staff/home/presentation/screens/staff_home_screen.dart';
 import 'package:bookly_x_client/generated/my_icons.dart';
 import 'package:bookly_x_client/generated/style_atoms.dart';
 import 'package:bookly_x_client/generated/translations.g.dart';
@@ -19,22 +18,28 @@ class StaffMainScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedIndex = ref.watch(staffSelectedTabProvider);
     final pages = [
-      const StaffScheduleScreen(),
-      const AlertsScreen(),
-      Scaffold(
-          body: Center(child: Text(tr.income, style: context.bold18Primary))),
+      const StaffHomeScreen(),
+      _PlaceholderTab(
+        title: tr.bookings,
+        icon: MyIcons.calendarOutline,
+      ),
+      _PlaceholderTab(
+        title: tr.income,
+        icon: MyIcons.walletOutline,
+      ),
     ];
 
     return Scaffold(
       body: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 300),
-          transitionBuilder: (child, animation) {
-            return FadeTransition(
-              opacity: animation,
-              child: child,
-            );
-          },
-          child: pages[selectedIndex]),
+        duration: const Duration(milliseconds: 300),
+        transitionBuilder: (child, animation) {
+          return FadeTransition(
+            opacity: animation,
+            child: child,
+          );
+        },
+        child: pages[selectedIndex],
+      ),
       bottomNavigationBar: SafeArea(
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -63,22 +68,46 @@ class StaffMainScreen extends ConsumerWidget {
             },
             tabs: [
               GButton(
+                icon: MyIcons.homeBold,
+                text: tr.home,
+                iconActiveColor: AppColors.dodgerBlue,
+              ),
+              GButton(
                 icon: MyIcons.calendarOutline,
-                text: tr.schedule,
+                text: tr.bookings,
                 iconActiveColor: AppColors.dodgerBlue,
               ),
               GButton(
-                icon: MyIcons.notificationOutline,
-                text: tr.alerts,
-                iconActiveColor: AppColors.dodgerBlue,
-              ),
-              GButton(
-                icon: MyIcons.moneyOutline,
+                icon: MyIcons.walletOutline,
                 text: tr.income,
                 iconActiveColor: AppColors.dodgerBlue,
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _PlaceholderTab extends StatelessWidget {
+  const _PlaceholderTab({required this.title, required this.icon});
+
+  final String title;
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: AppColors.whiteCatskillWhite,
+      body: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(icon, color: AppColors.dodgerBlue, size: 40),
+            const SizedBox(height: 12),
+            Text(title, style: context.bold18Primary),
+          ],
         ),
       ),
     );

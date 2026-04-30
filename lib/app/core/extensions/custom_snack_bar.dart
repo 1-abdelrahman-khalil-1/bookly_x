@@ -72,7 +72,7 @@ extension CustomSnackBar on BuildContext {
               const SizedBox(width: 16),
               Text(
                 message,
-                style: currContext.medium14.copyWith(color: AppColors.white),
+                style: currContext.bold14.copyWith(color: AppColors.white),
               ),
             ],
           ),

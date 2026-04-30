@@ -723,6 +723,150 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	/// en: 'Profile Updated Successfully'
 	String get profileUpdatedSuccessfully => 'Profile Updated Successfully';
 
+	/// en: 'Profile Setting'
+	String get profileSetting => 'Profile Setting';
+
+	/// en: 'Good morning, Alex'
+	String get goodMorningAlex => 'Good morning, Alex';
+
+	/// en: 'Here is your schedule for today.'
+	String get hereIsYourScheduleForToday => 'Here is your schedule for today.';
+
+	/// en: 'View full'
+	String get viewFull => 'View full';
+
+	/// en: 'Specialties'
+	String get specialties => 'Specialties';
+
+	/// en: 'Work Schedule'
+	String get workSchedule => 'Work Schedule';
+
+	/// en: 'Select All'
+	String get selectAll => 'Select All';
+
+	/// en: 'Edit Schedule'
+	String get editSchedule => 'Edit Schedule';
+
+	/// en: 'Edit Work Schedule'
+	String get editWorkSchedule => 'Edit Work Schedule';
+
+	/// en: 'Same for all days'
+	String get sameForAllDays => 'Same for all days';
+
+	/// en: 'Individual days'
+	String get individualDays => 'Individual days';
+
+	/// en: 'Working Days'
+	String get workingDays => 'Working Days';
+
+	/// en: 'Working Hours'
+	String get workingHours => 'Working Hours';
+
+	/// en: 'Save Changes'
+	String get saveChanges => 'Save Changes';
+
+	/// en: 'Start Time'
+	String get startTime => 'Start Time';
+
+	/// en: 'End Time'
+	String get endTime => 'End Time';
+
+	/// en: 'You're all caught up! Enjoy your free time or check your upcoming schedule.'
+	String get noAppointmentsDescription => 'You\'re all caught up! Enjoy your free time or check your upcoming schedule.';
+
+	/// en: '(1,245 reviews)'
+	String get reviewsCount => '(1,245 reviews)';
+
+	/// en: 'James Miller'
+	String get jamesMiller => 'James Miller';
+
+	/// en: 'Sarah Chen'
+	String get sampleSecondCustomerName => 'Sarah Chen';
+
+	/// en: 'Senior Specialist'
+	String get seniorSpecialist => 'Senior Specialist';
+
+	/// en: 'Full Grooming'
+	String get fullGrooming => 'Full Grooming';
+
+	/// en: 'Haircut & Styling'
+	String get haircutStyling => 'Haircut & Styling';
+
+	/// en: 'Hair Styling'
+	String get hairStyling => 'Hair Styling';
+
+	/// en: 'Beard Trim'
+	String get beardTrim => 'Beard Trim';
+
+	/// en: 'Skin Care'
+	String get skinCare => 'Skin Care';
+
+	/// en: 'Scalp Massage'
+	String get scalpMassage => 'Scalp Massage';
+
+	/// en: 'james.m@example.com'
+	String get sampleEmail => 'james.m@example.com';
+
+	/// en: '(555) 123-4567'
+	String get samplePhone => '(555) 123-4567';
+
+	/// en: '32'
+	String get sampleAge => '32';
+
+	/// en: 'Oct 2021'
+	String get sampleJoinedDate => 'Oct 2021';
+
+	/// en: 'Phone'
+	String get phone => 'Phone';
+
+	/// en: 'Age'
+	String get age => 'Age';
+
+	/// en: 'Mon'
+	String get mon => 'Mon';
+
+	/// en: 'Tue'
+	String get tue => 'Tue';
+
+	/// en: 'Wed'
+	String get wed => 'Wed';
+
+	/// en: 'Thu'
+	String get thu => 'Thu';
+
+	/// en: 'Fri'
+	String get fri => 'Fri';
+
+	/// en: 'Sat'
+	String get sat => 'Sat';
+
+	/// en: 'Sun'
+	String get sun => 'Sun';
+
+	/// en: 'Monday'
+	String get monday => 'Monday';
+
+	/// en: 'Tuesday'
+	String get tuesday => 'Tuesday';
+
+	/// en: 'Wednesday'
+	String get wednesday => 'Wednesday';
+
+	/// en: 'Thursday'
+	String get thursday => 'Thursday';
+
+	/// en: 'Friday'
+	String get friday => 'Friday';
+
+	/// en: 'Saturday'
+	String get saturday => 'Saturday';
+
+	/// en: 'Sunday'
+	String get sunday => 'Sunday';
+
+	/// en: 'This schedule will apply to all 5 selected working days.'
+	String get scheduleAppliesToFiveDays => 'This schedule will apply to all 5 selected working days.';
+
 	/// en: 'Location Selected'
 	String get locationSelected => 'Location Selected';
 
@@ -780,6 +924,9 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	/// en: 'Accepted'
 	String get accepted => 'Accepted';
 
+	/// en: 'In Progress'
+	String get inProgress => 'In Progress';
+
 	/// en: 'Rejected'
 	String get rejected => 'Rejected';
 
@@ -804,8 +951,17 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	/// en: 'min ago'
 	String get minAgo => 'min ago';
 
+	/// en: 'Joined'
+	String get joined => 'Joined';
+
 	/// en: 'hour ago'
 	String get hourAgo => 'hour ago';
+
+	/// en: 'This field is required'
+	String get thisFieldIsRequired => 'This field is required';
+
+	/// en: 'Password must be at least 8 characters'
+	String get passwordMustBeAtLeast8Characters => 'Password must be at least 8 characters';
 }
 
 // Path: weekdays
@@ -1116,6 +1272,54 @@ extension on Translations {
 			'favorites' => 'favorites',
 			'manageFavorites' => 'Manage Favorites',
 			'profileUpdatedSuccessfully' => 'Profile Updated Successfully',
+			'profileSetting' => 'Profile Setting',
+			'goodMorningAlex' => 'Good morning, Alex',
+			'hereIsYourScheduleForToday' => 'Here is your schedule for today.',
+			'viewFull' => 'View full',
+			'specialties' => 'Specialties',
+			'workSchedule' => 'Work Schedule',
+			'selectAll' => 'Select All',
+			'editSchedule' => 'Edit Schedule',
+			'editWorkSchedule' => 'Edit Work Schedule',
+			'sameForAllDays' => 'Same for all days',
+			'individualDays' => 'Individual days',
+			'workingDays' => 'Working Days',
+			'workingHours' => 'Working Hours',
+			'saveChanges' => 'Save Changes',
+			'startTime' => 'Start Time',
+			'endTime' => 'End Time',
+			'noAppointmentsDescription' => 'You\'re all caught up! Enjoy your free time or check your upcoming schedule.',
+			'reviewsCount' => '(1,245 reviews)',
+			'jamesMiller' => 'James Miller',
+			'sampleSecondCustomerName' => 'Sarah Chen',
+			'seniorSpecialist' => 'Senior Specialist',
+			'fullGrooming' => 'Full Grooming',
+			'haircutStyling' => 'Haircut & Styling',
+			'hairStyling' => 'Hair Styling',
+			'beardTrim' => 'Beard Trim',
+			'skinCare' => 'Skin Care',
+			'scalpMassage' => 'Scalp Massage',
+			'sampleEmail' => 'james.m@example.com',
+			'samplePhone' => '(555) 123-4567',
+			'sampleAge' => '32',
+			'sampleJoinedDate' => 'Oct 2021',
+			'phone' => 'Phone',
+			'age' => 'Age',
+			'mon' => 'Mon',
+			'tue' => 'Tue',
+			'wed' => 'Wed',
+			'thu' => 'Thu',
+			'fri' => 'Fri',
+			'sat' => 'Sat',
+			'sun' => 'Sun',
+			'monday' => 'Monday',
+			'tuesday' => 'Tuesday',
+			'wednesday' => 'Wednesday',
+			'thursday' => 'Thursday',
+			'friday' => 'Friday',
+			'saturday' => 'Saturday',
+			'sunday' => 'Sunday',
+			'scheduleAppliesToFiveDays' => 'This schedule will apply to all 5 selected working days.',
 			'locationSelected' => 'Location Selected',
 			'selectLocation' => 'Select Location',
 			'sorryYourSessionExpiredPleaseLoginAgain' => 'Sorry Your Session Expired Please Login Again',
@@ -1135,6 +1339,7 @@ extension on Translations {
 			'noAppointmentsToday' => 'No Appointments Today',
 			'manageYourBookingRequests' => 'Manage your booking requests and alerts',
 			'accepted' => 'Accepted',
+			'inProgress' => 'In Progress',
 			'rejected' => 'Rejected',
 			'accept' => 'Accept',
 			'reject' => 'Reject',
@@ -1143,7 +1348,10 @@ extension on Translations {
 			'bookingCancelledFor' => 'Booking cancelled for',
 			'ago' => 'ago',
 			'minAgo' => 'min ago',
+			'joined' => 'Joined',
 			'hourAgo' => 'hour ago',
+			'thisFieldIsRequired' => 'This field is required',
+			'passwordMustBeAtLeast8Characters' => 'Password must be at least 8 characters',
 			_ => null,
 		};
 	}

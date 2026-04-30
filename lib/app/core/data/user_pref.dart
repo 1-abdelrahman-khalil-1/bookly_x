@@ -26,6 +26,13 @@ class UserPrefs {
     await prefs.setString('refreshToken', refreshToken);
   }
 
+  static Future<void> setPasswordResetToken(String resetToken) async {
+    await prefs.setString('passwordResetToken', resetToken);
+  }
+
+  static String getPasswordResetToken() =>
+      prefs.getString('passwordResetToken') ?? '';
+
   static Future<void> setUser(Json user) async {
     await prefs.setString('user', jsonEncode(user));
   }
@@ -64,6 +71,7 @@ class UserPrefs {
     await prefs.remove('refreshToken');
     await prefs.remove('rememberMe');
     await prefs.remove('userType');
+    await prefs.remove('passwordResetToken');
   }
 
   static Future<void> setUserTopic(List<String> topics) async {

@@ -12,7 +12,7 @@ class HandleErrorsResponse {
     if (statusCode != HttpStatus.ok && statusCode != HttpStatus.created) {
       final data = response[Keys.data];
 
-      if (data is Json) {
+      if (data != null && data is Json) {
         // Use a safe reference to avoid repeated lookups
         final errorContent = data[Keys.error];
 

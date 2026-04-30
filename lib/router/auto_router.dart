@@ -28,7 +28,7 @@ class AppRouter extends RootStackRouter {
             page: ChooseRoleRoute.page,
             transitionsBuilder: rightToLeftTransition),
         CustomRoute(
-            page: ForgetPasswordRoute.page,
+            page: ResetPasswordRoute.page,
             transitionsBuilder: rightToLeftTransition),
         CustomRoute(
             page: OtpVerificationRoute.page,

@@ -81,7 +81,7 @@ class _LoginSectionState extends ConsumerState<LoginSection> {
                 const Spacer(),
                 TextButton(
                   onPressed: () {
-                    const ForgetPasswordRoute().push(context);
+                    const ResetPasswordRoute().push(context);
                   },
                   child:
                       Text(tr.forgotPassword, style: context.regular14Primary),

@@ -99,9 +99,10 @@ class OnboardingPageWidget extends StatelessWidget {
                     ),
                     child: IconButton(
                       onPressed: onNext,
-                      icon: const CustomTransformArabic(
-                        child: Icon(
-                          Icons.arrow_forward,
+                      // ignore: prefer_const_constructors
+                      icon: CustomTransformArabic(
+                        child: const Icon(
+                          Icons.arrow_back,
                           color: AppColors.white,
                         ),
                       ),

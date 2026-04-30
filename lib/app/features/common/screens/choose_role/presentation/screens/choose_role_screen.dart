@@ -149,8 +149,8 @@ class _ChooseRoleScreenState extends State<ChooseRoleScreen> {
                         color: AppColors.primary,
                         shape: BoxShape.circle,
                       ),
-                      child:
-                          const Icon(Icons.check, color: AppColors.white, size: 16),
+                      child: const Icon(Icons.check,
+                          color: AppColors.white, size: 16),
                     )
                   : null,
             ),

@@ -1,0 +1,4849 @@
+openapi: 3.0.3
+info:
+  title: BooklyX Backend API
+  version: 1.0.0
+  description: |
+    OpenAPI specification for BooklyX backend.
+
+    Notes:
+    - Platform-aware endpoints require `platform` header: `APP` or `WEB`.
+    - Localized messages use `Accept-Language`: `en` or `ar`.
+    - Protected endpoints require `Authorization: Bearer <token>`.
+    - Access token format is `<loginSequence>|<jwt>` (example: `15|eyJ...`).
+    - In development, OTP is commonly `333333`.
+servers:
+  - url: http://localhost:3000
+    description: Local development server
+  - url: https://booklyxbackend-production.up.railway.app
+    description: Production server
+
+tags:
+  - name: Auth/Verification
+  - name: Auth/Session
+  - name: Auth/Password Reset
+  - name: branch_admin/Application
+  - name: branch_admin/Profile
+  - name: branch_admin/Staff
+  - name: branch_admin/Services
+  - name: branch_admin/Offers
+  - name: staff/Profile
+  - name: staff/Schedule
+  - name: staff/Requests
+  - name: staff/Appointments
+  - name: staff/Income
+  - name: staff/Services
+  - name: staff/Availability
+  - name: super_admin/Applications
+  - name: super_admin/Services
+  - name: Reviews
+  - name: Files
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  parameters:
+    AcceptLanguageHeader:
+      name: Accept-Language
+      in: header
+      required: false
+      description: Preferred response language.
+      schema:
+        type: string
+        enum: [en, ar]
+        default: en
+        example: en
+      examples:
+        english:
+          summary: English language
+          value: en
+        arabic:
+          summary: Arabic language
+          value: ar
+
+    PlatformHeader:
+      name: platform
+      in: header
+      required: true
+      description: Platform where request is coming from.
+      schema:
+        type: string
+        enum: [APP, WEB]
+        default: APP
+        example: APP
+      examples:
+        app:
+          summary: Mobile app client
+          value: APP
+        web:
+          summary: Web client
+          value: WEB
+
+    ApplicationStatusQuery:
+      name: status
+      in: query
+      required: false
+      schema:
+        type: string
+        enum: [PENDING_VERIFICATION, PENDING_APPROVAL, APPROVED, REJECTED]
+        default: PENDING_APPROVAL
+        example: PENDING_APPROVAL
+      examples:
+        pendingVerification:
+          summary: Pending verification applications
+          value: PENDING_VERIFICATION
+        pendingApproval:
+          summary: Pending approval applications
+          value: PENDING_APPROVAL
+        approved:
+          summary: Approved applications
+          value: APPROVED
+        rejected:
+          summary: Rejected applications
+          value: REJECTED
+
+    ServiceStatusQuery:
+      name: status
+      in: query
+      required: false
+      schema:
+        type: string
+        enum: [PENDING_APPROVAL, APPROVED, REJECTED]
+        default: PENDING_APPROVAL
+        example: PENDING_APPROVAL
+      examples:
+        pendingApproval:
+          summary: Pending approval services
+          value: PENDING_APPROVAL
+        approved:
+          summary: Approved services
+          value: APPROVED
+        rejected:
+          summary: Rejected services
+          value: REJECTED
+
+  schemas:
+    ApiSuccess:
+      type: object
+      required: [status, error, message, data]
+      properties:
+        status:
+          type: integer
+          example: 200
+        error:
+          type: boolean
+          example: false
+        message:
+          type: string
+          example: Request successful.
+        data:
+          nullable: true
+
+    ApiError:
+      type: object
+      required: [status, error, message, data]
+      properties:
+        status:
+          type: integer
+          example: 400
+        error:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: Invalid request.
+        data:
+          nullable: true
+          example: null
+        params:
+          nullable: true
+          example: null
+
+    VerificationFlags:
+      type: object
+      required: [emailVerified, phoneVerified]
+      properties:
+        emailVerified:
+          type: boolean
+          example: false
+        phoneVerified:
+          type: boolean
+          example: true
+
+    LoginForbiddenErrorData:
+      type: object
+      nullable: true
+      required: [emailVerified, phoneVerified]
+      properties:
+        emailVerified:
+          type: boolean
+          example: false
+        phoneVerified:
+          type: boolean
+          example: true
+
+    LoginForbiddenError:
+      allOf:
+        - $ref: "#/components/schemas/ApiError"
+        - type: object
+          properties:
+            data:
+              $ref: "#/components/schemas/LoginForbiddenErrorData"
+
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: Abdo Khalil
+        email:
+          type: string
+          format: email
+          example: abdo.khalil@booklyx.com
+        phone:
+          type: string
+          example: "01000000001"
+        role:
+          type: string
+          enum: [client, staff, branch_admin, super_admin]
+          default: client
+          example: client
+        status:
+          type: string
+          enum: [ACTIVE, INACTIVE, SUSPENDED]
+          default: ACTIVE
+          example: ACTIVE
+        emailVerified:
+          type: boolean
+          example: true
+        phoneVerified:
+          type: boolean
+          example: true
+        staff:
+          type: object
+          nullable: true
+          properties:
+            id:
+              type: integer
+              example: 7
+            branchId:
+              type: integer
+              example: 1
+            profileImageUrl:
+              type: string
+              format: uri
+              nullable: true
+              example: https://cdn.booklyx.com/staff/mazen-tamer.png
+            staffRole:
+              type: string
+              enum: [DOCTOR, BARBER, SPA_SPECIALIST]
+              default: BARBER
+              example: BARBER
+            commissionPercentage:
+              type: number
+              example: 15
+            isActive:
+              type: boolean
+              example: true
+      example:
+        id: 2
+        name: Abdo Khalil
+        email: abdo.khalil@booklyx.com
+        phone: "01000000001"
+        role: client
+        status: ACTIVE
+        emailVerified: true
+        phoneVerified: true
+
+    AuthTokens:
+      type: object
+      properties:
+        token:
+          type: string
+          nullable: false
+          description: Access token formatted as `<loginSequence>|<jwt>`.
+          example: 15|eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.access-token
+        refreshToken:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.refresh-token
+
+    LoginResponseData:
+      allOf:
+        - $ref: "#/components/schemas/AuthTokens"
+        - type: object
+          properties:
+            user:
+              $ref: "#/components/schemas/User"
+      example:
+        token: 15|eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.client-access-token
+        refreshToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.client-refresh-token
+        user:
+          id: 2
+          name: Abdo Khalil
+          email: abdo.khalil@booklyx.com
+          phone: "01000000001"
+          role: client
+          status: ACTIVE
+          emailVerified: true
+          phoneVerified: true
+
+    RegisterRequest:
+      type: object
+      required: [name, email, password, phone]
+      properties:
+        name:
+          type: string
+          example: Abdo Khalil
+        email:
+          type: string
+          format: email
+          example: abdo.khalil@booklyx.com
+        password:
+          type: string
+          minLength: 8
+          example: "12345678"
+        phone:
+          type: string
+          pattern: '^\\d{11}$'
+          example: "01000000001"
+      example:
+        name: Abdo Khalil
+        email: abdo.khalil@booklyx.com
+        password: "12345678"
+        phone: "01000000001"
+
+    LoginRequest:
+      type: object
+      required: [email, password, role]
+      properties:
+        email:
+          type: string
+          format: email
+          example: abdo.khalil@booklyx.com
+        password:
+          type: string
+          example: "12345678"
+        role:
+          type: string
+          enum: [client, staff, branch_admin, super_admin]
+          default: client
+          example: client
+      example:
+        email: abdo.khalil@booklyx.com
+        password: "12345678"
+        role: client
+
+    VerifyCodeRequest:
+      type: object
+      required: [email, code]
+      properties:
+        email:
+          type: string
+          format: email
+          example: abdo.khalil@booklyx.com
+        code:
+          type: string
+          example: "333333"
+      example:
+        email: abdo.khalil@booklyx.com
+        code: "333333"
+
+    ResendCodeRequest:
+      type: object
+      required: [email, type]
+      properties:
+        email:
+          type: string
+          format: email
+          example: abdo.khalil@booklyx.com
+        phone:
+          type: string
+          pattern: '^\\d{11}$'
+          example: "01000000001"
+        type:
+          type: string
+          enum: [EMAIL, PHONE, PASSWORD_RESET]
+          default: EMAIL
+          example: EMAIL
+      example:
+        email: abdo.khalil@booklyx.com
+        phone: "01000000001"
+        type: EMAIL
+
+    RequestPasswordResetRequest:
+      type: object
+      required: [email]
+      properties:
+        email:
+          type: string
+          format: email
+          example: abdo.khalil@booklyx.com
+      example:
+        email: abdo.khalil@booklyx.com
+
+    VerifyPasswordResetResponseData:
+      type: object
+      properties:
+        resetToken:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.password-reset-token
+      example:
+        resetToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.password-reset-token
+
+    ResetPasswordRequest:
+      type: object
+      required: [resetToken, newPassword]
+      properties:
+        resetToken:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.password-reset-token
+        newPassword:
+          type: string
+          minLength: 8
+          example: "NewPass123"
+      example:
+        resetToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.password-reset-token
+        newPassword: "NewPass123"
+
+    RefreshTokenRequest:
+      type: object
+      required: [refreshToken]
+      properties:
+        refreshToken:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.client-refresh-token
+      example:
+        refreshToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.client-refresh-token
+
+    Pagination:
+      type: object
+      required: [page, limit, total, totalPages]
+      properties:
+        page:
+          type: integer
+          example: 1
+        limit:
+          type: integer
+          example: 20
+        total:
+          type: integer
+          example: 1
+        totalPages:
+          type: integer
+          example: 1
+
+    Review:
+      type: object
+      required: [id, rating, createdAt, reviewer, service, staff]
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 2f5100e4-6400-4db4-9172-7abdc18b0f88
+        rating:
+          type: integer
+          minimum: 1
+          maximum: 5
+          example: 5
+        comment:
+          type: string
+          nullable: true
+          example: Great experience
+        createdAt:
+          type: string
+          format: date-time
+          example: 2026-04-21T10:00:00.000Z
+        reviewer:
+          type: object
+          required: [id, name, role]
+          properties:
+            id:
+              type: integer
+              example: 3
+            name:
+              type: string
+              example: Abdo Khalil
+            role:
+              type: string
+              enum: [client, staff, branch_admin, super_admin]
+              example: client
+        service:
+          type: object
+          required: [id, name]
+          properties:
+            id:
+              type: integer
+              example: 1
+            name:
+              type: string
+              example: Haircut
+        staff:
+          type: object
+          required: [id, user]
+          properties:
+            id:
+              type: integer
+              example: 7
+            user:
+              type: object
+              required: [id, name]
+              properties:
+                id:
+                  type: integer
+                  example: 6
+                name:
+                  type: string
+                  example: Mazen Tamer
+
+    OfferServiceSummary:
+      type: object
+      required: [id, name, price, status]
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: Haircut
+        price:
+          type: number
+          example: 150
+        status:
+          type: string
+          enum: [PENDING_APPROVAL, APPROVED, REJECTED]
+          example: APPROVED
+
+    Offer:
+      type: object
+      required:
+        - id
+        - title
+        - discountType
+        - discountValue
+        - startDate
+        - endDate
+        - isActive
+        - usedCount
+        - branchId
+        - createdAt
+        - updatedAt
+        - services
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 7f6d2f79-34f7-4f01-b9fb-6f8d71f618f9
+        title:
+          type: string
+          example: Weekend Offer
+        description:
+          type: string
+          nullable: true
+          example: 20 percent discount this weekend
+        discountType:
+          type: string
+          enum: [PERCENTAGE, FIXED]
+          example: PERCENTAGE
+        discountValue:
+          type: number
+          example: 20
+        startDate:
+          type: string
+          format: date-time
+          example: 2026-04-24T00:00:00.000Z
+        endDate:
+          type: string
+          format: date-time
+          example: 2026-04-26T23:59:59.000Z
+        isActive:
+          type: boolean
+          example: true
+        usageLimit:
+          type: integer
+          nullable: true
+          example: 100
+        usedCount:
+          type: integer
+          example: 0
+        branchId:
+          type: integer
+          example: 1
+        createdAt:
+          type: string
+          format: date-time
+          example: 2026-04-20T09:00:00.000Z
+        updatedAt:
+          type: string
+          format: date-time
+          example: 2026-04-20T09:00:00.000Z
+        services:
+          type: array
+          items:
+            $ref: "#/components/schemas/OfferServiceSummary"
+
+    StaffIncomeDailyStat:
+      type: object
+      required: [date, earnings, serviceCount]
+      properties:
+        date:
+          type: string
+          format: date
+          description: Local calendar date formatted as YYYY-MM-DD.
+          example: 2026-04-15
+        earnings:
+          type: number
+          example: 80
+        serviceCount:
+          type: integer
+          example: 2
+
+    BranchAdminApplyRequestJson:
+      type: object
+      required:
+        - ownerName
+        - email
+        - phone
+        - password
+        - businessName
+        - category
+        - description
+        - city
+        - district
+        - address
+        - taxId
+        - commercialRegisterNumber
+        - latitude
+        - longitude
+      properties:
+        ownerName:
+          type: string
+          example: Mahmoud Ibrahim
+        email:
+          type: string
+          format: email
+          example: mahmoud.ibrahim@booklyx.com
+        phone:
+          type: string
+          pattern: '^\\d{11}$'
+          example: "01000000011"
+        password:
+          type: string
+          minLength: 8
+          example: "12345678"
+        businessName:
+          type: string
+          example: Hassan Beauty Salon
+        category:
+          type: string
+          enum: [SPA, CLINIC, BARBER]
+          default: SPA
+          example: SPA
+        description:
+          type: string
+          example: Premium beauty and skincare services for women.
+        city:
+          type: string
+          example: Cairo
+        district:
+          type: string
+          example: Nasr City
+        address:
+          type: string
+          example: 12 Makram Ebeid Street
+        taxId:
+          type: string
+          example: TAX-2026-010
+        commercialRegisterNumber:
+          type: string
+          example: CR-2026-010
+        latitude:
+          type: number
+          format: double
+          example: 30.0626
+        longitude:
+          type: number
+          format: double
+          example: 31.3368
+      example:
+        ownerName: Mahmoud Ibrahim
+        email: mahmoud.ibrahim@booklyx.com
+        phone: "01000000011"
+        password: "12345678"
+        businessName: Hassan Beauty Salon
+        category: SPA
+        description: Premium beauty and skincare services.
+        commercialRegisterNumber: CR-2026-001
+        taxId: TAX-2026-001
+        city: Cairo
+        district: Nasr City
+        address: 12 Makram Ebeid Street
+        latitude: 30.0626
+        longitude: 31.3368
+        logoUrl: https://cdn.booklyx.com/branches/hassan-beauty-salon-logo.png
+
+    BranchAdminApplyRequestMultipart:
+      allOf:
+        - $ref: "#/components/schemas/BranchAdminApplyRequestJson"
+        - type: object
+          properties:
+            logo:
+              type: string
+              format: binary
+            taxCertificate:
+              type: string
+              format: binary
+            commercialRegister:
+              type: string
+              format: binary
+            nationalId:
+              type: string
+              format: binary
+            facilityLicense:
+              type: string
+              format: binary
+
+    BranchResendCodeRequest:
+      type: object
+      required: [email, type]
+      properties:
+        email:
+          type: string
+          format: email
+          example: mona.adel@booklyx.com
+        type:
+          type: string
+          enum: [EMAIL, PHONE]
+          default: EMAIL
+          example: PHONE
+      example:
+        email: mona.adel@booklyx.com
+        type: PHONE
+
+    CreateStaffRequest:
+      type: object
+      required:
+        [
+          name,
+          email,
+          phone,
+          password,
+          age,
+          startDate,
+          staffRole,
+          commissionPercentage,
+          serviceIds,
+        ]
+      properties:
+        name:
+          type: string
+          example: Mazen Tamer
+        email:
+          type: string
+          format: email
+          example: mazen.tamer@booklyx.com
+        phone:
+          type: string
+          pattern: '^\\d{11}$'
+          example: "01000000021"
+        password:
+          type: string
+          minLength: 8
+          example: "12345678"
+        age:
+          type: integer
+          minimum: 18
+          example: 28
+        startDate:
+          type: string
+          format: date-time
+          example: 2026-03-01T00:00:00.000Z
+        staffRole:
+          type: string
+          enum: [DOCTOR, BARBER, SPA_SPECIALIST]
+          default: BARBER
+          example: BARBER
+        profileImageUrl:
+          type: string
+          format: uri
+          example: https://cdn.booklyx.com/staff/mazen-tamer.png
+        commissionPercentage:
+          type: number
+          minimum: 0
+          maximum: 100
+          example: 15
+        serviceIds:
+          type: array
+          minItems: 1
+          items:
+            type: integer
+            minimum: 1
+          example: [1, 2]
+      example:
+        name: Mazen Tamer
+        email: mazen.tamer@booklyx.com
+        phone: "01000000021"
+        password: "12345678"
+        age: 28
+        startDate: 2026-03-01T00:00:00.000Z
+        staffRole: BARBER
+        profileImageUrl: https://cdn.booklyx.com/staff/mazen-tamer.png
+        commissionPercentage: 15
+        serviceIds: [1, 2]
+
+    UpdateStaffRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Mazen Tamer Updated
+        email:
+          type: string
+          format: email
+          example: mazen.updated@booklyx.com
+        phone:
+          type: string
+          pattern: '^\\d{11}$'
+          example: "01000000031"
+        age:
+          type: integer
+          minimum: 18
+          example: 29
+        startDate:
+          type: string
+          format: date-time
+          example: 2026-04-01T00:00:00.000Z
+        staffRole:
+          type: string
+          enum: [DOCTOR, BARBER, SPA_SPECIALIST]
+          example: BARBER
+        profileImageUrl:
+          type: string
+          format: uri
+          nullable: true
+          example: https://cdn.booklyx.com/staff/mazen-tamer-v2.png
+        commissionPercentage:
+          type: number
+          minimum: 0
+          maximum: 100
+          example: 20
+        serviceIds:
+          type: array
+          minItems: 1
+          items:
+            type: integer
+            minimum: 1
+          example: [2, 3]
+
+    AddServiceCategoryRequest:
+      type: object
+      required: [name]
+      properties:
+        name:
+          type: string
+          example: Hair Care
+      example:
+        name: Hair Care
+
+    ServiceCategory:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: Hair Care
+        branchId:
+          type: integer
+          example: 1
+        createdAt:
+          type: string
+          format: date-time
+          example: 2026-04-09T10:00:00.000Z
+        updatedAt:
+          type: string
+          format: date-time
+          example: 2026-04-09T10:00:00.000Z
+      example:
+        id: 1
+        name: Hair Care
+        branchId: 1
+        createdAt: 2026-04-09T10:00:00.000Z
+        updatedAt: 2026-04-09T10:00:00.000Z
+
+    CreateServiceRequestJson:
+      type: object
+      required: [name, description, price, durationMinutes]
+      properties:
+        name:
+          type: string
+          example: Haircut
+        description:
+          type: string
+          example: Professional haircut with styling
+        price:
+          type: number
+          minimum: 0.01
+          example: 150
+        durationMinutes:
+          type: integer
+          minimum: 1
+          example: 30
+        categoryId:
+          type: integer
+          minimum: 1
+          example: 1
+        categoryName:
+          type: string
+          example: Hair Care
+        imageUrl:
+          type: string
+          format: uri
+          example: https://cdn.booklyx.com/services/haircut.png
+      example:
+        name: Haircut
+        description: Professional haircut with styling
+        price: 150
+        durationMinutes: 30
+        categoryName: Hair Care
+        imageUrl: https://cdn.booklyx.com/services/haircut.png
+
+    CreateServiceRequestMultipart:
+      allOf:
+        - $ref: "#/components/schemas/CreateServiceRequestJson"
+        - type: object
+          properties:
+            image:
+              type: string
+              format: binary
+
+    UpdateServiceRequestJson:
+      type: object
+      properties:
+        id:
+          type: integer
+          minimum: 1
+          example: 1
+        name:
+          type: string
+          example: Premium Haircut
+        description:
+          type: string
+          example: Professional haircut with wash and styling
+        price:
+          type: number
+          minimum: 0.01
+          example: 180
+        durationMinutes:
+          type: integer
+          minimum: 1
+          example: 40
+        categoryId:
+          type: integer
+          minimum: 1
+          example: 1
+        categoryName:
+          type: string
+          example: Hair Care
+        imageUrl:
+          type: string
+          format: uri
+          example: https://cdn.booklyx.com/services/premium-haircut.png
+      example:
+        id: 1
+        name: Premium Haircut
+        description: Professional haircut with wash and styling
+        price: 180
+        durationMinutes: 40
+        categoryId: 1
+        imageUrl: https://cdn.booklyx.com/services/premium-haircut.png
+
+    UpdateServiceRequestMultipart:
+      allOf:
+        - $ref: "#/components/schemas/UpdateServiceRequestJson"
+        - type: object
+          properties:
+            image:
+              type: string
+              format: binary
+
+    Service:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        branchId:
+          type: integer
+          example: 1
+        serviceCategoryId:
+          type: integer
+          nullable: true
+          example: 1
+        name:
+          type: string
+          example: Haircut
+        description:
+          type: string
+          example: Professional haircut with styling
+        price:
+          type: number
+          example: 150
+        durationMinutes:
+          type: integer
+          example: 30
+        imageUrl:
+          type: string
+          nullable: true
+          example: https://cdn.booklyx.com/services/haircut.png
+        status:
+          type: string
+          enum: [PENDING_APPROVAL, APPROVED, REJECTED]
+          default: PENDING_APPROVAL
+          example: APPROVED
+        rejectionReason:
+          type: string
+          nullable: true
+          example: null
+        createdAt:
+          type: string
+          format: date-time
+          example: 2026-04-09T10:15:00.000Z
+        updatedAt:
+          type: string
+          format: date-time
+          example: 2026-04-09T10:15:00.000Z
+        category:
+          allOf:
+            - $ref: "#/components/schemas/ServiceCategory"
+          nullable: true
+        branch:
+          type: object
+          nullable: true
+          properties:
+            id:
+              type: integer
+              example: 1
+            businessName:
+              type: string
+              example: Hassan Beauty Salon
+            ownerName:
+              type: string
+              example: Mahmoud Ibrahim
+            userId:
+              type: integer
+              example: 5
+            status:
+              type: string
+              enum: [PENDING_VERIFICATION, PENDING_APPROVAL, APPROVED, REJECTED]
+              default: PENDING_VERIFICATION
+              example: APPROVED
+      example:
+        id: 1
+        branchId: 1
+        serviceCategoryId: 1
+        name: Haircut
+        description: Professional haircut with styling
+        price: 150
+        durationMinutes: 30
+        imageUrl: https://cdn.booklyx.com/services/haircut.png
+        status: APPROVED
+        rejectionReason: null
+        createdAt: 2026-04-09T10:15:00.000Z
+        updatedAt: 2026-04-09T10:15:00.000Z
+        category:
+          id: 1
+          name: Hair Care
+          branchId: 1
+          createdAt: 2026-04-09T10:00:00.000Z
+          updatedAt: 2026-04-09T10:00:00.000Z
+
+    RejectReasonRequest:
+      type: object
+      required: [reason]
+      properties:
+        reason:
+          type: string
+          minLength: 1
+          example: Missing required documents.
+      example:
+        reason: Missing required documents.
+
+    ApplicationDocument:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        type:
+          type: string
+          enum:
+            [
+              TAX_CERTIFICATE,
+              COMMERCIAL_REGISTER,
+              NATIONAL_ID,
+              FACILITY_LICENSE,
+            ]
+          default: TAX_CERTIFICATE
+          example: COMMERCIAL_REGISTER
+        fileUrl:
+          type: string
+          format: uri
+          example: https://booklyxbackend-production.up.railway.app/files/download/commercial-register.pdf
+        createdAt:
+          type: string
+          format: date-time
+          example: 2026-04-09T09:50:00.000Z
+
+    ApplicationVerificationCodeSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 12
+        type:
+          type: string
+          enum: [EMAIL, PHONE, PASSWORD_RESET]
+          default: EMAIL
+          example: EMAIL
+        expiresAt:
+          type: string
+          format: date-time
+          example: 2026-04-09T10:10:00.000Z
+        used:
+          type: boolean
+          example: true
+        attempts:
+          type: integer
+          example: 1
+        createdAt:
+          type: string
+          format: date-time
+          example: 2026-04-09T10:00:00.000Z
+
+    BranchApplication:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        userId:
+          type: integer
+          nullable: true
+          example: 5
+        ownerName:
+          type: string
+          example: Mahmoud Ibrahim
+        businessName:
+          type: string
+          example: Hassan Beauty Salon
+        email:
+          type: string
+          format: email
+          example: mahmoud.ibrahim@booklyx.com
+        phone:
+          type: string
+          example: "01000000011"
+        category:
+          type: string
+          enum: [SPA, CLINIC, BARBER]
+          default: SPA
+          example: SPA
+        description:
+          type: string
+          nullable: true
+          example: Premium beauty and skincare services.
+        commercialRegisterNumber:
+          type: string
+          example: CR-2026-001
+        taxId:
+          type: string
+          example: TAX-2026-001
+        logoUrl:
+          type: string
+          nullable: true
+          example: https://booklyxbackend-production.up.railway.app/files/public/glow-logo.png
+        taxCertificateUrl:
+          type: string
+          nullable: true
+          example: https://booklyxbackend-production.up.railway.app/files/download/tax-certificate.pdf
+        commercialRegisterUrl:
+          type: string
+          nullable: true
+          example: https://booklyxbackend-production.up.railway.app/files/download/commercial-register.pdf
+        nationalIdUrl:
+          type: string
+          nullable: true
+          example: https://booklyxbackend-production.up.railway.app/files/download/national-id.pdf
+        facilityLicenseUrl:
+          type: string
+          nullable: true
+          example: https://booklyxbackend-production.up.railway.app/files/download/facility-license.pdf
+        city:
+          type: string
+          example: Cairo
+        district:
+          type: string
+          example: Nasr City
+        address:
+          type: string
+          example: 12 Makram Ebeid Street
+        latitude:
+          type: number
+          example: 30.0626
+        longitude:
+          type: number
+          example: 31.3368
+        status:
+          type: string
+          enum: [PENDING_VERIFICATION, PENDING_APPROVAL, APPROVED, REJECTED]
+          default: PENDING_VERIFICATION
+          example: APPROVED
+        emailVerified:
+          type: boolean
+          example: true
+        phoneVerified:
+          type: boolean
+          example: true
+        rejectionReason:
+          type: string
+          nullable: true
+          example: null
+        createdAt:
+          type: string
+          format: date-time
+          example: 2026-04-09T09:45:00.000Z
+        updatedAt:
+          type: string
+          format: date-time
+          example: 2026-04-09T10:20:00.000Z
+        documents:
+          type: array
+          items:
+            $ref: "#/components/schemas/ApplicationDocument"
+        verificationCodes:
+          type: array
+          items:
+            $ref: "#/components/schemas/ApplicationVerificationCodeSummary"
+      example:
+        id: 1
+        userId: 5
+        ownerName: Mahmoud Ibrahim
+        businessName: Hassan Beauty Salon
+        email: mahmoud.ibrahim@booklyx.com
+        phone: "01000000011"
+        category: SPA
+        description: Premium beauty and skincare services.
+        commercialRegisterNumber: CR-2026-001
+        taxId: TAX-2026-001
+        city: Cairo
+        district: Nasr City
+        address: 12 Makram Ebeid Street
+        latitude: 30.0626
+        longitude: 31.3368
+        status: APPROVED
+        emailVerified: true
+        phoneVerified: true
+        rejectionReason: null
+        createdAt: 2026-04-09T09:45:00.000Z
+        updatedAt: 2026-04-09T10:20:00.000Z
+
+  examples:
+    RegisterClientRequest:
+      value:
+        name: Abdo Khalil
+        email: abdo.khalil@booklyx.com
+        password: "12345678"
+        phone: "01000000001"
+    LoginClientRequest:
+      value:
+        email: eslam.wael@booklyx.com
+        password: "12345678"
+        role: client
+    LoginStaffRequest:
+      value:
+        email: mazen.tamer@booklyx.com
+        password: "12345678"
+        role: staff
+    LoginBranchAdminRequest:
+      value:
+        email: mahmoud.ibrahim@booklyx.com
+        password: "12345678"
+        role: branch_admin
+    LoginSuperAdminRequest:
+      value:
+        email: admin@booklyx.com
+        password: "12345678"
+        role: super_admin
+    VerifyClientCodeRequest:
+      value:
+        email: abdo.khalil@booklyx.com
+        code: "333333"
+    VerifyBranchApplicationCodeRequest:
+      value:
+        email: mahmoud.ibrahim@booklyx.com
+        code: "333333"
+    ResendEmailCodeRequest:
+      value:
+        email: abdo.khalil@booklyx.com
+        phone: "01000000001"
+        type: EMAIL
+    ResendPhoneCodeRequest:
+      value:
+        email: abdo.khalil@booklyx.com
+        phone: "01000000001"
+        type: PHONE
+    ResendPasswordResetCodeRequest:
+      value:
+        email: abdo.khalil@booklyx.com
+        type: PASSWORD_RESET
+    PasswordResetRequest:
+      value:
+        email: abdo.khalil@booklyx.com
+    PasswordResetVerifyRequest:
+      value:
+        email: abdo.khalil@booklyx.com
+        code: "333333"
+    ResetPasswordRequest:
+      value:
+        resetToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.password-reset-token
+        newPassword: "NewPass123"
+    RefreshTokenRequest:
+      value:
+        refreshToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.client-refresh-token
+    BranchAdminApplyRequest:
+      value:
+        ownerName: Mahmoud Ibrahim
+        email: mahmoud.ibrahim@booklyx.com
+        phone: "01000000011"
+        password: "12345678"
+        businessName: Hassan Beauty Salon
+        category: SPA
+        description: Premium beauty and skincare services.
+        commercialRegisterNumber: CR-2026-001
+        taxId: TAX-2026-001
+        city: Cairo
+        district: Nasr City
+        address: 12 Makram Ebeid Street
+        latitude: 30.0626
+        longitude: 31.3368
+        logoUrl: https://cdn.booklyx.com/branches/hassan-beauty-salon-logo.png
+    BranchAdminResendRequest:
+      value:
+        email: mahmoud.ibrahim@booklyx.com
+        type: PHONE
+    CreateStaffRequest:
+      value:
+        name: Mazen Tamer
+        email: mazen.tamer@booklyx.com
+        phone: "01000000021"
+        password: "12345678"
+        age: 28
+        startDate: 2026-03-01T00:00:00.000Z
+        staffRole: BARBER
+        profileImageUrl: https://cdn.booklyx.com/staff/mazen-tamer.png
+        commissionPercentage: 15
+        serviceIds: [1, 2]
+    UpdateStaffRequest:
+      value:
+        name: Mazen Tamer Updated
+        email: mazen.updated@booklyx.com
+        phone: "01000000031"
+        age: 29
+        startDate: 2026-04-01T00:00:00.000Z
+        staffRole: BARBER
+        profileImageUrl: https://cdn.booklyx.com/staff/mazen-tamer-v2.png
+        commissionPercentage: 20
+        serviceIds: [2, 3]
+    AddServiceCategoryRequest:
+      value:
+        name: Hair Care
+    CreateServiceRequest:
+      value:
+        name: Haircut
+        description: Professional haircut with styling
+        price: 150
+        durationMinutes: 30
+        categoryName: Hair Care
+        imageUrl: https://cdn.booklyx.com/services/haircut.png
+    UpdateServiceRequest:
+      value:
+        id: 1
+        name: Premium Haircut
+        description: Professional haircut with wash and styling
+        price: 180
+        durationMinutes: 40
+        categoryId: 1
+        imageUrl: https://cdn.booklyx.com/services/premium-haircut.png
+    RejectReasonRequest:
+      value:
+        reason: Missing required documents.
+    StaffCompleteAppointmentRequest:
+      value:
+        notes: Client requested layered finish.
+    StaffAddServiceRequest:
+      value:
+        serviceId: 1
+    StaffCreateAvailabilityRequest:
+      value:
+        dayOfWeek: 1
+        startTime: "09:00"
+        endTime: "17:00"
+    StaffUpdateAvailabilityRequest:
+      value:
+        dayOfWeek: 2
+        startTime: "10:00"
+        endTime: "18:00"
+    VerifyEmailSuccessResponse:
+      value:
+        status: 200
+        error: false
+        message: Email verified successfully.
+        data: null
+    ResendCodeSuccessResponse:
+      value:
+        status: 200
+        error: false
+        message: Verification code sent successfully.
+        data: null
+    PasswordResetRequestSuccessResponse:
+      value:
+        status: 200
+        error: false
+        message: Password reset code sent successfully.
+        data: null
+    ResetPasswordSuccessResponse:
+      value:
+        status: 200
+        error: false
+        message: Password reset successfully.
+        data: null
+    BranchVerifyEmailSuccessResponse:
+      value:
+        status: 200
+        error: false
+        message: Application email verified successfully.
+        data: null
+    BranchVerifyPhoneSuccessResponse:
+      value:
+        status: 200
+        error: false
+        message: Application phone verified successfully.
+        data: null
+    BranchResendCodeSuccessResponse:
+      value:
+        status: 200
+        error: false
+        message: Application verification code sent successfully.
+        data: null
+    BranchAdminStaffListResponse:
+      value:
+        status: 200
+        error: false
+        message: Staff retrieved successfully.
+        data:
+          - id: 7
+            name: Mazen Tamer
+            email: mazen.tamer@booklyx.com
+            phone: "01000000021"
+            role: staff
+            status: ACTIVE
+            emailVerified: true
+            phoneVerified: true
+            staff:
+              id: 7
+              branchId: 1
+              profileImageUrl: https://cdn.booklyx.com/staff/mazen-tamer.png
+              age: 28
+              staffRole: BARBER
+              commissionPercentage: 15
+          - id: 8
+            name: Abdo Badr
+            email: abdo.badr@booklyx.com
+            phone: "01000000022"
+            role: staff
+            status: ACTIVE
+            emailVerified: true
+            phoneVerified: true
+            staff:
+              id: 8
+              branchId: 1
+              profileImageUrl: null
+              age: 30
+              staffRole: DOCTOR
+              commissionPercentage: 20
+    BranchAdminStaffDetailResponse:
+      value:
+        status: 200
+        error: false
+        message: Staff retrieved successfully.
+        data:
+          id: 7
+          name: Mazen Tamer
+          email: mazen.tamer@booklyx.com
+          phone: "01000000021"
+          role: staff
+          status: ACTIVE
+          emailVerified: true
+          phoneVerified: true
+          staff:
+            id: 7
+            branchId: 1
+            profileImageUrl: https://cdn.booklyx.com/staff/mazen-tamer.png
+            age: 28
+            staffRole: BARBER
+            commissionPercentage: 15
+    BranchAdminStaffUpdatedResponse:
+      value:
+        status: 200
+        error: false
+        message: Staff updated successfully.
+        data:
+          id: 7
+          name: Mazen Tamer Updated
+          email: mazen.updated@booklyx.com
+          phone: "01000000031"
+          role: staff
+          status: ACTIVE
+          emailVerified: true
+          phoneVerified: true
+          staff:
+            id: 7
+            branchId: 1
+            profileImageUrl: https://cdn.booklyx.com/staff/mazen-tamer-v2.png
+            age: 29
+            staffRole: BARBER
+            commissionPercentage: 20
+    BranchAdminStaffDeletedResponse:
+      value:
+        status: 200
+        error: false
+        message: Staff deleted successfully.
+        data: null
+    ServiceDeletedResponse:
+      value:
+        status: 200
+        error: false
+        message: Service deleted successfully.
+        data: null
+    StaffProfileResponse:
+      value:
+        status: 200
+        error: false
+        message: Profile retrieved successfully.
+        data:
+          name: Mazen Tamer
+          phone: "01000000021"
+          profileImageUrl: https://cdn.booklyx.com/staff/mazen-tamer.png
+          staffRole: BARBER
+          age: 28
+          commissionPercentage: 15
+          branch:
+            businessName: Hassan Beauty Salon
+            category: SPA
+          professionalProfile:
+            bio: Senior stylist focused on modern cuts and beard shaping.
+            experience: 6
+            specialization: BARBER
+          averageRating: 4.7
+          reviewCount: 34
+    StaffScheduleResponse:
+      value:
+        status: 200
+        error: false
+        message: Schedule retrieved successfully.
+        data:
+          today:
+            - id: 8a1be4b3-c1d7-4a96-8c8b-6e87e5bd3a31
+              clientName: Abdo Khalil
+              serviceName: Haircut
+              scheduledAt: 2026-04-21T10:00:00.000Z
+              duration: 30
+              status: CONFIRMED
+          upcoming:
+            - id: bbe0cc3f-c49a-45eb-b2d4-a03ea3afd6e9
+              clientName: Eslam Wael
+              serviceName: Hair Coloring
+              scheduledAt: 2026-04-24T13:30:00.000Z
+              duration: 60
+              status: CONFIRMED
+    StaffRequestsResponse:
+      value:
+        status: 200
+        error: false
+        message: Appointment requests retrieved successfully.
+        data:
+          - id: 4d827f47-8aaf-4480-a8c4-d53ccf7b2af0
+            clientName: Abdo Khalil
+            serviceName: Haircut
+            scheduledAt: 2026-04-22T11:00:00.000Z
+            duration: 30
+          - id: 6eecf393-131e-4869-a474-f50afba95e9f
+            clientName: Eslam Wael
+            serviceName: Hair Coloring
+            scheduledAt: 2026-04-22T14:00:00.000Z
+            duration: 60
+    StaffAppointmentAcceptedResponse:
+      value:
+        status: 200
+        error: false
+        message: Appointment accepted successfully.
+        data:
+          id: 4d827f47-8aaf-4480-a8c4-d53ccf7b2af0
+          status: CONFIRMED
+    StaffAppointmentRejectedResponse:
+      value:
+        status: 200
+        error: false
+        message: Appointment rejected successfully.
+        data:
+          id: 6eecf393-131e-4869-a474-f50afba95e9f
+          status: CANCELED
+    StaffAppointmentStartedResponse:
+      value:
+        status: 200
+        error: false
+        message: Appointment started successfully.
+        data:
+          id: 8a1be4b3-c1d7-4a96-8c8b-6e87e5bd3a31
+          status: IN_PROGRESS
+    StaffAppointmentCompletedResponse:
+      value:
+        status: 200
+        error: false
+        message: Appointment completed successfully.
+        data:
+          id: 8a1be4b3-c1d7-4a96-8c8b-6e87e5bd3a31
+          status: COMPLETED
+    StaffIncomeResponse:
+      value:
+        status: 200
+        error: false
+        message: Income statistics retrieved successfully.
+        data:
+          totalEarnings: 560
+          serviceCount: 14
+          range: weekly
+          dailyStats:
+            - date: 2026-04-15
+              earnings: 80
+              serviceCount: 2
+            - date: 2026-04-16
+              earnings: 120
+              serviceCount: 3
+            - date: 2026-04-17
+              earnings: 200
+              serviceCount: 5
+            - date: 2026-04-20
+              earnings: 160
+              serviceCount: 4
+    StaffServicesResponse:
+      value:
+        status: 200
+        error: false
+        message: Services retrieved successfully.
+        data:
+          - id: 1
+            name: Haircut
+            description: Professional haircut with styling
+            price: 150
+            durationMinutes: 30
+            imageUrl: https://cdn.booklyx.com/services/haircut.png
+            status: APPROVED
+          - id: 8
+            name: Hair Coloring
+            description: Premium hair coloring service
+            price: 300
+            durationMinutes: 60
+            imageUrl: https://cdn.booklyx.com/services/hair-coloring.png
+            status: APPROVED
+    StaffServiceAddedResponse:
+      value:
+        status: 201
+        error: false
+        message: Service added to your profile successfully.
+        data:
+          serviceId: 1
+    StaffAvailabilityListResponse:
+      value:
+        status: 200
+        error: false
+        message: Availability slots retrieved successfully.
+        data:
+          - id: 1
+            dayOfWeek: 1
+            startTime: "09:00"
+            endTime: "17:00"
+            status: AVAILABLE
+          - id: 2
+            dayOfWeek: 3
+            startTime: "10:00"
+            endTime: "18:00"
+            status: AVAILABLE
+    StaffAvailabilityCreatedResponse:
+      value:
+        status: 201
+        error: false
+        message: Availability slot created successfully.
+        data:
+          id: 3
+          dayOfWeek: 5
+          startTime: "12:00"
+          endTime: "20:00"
+          status: AVAILABLE
+    StaffAvailabilityUpdatedResponse:
+      value:
+        status: 200
+        error: false
+        message: Availability slot updated successfully.
+        data:
+          id: 3
+          dayOfWeek: 5
+          startTime: "13:00"
+          endTime: "21:00"
+          status: AVAILABLE
+    StaffAvailabilityDeletedResponse:
+      value:
+        status: 200
+        error: false
+        message: Availability slot deleted successfully.
+        data:
+          id: 3
+    StaffAvailableSlotsResponse:
+      value:
+        status: 200
+        error: false
+        message: Available slots retrieved successfully.
+        data:
+          date: 2026-04-25
+          serviceId: 1
+          available: true
+          slots:
+            - startTime: 2026-04-25T09:00:00.000Z
+              endTime: 2026-04-25T09:30:00.000Z
+            - startTime: 2026-04-25T09:30:00.000Z
+              endTime: 2026-04-25T10:00:00.000Z
+    RegisterSuccessResponse:
+      value:
+        status: 201
+        error: false
+        message: Registration successful.
+        data: null
+    LoginClientSuccessResponse:
+      value:
+        status: 200
+        error: false
+        message: Login successful.
+        data:
+          token: 15|eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.client-access-token
+          refreshToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.client-refresh-token
+          user:
+            id: 3
+            name: Abdo Khalil
+            email: abdo.khalil@booklyx.com
+            phone: "01000000001"
+            role: client
+            status: ACTIVE
+            emailVerified: true
+            phoneVerified: true
+    LoginStaffSuccessResponse:
+      value:
+        status: 200
+        error: false
+        message: Login successful.
+        data:
+          token: 16|eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.staff-access-token
+          refreshToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.staff-refresh-token
+          user:
+            id: 6
+            name: Mazen Tamer
+            email: mazen.tamer@booklyx.com
+            phone: "01000000021"
+            role: staff
+            status: ACTIVE
+            emailVerified: true
+            phoneVerified: true
+    LoginBranchAdminSuccessResponse:
+      value:
+        status: 200
+        error: false
+        message: Login successful.
+        data:
+          token: 17|eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.branch-access-token
+          refreshToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.branch-refresh-token
+          user:
+            id: 4
+            name: Mahmoud Ibrahim
+            email: mahmoud.ibrahim@booklyx.com
+            phone: "01000000011"
+            role: branch_admin
+            status: ACTIVE
+            emailVerified: true
+            phoneVerified: true
+    LoginSuperAdminSuccessResponse:
+      value:
+        status: 200
+        error: false
+        message: Login successful.
+        data:
+          token: 18|eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.admin-access-token
+          user:
+            id: 1
+            name: super_admin
+            email: admin@booklyx.com
+            phone: "01000000000"
+            role: super_admin
+            status: ACTIVE
+            emailVerified: true
+            phoneVerified: true
+    SimpleSuccessResponse:
+      value:
+        status: 200
+        error: false
+        message: Request successful.
+        data: null
+    VerifyPhoneSuccessResponse:
+      value:
+        status: 200
+        error: false
+        message: Phone verified successfully.
+        data:
+          token: 19|eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.client-access-token
+          refreshToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.client-refresh-token
+          user:
+            id: 2
+            name: Abdo Khalil
+            email: abdo.khalil@booklyx.com
+            phone: "01000000001"
+            role: client
+            status: ACTIVE
+            emailVerified: true
+            phoneVerified: true
+    VerifyPasswordResetSuccessResponse:
+      value:
+        status: 200
+        error: false
+        message: Code verified. You can now reset your password.
+        data:
+          resetToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.password-reset-token
+    RefreshSuccessResponse:
+      value:
+        status: 200
+        error: false
+        message: Login successful.
+        data:
+          token: 15|eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.client-access-token-next
+          refreshToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.client-refresh-token-next
+          role: client
+    RefreshStaffSuccessResponse:
+      value:
+        status: 200
+        error: false
+        message: Login successful.
+        data:
+          token: 16|eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.staff-access-token-next
+          refreshToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.staff-refresh-token-next
+          role: staff
+    RefreshBranchAdminSuccessResponse:
+      value:
+        status: 200
+        error: false
+        message: Login successful.
+        data:
+          token: 17|eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.branch-access-token-next
+          refreshToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.branch-refresh-token-next
+          role: branch_admin
+    RefreshSuperAdminSuccessResponse:
+      value:
+        status: 200
+        error: false
+        message: Login successful.
+        data:
+          token: 18|eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.admin-access-token-next
+          refreshToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.admin-refresh-token-next
+          role: super_admin
+    LoginEmailNotVerifiedErrorResponse:
+      value:
+        status: 403
+        error: true
+        message: Email is not verified.
+        data:
+          emailVerified: false
+          phoneVerified: false
+    LoginPhoneNotVerifiedErrorResponse:
+      value:
+        status: 403
+        error: true
+        message: Phone is not verified.
+        data:
+          emailVerified: true
+          phoneVerified: false
+    LoginInactiveErrorResponse:
+      value:
+        status: 403
+        error: true
+        message: User account is inactive.
+        data:
+          emailVerified: false
+          phoneVerified: true
+    BranchApplicationSubmittedResponse:
+      value:
+        status: 201
+        error: false
+        message: Your application has been submitted successfully. Please verify your email.
+        data: null
+    StaffCreatedResponse:
+      value:
+        status: 201
+        error: false
+        message: Staff created successfully.
+        data:
+          id: 7
+          name: Mazen Tamer
+          email: mazen.tamer@booklyx.com
+          phone: "01000000021"
+          role: staff
+          status: ACTIVE
+          emailVerified: false
+          phoneVerified: false
+          staff:
+            id: 7
+            branchId: 1
+            profileImageUrl: https://cdn.booklyx.com/staff/mazen-tamer.png
+            staffRole: BARBER
+            commissionPercentage: 15
+            isActive: true
+    ServiceCategoryCreatedResponse:
+      value:
+        status: 201
+        error: false
+        message: Category added successfully.
+        data:
+          id: 1
+          name: Hair Care
+          branchId: 1
+          createdAt: 2026-04-09T10:00:00.000Z
+          updatedAt: 2026-04-09T10:00:00.000Z
+    ServiceCategoriesListResponse:
+      value:
+        status: 200
+        error: false
+        message: Categories retrieved successfully.
+        data:
+          - id: 1
+            name: Hair Care
+            branchId: 1
+            createdAt: 2026-04-09T10:00:00.000Z
+            updatedAt: 2026-04-09T10:00:00.000Z
+          - id: 2
+            name: Facial Treatments
+            branchId: 1
+            createdAt: 2026-04-09T10:01:00.000Z
+            updatedAt: 2026-04-09T10:01:00.000Z
+    ServiceCreatedResponse:
+      value:
+        status: 201
+        error: false
+        message: Service created successfully.
+        data:
+          id: 1
+          branchId: 1
+          serviceCategoryId: 1
+          name: Haircut
+          description: Professional haircut with styling
+          price: 150
+          durationMinutes: 30
+          imageUrl: https://cdn.booklyx.com/services/haircut.png
+          status: PENDING_APPROVAL
+          rejectionReason: null
+          createdAt: 2026-04-09T10:15:00.000Z
+          updatedAt: 2026-04-09T10:15:00.000Z
+          category:
+            id: 1
+            name: Hair Care
+            branchId: 1
+            createdAt: 2026-04-09T10:00:00.000Z
+            updatedAt: 2026-04-09T10:00:00.000Z
+    ServicesListResponse:
+      value:
+        status: 200
+        error: false
+        message: Services retrieved successfully.
+        data:
+          - id: 1
+            branchId: 1
+            serviceCategoryId: 1
+            name: Haircut
+            description: Professional haircut with styling
+            price: 150
+            durationMinutes: 30
+            imageUrl: https://cdn.booklyx.com/services/haircut.png
+            status: APPROVED
+            rejectionReason: null
+            createdAt: 2026-04-09T10:15:00.000Z
+            updatedAt: 2026-04-09T10:15:00.000Z
+            category:
+              id: 1
+              name: Hair Care
+              branchId: 1
+              createdAt: 2026-04-09T10:00:00.000Z
+              updatedAt: 2026-04-09T10:00:00.000Z
+    ServiceUpdatedResponse:
+      value:
+        status: 200
+        error: false
+        message: Service updated successfully.
+        data:
+          id: 1
+          branchId: 1
+          serviceCategoryId: 1
+          name: Premium Haircut
+          description: Professional haircut with wash and styling
+          price: 180
+          durationMinutes: 40
+          imageUrl: https://cdn.booklyx.com/services/premium-haircut.png
+          status: PENDING_APPROVAL
+          rejectionReason: null
+          createdAt: 2026-04-09T10:15:00.000Z
+          updatedAt: 2026-04-09T10:25:00.000Z
+          category:
+            id: 1
+            name: Hair Care
+            branchId: 1
+            createdAt: 2026-04-09T10:00:00.000Z
+            updatedAt: 2026-04-09T10:00:00.000Z
+    ApplicationsListResponse:
+      value:
+        status: 200
+        error: false
+        message: Applications retrieved successfully.
+        data:
+          - id: 1
+            userId: 5
+            ownerName: Mahmoud Ibrahim
+            businessName: Hassan Beauty Salon
+            email: mahmoud.ibrahim@booklyx.com
+            category: SPA
+            description: Premium beauty and skincare services.
+            commercialRegisterNumber: CR-2026-001
+            taxId: TAX-2026-001
+            city: Cairo
+            district: Nasr City
+            address: 12 Makram Ebeid Street
+            latitude: 30.0626
+            longitude: 31.3368
+            status: APPROVED
+            emailVerified: true
+            phoneVerified: true
+            rejectionReason: null
+            createdAt: 2026-04-09T09:45:00.000Z
+            updatedAt: 2026-04-09T10:20:00.000Z
+    ApplicationDetailResponse:
+      value:
+        status: 200
+        error: false
+        message: Applications retrieved successfully.
+        data:
+          id: 1
+          userId: 5
+          ownerName: Mahmoud Ibrahim
+          businessName: Hassan Beauty Salon
+          email: mahmoud.ibrahim@booklyx.com
+          phone: "01000000011"
+          category: SPA
+          description: Premium beauty and skincare services.
+          commercialRegisterNumber: CR-2026-001
+          taxId: TAX-2026-001
+          city: Cairo
+          district: Nasr City
+          address: 12 Makram Ebeid Street
+          latitude: 30.0626
+          longitude: 31.3368
+          status: APPROVED
+          emailVerified: true
+          phoneVerified: true
+          rejectionReason: null
+          createdAt: 2026-04-09T09:45:00.000Z
+          updatedAt: 2026-04-09T10:20:00.000Z
+          documents:
+            - id: 1
+              type: COMMERCIAL_REGISTER
+              fileUrl: https://booklyxbackend-production.up.railway.app/files/download/commercial-register.pdf
+              createdAt: 2026-04-09T09:50:00.000Z
+          verificationCodes:
+            - id: 12
+              type: EMAIL
+              expiresAt: 2026-04-09T10:10:00.000Z
+              used: true
+              attempts: 1
+              createdAt: 2026-04-09T10:00:00.000Z
+    ApplicationApprovedResponse:
+      value:
+        status: 200
+        error: false
+        message: Application approved successfully.
+        data:
+          id: 5
+          name: Mahmoud Ibrahim
+          email: mahmoud.ibrahim@booklyx.com
+          phone: "01000000011"
+          role: branch_admin
+          status: ACTIVE
+          emailVerified: true
+          phoneVerified: true
+    ApplicationRejectedResponse:
+      value:
+        status: 200
+        error: false
+        message: Application rejected successfully.
+        data: null
+    PendingServicesResponse:
+      value:
+        status: 200
+        error: false
+        message: Services retrieved successfully.
+        data:
+          - id: 8
+            branchId: 1
+            serviceCategoryId: 1
+            name: Hair Coloring
+            description: Premium hair coloring service
+            price: 300
+            durationMinutes: 60
+            imageUrl: https://cdn.booklyx.com/services/hair-coloring.png
+            status: PENDING_APPROVAL
+            rejectionReason: null
+            createdAt: 2026-04-09T10:30:00.000Z
+            updatedAt: 2026-04-09T10:30:00.000Z
+            category:
+              id: 1
+              name: Hair Care
+              branchId: 1
+              createdAt: 2026-04-09T10:00:00.000Z
+              updatedAt: 2026-04-09T10:00:00.000Z
+            branch:
+              id: 1
+              businessName: Hassan Beauty Salon
+              ownerName: Mahmoud Ibrahim
+              userId: 5
+              status: APPROVED
+    ServiceApprovedResponse:
+      value:
+        status: 200
+        error: false
+        message: Service approved successfully.
+        data:
+          id: 8
+          branchId: 1
+          serviceCategoryId: 1
+          name: Hair Coloring
+          description: Premium hair coloring service
+          price: 300
+          durationMinutes: 60
+          imageUrl: https://cdn.booklyx.com/services/hair-coloring.png
+          status: APPROVED
+          rejectionReason: null
+          createdAt: 2026-04-09T10:30:00.000Z
+          updatedAt: 2026-04-09T10:35:00.000Z
+          category:
+            id: 1
+            name: Hair Care
+            branchId: 1
+            createdAt: 2026-04-09T10:00:00.000Z
+            updatedAt: 2026-04-09T10:00:00.000Z
+    ServiceRejectedResponse:
+      value:
+        status: 200
+        error: false
+        message: Service rejected successfully.
+        data:
+          id: 8
+          branchId: 1
+          serviceCategoryId: 1
+          name: Hair Coloring
+          description: Premium hair coloring service
+          price: 300
+          durationMinutes: 60
+          imageUrl: https://cdn.booklyx.com/services/hair-coloring.png
+          status: REJECTED
+          rejectionReason: Price not aligned with branch policy.
+          createdAt: 2026-04-09T10:30:00.000Z
+          updatedAt: 2026-04-09T10:36:00.000Z
+          category:
+            id: 1
+            name: Hair Care
+            branchId: 1
+            createdAt: 2026-04-09T10:00:00.000Z
+            updatedAt: 2026-04-09T10:00:00.000Z
+
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ApiError"
+
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ApiError"
+
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ApiError"
+
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ApiError"
+
+    Conflict:
+      description: Conflict
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ApiError"
+
+    TooManyRequests:
+      description: Too many requests
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ApiError"
+
+paths:
+  /auth/register:
+    post:
+      tags: [Auth/Verification]
+      summary: Register client account
+      description: Register client account.
+      operationId: postAuthRegister
+      parameters:
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterRequest"
+            examples:
+              default:
+                $ref: "#/components/examples/RegisterClientRequest"
+      responses:
+        "201":
+          description: Registered successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiSuccess"
+              examples:
+                default:
+                  $ref: "#/components/examples/RegisterSuccessResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "409":
+          $ref: "#/components/responses/Conflict"
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+
+  /auth/login:
+    post:
+      tags: [Auth/Session]
+      summary: Login
+      description: Login.
+      operationId: postAuthLogin
+      parameters:
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequest"
+            examples:
+              client:
+                $ref: "#/components/examples/LoginClientRequest"
+              staff:
+                $ref: "#/components/examples/LoginStaffRequest"
+              branchAdmin:
+                $ref: "#/components/examples/LoginBranchAdminRequest"
+              superAdmin:
+                $ref: "#/components/examples/LoginSuperAdminRequest"
+      responses:
+        "200":
+          description: Logged in
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiSuccess"
+                  - type: object
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/LoginResponseData"
+              examples:
+                clientApp:
+                  $ref: "#/components/examples/LoginClientSuccessResponse"
+                staffApp:
+                  $ref: "#/components/examples/LoginStaffSuccessResponse"
+                branchAdminApp:
+                  $ref: "#/components/examples/LoginBranchAdminSuccessResponse"
+                superAdminWeb:
+                  $ref: "#/components/examples/LoginSuperAdminSuccessResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Forbidden login state
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LoginForbiddenError"
+              examples:
+                emailNotVerified:
+                  $ref: "#/components/examples/LoginEmailNotVerifiedErrorResponse"
+                phoneNotVerified:
+                  $ref: "#/components/examples/LoginPhoneNotVerifiedErrorResponse"
+                inactiveUser:
+                  $ref: "#/components/examples/LoginInactiveErrorResponse"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+
+  /auth/verify-email:
+    post:
+      tags: [Auth/Verification]
+      summary: Verify email OTP
+      description: Verify email OTP.
+      operationId: postAuthVerifyEmail
+      parameters:
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VerifyCodeRequest"
+            examples:
+              default:
+                $ref: "#/components/examples/VerifyClientCodeRequest"
+      responses:
+        "200":
+          description: Email verified
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiSuccess"
+              examples:
+                default:
+                  $ref: "#/components/examples/VerifyEmailSuccessResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+
+  /auth/verify-phone:
+    post:
+      tags: [Auth/Verification]
+      summary: Verify phone OTP and login
+      description: Verify phone OTP and login.
+      operationId: postAuthVerifyPhone
+      parameters:
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VerifyCodeRequest"
+            examples:
+              default:
+                $ref: "#/components/examples/VerifyClientCodeRequest"
+      responses:
+        "200":
+          description: Phone verified and token returned
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiSuccess"
+                  - type: object
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/LoginResponseData"
+              examples:
+                default:
+                  $ref: "#/components/examples/VerifyPhoneSuccessResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+
+  /auth/resend-code:
+    post:
+      tags: [Auth/Verification]
+      summary: Resend verification/reset code
+      description: Resend verification/reset code.
+      operationId: postAuthResendCode
+      parameters:
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ResendCodeRequest"
+            examples:
+              email:
+                $ref: "#/components/examples/ResendEmailCodeRequest"
+              phone:
+                $ref: "#/components/examples/ResendPhoneCodeRequest"
+              passwordReset:
+                $ref: "#/components/examples/ResendPasswordResetCodeRequest"
+      responses:
+        "200":
+          description: Code sent
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiSuccess"
+              examples:
+                default:
+                  $ref: "#/components/examples/ResendCodeSuccessResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+
+  /auth/request-password-reset:
+    post:
+      tags: [Auth/Password Reset]
+      summary: Request password reset
+      description: Request password reset.
+      operationId: postAuthRequestPasswordReset
+      parameters:
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RequestPasswordResetRequest"
+            examples:
+              default:
+                $ref: "#/components/examples/PasswordResetRequest"
+      responses:
+        "200":
+          description: Password reset code sent
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiSuccess"
+              examples:
+                default:
+                  $ref: "#/components/examples/PasswordResetRequestSuccessResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+
+  /auth/verify-password-reset:
+    post:
+      tags: [Auth/Password Reset]
+      summary: Verify password reset OTP
+      description: Verify password reset OTP.
+      operationId: postAuthVerifyPasswordReset
+      parameters:
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VerifyCodeRequest"
+            examples:
+              default:
+                $ref: "#/components/examples/PasswordResetVerifyRequest"
+      responses:
+        "200":
+          description: OTP verified and reset token issued
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiSuccess"
+                  - type: object
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/VerifyPasswordResetResponseData"
+              examples:
+                default:
+                  $ref: "#/components/examples/VerifyPasswordResetSuccessResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+
+  /auth/reset-password:
+    post:
+      tags: [Auth/Password Reset]
+      summary: Reset password using reset token
+      description: Reset password using reset token.
+      operationId: postAuthResetPassword
+      parameters:
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ResetPasswordRequest"
+            examples:
+              default:
+                $ref: "#/components/examples/ResetPasswordRequest"
+      responses:
+        "200":
+          description: Password reset
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiSuccess"
+              examples:
+                default:
+                  $ref: "#/components/examples/ResetPasswordSuccessResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+
+  /auth/refresh:
+    post:
+      tags: [Auth/Session]
+      summary: Refresh access token
+      description: Refresh access token.
+      operationId: postAuthRefresh
+      parameters:
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RefreshTokenRequest"
+            examples:
+              app:
+                $ref: "#/components/examples/RefreshTokenRequest"
+      responses:
+        "200":
+          description: New access token issued
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiSuccess"
+                  - type: object
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/AuthTokens"
+              examples:
+                default:
+                  $ref: "#/components/examples/RefreshSuccessResponse"
+                staff:
+                  $ref: "#/components/examples/RefreshStaffSuccessResponse"
+                branchAdmin:
+                  $ref: "#/components/examples/RefreshBranchAdminSuccessResponse"
+                superAdmin:
+                  $ref: "#/components/examples/RefreshSuperAdminSuccessResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /auth/logout:
+    post:
+      tags: [Auth/Session]
+      summary: Logout
+      description: |
+        Revoke the current refresh token. APP clients send `refreshToken` in the body.
+        WEB clients can rely on the `refreshToken` cookie, which is cleared by the server.
+      operationId: postAuthLogout
+      parameters:
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RefreshTokenRequest"
+            examples:
+              app:
+                $ref: "#/components/examples/RefreshTokenRequest"
+      responses:
+        "200":
+          description: Logged out
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiSuccess"
+              examples:
+                default:
+                  value:
+                    status: 200
+                    error: false
+                    message: Logged out successfully.
+                    data: null
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+
+  /branch-admin/apply:
+    post:
+      tags: [branch_admin/Application]
+      summary: Submit branch_admin application
+      description: Submit branch_admin application.
+      operationId: postBranchAdminApply
+      parameters:
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BranchAdminApplyRequestJson"
+            examples:
+              default:
+                $ref: "#/components/examples/BranchAdminApplyRequest"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/BranchAdminApplyRequestMultipart"
+      responses:
+        "201":
+          description: Application submitted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiSuccess"
+              examples:
+                default:
+                  $ref: "#/components/examples/BranchApplicationSubmittedResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "409":
+          $ref: "#/components/responses/Conflict"
+
+  /branch-admin/verify-email:
+    post:
+      tags: [branch_admin/Application]
+      summary: Verify application email OTP
+      description: Verify application email OTP.
+      operationId: postBranchAdminVerifyEmail
+      parameters:
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VerifyCodeRequest"
+            examples:
+              default:
+                $ref: "#/components/examples/VerifyBranchApplicationCodeRequest"
+      responses:
+        "200":
+          description: Email verified
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiSuccess"
+              examples:
+                default:
+                  $ref: "#/components/examples/BranchVerifyEmailSuccessResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+
+  /branch-admin/verify-phone:
+    post:
+      tags: [branch_admin/Application]
+      summary: Verify application phone OTP
+      description: Verify application phone OTP.
+      operationId: postBranchAdminVerifyPhone
+      parameters:
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VerifyCodeRequest"
+            examples:
+              default:
+                $ref: "#/components/examples/VerifyBranchApplicationCodeRequest"
+      responses:
+        "200":
+          description: Phone verified
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiSuccess"
+              examples:
+                default:
+                  $ref: "#/components/examples/BranchVerifyPhoneSuccessResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+
+  /branch-admin/resend-code:
+    post:
+      tags: [branch_admin/Application]
+      summary: Resend branch_admin application OTP
+      description: Resend branch_admin application OTP.
+      operationId: postBranchAdminResendCode
+      parameters:
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BranchResendCodeRequest"
+            examples:
+              default:
+                $ref: "#/components/examples/BranchAdminResendRequest"
+      responses:
+        "200":
+          description: Code resent
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiSuccess"
+              examples:
+                default:
+                  $ref: "#/components/examples/BranchResendCodeSuccessResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+
+  /branch-admin/profile:
+    put:
+      tags: [branch_admin/Profile]
+      summary: Update branch profile
+      description: Update authenticated branch_admin profile data.
+      operationId: putBranchAdminProfile
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                phone:
+                  type: string
+                logoUrl:
+                  type: string
+                  format: uri
+                operatingHours:
+                  type: string
+                address:
+                  type: string
+                currentPassword:
+                  type: string
+                newPassword:
+                  type: string
+            examples:
+              default:
+                value:
+                  name: "Updated Branch Name"
+                  phone: "01000000022"
+                  operatingHours: "09:00-22:00"
+                  address: "New address"
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                phone:
+                  type: string
+                logo:
+                  type: string
+                  format: binary
+                operatingHours:
+                  type: string
+                address:
+                  type: string
+                currentPassword:
+                  type: string
+                newPassword:
+                  type: string
+      responses:
+        "200":
+          description: Profile updated
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiSuccess"
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                          ownerName:
+                            type: string
+                          email:
+                            type: string
+                          phone:
+                            type: string
+                          businessName:
+                            type: string
+                          category:
+                            type: string
+                          logoUrl:
+                            type: string
+                            nullable: true
+                          operatingHours:
+                            type: string
+                            nullable: true
+                          address:
+                            type: string
+                            nullable: true
+              examples:
+                default:
+                  value:
+                    status: 200
+                    error: false
+                    message: Profile updated successfully
+                    data:
+                      id: 1
+                      ownerName: Updated Branch Name
+                      email: branch@example.com
+                      phone: "01000000022"
+                      businessName: Prime Salon
+                      category: SALON
+                      logoUrl: https://cdn.booklyx.com/branch/logo.png
+                      operatingHours: 09:00-22:00
+                      address: New address
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /branch-admin/create-staff:
+    post:
+      tags: [branch_admin/Staff]
+      summary: Create staff user
+      description: Create staff user.
+      operationId: postBranchAdminCreateStaff
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateStaffRequest"
+            examples:
+              default:
+                $ref: "#/components/examples/CreateStaffRequest"
+      responses:
+        "201":
+          description: Staff created
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiSuccess"
+                  - type: object
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/User"
+              examples:
+                default:
+                  $ref: "#/components/examples/StaffCreatedResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+
+  /branch-admin/staff/my-staff:
+    get:
+      tags: [branch_admin/Staff]
+      summary: List current branch_admin staff
+      description: List current branch_admin staff.
+      operationId: getBranchAdminStaffMyStaff
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+      responses:
+        "200":
+          description: Staff fetched
+          content:
+            application/json:
+              examples:
+                default:
+                  $ref: "#/components/examples/BranchAdminStaffListResponse"
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiSuccess"
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/User"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+
+  /branch-admin/staff/{id}:
+    get:
+      tags: [branch_admin/Staff]
+      summary: Get staff by id for current branch_admin
+      description: Get staff by id for current branch_admin.
+      operationId: getBranchAdminStaffById
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+      responses:
+        "200":
+          description: Staff fetched
+          content:
+            application/json:
+              examples:
+                default:
+                  $ref: "#/components/examples/BranchAdminStaffDetailResponse"
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiSuccess"
+                  - type: object
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/User"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+    put:
+      tags: [branch_admin/Staff]
+      summary: Update staff by id for current branch_admin
+      description: Update staff by id for current branch_admin.
+      operationId: putBranchAdminStaffById
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateStaffRequest"
+            examples:
+              default:
+                $ref: "#/components/examples/UpdateStaffRequest"
+      responses:
+        "200":
+          description: Staff updated
+          content:
+            application/json:
+              examples:
+                default:
+                  $ref: "#/components/examples/BranchAdminStaffUpdatedResponse"
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiSuccess"
+                  - type: object
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/User"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+    delete:
+      tags: [branch_admin/Staff]
+      summary: Delete staff by id for current branch_admin
+      description: Delete staff by id for current branch_admin.
+      operationId: deleteBranchAdminStaffById
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+      responses:
+        "200":
+          description: Staff deleted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiSuccess"
+              examples:
+                default:
+                  $ref: "#/components/examples/BranchAdminStaffDeletedResponse"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /branch-admin/services/categories:
+    post:
+      tags: [branch_admin/Services]
+      summary: Add service category
+      description: Add service category.
+      operationId: postBranchAdminServicesCategories
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddServiceCategoryRequest"
+            examples:
+              default:
+                $ref: "#/components/examples/AddServiceCategoryRequest"
+      responses:
+        "201":
+          description: Category added
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiSuccess"
+                  - type: object
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/ServiceCategory"
+              examples:
+                default:
+                  $ref: "#/components/examples/ServiceCategoryCreatedResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+
+    get:
+      tags: [branch_admin/Services]
+      summary: List service categories for current branch_admin
+      description: List service categories for current branch_admin.
+      operationId: getBranchAdminServicesCategories
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+      responses:
+        "200":
+          description: Categories fetched
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiSuccess"
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/ServiceCategory"
+              examples:
+                default:
+                  $ref: "#/components/examples/ServiceCategoriesListResponse"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+
+  /branch-admin/services/create-service:
+    post:
+      tags: [branch_admin/Services]
+      summary: Create service (pending approval)
+      description: Create service (pending approval).
+      operationId: postBranchAdminServicesCreateService
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateServiceRequestJson"
+            examples:
+              default:
+                $ref: "#/components/examples/CreateServiceRequest"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/CreateServiceRequestMultipart"
+      responses:
+        "201":
+          description: Service created
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiSuccess"
+                  - type: object
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/Service"
+              examples:
+                default:
+                  $ref: "#/components/examples/ServiceCreatedResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+
+  /branch-admin/services:
+    post:
+      tags: [branch_admin/Services]
+      summary: Create service (alias)
+      description: Alias endpoint for creating a service (pending approval).
+      operationId: postBranchAdminServices
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateServiceRequestJson"
+            examples:
+              default:
+                $ref: "#/components/examples/CreateServiceRequest"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/CreateServiceRequestMultipart"
+      responses:
+        "201":
+          description: Service created
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiSuccess"
+                  - type: object
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/Service"
+              examples:
+                default:
+                  $ref: "#/components/examples/ServiceCreatedResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+
+  /branch-admin/services/my-services:
+    get:
+      tags: [branch_admin/Services]
+      summary: List current branch_admin services
+      description: List current branch_admin services.
+      operationId: getBranchAdminServicesMyServices
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+        - $ref: "#/components/parameters/ServiceStatusQuery"
+      responses:
+        "200":
+          description: Services fetched
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiSuccess"
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Service"
+              examples:
+                default:
+                  $ref: "#/components/examples/ServicesListResponse"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+
+  /branch-admin/my-services:
+    get:
+      tags: [branch_admin/Services]
+      summary: List current branch_admin services (alias)
+      description: Backward-compatible alias for listing current branch_admin services.
+      operationId: getBranchAdminMyServices
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+        - $ref: "#/components/parameters/ServiceStatusQuery"
+      responses:
+        "200":
+          description: Services fetched
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiSuccess"
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Service"
+              examples:
+                default:
+                  $ref: "#/components/examples/ServicesListResponse"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+
+  /branch-admin/services/{id}:
+    put:
+      tags: [branch_admin/Services]
+      summary: Update service by id
+      description: Update service by id.
+      operationId: putBranchAdminServicesById
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateServiceRequestJson"
+            examples:
+              default:
+                $ref: "#/components/examples/UpdateServiceRequest"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/UpdateServiceRequestMultipart"
+      responses:
+        "200":
+          description: Service updated
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiSuccess"
+                  - type: object
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/Service"
+              examples:
+                default:
+                  $ref: "#/components/examples/ServiceUpdatedResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+    delete:
+      tags: [branch_admin/Services]
+      summary: Delete service by id
+      description: Delete service by id.
+      operationId: deleteBranchAdminServicesById
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+      responses:
+        "200":
+          description: Service deleted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiSuccess"
+              examples:
+                default:
+                  $ref: "#/components/examples/ServiceDeletedResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /staff/profile:
+    get:
+      tags: [staff/Profile]
+      summary: Get authenticated staff profile
+      description: Get authenticated staff profile.
+      operationId: getStaffProfile
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+      responses:
+        "200":
+          description: Staff profile fetched
+          content:
+            application/json:
+              examples:
+                default:
+                  $ref: "#/components/examples/StaffProfileResponse"
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiSuccess"
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                          phone:
+                            type: string
+                          profileImageUrl:
+                            type: string
+                            nullable: true
+                          staffRole:
+                            type: string
+                            enum: [DOCTOR, BARBER, SPA_SPECIALIST]
+                          age:
+                            type: integer
+                          commissionPercentage:
+                            type: number
+                          branch:
+                            type: object
+                            properties:
+                              businessName:
+                                type: string
+                              category:
+                                type: string
+                          professionalProfile:
+                            type: object
+                            nullable: true
+                          averageRating:
+                            type: number
+                          reviewCount:
+                            type: integer
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+
+  /staff/schedule:
+    get:
+      tags: [staff/Schedule]
+      summary: Get staff schedule for a day
+      description: Get staff schedule for a day.
+      operationId: getStaffSchedule
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+        - name: date
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: Schedule fetched
+          content:
+            application/json:
+              examples:
+                default:
+                  $ref: "#/components/examples/StaffScheduleResponse"
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiSuccess"
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          today:
+                            type: array
+                            items:
+                              type: object
+                          upcoming:
+                            type: array
+                            items:
+                              type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+
+  /staff/requests:
+    get:
+      tags: [staff/Requests]
+      summary: List pending appointment requests
+      description: List pending appointment requests.
+      operationId: getStaffRequests
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+      responses:
+        "200":
+          description: Requests fetched
+          content:
+            application/json:
+              examples:
+                default:
+                  $ref: "#/components/examples/StaffRequestsResponse"
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiSuccess"
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          type: object
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+
+  /staff/appointments/{appointmentId}/accept:
+    patch:
+      tags: [staff/Appointments]
+      summary: Accept a pending appointment
+      description: Accept a pending appointment.
+      operationId: patchStaffAppointmentsByAppointmentIdAccept
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: appointmentId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+      responses:
+        "200":
+          description: Appointment accepted
+          content:
+            application/json:
+              examples:
+                default:
+                  $ref: "#/components/examples/StaffAppointmentAcceptedResponse"
+              schema:
+                $ref: "#/components/schemas/ApiSuccess"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+
+  /staff/appointments/{appointmentId}/reject:
+    patch:
+      tags: [staff/Appointments]
+      summary: Reject a pending appointment
+      description: Reject a pending appointment.
+      operationId: patchStaffAppointmentsByAppointmentIdReject
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: appointmentId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+      responses:
+        "200":
+          description: Appointment rejected
+          content:
+            application/json:
+              examples:
+                default:
+                  $ref: "#/components/examples/StaffAppointmentRejectedResponse"
+              schema:
+                $ref: "#/components/schemas/ApiSuccess"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+
+  /staff/appointments/{appointmentId}/start:
+    patch:
+      tags: [staff/Appointments]
+      summary: Mark an appointment as in progress
+      description: Mark an appointment as in progress.
+      operationId: patchStaffAppointmentsByAppointmentIdStart
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: appointmentId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+      responses:
+        "200":
+          description: Appointment started
+          content:
+            application/json:
+              examples:
+                default:
+                  $ref: "#/components/examples/StaffAppointmentStartedResponse"
+              schema:
+                $ref: "#/components/schemas/ApiSuccess"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+
+  /staff/appointments/{appointmentId}/complete:
+    patch:
+      tags: [staff/Appointments]
+      summary: Mark an appointment as completed
+      description: Mark an appointment as completed.
+      operationId: patchStaffAppointmentsByAppointmentIdComplete
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: appointmentId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            examples:
+              default:
+                $ref: "#/components/examples/StaffCompleteAppointmentRequest"
+            schema:
+              type: object
+              properties:
+                notes:
+                  type: string
+      responses:
+        "200":
+          description: Appointment completed
+          content:
+            application/json:
+              examples:
+                default:
+                  $ref: "#/components/examples/StaffAppointmentCompletedResponse"
+              schema:
+                $ref: "#/components/schemas/ApiSuccess"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+
+  /staff/income:
+    get:
+      tags: [staff/Income]
+      summary: Get staff income statistics
+      description: Get staff income statistics.
+      operationId: getStaffIncome
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+        - name: range
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [weekly, monthly]
+      responses:
+        "200":
+          description: Income statistics fetched
+          content:
+            application/json:
+              examples:
+                default:
+                  $ref: "#/components/examples/StaffIncomeResponse"
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiSuccess"
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          totalEarnings:
+                            type: number
+                          serviceCount:
+                            type: integer
+                          range:
+                            type: string
+                          dailyStats:
+                            type: array
+                            items:
+                              $ref: "#/components/schemas/StaffIncomeDailyStat"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+
+  /staff/services:
+    get:
+      tags: [staff/Services]
+      summary: List staff services
+      description: List staff services.
+      operationId: getStaffServices
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+      responses:
+        "200":
+          description: Services fetched
+          content:
+            application/json:
+              examples:
+                default:
+                  $ref: "#/components/examples/StaffServicesResponse"
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiSuccess"
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          type: object
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+    post:
+      tags: [staff/Services]
+      summary: Add a service to the staff profile
+      description: Add a service to the staff profile.
+      operationId: postStaffServices
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            examples:
+              default:
+                $ref: "#/components/examples/StaffAddServiceRequest"
+            schema:
+              type: object
+              required: [serviceId]
+              properties:
+                serviceId:
+                  type: integer
+                  minimum: 1
+      responses:
+        "201":
+          description: Service added
+          content:
+            application/json:
+              examples:
+                default:
+                  $ref: "#/components/examples/StaffServiceAddedResponse"
+              schema:
+                $ref: "#/components/schemas/ApiSuccess"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+
+  /staff/availability:
+    get:
+      tags: [staff/Availability]
+      summary: List staff availability slots
+      description: List staff availability slots.
+      operationId: getStaffAvailability
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+      responses:
+        "200":
+          description: Availability fetched
+          content:
+            application/json:
+              examples:
+                default:
+                  $ref: "#/components/examples/StaffAvailabilityListResponse"
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiSuccess"
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          type: object
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+    post:
+      tags: [staff/Availability]
+      summary: Create a staff availability slot
+      description: Create a staff availability slot.
+      operationId: postStaffAvailability
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            examples:
+              default:
+                $ref: "#/components/examples/StaffCreateAvailabilityRequest"
+            schema:
+              type: object
+              required: [dayOfWeek, startTime, endTime]
+              properties:
+                dayOfWeek:
+                  type: integer
+                  minimum: 0
+                  maximum: 6
+                startTime:
+                  type: string
+                endTime:
+                  type: string
+      responses:
+        "201":
+          description: Availability created
+          content:
+            application/json:
+              examples:
+                default:
+                  $ref: "#/components/examples/StaffAvailabilityCreatedResponse"
+              schema:
+                $ref: "#/components/schemas/ApiSuccess"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+
+  /staff/availability/{availabilityId}:
+    put:
+      tags: [staff/Availability]
+      summary: Update a staff availability slot
+      description: Update a staff availability slot.
+      operationId: putStaffAvailabilityByAvailabilityId
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: availabilityId
+          in: path
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            examples:
+              default:
+                $ref: "#/components/examples/StaffUpdateAvailabilityRequest"
+            schema:
+              type: object
+      responses:
+        "200":
+          description: Availability updated
+          content:
+            application/json:
+              examples:
+                default:
+                  $ref: "#/components/examples/StaffAvailabilityUpdatedResponse"
+              schema:
+                $ref: "#/components/schemas/ApiSuccess"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    delete:
+      tags: [staff/Availability]
+      summary: Delete a staff availability slot
+      description: Delete a staff availability slot.
+      operationId: deleteStaffAvailabilityByAvailabilityId
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: availabilityId
+          in: path
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+      responses:
+        "200":
+          description: Availability deleted
+          content:
+            application/json:
+              examples:
+                default:
+                  $ref: "#/components/examples/StaffAvailabilityDeletedResponse"
+              schema:
+                $ref: "#/components/schemas/ApiSuccess"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /staff/available-slots:
+    get:
+      tags: [staff/Availability]
+      summary: Get available booking slots for a service
+      description: Get available booking slots for a service.
+      operationId: getStaffAvailableSlots
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+        - name: date
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: serviceId
+          in: query
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+      responses:
+        "200":
+          description: Available slots fetched
+          content:
+            application/json:
+              examples:
+                default:
+                  $ref: "#/components/examples/StaffAvailableSlotsResponse"
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiSuccess"
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          date:
+                            type: string
+                          serviceId:
+                            type: integer
+                          available:
+                            type: boolean
+                          slots:
+                            type: array
+                            items:
+                              type: object
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+
+  /admin/applications:
+    get:
+      tags: [super_admin/Applications]
+      summary: List branch applications
+      description: List branch applications.
+      operationId: getAdminApplications
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+        - $ref: "#/components/parameters/ApplicationStatusQuery"
+      responses:
+        "200":
+          description: Applications fetched
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiSuccess"
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/BranchApplication"
+              examples:
+                default:
+                  $ref: "#/components/examples/ApplicationsListResponse"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+
+  /admin/applications/{id}:
+    get:
+      tags: [super_admin/Applications]
+      summary: Get application details
+      description: Get application details.
+      operationId: getAdminApplicationsById
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+      responses:
+        "200":
+          description: Application details fetched
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiSuccess"
+                  - type: object
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/BranchApplication"
+              examples:
+                default:
+                  $ref: "#/components/examples/ApplicationDetailResponse"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /admin/applications/{id}/approve:
+    post:
+      tags: [super_admin/Applications]
+      summary: Approve branch application
+      description: Approve branch application.
+      operationId: postAdminApplicationsByIdApprove
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+      responses:
+        "200":
+          description: Application approved
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiSuccess"
+                  - type: object
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/User"
+              examples:
+                default:
+                  $ref: "#/components/examples/ApplicationApprovedResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /admin/applications/{id}/reject:
+    post:
+      tags: [super_admin/Applications]
+      summary: Reject branch application
+      description: Reject branch application.
+      operationId: postAdminApplicationsByIdReject
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RejectReasonRequest"
+            examples:
+              default:
+                $ref: "#/components/examples/RejectReasonRequest"
+      responses:
+        "200":
+          description: Application rejected
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiSuccess"
+              examples:
+                default:
+                  $ref: "#/components/examples/ApplicationRejectedResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /admin/services/pending:
+    get:
+      tags: [super_admin/Services]
+      summary: List pending services
+      description: List pending services.
+      operationId: getAdminServicesPending
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+      responses:
+        "200":
+          description: Pending services fetched
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiSuccess"
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Service"
+              examples:
+                default:
+                  $ref: "#/components/examples/PendingServicesResponse"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+
+  /admin/services/{id}/approve:
+    post:
+      tags: [super_admin/Services]
+      summary: Approve pending service
+      description: Approve pending service.
+      operationId: postAdminServicesByIdApprove
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+      responses:
+        "200":
+          description: Service approved
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiSuccess"
+                  - type: object
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/Service"
+              examples:
+                default:
+                  $ref: "#/components/examples/ServiceApprovedResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /admin/services/{id}/reject:
+    post:
+      tags: [super_admin/Services]
+      summary: Reject pending service
+      description: Reject pending service.
+      operationId: postAdminServicesByIdReject
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RejectReasonRequest"
+            examples:
+              default:
+                $ref: "#/components/examples/RejectReasonRequest"
+      responses:
+        "200":
+          description: Service rejected
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiSuccess"
+                  - type: object
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/Service"
+              examples:
+                default:
+                  $ref: "#/components/examples/ServiceRejectedResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /files/download/{filename}:
+    get:
+      tags: [Files]
+      summary: Download sensitive file (requires authentication)
+      operationId: getFilesDownloadByFilename
+      description: Download sensitive files (documents, certificates) by stored filename. Requires user authentication. Access control is enforced server-side.
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: filename
+          in: path
+          required: true
+          schema:
+            type: string
+            maxLength: 100
+          description: Stored upload filename.
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+      responses:
+        "200":
+          description: File stream
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /files/public/{filename}:
+    get:
+      tags: [Files]
+      summary: Download public file
+      operationId: getFilesPublicByFilename
+      description: Download public files (for example service images) by stored filename.
+      parameters:
+        - name: filename
+          in: path
+          required: true
+          schema:
+            type: string
+            maxLength: 100
+          description: Stored upload filename.
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+      responses:
+        "200":
+          description: File stream
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /offers:
+    post:
+      tags: [branch_admin/Offers]
+      summary: Create offer
+      description: Create a new offer for authenticated branch_admin.
+      operationId: postOffers
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                [
+                  title,
+                  discountType,
+                  discountValue,
+                  startDate,
+                  endDate,
+                  serviceIds,
+                ]
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                  nullable: true
+                discountType:
+                  type: string
+                  enum: [PERCENTAGE, FIXED]
+                discountValue:
+                  type: number
+                startDate:
+                  type: string
+                  format: date-time
+                endDate:
+                  type: string
+                  format: date-time
+                usageLimit:
+                  type: integer
+                  minimum: 1
+                  nullable: true
+                serviceIds:
+                  type: array
+                  items:
+                    type: integer
+                    minimum: 1
+            examples:
+              default:
+                value:
+                  title: Weekend Offer
+                  description: 20 percent discount this weekend
+                  discountType: PERCENTAGE
+                  discountValue: 20
+                  startDate: "2026-04-24T00:00:00.000Z"
+                  endDate: "2026-04-26T23:59:59.000Z"
+                  usageLimit: 100
+                  serviceIds: [1, 2]
+      responses:
+        "201":
+          description: Offer created
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiSuccess"
+                  - type: object
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/Offer"
+              examples:
+                default:
+                  value:
+                    status: 201
+                    error: false
+                    message: Offer created
+                    data:
+                      id: 7f6d2f79-34f7-4f01-b9fb-6f8d71f618f9
+                      title: Weekend Offer
+                      description: 20 percent discount this weekend
+                      discountType: PERCENTAGE
+                      discountValue: 20
+                      startDate: 2026-04-24T00:00:00.000Z
+                      endDate: 2026-04-26T23:59:59.000Z
+                      isActive: true
+                      usageLimit: 100
+                      usedCount: 0
+                      branchId: 1
+                      createdAt: 2026-04-20T09:00:00.000Z
+                      updatedAt: 2026-04-20T09:00:00.000Z
+                      services:
+                        - id: 1
+                          name: Haircut
+                          price: 150
+                          status: APPROVED
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+
+    get:
+      tags: [branch_admin/Offers]
+      summary: List branch offers
+      description: List offers for authenticated branch_admin.
+      operationId: getOffers
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+      responses:
+        "200":
+          description: Offers fetched
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiSuccess"
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Offer"
+              examples:
+                default:
+                  value:
+                    status: 200
+                    error: false
+                    message: Offers fetched successfully
+                    data:
+                      - id: 7f6d2f79-34f7-4f01-b9fb-6f8d71f618f9
+                        title: Weekend Offer
+                        description: 20 percent discount this weekend
+                        discountType: PERCENTAGE
+                        discountValue: 20
+                        startDate: 2026-04-24T00:00:00.000Z
+                        endDate: 2026-04-26T23:59:59.000Z
+                        isActive: true
+                        usageLimit: 100
+                        usedCount: 0
+                        branchId: 1
+                        createdAt: 2026-04-20T09:00:00.000Z
+                        updatedAt: 2026-04-20T09:00:00.000Z
+                        services:
+                          - id: 1
+                            name: Haircut
+                            price: 150
+                            status: APPROVED
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+
+  /offers/{id}:
+    put:
+      tags: [branch_admin/Offers]
+      summary: Update offer by id
+      description: Update an offer owned by authenticated branch_admin.
+      operationId: putOffersById
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                  nullable: true
+                discountType:
+                  type: string
+                  enum: [PERCENTAGE, FIXED]
+                discountValue:
+                  type: number
+                startDate:
+                  type: string
+                  format: date-time
+                endDate:
+                  type: string
+                  format: date-time
+                usageLimit:
+                  type: integer
+                  minimum: 1
+                  nullable: true
+                isActive:
+                  type: boolean
+                serviceIds:
+                  type: array
+                  items:
+                    type: integer
+                    minimum: 1
+            examples:
+              default:
+                value:
+                  title: Updated Weekend Offer
+                  discountValue: 25
+                  isActive: true
+      responses:
+        "200":
+          description: Offer updated
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiSuccess"
+                  - type: object
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/Offer"
+              examples:
+                default:
+                  value:
+                    status: 200
+                    error: false
+                    message: Offer updated
+                    data:
+                      id: 7f6d2f79-34f7-4f01-b9fb-6f8d71f618f9
+                      title: Updated Weekend Offer
+                      description: 20 percent discount this weekend
+                      discountType: PERCENTAGE
+                      discountValue: 25
+                      startDate: 2026-04-24T00:00:00.000Z
+                      endDate: 2026-04-26T23:59:59.000Z
+                      isActive: true
+                      usageLimit: 100
+                      usedCount: 0
+                      branchId: 1
+                      createdAt: 2026-04-20T09:00:00.000Z
+                      updatedAt: 2026-04-20T10:00:00.000Z
+                      services:
+                        - id: 1
+                          name: Haircut
+                          price: 150
+                          status: APPROVED
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /offers/{id}/toggle:
+    patch:
+      tags: [branch_admin/Offers]
+      summary: Toggle offer active state
+      description: Toggle active/inactive state for an offer owned by authenticated branch_admin.
+      operationId: patchOffersByIdToggle
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+      responses:
+        "200":
+          description: Offer toggled
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiSuccess"
+              examples:
+                default:
+                  value:
+                    status: 200
+                    error: false
+                    message: Offer toggled
+                    data:
+                      id: 7f6d2f79-34f7-4f01-b9fb-6f8d71f618f9
+                      isActive: false
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /reviews:
+    get:
+      tags: [Reviews]
+      summary: List scoped reviews
+      description: List reviews visible to authenticated branch_admin, staff, or super_admin.
+      operationId: getReviews
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+        - name: serviceId
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+        - name: staffId
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+      responses:
+        "200":
+          description: Reviews fetched
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiSuccess"
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          reviews:
+                            type: array
+                            items:
+                              $ref: "#/components/schemas/Review"
+                          pagination:
+                            $ref: "#/components/schemas/Pagination"
+              examples:
+                default:
+                  value:
+                    status: 200
+                    error: false
+                    message: Reviews fetched successfully
+                    data:
+                      reviews:
+                        - id: 2f5100e4-6400-4db4-9172-7abdc18b0f88
+                          rating: 5
+                          comment: Great experience
+                          createdAt: 2026-04-21T10:00:00.000Z
+                          reviewer:
+                            id: 3
+                            name: Abdo Khalil
+                            role: client
+                          service:
+                            id: 1
+                            name: Haircut
+                          staff:
+                            id: 7
+                            user:
+                              id: 6
+                              name: Mazen Tamer
+                      pagination:
+                        page: 1
+                        limit: 20
+                        total: 1
+                        totalPages: 1
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+
+  /reviews/my:
+    get:
+      tags: [Reviews]
+      summary: List my submitted reviews
+      description: List reviews submitted by authenticated user.
+      operationId: getReviewsMy
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/AcceptLanguageHeader"
+        - $ref: "#/components/parameters/PlatformHeader"
+        - name: serviceId
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+        - name: staffId
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+      responses:
+        "200":
+          description: My reviews fetched
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/ApiSuccess"
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          reviews:
+                            type: array
+                            items:
+                              $ref: "#/components/schemas/Review"
+                          pagination:
+                            $ref: "#/components/schemas/Pagination"
+              examples:
+                default:
+                  value:
+                    status: 200
+                    error: false
+                    message: My reviews fetched successfully
+                    data:
+                      reviews:
+                        - id: 5f61524e-158d-45bc-8a30-36a7fd03a2e1
+                          rating: 4
+                          comment: Nice service
+                          createdAt: 2026-04-22T09:30:00.000Z
+                          reviewer:
+                            id: 3
+                            name: Abdo Khalil
+                            role: client
+                          service:
+                            id: 8
+                            name: Hair Coloring
+                          staff:
+                            id: 7
+                            user:
+                              id: 6
+                              name: Mazen Tamer
+                      pagination:
+                        page: 1
+                        limit: 20
+                        total: 1
+                        totalPages: 1
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
