@@ -12,7 +12,8 @@ enum UserType {
         return tr.staff;
     }
   }
- static UserType fromString(String name) {
+
+  static UserType fromString(String name) {
     switch (name) {
       case 'client':
         return UserType.client;
@@ -22,6 +23,7 @@ enum UserType {
         throw ArgumentError('Invalid user type: $name');
     }
   }
+
   bool get isClient => this == UserType.client;
   bool get isStaff => this == UserType.staff;
 }

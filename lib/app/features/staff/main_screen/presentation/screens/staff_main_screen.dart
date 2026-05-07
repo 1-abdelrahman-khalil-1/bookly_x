@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bookly_x_client/app/core/themes/app_colors.dart';
+import 'package:bookly_x_client/app/features/staff/bookings/presentation/screens/staff_bookings_screen.dart';
+import 'package:bookly_x_client/app/features/staff/earnings/presentation/screens/staff_earnings_screen.dart';
 import 'package:bookly_x_client/app/features/staff/home/presentation/screens/staff_home_screen.dart';
 import 'package:bookly_x_client/generated/my_icons.dart';
 import 'package:bookly_x_client/generated/style_atoms.dart';
@@ -19,14 +21,8 @@ class StaffMainScreen extends ConsumerWidget {
     final selectedIndex = ref.watch(staffSelectedTabProvider);
     final pages = [
       const StaffHomeScreen(),
-      _PlaceholderTab(
-        title: tr.bookings,
-        icon: MyIcons.calendarOutline,
-      ),
-      _PlaceholderTab(
-        title: tr.income,
-        icon: MyIcons.walletOutline,
-      ),
+      const StaffBookingsScreen(),
+      const StaffEarningsScreen(),
     ];
 
     return Scaffold(

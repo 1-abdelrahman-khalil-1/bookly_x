@@ -21,33 +21,31 @@ class _ClientManagePreferencesScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppbar(title: tr.manageFavorites),
-      body: SafeArea(
-        minimum: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            SwitchListTile.adaptive(
-              title: Text(tr.favorites),
-              subtitle: Text(tr.manageFavorites),
-            value: _favoriteServices,
-            onChanged: (value) => setState(() => _favoriteServices = value),
+        appBar: CustomAppbar(title: tr.manageFavorites),
+        body: SafeArea(
+          minimum: const EdgeInsets.all(16),
+          child: Column(
+            children: [
+              SwitchListTile.adaptive(
+                title: Text(tr.favorites),
+                subtitle: Text(tr.manageFavorites),
+                value: _favoriteServices,
+                onChanged: (value) => setState(() => _favoriteServices = value),
+              ),
+              SwitchListTile.adaptive(
+                title: Text(tr.offers),
+                subtitle: Text(tr.availableOffers),
+                value: _offersAndDeals,
+                onChanged: (value) => setState(() => _offersAndDeals = value),
+              ),
+              SwitchListTile.adaptive(
+                title: Text(tr.language),
+                subtitle: Text(tr.chooseYourPreferredLanguage),
+                value: _languageUpdates,
+                onChanged: (value) => setState(() => _languageUpdates = value),
+              ),
+            ],
           ),
-          SwitchListTile.adaptive(
-            title: Text(tr.offers),
-            subtitle: Text(tr.availableOffers),
-            value: _offersAndDeals,
-            onChanged: (value) => setState(() => _offersAndDeals = value),
-          ),
-          SwitchListTile.adaptive(
-            title: Text(tr.language),
-            subtitle: Text(tr.chooseYourPreferredLanguage),
-            value: _languageUpdates,
-            onChanged: (value) => setState(() => _languageUpdates = value),
-          ),
-        ],
-      ),
-    ));
+        ));
   }
 }
-
-

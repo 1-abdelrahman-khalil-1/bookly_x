@@ -11,372 +11,784 @@ import 'package:slang/generated.dart';
 import 'translations.g.dart';
 
 // Path: <root>
-class TranslationsAr with BaseTranslations<AppLocale, Translations> implements Translations {
-	/// You can call this constructor and build your own translation instance of this locale.
-	/// Constructing via the enum [AppLocale.build] is preferred.
-	TranslationsAr({Map<String, Node>? overrides, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver, TranslationMetadata<AppLocale, Translations>? meta})
-		: assert(overrides == null, 'Set "translation_overrides: true" in order to enable this feature.'),
-		  $meta = meta ?? TranslationMetadata(
-		    locale: AppLocale.ar,
-		    overrides: overrides ?? {},
-		    cardinalResolver: cardinalResolver,
-		    ordinalResolver: ordinalResolver,
-		  ) {
-		$meta.setFlatMapFunction(_flatMapFunction);
-	}
+class TranslationsAr
+    with BaseTranslations<AppLocale, Translations>
+    implements Translations {
+  /// You can call this constructor and build your own translation instance of this locale.
+  /// Constructing via the enum [AppLocale.build] is preferred.
+  TranslationsAr(
+      {Map<String, Node>? overrides,
+      PluralResolver? cardinalResolver,
+      PluralResolver? ordinalResolver,
+      TranslationMetadata<AppLocale, Translations>? meta})
+      : assert(overrides == null,
+            'Set "translation_overrides: true" in order to enable this feature.'),
+        $meta = meta ??
+            TranslationMetadata(
+              locale: AppLocale.ar,
+              overrides: overrides ?? {},
+              cardinalResolver: cardinalResolver,
+              ordinalResolver: ordinalResolver,
+            ) {
+    $meta.setFlatMapFunction(_flatMapFunction);
+  }
 
-	/// Metadata for the translations of <ar>.
-	@override final TranslationMetadata<AppLocale, Translations> $meta;
+  /// Metadata for the translations of <ar>.
+  @override
+  final TranslationMetadata<AppLocale, Translations> $meta;
 
-	/// Access flat map
-	@override dynamic operator[](String key) => $meta.getTranslation(key);
+  /// Access flat map
+  @override
+  dynamic operator [](String key) => $meta.getTranslation(key);
 
-	late final TranslationsAr _root = this; // ignore: unused_field
+  late final TranslationsAr _root = this; // ignore: unused_field
 
-	@override 
-	TranslationsAr $copyWith({TranslationMetadata<AppLocale, Translations>? meta}) => TranslationsAr(meta: meta ?? this.$meta);
+  @override
+  TranslationsAr $copyWith(
+          {TranslationMetadata<AppLocale, Translations>? meta}) =>
+      TranslationsAr(meta: meta ?? this.$meta);
 
-	// Translations
-	@override String get errorOccurred => 'حدث خطأ';
-	@override String get somethingWentWrong => 'حدث خطأ ما';
-	@override String get noInternet => 'لا توجد اتصالات انترنت';
-	@override String get checkInternetConnection => 'يرجى التحقق من اتصالك بالإنترنت';
-	@override String get tryAgain => 'حاول مرة أخرى';
-	@override String get loading => 'جاري التحميل';
-	@override String get seeMore => 'شاهد المزيد';
-	@override String get search => 'بحث';
-	@override String get noResultsFound => 'لم يتم العثور على نتائج';
-	@override String get male => 'ذكر';
-	@override String get female => 'أنثى';
-	@override late final _TranslationsWeekdaysAr weekdays = _TranslationsWeekdaysAr._(_root);
-	@override String get disconnected => 'غير متصل';
-	@override String get connected => 'متصل';
-	@override String get internetWeak => 'اتصال انترنت ضعيف';
-	@override String get aServerErrorOccurred => 'حدث خطأ في الخادم';
-	@override String get somethingWentWrongWithTheServerPleaseTryAgainLater => 'حدث خطأ ما في الخادم. يرجى المحاولة لاحقًا.';
-	@override String get noInternetConnection => 'لا توجد اتصالات انترنت';
-	@override String get noInternetConnectionSubtitle => 'يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى';
-	@override String get pleaseSelect => 'يرجى الاختيار';
-	@override String get close => 'إغلاق';
-	@override String get searchAndSelect => 'البحث والاختيار';
-	@override String get phoneNumber => 'رقم الهاتف';
-	@override String get enterYourPhoneNumber => 'أدخل رقم هاتفك';
-	@override String get pleaseEnterAValidPhone => 'يرجى إدخال رقم هاتف صحيح';
-	@override String get searchCountry => 'البحث عن دولة';
-	@override String get enter => 'أدخل';
-	@override String get camera => 'الكاميرا';
-	@override String get gallery => 'المعرض';
-	@override String get selectImageToUpload => 'اختر صورة للتحميل';
-	@override String get imageAllowedFormats => 'صيغ الصور المسموح بها';
-	@override String get submit => 'إرسال';
-	@override String get cancel => 'إلغاء';
-	@override String get delete => 'حذف';
-	@override String get edit => 'تعديل';
-	@override String get save => 'حفظ';
-	@override String get done => 'تم';
-	@override String get ok => 'حسنا';
-	@override String get failed => 'فشل';
-	@override String get success => 'نجح';
-	@override String get warning => 'تحذير';
-	@override String get error => 'خطأ';
-	@override String get info => 'معلومات';
-	@override String get next => 'التالي';
-	@override String get skip => 'تخطي';
-	@override late final _TranslationsOnboardingAr onboarding = _TranslationsOnboardingAr._(_root);
-	@override String get chooseYourRole => 'اختر دورك';
-	@override String get client => 'عميل';
-	@override String get staff => 'موظف';
-	@override String get clientDescription => 'استمتع بتجربة حجز سلسة مع أفضل مقدمي الخدمات في منطقتك.';
-	@override String get staffDescription => 'قم بإدارة حجوزاتك بسهولة وتوسيع نطاق وصولك إلى العملاء.';
-	@override String get kContinue => 'استمر';
-	@override String get getStarted => 'ابدأ الآن';
-	@override String get createAnAccountOrLogInToExploreAboutOurApp => 'أنشئ حسابًا أو سجّل الدخول لاستكشاف تطبيقنا';
-	@override String get login => 'تسجيل الدخول';
-	@override String get signUp => 'التسجيل';
-	@override String get email => 'البريد الإلكتروني';
-	@override String get password => 'كلمة المرور';
-	@override String get rememberMe => 'تذكرني';
-	@override String get forgotPassword => 'نسيت كلمة المرور';
-	@override String get continueWithGoogle => 'تابع مع Google';
-	@override String get or => 'أو';
-	@override String get fullName => 'الاسم الكامل';
-	@override String get fullNameRequired => 'الاسم الكامل مطلوب';
-	@override String get enterYourFullName => 'أدخل اسمك الكامل';
-	@override String get emailRequired => 'البريد الإلكتروني مطلوب';
-	@override String get enterYourEmail => 'أدخل بريدك الإلكتروني';
-	@override String get passwordRequired => 'كلمة المرور مطلوبة';
-	@override String get enterYourPassword => 'أدخل كلمة المرور';
-	@override String get fullNameShouldBeAtLeastTwoWords => 'يجب أن يكون الاسم الكامل مكونًا من كلمتين على الأقل';
-	@override String get youForgotThisField => 'لقد نسيت هذا الحقل';
-	@override String get emailIsNotValid => 'البريد الإلكتروني غير صحيح';
-	@override String get passwordShouldBeAtLeast8 => 'يجب أن تكون كلمة المرور مكونة من 8 أحرف على الأقل';
-	@override String get passwordShouldContainAtLeastOneCharacter => 'يجب أن تحتوي كلمة المرور على حرف واحد على الأقل';
-	@override String get passwordShouldContainAtLeastOneNumber => 'يجب أن تحتوي كلمة المرور على رقم واحد على الأقل';
-	@override String get confirmPassword => 'تأكيد كلمة المرور';
-	@override String get passwordsDoNotMatch => 'كلمة المرور غير متطابقة';
-	@override String get endTimeMustBeAfterStartTime => 'يجب أن يكون وقت الانتهاء بعد وقت البدء';
-	@override String get phoneNumberRequired => 'رقم الهاتف مطلوب';
-	@override String get byCreatingAnAccountYouAgreeToTheTermsOfUse => 'من خلال إنشاء حساب، فإنك توافق على شروط الاستخدام.';
-	@override String get alreadyHaveAnAccount => 'بالفعل لديك حساب؟';
-	@override String get signUpWithGoogle => 'التسجيل باستخدام Google';
-	@override String get resetPassword => 'إعادة تعيين كلمة المرور';
-	@override String get enterYourEmailAddressAndWeWillSendYouALinkToResetYourPassword => 'أدخل عنوان بريدك الإلكتروني وسنرسل لك رابطًا لإعادة تعيين كلمة المرور.';
-	@override String get sendCode => 'إرسال الرمز';
-	@override String get checkYouEmail => 'تحقق من بريدك الإلكتروني';
-	@override String weSentAResetLinkToEmailEnter6DigitCodeThatMentionedInTheEmail({required Object email}) => 'لقد أرسلنا رابط إعادة تعيين كلمة المرور إلى ${email}, أدخل رمز الستة الأرقام المذكورة في البريد الإلكتروني.';
-	@override String get didNotReceiveTheCode => 'لم تستلم الرمز؟';
-	@override String get resendCode => 'إعادة إرسال الرمز';
-	@override String get verifyCode => 'تحقق من الرمز';
-	@override String get setNewPassword => 'تعيين كلمة مرور جديدة';
-	@override String get updatePassword => 'تحديث كلمة المرور';
-	@override String get newPassword => 'كلمة مرور جديدة';
-	@override String get yourIdentityHasBeenSuccessfullyVerifiedPleaseEnterANewPasswordToSecureYourAccount => 'تم التحقق من هويتك بنجاح. يرجى إدخال كلمة مرور جديدة لتأمين حسابك.';
-	@override String get passwordUpdatedSuccessfully => 'تم تحديث كلمة المرور بنجاح';
-	@override String get enter6DigitCode => 'أدخل رمز مكون من 6 أرقام';
-	@override String get weSentVerificationCodeToYourEmail => 'لقد أرسلنا رمز التحقق إلى بريدك الإلكتروني';
-	@override String get weSentVerificationCodeToYourPhone => 'لقد أرسلنا رمز التحقق إلى هاتفك';
-	@override String get haventGotTheCodeYet => 'لم تحصل على الرمز بعد؟';
-	@override String get remaining => 'المتبقي';
-	@override String get resendCodeIn => 'إعادة إرسال الرمز في';
-	@override String get seconds => 'ثانية';
-	@override String get pleaseEnterValidOtp => 'يرجى إدخال رمز OTP صالح';
-	@override String get accountCreatedSuccessfully => 'تم إنشاء الحساب بنجاح';
-	@override String get loginSuccessfuly => 'تم تسجيل الدخول بنجاح';
-	@override String get home => 'الرئيسية';
-	@override String get goodMorning => 'صباح الخير،';
-	@override String get searchServicesProviders => 'ابحث عن خدمات، مزودين...';
-	@override String get limitedTime => 'وقت محدود!';
-	@override String get getSpecialDiscountInToday => 'احصل على خصم خاص اليوم';
-	@override String get upTo => 'حتى';
-	@override String get allServicesAvailable => 'جميع الخدمات متاحة || 16 ساعة واليوم';
-	@override String get claimNow => 'اطلب الآن';
-	@override String get categories => 'الفئات';
-	@override String get nearbyProviders => 'مزودون قريبون';
-	@override String get viewAll => 'عرض الكل';
-	@override String get rating => 'التقييم';
-	@override String get earned => 'المكتسب';
-	@override String get rate => 'السعر';
-	@override String get getInTouch => 'تواصل معنا';
-	@override String get explore => 'استكشاف';
-	@override String get bookings => 'الحجوزات';
-	@override String get offers => 'العروض';
-	@override String get settings => 'الإعدادات';
-	@override String get pending => 'قيد الانتظار';
-	@override String get upcoming => 'القادمة';
-	@override String get complete => 'مكتملة';
-	@override String get waitingForPayment => 'في انتظار الدفع';
-	@override String get totalPaid => 'إجمالي المدفوع';
-	@override String get confirmed => 'مؤكدة';
-	@override String get contact => 'اتصل';
-	@override String get directions => 'الاتجاهات';
-	@override String get pay => 'الدفع';
-	@override String get reschedule => 'إعادة الجدولة';
-	@override String get cancelBookingTitle => 'هل أنت متأكد من أنك تريد إلغاء حجزك بشكل دائم؟';
-	@override String get deleteBookingTitle => 'هل أنت متأكد من أنك تريد حذف حجزك بشكل دائم؟';
-	@override String get cancelBookingMessage => 'من خلال القيام بذلك، سيتم إلغاء إشعاراتك بشكل دائم ولن تتمكن من استعادة إشعاراتك بعد الآن.';
-	@override String get noBookingsYet => 'لا توجد حجوزات بعد';
-	@override String get kWith => 'مع';
-	@override String get minutes => 'دقيقة';
-	@override String get notifications => 'الإشعارات';
-	@override String get today => 'اليوم';
-	@override String get yesterday => 'الأمس';
-	@override String get older => 'الأقدم';
-	@override String get markAsRead => 'تحديد كمقروء';
-	@override String get noNotifications => 'لا توجد إشعارات حتى الآن';
-	@override String get language => 'اللغة';
-	@override String get chooseYourPreferredLanguage => 'اختر لغتك المفضلة';
-	@override String get availableNearYou => 'متوفر بالقرب منك';
-	@override String get topOffers => 'أفضل العروض';
-	@override String get availableOffers => 'العروض المتاحة';
-	@override String get allServices => 'جميع الخدمات';
-	@override String get spas => 'السبا';
-	@override String get clinics => 'العيادات';
-	@override String get barbers => 'الحلاقين';
-	@override String get somethingHappenedError => 'حدث خطأ ما';
-	@override String get availableServices => 'الخدمات المتاحة';
-	@override String get description => 'الوصف';
-	@override String get aboutMe => 'نبذة عني';
-	@override String get readMore => 'اقرأ المزيد';
-	@override String get review => 'مراجعة';
-	@override String get reviews => 'المراجعات';
-	@override String get workPlace => 'مكان العمل';
-	@override String get yearsExp => 'سنوات الخبرة';
-	@override String get seeAll => 'عرض الكل';
-	@override String get totalPrice => 'السعر الإجمالي';
-	@override String get bookingNow => 'احجز الآن';
-	@override String get owner => 'المالك';
-	@override String get no => 'لأ';
-	@override String get yes => 'نعم';
-	@override String get date => 'التاريخ';
-	@override String get time => 'الوقت';
-	@override String get confirm => 'تأكيد';
-	@override String get pleaseSelectDate => 'يرجى تحديد التاريخ';
-	@override String get bookingServices => 'حجز الخدمات';
-	@override String get selectService => 'اختر الخدمة';
-	@override String get selectStaff => 'اختر الموظف';
-	@override String get timeAndDate => 'الوقت والتاريخ';
-	@override String get services => 'الخدمات';
-	@override String get person => 'الشخص';
-	@override String get bookNow => 'احجز الآن';
-	@override String get service => 'الخدمة';
-	@override String get specialist => 'الأخصائي';
-	@override String get rentalDate => 'تاريخ الحجز';
-	@override String get bookingInformation => 'معلومات الحجز';
-	@override String get bookingDetail => 'تفاصيل الحجز';
-	@override String get bookingId => 'رقم الحجز';
-	@override String get bookingDate => 'تاريخ الحجز';
-	@override String get placeService => 'مكان الخدمة';
-	@override String get amount => 'المبلغ';
-	@override String get serviceFee => 'رسوم الخدمة';
-	@override String get tax => 'الضريبة';
-	@override String get bookingSuccessful => 'تم الحجز بنجاح';
-	@override String get bookingSuccessMessage => 'تم تأكيد حجزك بنجاح';
-	@override String get checkBooking => 'تحقق من الحجز';
-	@override String get payNow => 'ادفع الآن';
-	@override String get securePayment => 'دفع آمن';
-	@override String get bookingSummary => 'ملخص الحجز';
-	@override String get totalAmount => 'المبلغ الإجمالي';
-	@override String get creditDebitCard => 'بطاقة ائتمان / خصم';
-	@override String get cardNumber => 'رقم البطاقة';
-	@override String get expiryDate => 'تاريخ الانتهاء';
-	@override String get securedWithSSL => 'مؤمّن بتشفير SSL 256-بت';
-	@override String get yourPaymentIsSecureAndEncrypted => 'دفعتك آمنة ومشفّرة';
-	@override String get paymentSuccessful => 'تمت عملية الدفع بنجاح';
-	@override String get paymentSuccessMessage => 'تم تأكيد حجزك';
-	@override String get paymentDetail => 'تفاصيل الدفع';
-	@override String get paymentId => 'رقم الدفع';
-	@override String get paymentDate => 'تاريخ الدفع';
-	@override String get downloadReceipt => 'تحميل الإيصال';
-	@override String get shareReceipt => 'مشاركة الإيصال';
-	@override String get backToHome => 'العودة للرئيسية';
-	@override String get am => 'ص';
-	@override String get pm => 'م';
-	@override String get start => 'بداية';
-	@override String get pleaseSelectTime => 'يرجى تحديد الوقت';
-	@override String get mustBeNotGreaterThan2mb => 'يجب ألا يتجاوز حجمه 2 ميغابايت';
-	@override String get editProfile => 'تحرير الملف الشخصي';
-	@override String get manageNotificationPreferences => 'إدارة تفضيلات الإشعارات';
-	@override String get privacyAndSecurity => 'خصوصية وامان';
-	@override String get managePrivacySettings => 'إدارة تفضيلات الخصوصية';
-	@override String get inviteFriends => 'دعوة الأصدقاء';
-	@override String get inviteYourFriendsToJoinOurApp => 'دعوة أصدقائك للانضمام إلى تطبيقنا';
-	@override String get thisFeatureIsComingSoon => 'هذه الميزة ستكون متاحة قريبًا';
-	@override String get logOut => 'تسجيل الخروج';
-	@override String get favorites => 'المفضلة';
-	@override String get manageFavorites => 'إدارة المفضلة';
-	@override String get profileUpdatedSuccessfully => 'تم تحديث الملف الشخصي بنجاح';
-	@override String get profileSetting => 'إعداد الملف الشخصي';
-	@override String get goodMorningAlex => 'صباح الخير، Alex';
-	@override String get hereIsYourScheduleForToday => 'إليك جدولك لليوم.';
-	@override String get viewFull => 'عرض الكل';
-	@override String get specialties => 'التخصصات';
-	@override String get workSchedule => 'جدول العمل';
-	@override String get selectAll => 'تحديد الكل';
-	@override String get editSchedule => 'تعديل الجدول';
-	@override String get editWorkSchedule => 'تعديل جدول العمل';
-	@override String get sameForAllDays => 'نفسه لكل الأيام';
-	@override String get individualDays => 'أيام منفصلة';
-	@override String get workingDays => 'أيام العمل';
-	@override String get workingHours => 'ساعات العمل';
-	@override String get saveChanges => 'حفظ التغييرات';
-	@override String get startTime => 'وقت البدء';
-	@override String get endTime => 'وقت الانتهاء';
-	@override String get noAppointmentsDescription => 'أنت متفرغ الآن! استمتع بوقتك أو راجع جدولك القادم.';
-	@override String get reviewsCount => '(1,245 مراجعة)';
-	@override String get jamesMiller => 'James Miller';
-	@override String get sampleSecondCustomerName => 'Sarah Chen';
-	@override String get seniorSpecialist => 'أخصائي أول';
-	@override String get fullGrooming => 'تزيين كامل';
-	@override String get haircutStyling => 'قص الشعر والتصفيف';
-	@override String get hairStyling => 'تصفيف الشعر';
-	@override String get beardTrim => 'تشذيب اللحية';
-	@override String get skinCare => 'العناية بالبشرة';
-	@override String get scalpMassage => 'تدليك فروة الرأس';
-	@override String get sampleEmail => 'james.m@example.com';
-	@override String get samplePhone => '(555) 123-4567';
-	@override String get sampleAge => '32';
-	@override String get sampleJoinedDate => 'أكتوبر 2021';
-	@override String get phone => 'الهاتف';
-	@override String get age => 'العمر';
-	@override String get mon => 'الاثنين';
-	@override String get tue => 'الثلاثاء';
-	@override String get wed => 'الأربعاء';
-	@override String get thu => 'الخميس';
-	@override String get fri => 'الجمعة';
-	@override String get sat => 'السبت';
-	@override String get sun => 'الأحد';
-	@override String get monday => 'الاثنين';
-	@override String get tuesday => 'الثلاثاء';
-	@override String get wednesday => 'الأربعاء';
-	@override String get thursday => 'الخميس';
-	@override String get friday => 'الجمعة';
-	@override String get saturday => 'السبت';
-	@override String get sunday => 'الأحد';
-	@override String get scheduleAppliesToFiveDays => 'سيطبق هذا الجدول على جميع أيام العمل الخمسة المحددة.';
-	@override String get locationSelected => 'تم تحديد الموقع';
-	@override String get selectLocation => 'اختر الموقع';
-	@override String get sorryYourSessionExpiredPleaseLoginAgain => 'عذرًا، انتهت صلاحية جلستك. يرجى تسجيل الدخول مرة أخرى';
-	@override String get revenue => 'الإيرادات';
-	@override String get completed => 'المكتملة';
-	@override String get thisWeek => 'هذا الأسبوع';
-	@override String get average => 'المتوسط';
-	@override String get weekSchedule => 'جدول الأسبوع';
-	@override String get todaysSchedule => 'جدول اليوم';
-	@override String get viewDetails => 'عرض التفاصيل';
-	@override String get startService => 'بدء الخدمة';
-	@override String get note => 'ملاحظة:';
-	@override String get schedule => 'الجدول';
-	@override String get alerts => 'التنبيهات';
-	@override String get income => 'الدخل';
-	@override String get noUpcomingAppointments => 'لا توجد مواعيد قادمة';
-	@override String get noAppointmentsToday => 'لا توجد مواعيد اليوم';
-	@override String get manageYourBookingRequests => 'إدارة طلبات الحجز والتنبيهات الخاصة بك';
-	@override String get accepted => 'مقبول';
-	@override String get inProgress => 'قيد التنفيذ';
-	@override String get rejected => 'مرفوض';
-	@override String get accept => 'قبول';
-	@override String get reject => 'رفض';
-	@override String get duration => 'المدة';
-	@override String get cancelled => 'ملغى';
-	@override String get bookingCancelledFor => 'تم إلغاء الحجز لـ';
-	@override String get ago => 'منذ';
-	@override String get minAgo => 'دقيقة مضت';
-	@override String get joined => 'انضم';
-	@override String get hourAgo => 'ساعة مضت';
-	@override String get thisFieldIsRequired => 'هذا الحقل مطلوب';
-	@override String get passwordMustBeAtLeast8Characters => 'يجب أن تكون كلمة المرور 8 أحرف على الأقل';
+  // Translations
+  @override
+  String get errorOccurred => 'حدث خطأ';
+  @override
+  String get somethingWentWrong => 'حدث خطأ ما';
+  @override
+  String get noInternet => 'لا توجد اتصالات انترنت';
+  @override
+  String get checkInternetConnection => 'يرجى التحقق من اتصالك بالإنترنت';
+  @override
+  String get tryAgain => 'حاول مرة أخرى';
+  @override
+  String get loading => 'جاري التحميل';
+  @override
+  String get seeMore => 'شاهد المزيد';
+  @override
+  String get search => 'بحث';
+  @override
+  String get noResultsFound => 'لم يتم العثور على نتائج';
+  @override
+  String get male => 'ذكر';
+  @override
+  String get female => 'أنثى';
+  @override
+  late final _TranslationsWeekdaysAr weekdays =
+      _TranslationsWeekdaysAr._(_root);
+  @override
+  String get disconnected => 'غير متصل';
+  @override
+  String get connected => 'متصل';
+  @override
+  String get internetWeak => 'اتصال انترنت ضعيف';
+  @override
+  String get aServerErrorOccurred => 'حدث خطأ في الخادم';
+  @override
+  String get somethingWentWrongWithTheServerPleaseTryAgainLater =>
+      'حدث خطأ ما في الخادم. يرجى المحاولة لاحقًا.';
+  @override
+  String get noInternetConnection => 'لا توجد اتصالات انترنت';
+  @override
+  String get noInternetConnectionSubtitle =>
+      'يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى';
+  @override
+  String get pleaseSelect => 'يرجى الاختيار';
+  @override
+  String get close => 'إغلاق';
+  @override
+  String get searchAndSelect => 'البحث والاختيار';
+  @override
+  String get phoneNumber => 'رقم الهاتف';
+  @override
+  String get enterYourPhoneNumber => 'أدخل رقم هاتفك';
+  @override
+  String get pleaseEnterAValidPhone => 'يرجى إدخال رقم هاتف صحيح';
+  @override
+  String get searchCountry => 'البحث عن دولة';
+  @override
+  String get enter => 'أدخل';
+  @override
+  String get camera => 'الكاميرا';
+  @override
+  String get gallery => 'المعرض';
+  @override
+  String get selectImageToUpload => 'اختر صورة للتحميل';
+  @override
+  String get imageAllowedFormats => 'صيغ الصور المسموح بها';
+  @override
+  String get submit => 'إرسال';
+  @override
+  String get cancel => 'إلغاء';
+  @override
+  String get delete => 'حذف';
+  @override
+  String get edit => 'تعديل';
+  @override
+  String get save => 'حفظ';
+  @override
+  String get done => 'تم';
+  @override
+  String get ok => 'حسنا';
+  @override
+  String get failed => 'فشل';
+  @override
+  String get success => 'نجح';
+  @override
+  String get warning => 'تحذير';
+  @override
+  String get error => 'خطأ';
+  @override
+  String get info => 'معلومات';
+  @override
+  String get next => 'التالي';
+  @override
+  String get skip => 'تخطي';
+  @override
+  late final _TranslationsOnboardingAr onboarding =
+      _TranslationsOnboardingAr._(_root);
+  @override
+  String get chooseYourRole => 'اختر دورك';
+  @override
+  String get client => 'عميل';
+  @override
+  String get staff => 'موظف';
+  @override
+  String get clientDescription =>
+      'استمتع بتجربة حجز سلسة مع أفضل مقدمي الخدمات في منطقتك.';
+  @override
+  String get staffDescription =>
+      'قم بإدارة حجوزاتك بسهولة وتوسيع نطاق وصولك إلى العملاء.';
+  @override
+  String get kContinue => 'استمر';
+  @override
+  String get getStarted => 'ابدأ الآن';
+  @override
+  String get createAnAccountOrLogInToExploreAboutOurApp =>
+      'أنشئ حسابًا أو سجّل الدخول لاستكشاف تطبيقنا';
+  @override
+  String get login => 'تسجيل الدخول';
+  @override
+  String get signUp => 'التسجيل';
+  @override
+  String get email => 'البريد الإلكتروني';
+  @override
+  String get password => 'كلمة المرور';
+  @override
+  String get rememberMe => 'تذكرني';
+  @override
+  String get forgotPassword => 'نسيت كلمة المرور';
+  @override
+  String get continueWithGoogle => 'تابع مع Google';
+  @override
+  String get or => 'أو';
+  @override
+  String get fullName => 'الاسم الكامل';
+  @override
+  String get fullNameRequired => 'الاسم الكامل مطلوب';
+  @override
+  String get enterYourFullName => 'أدخل اسمك الكامل';
+  @override
+  String get emailRequired => 'البريد الإلكتروني مطلوب';
+  @override
+  String get enterYourEmail => 'أدخل بريدك الإلكتروني';
+  @override
+  String get passwordRequired => 'كلمة المرور مطلوبة';
+  @override
+  String get enterYourPassword => 'أدخل كلمة المرور';
+  @override
+  String get fullNameShouldBeAtLeastTwoWords =>
+      'يجب أن يكون الاسم الكامل مكونًا من كلمتين على الأقل';
+  @override
+  String get youForgotThisField => 'لقد نسيت هذا الحقل';
+  @override
+  String get emailIsNotValid => 'البريد الإلكتروني غير صحيح';
+  @override
+  String get passwordShouldBeAtLeast8 =>
+      'يجب أن تكون كلمة المرور مكونة من 8 أحرف على الأقل';
+  @override
+  String get passwordShouldContainAtLeastOneCharacter =>
+      'يجب أن تحتوي كلمة المرور على حرف واحد على الأقل';
+  @override
+  String get passwordShouldContainAtLeastOneNumber =>
+      'يجب أن تحتوي كلمة المرور على رقم واحد على الأقل';
+  @override
+  String get confirmPassword => 'تأكيد كلمة المرور';
+  @override
+  String get passwordsDoNotMatch => 'كلمة المرور غير متطابقة';
+  @override
+  String get endTimeMustBeAfterStartTime =>
+      'يجب أن يكون وقت الانتهاء بعد وقت البدء';
+  @override
+  String get phoneNumberRequired => 'رقم الهاتف مطلوب';
+  @override
+  String get byCreatingAnAccountYouAgreeToTheTermsOfUse =>
+      'من خلال إنشاء حساب، فإنك توافق على شروط الاستخدام.';
+  @override
+  String get alreadyHaveAnAccount => 'بالفعل لديك حساب؟';
+  @override
+  String get signUpWithGoogle => 'التسجيل باستخدام Google';
+  @override
+  String get resetPassword => 'إعادة تعيين كلمة المرور';
+  @override
+  String get enterYourEmailAddressAndWeWillSendYouALinkToResetYourPassword =>
+      'أدخل عنوان بريدك الإلكتروني وسنرسل لك رابطًا لإعادة تعيين كلمة المرور.';
+  @override
+  String get sendCode => 'إرسال الرمز';
+  @override
+  String get checkYouEmail => 'تحقق من بريدك الإلكتروني';
+  @override
+  String weSentAResetLinkToEmailEnter6DigitCodeThatMentionedInTheEmail(
+          {required Object email}) =>
+      'لقد أرسلنا رابط إعادة تعيين كلمة المرور إلى ${email}, أدخل رمز الستة الأرقام المذكورة في البريد الإلكتروني.';
+  @override
+  String get didNotReceiveTheCode => 'لم تستلم الرمز؟';
+  @override
+  String get resendCode => 'إعادة إرسال الرمز';
+  @override
+  String get verifyCode => 'تحقق من الرمز';
+  @override
+  String get setNewPassword => 'تعيين كلمة مرور جديدة';
+  @override
+  String get updatePassword => 'تحديث كلمة المرور';
+  @override
+  String get newPassword => 'كلمة مرور جديدة';
+  @override
+  String
+      get yourIdentityHasBeenSuccessfullyVerifiedPleaseEnterANewPasswordToSecureYourAccount =>
+          'تم التحقق من هويتك بنجاح. يرجى إدخال كلمة مرور جديدة لتأمين حسابك.';
+  @override
+  String get passwordUpdatedSuccessfully => 'تم تحديث كلمة المرور بنجاح';
+  @override
+  String get enter6DigitCode => 'أدخل رمز مكون من 6 أرقام';
+  @override
+  String get weSentVerificationCodeToYourEmail =>
+      'لقد أرسلنا رمز التحقق إلى بريدك الإلكتروني';
+  @override
+  String get weSentVerificationCodeToYourPhone =>
+      'لقد أرسلنا رمز التحقق إلى هاتفك';
+  @override
+  String get haventGotTheCodeYet => 'لم تحصل على الرمز بعد؟';
+  @override
+  String get remaining => 'المتبقي';
+  @override
+  String get resendCodeIn => 'إعادة إرسال الرمز في';
+  @override
+  String get seconds => 'ثانية';
+  @override
+  String get pleaseEnterValidOtp => 'يرجى إدخال رمز OTP صالح';
+  @override
+  String get accountCreatedSuccessfully => 'تم إنشاء الحساب بنجاح';
+  @override
+  String get loginSuccessfuly => 'تم تسجيل الدخول بنجاح';
+  @override
+  String get home => 'الرئيسية';
+  @override
+  String get goodMorning => 'صباح الخير،';
+  @override
+  String get searchServicesProviders => 'ابحث عن خدمات، مزودين...';
+  @override
+  String get limitedTime => 'وقت محدود!';
+  @override
+  String get getSpecialDiscountInToday => 'احصل على خصم خاص اليوم';
+  @override
+  String get upTo => 'حتى';
+  @override
+  String get allServicesAvailable => 'جميع الخدمات متاحة || 16 ساعة واليوم';
+  @override
+  String get claimNow => 'اطلب الآن';
+  @override
+  String get categories => 'الفئات';
+  @override
+  String get nearbyProviders => 'مزودون قريبون';
+  @override
+  String get viewAll => 'عرض الكل';
+  @override
+  String get rating => 'التقييم';
+  @override
+  String get earned => 'المكتسب';
+  @override
+  String get rate => 'السعر';
+  @override
+  String get getInTouch => 'تواصل معنا';
+  @override
+  String get explore => 'استكشاف';
+  @override
+  String get bookings => 'الحجوزات';
+  @override
+  String get offers => 'العروض';
+  @override
+  String get settings => 'الإعدادات';
+  @override
+  String get pending => 'قيد الانتظار';
+  @override
+  String get upcoming => 'القادمة';
+  @override
+  String get complete => 'مكتملة';
+  @override
+  String get waitingForPayment => 'في انتظار الدفع';
+  @override
+  String get totalPaid => 'إجمالي المدفوع';
+  @override
+  String get confirmed => 'مؤكدة';
+  @override
+  String get canceled => 'ملغاة';
+  @override
+  String get contact => 'اتصل';
+  @override
+  String get directions => 'الاتجاهات';
+  @override
+  String get pay => 'الدفع';
+  @override
+  String get reschedule => 'إعادة الجدولة';
+  @override
+  String get cancelBookingTitle =>
+      'هل أنت متأكد من أنك تريد إلغاء حجزك بشكل دائم؟';
+  @override
+  String get deleteBookingTitle =>
+      'هل أنت متأكد من أنك تريد حذف حجزك بشكل دائم؟';
+  @override
+  String get cancelBookingMessage =>
+      'من خلال القيام بذلك، سيتم إلغاء إشعاراتك بشكل دائم ولن تتمكن من استعادة إشعاراتك بعد الآن.';
+  @override
+  String get noBookingsYet => 'لا توجد حجوزات بعد';
+  @override
+  String get kWith => 'مع';
+  @override
+  String get minutes => 'دقيقة';
+  @override
+  String get notifications => 'الإشعارات';
+  @override
+  String get today => 'اليوم';
+  @override
+  String get yesterday => 'الأمس';
+  @override
+  String get older => 'الأقدم';
+  @override
+  String get markAsRead => 'تحديد كمقروء';
+  @override
+  String get noNotifications => 'لا توجد إشعارات حتى الآن';
+  @override
+  String get language => 'اللغة';
+  @override
+  String get chooseYourPreferredLanguage => 'اختر لغتك المفضلة';
+  @override
+  String get availableNearYou => 'متوفر بالقرب منك';
+  @override
+  String get topOffers => 'أفضل العروض';
+  @override
+  String get availableOffers => 'العروض المتاحة';
+  @override
+  String get allServices => 'جميع الخدمات';
+  @override
+  String get spas => 'السبا';
+  @override
+  String get clinics => 'العيادات';
+  @override
+  String get barbers => 'الحلاقين';
+  @override
+  String get somethingHappenedError => 'حدث خطأ ما';
+  @override
+  String get availableServices => 'الخدمات المتاحة';
+  @override
+  String get description => 'الوصف';
+  @override
+  String get aboutMe => 'نبذة عني';
+  @override
+  String get readMore => 'اقرأ المزيد';
+  @override
+  String get review => 'مراجعة';
+  @override
+  String get reviews => 'المراجعات';
+  @override
+  String get workPlace => 'مكان العمل';
+  @override
+  String get yearsExp => 'سنوات الخبرة';
+  @override
+  String get seeAll => 'عرض الكل';
+  @override
+  String get totalPrice => 'السعر الإجمالي';
+  @override
+  String get bookingNow => 'احجز الآن';
+  @override
+  String get owner => 'المالك';
+  @override
+  String get no => 'لأ';
+  @override
+  String get yes => 'نعم';
+  @override
+  String get date => 'التاريخ';
+  @override
+  String get time => 'الوقت';
+  @override
+  String get confirm => 'تأكيد';
+  @override
+  String get pleaseSelectDate => 'يرجى تحديد التاريخ';
+  @override
+  String get bookingServices => 'حجز الخدمات';
+  @override
+  String get selectService => 'اختر الخدمة';
+  @override
+  String get selectStaff => 'اختر الموظف';
+  @override
+  String get timeAndDate => 'الوقت والتاريخ';
+  @override
+  String get services => 'الخدمات';
+  @override
+  String get person => 'الشخص';
+  @override
+  String get bookNow => 'احجز الآن';
+  @override
+  String get service => 'الخدمة';
+  @override
+  String get specialist => 'الأخصائي';
+  @override
+  String get rentalDate => 'تاريخ الحجز';
+  @override
+  String get bookingInformation => 'معلومات الحجز';
+  @override
+  String get bookingDetail => 'تفاصيل الحجز';
+  @override
+  String get bookingManagement => 'إدارة الحجوزات';
+  @override
+  String get bookingId => 'رقم الحجز';
+  @override
+  String get bookingDate => 'تاريخ الحجز';
+  @override
+  String get reviewYourBookingHistory => 'راجع سجل الحجوزات الخاص بك.';
+  @override
+  String get placeService => 'مكان الخدمة';
+  @override
+  String get amount => 'المبلغ';
+  @override
+  String get serviceFee => 'رسوم الخدمة';
+  @override
+  String get tax => 'الضريبة';
+  @override
+  String get bookingSuccessful => 'تم الحجز بنجاح';
+  @override
+  String get bookingSuccessMessage => 'تم تأكيد حجزك بنجاح';
+  @override
+  String get checkBooking => 'تحقق من الحجز';
+  @override
+  String get payNow => 'ادفع الآن';
+  @override
+  String get securePayment => 'دفع آمن';
+  @override
+  String get bookingSummary => 'ملخص الحجز';
+  @override
+  String get totalAmount => 'المبلغ الإجمالي';
+  @override
+  String get creditDebitCard => 'بطاقة ائتمان / خصم';
+  @override
+  String get cardNumber => 'رقم البطاقة';
+  @override
+  String get expiryDate => 'تاريخ الانتهاء';
+  @override
+  String get securedWithSSL => 'مؤمّن بتشفير SSL 256-بت';
+  @override
+  String get yourPaymentIsSecureAndEncrypted => 'دفعتك آمنة ومشفّرة';
+  @override
+  String get paymentSuccessful => 'تمت عملية الدفع بنجاح';
+  @override
+  String get paymentSuccessMessage => 'تم تأكيد حجزك';
+  @override
+  String get paymentDetail => 'تفاصيل الدفع';
+  @override
+  String get paymentId => 'رقم الدفع';
+  @override
+  String get paymentDate => 'تاريخ الدفع';
+  @override
+  String get downloadReceipt => 'تحميل الإيصال';
+  @override
+  String get shareReceipt => 'مشاركة الإيصال';
+  @override
+  String get backToHome => 'العودة للرئيسية';
+  @override
+  String get am => 'ص';
+  @override
+  String get pm => 'م';
+  @override
+  String get start => 'بداية';
+  @override
+  String get pleaseSelectTime => 'يرجى تحديد الوقت';
+  @override
+  String get mustBeNotGreaterThan2mb => 'يجب ألا يتجاوز حجمه 2 ميغابايت';
+  @override
+  String get editProfile => 'تحرير الملف الشخصي';
+  @override
+  String get manageNotificationPreferences => 'إدارة تفضيلات الإشعارات';
+  @override
+  String get privacyAndSecurity => 'خصوصية وامان';
+  @override
+  String get managePrivacySettings => 'إدارة تفضيلات الخصوصية';
+  @override
+  String get inviteFriends => 'دعوة الأصدقاء';
+  @override
+  String get inviteYourFriendsToJoinOurApp =>
+      'دعوة أصدقائك للانضمام إلى تطبيقنا';
+  @override
+  String get thisFeatureIsComingSoon => 'هذه الميزة ستكون متاحة قريبًا';
+  @override
+  String get logOut => 'تسجيل الخروج';
+  @override
+  String get favorites => 'المفضلة';
+  @override
+  String get manageFavorites => 'إدارة المفضلة';
+  @override
+  String get profileUpdatedSuccessfully => 'تم تحديث الملف الشخصي بنجاح';
+  @override
+  String get profileSetting => 'إعداد الملف الشخصي';
+  @override
+  String get goodMorningAlex => 'صباح الخير، Alex';
+  @override
+  String get hereIsYourScheduleForToday => 'إليك جدولك لليوم.';
+  @override
+  String get viewFull => 'عرض الكل';
+  @override
+  String get specialties => 'التخصصات';
+  @override
+  String get workSchedule => 'جدول العمل';
+  @override
+  String get selectAll => 'تحديد الكل';
+  @override
+  String get editSchedule => 'تعديل الجدول';
+  @override
+  String get editWorkSchedule => 'تعديل جدول العمل';
+  @override
+  String get sameForAllDays => 'نفسه لكل الأيام';
+  @override
+  String get individualDays => 'أيام منفصلة';
+  @override
+  String get workingDays => 'أيام العمل';
+  @override
+  String get workingHours => 'ساعات العمل';
+  @override
+  String get saveChanges => 'حفظ التغييرات';
+  @override
+  String get startTime => 'وقت البدء';
+  @override
+  String get endTime => 'وقت الانتهاء';
+  @override
+  String get noAppointmentsDescription =>
+      'أنت متفرغ الآن! استمتع بوقتك أو راجع جدولك القادم.';
+  @override
+  String get reviewsCount => '(1,245 مراجعة)';
+  @override
+  String get jamesMiller => 'James Miller';
+  @override
+  String get sampleSecondCustomerName => 'Sarah Chen';
+  @override
+  String get seniorSpecialist => 'أخصائي أول';
+  @override
+  String get fullGrooming => 'تزيين كامل';
+  @override
+  String get haircutStyling => 'قص الشعر والتصفيف';
+  @override
+  String get hairStyling => 'تصفيف الشعر';
+  @override
+  String get beardTrim => 'تشذيب اللحية';
+  @override
+  String get skinCare => 'العناية بالبشرة';
+  @override
+  String get scalpMassage => 'تدليك فروة الرأس';
+  @override
+  String get sampleEmail => 'james.m@example.com';
+  @override
+  String get samplePhone => '(555) 123-4567';
+  @override
+  String get sampleAge => '32';
+  @override
+  String get sampleJoinedDate => 'أكتوبر 2021';
+  @override
+  String get phone => 'الهاتف';
+  @override
+  String get age => 'العمر';
+  @override
+  String get mon => 'الاثنين';
+  @override
+  String get tue => 'الثلاثاء';
+  @override
+  String get wed => 'الأربعاء';
+  @override
+  String get thu => 'الخميس';
+  @override
+  String get fri => 'الجمعة';
+  @override
+  String get sat => 'السبت';
+  @override
+  String get sun => 'الأحد';
+  @override
+  String get monday => 'الاثنين';
+  @override
+  String get tuesday => 'الثلاثاء';
+  @override
+  String get wednesday => 'الأربعاء';
+  @override
+  String get thursday => 'الخميس';
+  @override
+  String get friday => 'الجمعة';
+  @override
+  String get saturday => 'السبت';
+  @override
+  String get sunday => 'الأحد';
+  @override
+  String scheduleAppliesToDays({required Object days}) =>
+      'سيطبق هذا الجدول على جميع أيام العمل ${days} المحددة.';
+  @override
+  String get locationSelected => 'تم تحديد الموقع';
+  @override
+  String get selectLocation => 'اختر الموقع';
+  @override
+  String get sorryYourSessionExpiredPleaseLoginAgain =>
+      'عذرًا، انتهت صلاحية جلستك. يرجى تسجيل الدخول مرة أخرى';
+  @override
+  String get revenue => 'الإيرادات';
+  @override
+  String get completed => 'المكتملة';
+  @override
+  String get thisWeek => 'هذا الأسبوع';
+  @override
+  String get average => 'المتوسط';
+  @override
+  String get weekSchedule => 'جدول الأسبوع';
+  @override
+  String get todaysSchedule => 'جدول اليوم';
+  @override
+  String get viewDetails => 'عرض التفاصيل';
+  @override
+  String get startService => 'بدء الخدمة';
+  @override
+  String get note => 'ملاحظة:';
+  @override
+  String get schedule => 'الجدول';
+  @override
+  String get alerts => 'التنبيهات';
+  @override
+  String get income => 'الدخل';
+  @override
+  String get noUpcomingAppointments => 'لا توجد مواعيد قادمة';
+  @override
+  String get noAppointmentsToday => 'لا توجد مواعيد اليوم';
+  @override
+  String get manageYourBookingRequests =>
+      'إدارة طلبات الحجز والتنبيهات الخاصة بك';
+  @override
+  String get accepted => 'مقبول';
+  @override
+  String get inProgress => 'قيد التنفيذ';
+  @override
+  String get rejected => 'مرفوض';
+  @override
+  String get accept => 'قبول';
+  @override
+  String get reject => 'رفض';
+  @override
+  String get duration => 'المدة';
+  @override
+  String get cancelled => 'ملغى';
+  @override
+  String get bookingCancelledFor => 'تم إلغاء الحجز لـ';
+  @override
+  String get ago => 'منذ';
+  @override
+  String get minAgo => 'دقيقة مضت';
+  @override
+  String get joined => 'انضم';
+  @override
+  String get hourAgo => 'ساعة مضت';
+  @override
+  String get thisFieldIsRequired => 'هذا الحقل مطلوب';
+  @override
+  String get passwordMustBeAtLeast8Characters =>
+      'يجب أن تكون كلمة المرور 8 أحرف على الأقل';
+  @override
+  String get privacyPolicy => 'سياسة الخصوصية';
+  @override
+  String get daily => 'يومياً';
+  @override
+  String get weekly => 'أسبوعياً';
+  @override
+  String get monthly => 'شهرياً';
+  @override
+  String get totalEarnings => 'إجمالي الأرباح';
+  @override
+  String get avgService => 'متوسط/خدمة';
+  @override
+  String get weeklyEarnings => 'الأرباح الأسبوعية';
+  @override
+  String get vsLastWeek => 'مقارنة بالأسبوع الماضي';
+  @override
+  String get monthlyTrend => 'الاتجاه الشهري';
+  @override
+  String get last30Days => 'آخر 30 يومًا';
+  @override
+  String get recentServices => 'الخدمات الأخيرة';
+  @override
+  String get appointmentDetails => 'تفاصيل الموعد';
+  @override
+  String get appointmentNotes => 'ملاحظات الموعد';
+  @override
+  String get attachments => 'المرفقات';
+  @override
+  String get completeService => 'إكمال الخدمة';
+  @override
+  String get contactClient => 'اتصل بالعميل';
+  @override
+  String get open => 'فتح';
+  @override
+  String get closed => 'مغلق';
+  @override
+  String get noAppointments => 'لا توجد مواعيد';
+  @override
+  String get logoutSuccessfully => 'تم تسجيل الخروج بنجاح';
+  @override
+  String get areYouSureYouWantToLogout =>
+      'هل أنت متأكد من أنك تريد تسجيل الخروج؟';
 }
 
 // Path: weekdays
 class _TranslationsWeekdaysAr implements TranslationsWeekdaysEn {
-	_TranslationsWeekdaysAr._(this._root);
+  _TranslationsWeekdaysAr._(this._root);
 
-	final TranslationsAr _root; // ignore: unused_field
+  final TranslationsAr _root; // ignore: unused_field
 
-	// Translations
-	@override String get monday => 'الإثنين';
-	@override String get tuesday => 'الثلاثاء';
-	@override String get wednesday => 'الأربعاء';
-	@override String get thursday => 'الخميس';
-	@override String get friday => 'الجمعة';
-	@override String get saturday => 'السبت';
-	@override String get sunday => 'الأحد';
+  // Translations
+  @override
+  String get monday => 'الإثنين';
+  @override
+  String get tuesday => 'الثلاثاء';
+  @override
+  String get wednesday => 'الأربعاء';
+  @override
+  String get thursday => 'الخميس';
+  @override
+  String get friday => 'الجمعة';
+  @override
+  String get saturday => 'السبت';
+  @override
+  String get sunday => 'الأحد';
 }
 
 // Path: onboarding
 class _TranslationsOnboardingAr implements TranslationsOnboardingEn {
-	_TranslationsOnboardingAr._(this._root);
+  _TranslationsOnboardingAr._(this._root);
 
-	final TranslationsAr _root; // ignore: unused_field
+  final TranslationsAr _root; // ignore: unused_field
 
-	// Translations
-	@override String get getStarted => 'ابدأ الآن';
-	@override String get doctorTitle => 'ابحث عن أطباء موثوقين';
-	@override String get doctorSubtitle => 'إبحث واحجز المواعيد مع أفضل الأطباء.';
-	@override String get barberTitle => 'اكتشف حلاقين محترفين';
-	@override String get barberSubtitle => 'احجز المواعيد مع أفضل الحلاقين في المدينة.';
-	@override String get spaTitle => 'استرخ واستعد حيويتك';
-	@override String get spaSubtitle => 'احجز سبا فاخرة مصممة خصيصًا لراحتك.';
+  // Translations
+  @override
+  String get getStarted => 'ابدأ الآن';
+  @override
+  String get doctorTitle => 'ابحث عن أطباء موثوقين';
+  @override
+  String get doctorSubtitle => 'إبحث واحجز المواعيد مع أفضل الأطباء.';
+  @override
+  String get barberTitle => 'اكتشف حلاقين محترفين';
+  @override
+  String get barberSubtitle => 'احجز المواعيد مع أفضل الحلاقين في المدينة.';
+  @override
+  String get spaTitle => 'استرخ واستعد حيويتك';
+  @override
+  String get spaSubtitle => 'احجز سبا فاخرة مصممة خصيصًا لراحتك.';
 }
 
 /// The flat map containing all translations for locale <ar>.
@@ -385,329 +797,374 @@ class _TranslationsOnboardingAr implements TranslationsOnboardingEn {
 /// The Dart AOT compiler has issues with very large switch statements,
 /// so the map is split into smaller functions (512 entries each).
 extension on TranslationsAr {
-	dynamic _flatMapFunction(String path) {
-		return switch (path) {
-			'errorOccurred' => 'حدث خطأ',
-			'somethingWentWrong' => 'حدث خطأ ما',
-			'noInternet' => 'لا توجد اتصالات انترنت',
-			'checkInternetConnection' => 'يرجى التحقق من اتصالك بالإنترنت',
-			'tryAgain' => 'حاول مرة أخرى',
-			'loading' => 'جاري التحميل',
-			'seeMore' => 'شاهد المزيد',
-			'search' => 'بحث',
-			'noResultsFound' => 'لم يتم العثور على نتائج',
-			'male' => 'ذكر',
-			'female' => 'أنثى',
-			'weekdays.monday' => 'الإثنين',
-			'weekdays.tuesday' => 'الثلاثاء',
-			'weekdays.wednesday' => 'الأربعاء',
-			'weekdays.thursday' => 'الخميس',
-			'weekdays.friday' => 'الجمعة',
-			'weekdays.saturday' => 'السبت',
-			'weekdays.sunday' => 'الأحد',
-			'disconnected' => 'غير متصل',
-			'connected' => 'متصل',
-			'internetWeak' => 'اتصال انترنت ضعيف',
-			'aServerErrorOccurred' => 'حدث خطأ في الخادم',
-			'somethingWentWrongWithTheServerPleaseTryAgainLater' => 'حدث خطأ ما في الخادم. يرجى المحاولة لاحقًا.',
-			'noInternetConnection' => 'لا توجد اتصالات انترنت',
-			'noInternetConnectionSubtitle' => 'يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى',
-			'pleaseSelect' => 'يرجى الاختيار',
-			'close' => 'إغلاق',
-			'searchAndSelect' => 'البحث والاختيار',
-			'phoneNumber' => 'رقم الهاتف',
-			'enterYourPhoneNumber' => 'أدخل رقم هاتفك',
-			'pleaseEnterAValidPhone' => 'يرجى إدخال رقم هاتف صحيح',
-			'searchCountry' => 'البحث عن دولة',
-			'enter' => 'أدخل',
-			'camera' => 'الكاميرا',
-			'gallery' => 'المعرض',
-			'selectImageToUpload' => 'اختر صورة للتحميل',
-			'imageAllowedFormats' => 'صيغ الصور المسموح بها',
-			'submit' => 'إرسال',
-			'cancel' => 'إلغاء',
-			'delete' => 'حذف',
-			'edit' => 'تعديل',
-			'save' => 'حفظ',
-			'done' => 'تم',
-			'ok' => 'حسنا',
-			'failed' => 'فشل',
-			'success' => 'نجح',
-			'warning' => 'تحذير',
-			'error' => 'خطأ',
-			'info' => 'معلومات',
-			'next' => 'التالي',
-			'skip' => 'تخطي',
-			'onboarding.getStarted' => 'ابدأ الآن',
-			'onboarding.doctorTitle' => 'ابحث عن أطباء موثوقين',
-			'onboarding.doctorSubtitle' => 'إبحث واحجز المواعيد مع أفضل الأطباء.',
-			'onboarding.barberTitle' => 'اكتشف حلاقين محترفين',
-			'onboarding.barberSubtitle' => 'احجز المواعيد مع أفضل الحلاقين في المدينة.',
-			'onboarding.spaTitle' => 'استرخ واستعد حيويتك',
-			'onboarding.spaSubtitle' => 'احجز سبا فاخرة مصممة خصيصًا لراحتك.',
-			'chooseYourRole' => 'اختر دورك',
-			'client' => 'عميل',
-			'staff' => 'موظف',
-			'clientDescription' => 'استمتع بتجربة حجز سلسة مع أفضل مقدمي الخدمات في منطقتك.',
-			'staffDescription' => 'قم بإدارة حجوزاتك بسهولة وتوسيع نطاق وصولك إلى العملاء.',
-			'kContinue' => 'استمر',
-			'getStarted' => 'ابدأ الآن',
-			'createAnAccountOrLogInToExploreAboutOurApp' => 'أنشئ حسابًا أو سجّل الدخول لاستكشاف تطبيقنا',
-			'login' => 'تسجيل الدخول',
-			'signUp' => 'التسجيل',
-			'email' => 'البريد الإلكتروني',
-			'password' => 'كلمة المرور',
-			'rememberMe' => 'تذكرني',
-			'forgotPassword' => 'نسيت كلمة المرور',
-			'continueWithGoogle' => 'تابع مع Google',
-			'or' => 'أو',
-			'fullName' => 'الاسم الكامل',
-			'fullNameRequired' => 'الاسم الكامل مطلوب',
-			'enterYourFullName' => 'أدخل اسمك الكامل',
-			'emailRequired' => 'البريد الإلكتروني مطلوب',
-			'enterYourEmail' => 'أدخل بريدك الإلكتروني',
-			'passwordRequired' => 'كلمة المرور مطلوبة',
-			'enterYourPassword' => 'أدخل كلمة المرور',
-			'fullNameShouldBeAtLeastTwoWords' => 'يجب أن يكون الاسم الكامل مكونًا من كلمتين على الأقل',
-			'youForgotThisField' => 'لقد نسيت هذا الحقل',
-			'emailIsNotValid' => 'البريد الإلكتروني غير صحيح',
-			'passwordShouldBeAtLeast8' => 'يجب أن تكون كلمة المرور مكونة من 8 أحرف على الأقل',
-			'passwordShouldContainAtLeastOneCharacter' => 'يجب أن تحتوي كلمة المرور على حرف واحد على الأقل',
-			'passwordShouldContainAtLeastOneNumber' => 'يجب أن تحتوي كلمة المرور على رقم واحد على الأقل',
-			'confirmPassword' => 'تأكيد كلمة المرور',
-			'passwordsDoNotMatch' => 'كلمة المرور غير متطابقة',
-			'endTimeMustBeAfterStartTime' => 'يجب أن يكون وقت الانتهاء بعد وقت البدء',
-			'phoneNumberRequired' => 'رقم الهاتف مطلوب',
-			'byCreatingAnAccountYouAgreeToTheTermsOfUse' => 'من خلال إنشاء حساب، فإنك توافق على شروط الاستخدام.',
-			'alreadyHaveAnAccount' => 'بالفعل لديك حساب؟',
-			'signUpWithGoogle' => 'التسجيل باستخدام Google',
-			'resetPassword' => 'إعادة تعيين كلمة المرور',
-			'enterYourEmailAddressAndWeWillSendYouALinkToResetYourPassword' => 'أدخل عنوان بريدك الإلكتروني وسنرسل لك رابطًا لإعادة تعيين كلمة المرور.',
-			'sendCode' => 'إرسال الرمز',
-			'checkYouEmail' => 'تحقق من بريدك الإلكتروني',
-			'weSentAResetLinkToEmailEnter6DigitCodeThatMentionedInTheEmail' => ({required Object email}) => 'لقد أرسلنا رابط إعادة تعيين كلمة المرور إلى ${email}, أدخل رمز الستة الأرقام المذكورة في البريد الإلكتروني.',
-			'didNotReceiveTheCode' => 'لم تستلم الرمز؟',
-			'resendCode' => 'إعادة إرسال الرمز',
-			'verifyCode' => 'تحقق من الرمز',
-			'setNewPassword' => 'تعيين كلمة مرور جديدة',
-			'updatePassword' => 'تحديث كلمة المرور',
-			'newPassword' => 'كلمة مرور جديدة',
-			'yourIdentityHasBeenSuccessfullyVerifiedPleaseEnterANewPasswordToSecureYourAccount' => 'تم التحقق من هويتك بنجاح. يرجى إدخال كلمة مرور جديدة لتأمين حسابك.',
-			'passwordUpdatedSuccessfully' => 'تم تحديث كلمة المرور بنجاح',
-			'enter6DigitCode' => 'أدخل رمز مكون من 6 أرقام',
-			'weSentVerificationCodeToYourEmail' => 'لقد أرسلنا رمز التحقق إلى بريدك الإلكتروني',
-			'weSentVerificationCodeToYourPhone' => 'لقد أرسلنا رمز التحقق إلى هاتفك',
-			'haventGotTheCodeYet' => 'لم تحصل على الرمز بعد؟',
-			'remaining' => 'المتبقي',
-			'resendCodeIn' => 'إعادة إرسال الرمز في',
-			'seconds' => 'ثانية',
-			'pleaseEnterValidOtp' => 'يرجى إدخال رمز OTP صالح',
-			'accountCreatedSuccessfully' => 'تم إنشاء الحساب بنجاح',
-			'loginSuccessfuly' => 'تم تسجيل الدخول بنجاح',
-			'home' => 'الرئيسية',
-			'goodMorning' => 'صباح الخير،',
-			'searchServicesProviders' => 'ابحث عن خدمات، مزودين...',
-			'limitedTime' => 'وقت محدود!',
-			'getSpecialDiscountInToday' => 'احصل على خصم خاص اليوم',
-			'upTo' => 'حتى',
-			'allServicesAvailable' => 'جميع الخدمات متاحة || 16 ساعة واليوم',
-			'claimNow' => 'اطلب الآن',
-			'categories' => 'الفئات',
-			'nearbyProviders' => 'مزودون قريبون',
-			'viewAll' => 'عرض الكل',
-			'rating' => 'التقييم',
-			'earned' => 'المكتسب',
-			'rate' => 'السعر',
-			'getInTouch' => 'تواصل معنا',
-			'explore' => 'استكشاف',
-			'bookings' => 'الحجوزات',
-			'offers' => 'العروض',
-			'settings' => 'الإعدادات',
-			'pending' => 'قيد الانتظار',
-			'upcoming' => 'القادمة',
-			'complete' => 'مكتملة',
-			'waitingForPayment' => 'في انتظار الدفع',
-			'totalPaid' => 'إجمالي المدفوع',
-			'confirmed' => 'مؤكدة',
-			'contact' => 'اتصل',
-			'directions' => 'الاتجاهات',
-			'pay' => 'الدفع',
-			'reschedule' => 'إعادة الجدولة',
-			'cancelBookingTitle' => 'هل أنت متأكد من أنك تريد إلغاء حجزك بشكل دائم؟',
-			'deleteBookingTitle' => 'هل أنت متأكد من أنك تريد حذف حجزك بشكل دائم؟',
-			'cancelBookingMessage' => 'من خلال القيام بذلك، سيتم إلغاء إشعاراتك بشكل دائم ولن تتمكن من استعادة إشعاراتك بعد الآن.',
-			'noBookingsYet' => 'لا توجد حجوزات بعد',
-			'kWith' => 'مع',
-			'minutes' => 'دقيقة',
-			'notifications' => 'الإشعارات',
-			'today' => 'اليوم',
-			'yesterday' => 'الأمس',
-			'older' => 'الأقدم',
-			'markAsRead' => 'تحديد كمقروء',
-			'noNotifications' => 'لا توجد إشعارات حتى الآن',
-			'language' => 'اللغة',
-			'chooseYourPreferredLanguage' => 'اختر لغتك المفضلة',
-			'availableNearYou' => 'متوفر بالقرب منك',
-			'topOffers' => 'أفضل العروض',
-			'availableOffers' => 'العروض المتاحة',
-			'allServices' => 'جميع الخدمات',
-			'spas' => 'السبا',
-			'clinics' => 'العيادات',
-			'barbers' => 'الحلاقين',
-			'somethingHappenedError' => 'حدث خطأ ما',
-			'availableServices' => 'الخدمات المتاحة',
-			'description' => 'الوصف',
-			'aboutMe' => 'نبذة عني',
-			'readMore' => 'اقرأ المزيد',
-			'review' => 'مراجعة',
-			'reviews' => 'المراجعات',
-			'workPlace' => 'مكان العمل',
-			'yearsExp' => 'سنوات الخبرة',
-			'seeAll' => 'عرض الكل',
-			'totalPrice' => 'السعر الإجمالي',
-			'bookingNow' => 'احجز الآن',
-			'owner' => 'المالك',
-			'no' => 'لأ',
-			'yes' => 'نعم',
-			'date' => 'التاريخ',
-			'time' => 'الوقت',
-			'confirm' => 'تأكيد',
-			'pleaseSelectDate' => 'يرجى تحديد التاريخ',
-			'bookingServices' => 'حجز الخدمات',
-			'selectService' => 'اختر الخدمة',
-			'selectStaff' => 'اختر الموظف',
-			'timeAndDate' => 'الوقت والتاريخ',
-			'services' => 'الخدمات',
-			'person' => 'الشخص',
-			'bookNow' => 'احجز الآن',
-			'service' => 'الخدمة',
-			'specialist' => 'الأخصائي',
-			'rentalDate' => 'تاريخ الحجز',
-			'bookingInformation' => 'معلومات الحجز',
-			'bookingDetail' => 'تفاصيل الحجز',
-			'bookingId' => 'رقم الحجز',
-			'bookingDate' => 'تاريخ الحجز',
-			'placeService' => 'مكان الخدمة',
-			'amount' => 'المبلغ',
-			'serviceFee' => 'رسوم الخدمة',
-			'tax' => 'الضريبة',
-			'bookingSuccessful' => 'تم الحجز بنجاح',
-			'bookingSuccessMessage' => 'تم تأكيد حجزك بنجاح',
-			'checkBooking' => 'تحقق من الحجز',
-			'payNow' => 'ادفع الآن',
-			'securePayment' => 'دفع آمن',
-			'bookingSummary' => 'ملخص الحجز',
-			'totalAmount' => 'المبلغ الإجمالي',
-			'creditDebitCard' => 'بطاقة ائتمان / خصم',
-			'cardNumber' => 'رقم البطاقة',
-			'expiryDate' => 'تاريخ الانتهاء',
-			'securedWithSSL' => 'مؤمّن بتشفير SSL 256-بت',
-			'yourPaymentIsSecureAndEncrypted' => 'دفعتك آمنة ومشفّرة',
-			'paymentSuccessful' => 'تمت عملية الدفع بنجاح',
-			'paymentSuccessMessage' => 'تم تأكيد حجزك',
-			'paymentDetail' => 'تفاصيل الدفع',
-			'paymentId' => 'رقم الدفع',
-			'paymentDate' => 'تاريخ الدفع',
-			'downloadReceipt' => 'تحميل الإيصال',
-			'shareReceipt' => 'مشاركة الإيصال',
-			'backToHome' => 'العودة للرئيسية',
-			'am' => 'ص',
-			'pm' => 'م',
-			'start' => 'بداية',
-			'pleaseSelectTime' => 'يرجى تحديد الوقت',
-			'mustBeNotGreaterThan2mb' => 'يجب ألا يتجاوز حجمه 2 ميغابايت',
-			'editProfile' => 'تحرير الملف الشخصي',
-			'manageNotificationPreferences' => 'إدارة تفضيلات الإشعارات',
-			'privacyAndSecurity' => 'خصوصية وامان',
-			'managePrivacySettings' => 'إدارة تفضيلات الخصوصية',
-			'inviteFriends' => 'دعوة الأصدقاء',
-			'inviteYourFriendsToJoinOurApp' => 'دعوة أصدقائك للانضمام إلى تطبيقنا',
-			'thisFeatureIsComingSoon' => 'هذه الميزة ستكون متاحة قريبًا',
-			'logOut' => 'تسجيل الخروج',
-			'favorites' => 'المفضلة',
-			'manageFavorites' => 'إدارة المفضلة',
-			'profileUpdatedSuccessfully' => 'تم تحديث الملف الشخصي بنجاح',
-			'profileSetting' => 'إعداد الملف الشخصي',
-			'goodMorningAlex' => 'صباح الخير، Alex',
-			'hereIsYourScheduleForToday' => 'إليك جدولك لليوم.',
-			'viewFull' => 'عرض الكل',
-			'specialties' => 'التخصصات',
-			'workSchedule' => 'جدول العمل',
-			'selectAll' => 'تحديد الكل',
-			'editSchedule' => 'تعديل الجدول',
-			'editWorkSchedule' => 'تعديل جدول العمل',
-			'sameForAllDays' => 'نفسه لكل الأيام',
-			'individualDays' => 'أيام منفصلة',
-			'workingDays' => 'أيام العمل',
-			'workingHours' => 'ساعات العمل',
-			'saveChanges' => 'حفظ التغييرات',
-			'startTime' => 'وقت البدء',
-			'endTime' => 'وقت الانتهاء',
-			'noAppointmentsDescription' => 'أنت متفرغ الآن! استمتع بوقتك أو راجع جدولك القادم.',
-			'reviewsCount' => '(1,245 مراجعة)',
-			'jamesMiller' => 'James Miller',
-			'sampleSecondCustomerName' => 'Sarah Chen',
-			'seniorSpecialist' => 'أخصائي أول',
-			'fullGrooming' => 'تزيين كامل',
-			'haircutStyling' => 'قص الشعر والتصفيف',
-			'hairStyling' => 'تصفيف الشعر',
-			'beardTrim' => 'تشذيب اللحية',
-			'skinCare' => 'العناية بالبشرة',
-			'scalpMassage' => 'تدليك فروة الرأس',
-			'sampleEmail' => 'james.m@example.com',
-			'samplePhone' => '(555) 123-4567',
-			'sampleAge' => '32',
-			'sampleJoinedDate' => 'أكتوبر 2021',
-			'phone' => 'الهاتف',
-			'age' => 'العمر',
-			'mon' => 'الاثنين',
-			'tue' => 'الثلاثاء',
-			'wed' => 'الأربعاء',
-			'thu' => 'الخميس',
-			'fri' => 'الجمعة',
-			'sat' => 'السبت',
-			'sun' => 'الأحد',
-			'monday' => 'الاثنين',
-			'tuesday' => 'الثلاثاء',
-			'wednesday' => 'الأربعاء',
-			'thursday' => 'الخميس',
-			'friday' => 'الجمعة',
-			'saturday' => 'السبت',
-			'sunday' => 'الأحد',
-			'scheduleAppliesToFiveDays' => 'سيطبق هذا الجدول على جميع أيام العمل الخمسة المحددة.',
-			'locationSelected' => 'تم تحديد الموقع',
-			'selectLocation' => 'اختر الموقع',
-			'sorryYourSessionExpiredPleaseLoginAgain' => 'عذرًا، انتهت صلاحية جلستك. يرجى تسجيل الدخول مرة أخرى',
-			'revenue' => 'الإيرادات',
-			'completed' => 'المكتملة',
-			'thisWeek' => 'هذا الأسبوع',
-			'average' => 'المتوسط',
-			'weekSchedule' => 'جدول الأسبوع',
-			'todaysSchedule' => 'جدول اليوم',
-			'viewDetails' => 'عرض التفاصيل',
-			'startService' => 'بدء الخدمة',
-			'note' => 'ملاحظة:',
-			'schedule' => 'الجدول',
-			'alerts' => 'التنبيهات',
-			'income' => 'الدخل',
-			'noUpcomingAppointments' => 'لا توجد مواعيد قادمة',
-			'noAppointmentsToday' => 'لا توجد مواعيد اليوم',
-			'manageYourBookingRequests' => 'إدارة طلبات الحجز والتنبيهات الخاصة بك',
-			'accepted' => 'مقبول',
-			'inProgress' => 'قيد التنفيذ',
-			'rejected' => 'مرفوض',
-			'accept' => 'قبول',
-			'reject' => 'رفض',
-			'duration' => 'المدة',
-			'cancelled' => 'ملغى',
-			'bookingCancelledFor' => 'تم إلغاء الحجز لـ',
-			'ago' => 'منذ',
-			'minAgo' => 'دقيقة مضت',
-			'joined' => 'انضم',
-			'hourAgo' => 'ساعة مضت',
-			'thisFieldIsRequired' => 'هذا الحقل مطلوب',
-			'passwordMustBeAtLeast8Characters' => 'يجب أن تكون كلمة المرور 8 أحرف على الأقل',
-			_ => null,
-		};
-	}
+  dynamic _flatMapFunction(String path) {
+    return switch (path) {
+      'errorOccurred' => 'حدث خطأ',
+      'somethingWentWrong' => 'حدث خطأ ما',
+      'noInternet' => 'لا توجد اتصالات انترنت',
+      'checkInternetConnection' => 'يرجى التحقق من اتصالك بالإنترنت',
+      'tryAgain' => 'حاول مرة أخرى',
+      'loading' => 'جاري التحميل',
+      'seeMore' => 'شاهد المزيد',
+      'search' => 'بحث',
+      'noResultsFound' => 'لم يتم العثور على نتائج',
+      'male' => 'ذكر',
+      'female' => 'أنثى',
+      'weekdays.monday' => 'الإثنين',
+      'weekdays.tuesday' => 'الثلاثاء',
+      'weekdays.wednesday' => 'الأربعاء',
+      'weekdays.thursday' => 'الخميس',
+      'weekdays.friday' => 'الجمعة',
+      'weekdays.saturday' => 'السبت',
+      'weekdays.sunday' => 'الأحد',
+      'disconnected' => 'غير متصل',
+      'connected' => 'متصل',
+      'internetWeak' => 'اتصال انترنت ضعيف',
+      'aServerErrorOccurred' => 'حدث خطأ في الخادم',
+      'somethingWentWrongWithTheServerPleaseTryAgainLater' =>
+        'حدث خطأ ما في الخادم. يرجى المحاولة لاحقًا.',
+      'noInternetConnection' => 'لا توجد اتصالات انترنت',
+      'noInternetConnectionSubtitle' =>
+        'يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى',
+      'pleaseSelect' => 'يرجى الاختيار',
+      'close' => 'إغلاق',
+      'searchAndSelect' => 'البحث والاختيار',
+      'phoneNumber' => 'رقم الهاتف',
+      'enterYourPhoneNumber' => 'أدخل رقم هاتفك',
+      'pleaseEnterAValidPhone' => 'يرجى إدخال رقم هاتف صحيح',
+      'searchCountry' => 'البحث عن دولة',
+      'enter' => 'أدخل',
+      'camera' => 'الكاميرا',
+      'gallery' => 'المعرض',
+      'selectImageToUpload' => 'اختر صورة للتحميل',
+      'imageAllowedFormats' => 'صيغ الصور المسموح بها',
+      'submit' => 'إرسال',
+      'cancel' => 'إلغاء',
+      'delete' => 'حذف',
+      'edit' => 'تعديل',
+      'save' => 'حفظ',
+      'done' => 'تم',
+      'ok' => 'حسنا',
+      'failed' => 'فشل',
+      'success' => 'نجح',
+      'warning' => 'تحذير',
+      'error' => 'خطأ',
+      'info' => 'معلومات',
+      'next' => 'التالي',
+      'skip' => 'تخطي',
+      'onboarding.getStarted' => 'ابدأ الآن',
+      'onboarding.doctorTitle' => 'ابحث عن أطباء موثوقين',
+      'onboarding.doctorSubtitle' => 'إبحث واحجز المواعيد مع أفضل الأطباء.',
+      'onboarding.barberTitle' => 'اكتشف حلاقين محترفين',
+      'onboarding.barberSubtitle' =>
+        'احجز المواعيد مع أفضل الحلاقين في المدينة.',
+      'onboarding.spaTitle' => 'استرخ واستعد حيويتك',
+      'onboarding.spaSubtitle' => 'احجز سبا فاخرة مصممة خصيصًا لراحتك.',
+      'chooseYourRole' => 'اختر دورك',
+      'client' => 'عميل',
+      'staff' => 'موظف',
+      'clientDescription' =>
+        'استمتع بتجربة حجز سلسة مع أفضل مقدمي الخدمات في منطقتك.',
+      'staffDescription' =>
+        'قم بإدارة حجوزاتك بسهولة وتوسيع نطاق وصولك إلى العملاء.',
+      'kContinue' => 'استمر',
+      'getStarted' => 'ابدأ الآن',
+      'createAnAccountOrLogInToExploreAboutOurApp' =>
+        'أنشئ حسابًا أو سجّل الدخول لاستكشاف تطبيقنا',
+      'login' => 'تسجيل الدخول',
+      'signUp' => 'التسجيل',
+      'email' => 'البريد الإلكتروني',
+      'password' => 'كلمة المرور',
+      'rememberMe' => 'تذكرني',
+      'forgotPassword' => 'نسيت كلمة المرور',
+      'continueWithGoogle' => 'تابع مع Google',
+      'or' => 'أو',
+      'fullName' => 'الاسم الكامل',
+      'fullNameRequired' => 'الاسم الكامل مطلوب',
+      'enterYourFullName' => 'أدخل اسمك الكامل',
+      'emailRequired' => 'البريد الإلكتروني مطلوب',
+      'enterYourEmail' => 'أدخل بريدك الإلكتروني',
+      'passwordRequired' => 'كلمة المرور مطلوبة',
+      'enterYourPassword' => 'أدخل كلمة المرور',
+      'fullNameShouldBeAtLeastTwoWords' =>
+        'يجب أن يكون الاسم الكامل مكونًا من كلمتين على الأقل',
+      'youForgotThisField' => 'لقد نسيت هذا الحقل',
+      'emailIsNotValid' => 'البريد الإلكتروني غير صحيح',
+      'passwordShouldBeAtLeast8' =>
+        'يجب أن تكون كلمة المرور مكونة من 8 أحرف على الأقل',
+      'passwordShouldContainAtLeastOneCharacter' =>
+        'يجب أن تحتوي كلمة المرور على حرف واحد على الأقل',
+      'passwordShouldContainAtLeastOneNumber' =>
+        'يجب أن تحتوي كلمة المرور على رقم واحد على الأقل',
+      'confirmPassword' => 'تأكيد كلمة المرور',
+      'passwordsDoNotMatch' => 'كلمة المرور غير متطابقة',
+      'endTimeMustBeAfterStartTime' => 'يجب أن يكون وقت الانتهاء بعد وقت البدء',
+      'phoneNumberRequired' => 'رقم الهاتف مطلوب',
+      'byCreatingAnAccountYouAgreeToTheTermsOfUse' =>
+        'من خلال إنشاء حساب، فإنك توافق على شروط الاستخدام.',
+      'alreadyHaveAnAccount' => 'بالفعل لديك حساب؟',
+      'signUpWithGoogle' => 'التسجيل باستخدام Google',
+      'resetPassword' => 'إعادة تعيين كلمة المرور',
+      'enterYourEmailAddressAndWeWillSendYouALinkToResetYourPassword' =>
+        'أدخل عنوان بريدك الإلكتروني وسنرسل لك رابطًا لإعادة تعيين كلمة المرور.',
+      'sendCode' => 'إرسال الرمز',
+      'checkYouEmail' => 'تحقق من بريدك الإلكتروني',
+      'weSentAResetLinkToEmailEnter6DigitCodeThatMentionedInTheEmail' => (
+              {required Object email}) =>
+          'لقد أرسلنا رابط إعادة تعيين كلمة المرور إلى ${email}, أدخل رمز الستة الأرقام المذكورة في البريد الإلكتروني.',
+      'didNotReceiveTheCode' => 'لم تستلم الرمز؟',
+      'resendCode' => 'إعادة إرسال الرمز',
+      'verifyCode' => 'تحقق من الرمز',
+      'setNewPassword' => 'تعيين كلمة مرور جديدة',
+      'updatePassword' => 'تحديث كلمة المرور',
+      'newPassword' => 'كلمة مرور جديدة',
+      'yourIdentityHasBeenSuccessfullyVerifiedPleaseEnterANewPasswordToSecureYourAccount' =>
+        'تم التحقق من هويتك بنجاح. يرجى إدخال كلمة مرور جديدة لتأمين حسابك.',
+      'passwordUpdatedSuccessfully' => 'تم تحديث كلمة المرور بنجاح',
+      'enter6DigitCode' => 'أدخل رمز مكون من 6 أرقام',
+      'weSentVerificationCodeToYourEmail' =>
+        'لقد أرسلنا رمز التحقق إلى بريدك الإلكتروني',
+      'weSentVerificationCodeToYourPhone' => 'لقد أرسلنا رمز التحقق إلى هاتفك',
+      'haventGotTheCodeYet' => 'لم تحصل على الرمز بعد؟',
+      'remaining' => 'المتبقي',
+      'resendCodeIn' => 'إعادة إرسال الرمز في',
+      'seconds' => 'ثانية',
+      'pleaseEnterValidOtp' => 'يرجى إدخال رمز OTP صالح',
+      'accountCreatedSuccessfully' => 'تم إنشاء الحساب بنجاح',
+      'loginSuccessfuly' => 'تم تسجيل الدخول بنجاح',
+      'home' => 'الرئيسية',
+      'goodMorning' => 'صباح الخير،',
+      'searchServicesProviders' => 'ابحث عن خدمات، مزودين...',
+      'limitedTime' => 'وقت محدود!',
+      'getSpecialDiscountInToday' => 'احصل على خصم خاص اليوم',
+      'upTo' => 'حتى',
+      'allServicesAvailable' => 'جميع الخدمات متاحة || 16 ساعة واليوم',
+      'claimNow' => 'اطلب الآن',
+      'categories' => 'الفئات',
+      'nearbyProviders' => 'مزودون قريبون',
+      'viewAll' => 'عرض الكل',
+      'rating' => 'التقييم',
+      'earned' => 'المكتسب',
+      'rate' => 'السعر',
+      'getInTouch' => 'تواصل معنا',
+      'explore' => 'استكشاف',
+      'bookings' => 'الحجوزات',
+      'offers' => 'العروض',
+      'settings' => 'الإعدادات',
+      'pending' => 'قيد الانتظار',
+      'upcoming' => 'القادمة',
+      'complete' => 'مكتملة',
+      'waitingForPayment' => 'في انتظار الدفع',
+      'totalPaid' => 'إجمالي المدفوع',
+      'confirmed' => 'مؤكدة',
+      'canceled' => 'ملغاة',
+      'contact' => 'اتصل',
+      'directions' => 'الاتجاهات',
+      'pay' => 'الدفع',
+      'reschedule' => 'إعادة الجدولة',
+      'cancelBookingTitle' => 'هل أنت متأكد من أنك تريد إلغاء حجزك بشكل دائم؟',
+      'deleteBookingTitle' => 'هل أنت متأكد من أنك تريد حذف حجزك بشكل دائم؟',
+      'cancelBookingMessage' =>
+        'من خلال القيام بذلك، سيتم إلغاء إشعاراتك بشكل دائم ولن تتمكن من استعادة إشعاراتك بعد الآن.',
+      'noBookingsYet' => 'لا توجد حجوزات بعد',
+      'kWith' => 'مع',
+      'minutes' => 'دقيقة',
+      'notifications' => 'الإشعارات',
+      'today' => 'اليوم',
+      'yesterday' => 'الأمس',
+      'older' => 'الأقدم',
+      'markAsRead' => 'تحديد كمقروء',
+      'noNotifications' => 'لا توجد إشعارات حتى الآن',
+      'language' => 'اللغة',
+      'chooseYourPreferredLanguage' => 'اختر لغتك المفضلة',
+      'availableNearYou' => 'متوفر بالقرب منك',
+      'topOffers' => 'أفضل العروض',
+      'availableOffers' => 'العروض المتاحة',
+      'allServices' => 'جميع الخدمات',
+      'spas' => 'السبا',
+      'clinics' => 'العيادات',
+      'barbers' => 'الحلاقين',
+      'somethingHappenedError' => 'حدث خطأ ما',
+      'availableServices' => 'الخدمات المتاحة',
+      'description' => 'الوصف',
+      'aboutMe' => 'نبذة عني',
+      'readMore' => 'اقرأ المزيد',
+      'review' => 'مراجعة',
+      'reviews' => 'المراجعات',
+      'workPlace' => 'مكان العمل',
+      'yearsExp' => 'سنوات الخبرة',
+      'seeAll' => 'عرض الكل',
+      'totalPrice' => 'السعر الإجمالي',
+      'bookingNow' => 'احجز الآن',
+      'owner' => 'المالك',
+      'no' => 'لأ',
+      'yes' => 'نعم',
+      'date' => 'التاريخ',
+      'time' => 'الوقت',
+      'confirm' => 'تأكيد',
+      'pleaseSelectDate' => 'يرجى تحديد التاريخ',
+      'bookingServices' => 'حجز الخدمات',
+      'selectService' => 'اختر الخدمة',
+      'selectStaff' => 'اختر الموظف',
+      'timeAndDate' => 'الوقت والتاريخ',
+      'services' => 'الخدمات',
+      'person' => 'الشخص',
+      'bookNow' => 'احجز الآن',
+      'service' => 'الخدمة',
+      'specialist' => 'الأخصائي',
+      'rentalDate' => 'تاريخ الحجز',
+      'bookingInformation' => 'معلومات الحجز',
+      'bookingDetail' => 'تفاصيل الحجز',
+      'bookingManagement' => 'إدارة الحجوزات',
+      'bookingId' => 'رقم الحجز',
+      'bookingDate' => 'تاريخ الحجز',
+      'reviewYourBookingHistory' => 'راجع سجل الحجوزات الخاص بك.',
+      'placeService' => 'مكان الخدمة',
+      'amount' => 'المبلغ',
+      'serviceFee' => 'رسوم الخدمة',
+      'tax' => 'الضريبة',
+      'bookingSuccessful' => 'تم الحجز بنجاح',
+      'bookingSuccessMessage' => 'تم تأكيد حجزك بنجاح',
+      'checkBooking' => 'تحقق من الحجز',
+      'payNow' => 'ادفع الآن',
+      'securePayment' => 'دفع آمن',
+      'bookingSummary' => 'ملخص الحجز',
+      'totalAmount' => 'المبلغ الإجمالي',
+      'creditDebitCard' => 'بطاقة ائتمان / خصم',
+      'cardNumber' => 'رقم البطاقة',
+      'expiryDate' => 'تاريخ الانتهاء',
+      'securedWithSSL' => 'مؤمّن بتشفير SSL 256-بت',
+      'yourPaymentIsSecureAndEncrypted' => 'دفعتك آمنة ومشفّرة',
+      'paymentSuccessful' => 'تمت عملية الدفع بنجاح',
+      'paymentSuccessMessage' => 'تم تأكيد حجزك',
+      'paymentDetail' => 'تفاصيل الدفع',
+      'paymentId' => 'رقم الدفع',
+      'paymentDate' => 'تاريخ الدفع',
+      'downloadReceipt' => 'تحميل الإيصال',
+      'shareReceipt' => 'مشاركة الإيصال',
+      'backToHome' => 'العودة للرئيسية',
+      'am' => 'ص',
+      'pm' => 'م',
+      'start' => 'بداية',
+      'pleaseSelectTime' => 'يرجى تحديد الوقت',
+      'mustBeNotGreaterThan2mb' => 'يجب ألا يتجاوز حجمه 2 ميغابايت',
+      'editProfile' => 'تحرير الملف الشخصي',
+      'manageNotificationPreferences' => 'إدارة تفضيلات الإشعارات',
+      'privacyAndSecurity' => 'خصوصية وامان',
+      'managePrivacySettings' => 'إدارة تفضيلات الخصوصية',
+      'inviteFriends' => 'دعوة الأصدقاء',
+      'inviteYourFriendsToJoinOurApp' => 'دعوة أصدقائك للانضمام إلى تطبيقنا',
+      'thisFeatureIsComingSoon' => 'هذه الميزة ستكون متاحة قريبًا',
+      'logOut' => 'تسجيل الخروج',
+      'favorites' => 'المفضلة',
+      'manageFavorites' => 'إدارة المفضلة',
+      'profileUpdatedSuccessfully' => 'تم تحديث الملف الشخصي بنجاح',
+      'profileSetting' => 'إعداد الملف الشخصي',
+      'goodMorningAlex' => 'صباح الخير، Alex',
+      'hereIsYourScheduleForToday' => 'إليك جدولك لليوم.',
+      'viewFull' => 'عرض الكل',
+      'specialties' => 'التخصصات',
+      'workSchedule' => 'جدول العمل',
+      'selectAll' => 'تحديد الكل',
+      'editSchedule' => 'تعديل الجدول',
+      'editWorkSchedule' => 'تعديل جدول العمل',
+      'sameForAllDays' => 'نفسه لكل الأيام',
+      'individualDays' => 'أيام منفصلة',
+      'workingDays' => 'أيام العمل',
+      'workingHours' => 'ساعات العمل',
+      'saveChanges' => 'حفظ التغييرات',
+      'startTime' => 'وقت البدء',
+      'endTime' => 'وقت الانتهاء',
+      'noAppointmentsDescription' =>
+        'أنت متفرغ الآن! استمتع بوقتك أو راجع جدولك القادم.',
+      'reviewsCount' => '(1,245 مراجعة)',
+      'jamesMiller' => 'James Miller',
+      'sampleSecondCustomerName' => 'Sarah Chen',
+      'seniorSpecialist' => 'أخصائي أول',
+      'fullGrooming' => 'تزيين كامل',
+      'haircutStyling' => 'قص الشعر والتصفيف',
+      'hairStyling' => 'تصفيف الشعر',
+      'beardTrim' => 'تشذيب اللحية',
+      'skinCare' => 'العناية بالبشرة',
+      'scalpMassage' => 'تدليك فروة الرأس',
+      'sampleEmail' => 'james.m@example.com',
+      'samplePhone' => '(555) 123-4567',
+      'sampleAge' => '32',
+      'sampleJoinedDate' => 'أكتوبر 2021',
+      'phone' => 'الهاتف',
+      'age' => 'العمر',
+      'mon' => 'الاثنين',
+      'tue' => 'الثلاثاء',
+      'wed' => 'الأربعاء',
+      'thu' => 'الخميس',
+      'fri' => 'الجمعة',
+      'sat' => 'السبت',
+      'sun' => 'الأحد',
+      'monday' => 'الاثنين',
+      'tuesday' => 'الثلاثاء',
+      'wednesday' => 'الأربعاء',
+      'thursday' => 'الخميس',
+      'friday' => 'الجمعة',
+      'saturday' => 'السبت',
+      'sunday' => 'الأحد',
+      'scheduleAppliesToDays' => ({required Object days}) =>
+          'سيطبق هذا الجدول على جميع أيام العمل ${days} المحددة.',
+      'locationSelected' => 'تم تحديد الموقع',
+      'selectLocation' => 'اختر الموقع',
+      'sorryYourSessionExpiredPleaseLoginAgain' =>
+        'عذرًا، انتهت صلاحية جلستك. يرجى تسجيل الدخول مرة أخرى',
+      'revenue' => 'الإيرادات',
+      'completed' => 'المكتملة',
+      'thisWeek' => 'هذا الأسبوع',
+      'average' => 'المتوسط',
+      'weekSchedule' => 'جدول الأسبوع',
+      'todaysSchedule' => 'جدول اليوم',
+      'viewDetails' => 'عرض التفاصيل',
+      'startService' => 'بدء الخدمة',
+      'note' => 'ملاحظة:',
+      'schedule' => 'الجدول',
+      'alerts' => 'التنبيهات',
+      'income' => 'الدخل',
+      'noUpcomingAppointments' => 'لا توجد مواعيد قادمة',
+      'noAppointmentsToday' => 'لا توجد مواعيد اليوم',
+      'manageYourBookingRequests' => 'إدارة طلبات الحجز والتنبيهات الخاصة بك',
+      'accepted' => 'مقبول',
+      'inProgress' => 'قيد التنفيذ',
+      'rejected' => 'مرفوض',
+      'accept' => 'قبول',
+      'reject' => 'رفض',
+      'duration' => 'المدة',
+      'cancelled' => 'ملغى',
+      'bookingCancelledFor' => 'تم إلغاء الحجز لـ',
+      'ago' => 'منذ',
+      'minAgo' => 'دقيقة مضت',
+      'joined' => 'انضم',
+      'hourAgo' => 'ساعة مضت',
+      'thisFieldIsRequired' => 'هذا الحقل مطلوب',
+      'passwordMustBeAtLeast8Characters' =>
+        'يجب أن تكون كلمة المرور 8 أحرف على الأقل',
+      'privacyPolicy' => 'سياسة الخصوصية',
+      'daily' => 'يومياً',
+      'weekly' => 'أسبوعياً',
+      'monthly' => 'شهرياً',
+      'totalEarnings' => 'إجمالي الأرباح',
+      'avgService' => 'متوسط/خدمة',
+      'weeklyEarnings' => 'الأرباح الأسبوعية',
+      'vsLastWeek' => 'مقارنة بالأسبوع الماضي',
+      'monthlyTrend' => 'الاتجاه الشهري',
+      'last30Days' => 'آخر 30 يومًا',
+      'recentServices' => 'الخدمات الأخيرة',
+      'appointmentDetails' => 'تفاصيل الموعد',
+      'appointmentNotes' => 'ملاحظات الموعد',
+      'attachments' => 'المرفقات',
+      'completeService' => 'إكمال الخدمة',
+      'contactClient' => 'اتصل بالعميل',
+      'open' => 'فتح',
+      'closed' => 'مغلق',
+      'noAppointments' => 'لا توجد مواعيد',
+      'logoutSuccessfully' => 'تم تسجيل الخروج بنجاح',
+      'areYouSureYouWantToLogout' => 'هل أنت متأكد من أنك تريد تسجيل الخروج؟',
+      _ => null,
+    };
+  }
 }

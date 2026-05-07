@@ -1,0 +1,77 @@
+import 'package:bookly_x_client/app/core/extensions/date_time_exensions.dart';
+import 'package:bookly_x_client/app/core/themes/app_colors.dart';
+import 'package:bookly_x_client/app/core/widgets/custom_sized_box.dart';
+import 'package:bookly_x_client/app/features/staff/profile/data/model/staff_review_model.dart';
+import 'package:bookly_x_client/generated/my_icons.dart';
+import 'package:bookly_x_client/generated/style_atoms.dart';
+import 'package:flutter/material.dart';
+
+class StaffReviewCard extends StatelessWidget {
+  const StaffReviewCard({
+    super.key,
+    required this.review,
+  });
+
+  final StaffReviewModel review;
+
+  @override
+  Widget build(BuildContext context) {
+    final createdAt = review.createdAt;
+    return Container(
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: AppColors.white,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: AppColors.textBorders),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  review.client?.name.isNotEmpty == true
+                      ? review.client!.name
+                      : '-',
+                  style: context.semiBold16,
+                ),
+              ),
+              const Icon(
+                MyIcons.smsStarBold,
+                color: AppColors.warningBadge,
+                size: 18,
+              ),
+              4.w,
+              Text(
+                review.rating.toStringAsFixed(1),
+                style: context.semiBold14Primary,
+              ),
+            ],
+          ),
+          8.h,
+          Text(
+            review.comment ?? '-',
+            style: context.regular14TextSub,
+          ),
+          10.h,
+          Row(
+            children: [
+              Text(
+                review.service?.name ?? '-',
+                style: context.semiBold12,
+              ),
+              const Spacer(),
+              Text(
+                createdAt == null
+                    ? '-'
+                    : '${createdAt.formattedDate} ${createdAt.formattedTime}',
+                style: context.regular12TextSub,
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}

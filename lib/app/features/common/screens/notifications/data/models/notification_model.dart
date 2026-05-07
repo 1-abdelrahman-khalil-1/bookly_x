@@ -27,6 +27,7 @@ class NotificationModel {
       type: type,
     );
   }
+
   // Mock data for testing
   static List<NotificationModel> get mockNotifications {
     final now = DateTime.now();

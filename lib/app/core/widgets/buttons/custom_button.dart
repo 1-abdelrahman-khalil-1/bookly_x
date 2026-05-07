@@ -190,7 +190,7 @@ class CustomButtonOutlined extends CustomButton {
     super.border,
     super.borderColor,
     super.textStyle,
-    super.borderRadius = 25,
+    super.borderRadius = 8,
     super.prefixIconPath,
     super.suffixIconPath,
     super.titleSize,

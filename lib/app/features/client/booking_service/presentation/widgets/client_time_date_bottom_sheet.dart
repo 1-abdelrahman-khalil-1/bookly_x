@@ -47,8 +47,7 @@ class ClientTimeDateBottomSheet extends StatefulWidget {
       _ClientTimeDateBottomSheetState();
 }
 
-class _ClientTimeDateBottomSheetState
-    extends State<ClientTimeDateBottomSheet> {
+class _ClientTimeDateBottomSheetState extends State<ClientTimeDateBottomSheet> {
   int _activeTab = 0;
   DateTime? _selectedDate;
   late bool _isAm;
@@ -63,8 +62,10 @@ class _ClientTimeDateBottomSheetState
     _isAm = widget.initialIsAm;
     final t = widget.initialTime ?? const TimeOfDay(hour: 10, minute: 0);
     final hour = t.hour > 12 ? t.hour - 12 : (t.hour == 0 ? 12 : t.hour);
-    _hourController = WheelPickerController(itemCount: 12, initialIndex: hour - 1);
-    _minuteController = WheelPickerController(itemCount: 60, initialIndex: t.minute);
+    _hourController =
+        WheelPickerController(itemCount: 12, initialIndex: hour - 1);
+    _minuteController =
+        WheelPickerController(itemCount: 60, initialIndex: t.minute);
   }
 
   @override
@@ -77,9 +78,8 @@ class _ClientTimeDateBottomSheetState
   TimeOfDay get _selectedTime {
     final hour = _hourController.selected + 1;
     final minute = _minuteController.selected;
-    final hour24 = _isAm
-        ? (hour == 12 ? 0 : hour)
-        : (hour == 12 ? 12 : hour + 12);
+    final hour24 =
+        _isAm ? (hour == 12 ? 0 : hour) : (hour == 12 ? 12 : hour + 12);
     return TimeOfDay(hour: hour24, minute: minute);
   }
 
@@ -108,7 +108,8 @@ class _ClientTimeDateBottomSheetState
             child: Row(
               children: [
                 Expanded(
-                  child: Text(tr.timeAndDate, style: context.semiBold18TextMain),
+                  child:
+                      Text(tr.timeAndDate, style: context.semiBold18TextMain),
                 ),
                 GestureDetector(
                   onTap: () => Navigator.pop(context),
@@ -119,7 +120,8 @@ class _ClientTimeDateBottomSheetState
                       color: AppColors.textMain,
                       shape: BoxShape.circle,
                     ),
-                    child: const Icon(Icons.close, color: Colors.white, size: 18),
+                    child:
+                        const Icon(Icons.close, color: Colors.white, size: 18),
                   ),
                 ),
               ],
@@ -203,7 +205,8 @@ class _ClientTimeDateBottomSheetState
                         children: List.generate(5, (i) {
                           return Padding(
                             padding: const EdgeInsets.symmetric(vertical: 12),
-                            child: Text(tr.start, style: context.regular14TextSub),
+                            child:
+                                Text(tr.start, style: context.regular14TextSub),
                           );
                         }),
                       ),
@@ -230,8 +233,14 @@ class _ClientTimeDateBottomSheetState
                     Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        _AmPmButton(label: tr.am, isSelected: _isAm, onTap: () => setState(() => _isAm = true)),
-                        _AmPmButton(label: tr.pm, isSelected: !_isAm, onTap: () => setState(() => _isAm = false)),
+                        _AmPmButton(
+                            label: tr.am,
+                            isSelected: _isAm,
+                            onTap: () => setState(() => _isAm = true)),
+                        _AmPmButton(
+                            label: tr.pm,
+                            isSelected: !_isAm,
+                            onTap: () => setState(() => _isAm = false)),
                       ],
                     ),
                   ],
@@ -271,9 +280,7 @@ class _TabPill extends StatelessWidget {
           alignment: Alignment.center,
           child: Text(
             label,
-            style: isActive
-                ? context.regular14White
-                : context.regular14TextSub,
+            style: isActive ? context.regular14White : context.regular14TextSub,
           ),
         ),
       ),
@@ -301,15 +308,12 @@ class _AmPmButton extends StatelessWidget {
         decoration: BoxDecoration(
           color: isSelected ? AppColors.white : Colors.transparent,
           borderRadius: BorderRadius.circular(6),
-          border: isSelected
-              ? Border.all(color: AppColors.textBorders)
-              : null,
+          border: isSelected ? Border.all(color: AppColors.textBorders) : null,
         ),
         child: Text(
           label,
-          style: isSelected
-              ? context.regular12TextMain
-              : context.regular12TextSub,
+          style:
+              isSelected ? context.regular12TextMain : context.regular12TextSub,
         ),
       ),
     );

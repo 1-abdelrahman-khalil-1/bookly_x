@@ -28,12 +28,9 @@ class _ServerErrorState extends State<ServerErrorScreen> {
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Icon(
-          MyIcons.warning2Outline,
-          size: 64,
-          color: AppColors.danger,
-        ),
+        const Icon(MyIcons.warning2Outline, size: 64, color: AppColors.danger),
         const Height(24),
         Text(tr.aServerErrorOccurred, style: context.regular18Primary),
         const Height(8),

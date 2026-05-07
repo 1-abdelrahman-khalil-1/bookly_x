@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_single_quotes
 class Assets {
   Assets._();
-  
+
   static const String fontsInterBold = "assets/fonts/Inter-Bold.ttf";
 
   static const String fontsInterLight = "assets/fonts/Inter-Light.ttf";
@@ -22,6 +22,9 @@ class Assets {
 
   static const String iconsThird = "assets/icons/third.ttf";
 
+  static const String lottiesAppointmentCalendarLottieAnimation =
+      "assets/lotties/Appointment_Calendar_Lottie_Animation.json";
+
   static const String pngBackGround = "assets/png/back_ground.png";
 
   static const String pngBarberOnboarding = "assets/png/barber_onboarding.png";
@@ -38,4 +41,3 @@ class Assets {
 
   static const String translationsEn = "assets/translations/en.json";
 }
-

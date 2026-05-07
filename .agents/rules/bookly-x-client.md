@@ -1,5 +1,5 @@
 ---
-trigger: manual
+trigger: always_on
 ---
 
 # Bookly X Client — Project Instructions
@@ -18,13 +18,15 @@ trigger: manual
 
 ## ⚠️ AI Agent Behavior Rules — NEVER Violate
 
-* Ask before assuming anything unclear
-* Always search before creating (widgets, models, enums)
-* Detect patterns from codebase first — never invent
-* Follow architecture strictly (no new folders)
-* Reuse existing widgets before creating new ones
-* Do NOT introduce new state management or architecture
-* Follow design system strictly (colors, typography, spacing)
+- Ask before assuming anything unclear
+- Always search before creating (widgets, models, enums)
+- Detect patterns from codebase first — never invent
+- Follow architecture strictly, but create a new screen folder when a screen is split into its own feature surface
+- When asked to create a new standalone screen, create a new feature folder under `lib/app/features/<module>/<feature_name>/`
+- If the new screen is a details/child flow of an existing feature (for example: booking details), place it inside the existing feature instead of creating another feature root
+- Reuse existing widgets before creating new ones
+- Do NOT introduce new state management or architecture
+- Follow design system strictly (colors, typography, spacing)
 
 ---
 
@@ -35,6 +37,8 @@ trigger: manual
 3. Flutter widgets
 4. pub.dev packages
 5. Create new widget (only if necessary)
+
+When a screen becomes complex, move it into its own folder under `presentation/screens/<screen_name>/` and extract repeated pieces into sibling widget files under that screen folder.
 
 ---
 
@@ -53,9 +57,8 @@ trigger: manual
 6. No flutter_bloc / Cubit → Riverpod only
 
 7. No `showDialog()` / `showModalBottomSheet()` → use:
-
-   * `context.showCustomDialog`
-   * `context.showBottomSheet`
+   - `context.showCustomDialog`
+   - `context.showBottomSheet`
 
 8. **Dialog Pattern (Mandatory)**
    When creating any dialog widget, implement a static `showDialog` method:
@@ -80,19 +83,20 @@ static void showDialog(
 11. No direct Navigator → use `context.push / context.pop`
 12. Always use `MyIcons` instead of `Icons`
 13. Always use spacing extensions (`.h`, `.w`)
+14. Before passing props to a core widget, inspect its default parameters and omit any argument that matches the default value
 
 ---
 
 ## ❌ Anti-Patterns — Never Do This
 
-* ❌ CircularProgressIndicator instead of shimmer
-* ❌ API call inside UI
-* ❌ Navigator.push / pop
-* ❌ hardcoded strings or colors
-* ❌ inline models
-* ❌ duplicate widgets
-* ❌ raw TextStyle
-* ❌ Expanded with width.infinity
+- ❌ CircularProgressIndicator instead of shimmer
+- ❌ API call inside UI
+- ❌ Navigator.push / pop
+- ❌ hardcoded strings or colors
+- ❌ inline models
+- ❌ duplicate widgets
+- ❌ raw TextStyle
+- ❌ Expanded with width.infinity
 
 ---
 
@@ -127,17 +131,16 @@ lib/
 
 ## Contextual Naming (Required)
 
-* Use module prefix:
-
-  * client_
-  * staff_
-  * common_
+- Use module prefix:
+  - client\_
+  - staff\_
+  - common\_
 
 Example:
 
-* `client_bookings_screen.dart`
-* `ClientBookingsScreen`
-* `clientBookingsProvider`
+- `client_bookings_screen.dart`
+- `ClientBookingsScreen`
+- `clientBookingsProvider`
 
 ---
 
@@ -145,35 +148,38 @@ Example:
 
 ### Colors
 
-* Source: `AppColors`
-* Never use hex values
+- Source: `AppColors`
+- Never use hex values
 
 ---
 
 ### Typography
 
-* Use:
-
-  * context.bold20Primary
-  * context.regular14TextSub
+- Use:
+  - context.bold20Primary
+  - context.regular14TextSub
 
 ❌ Forbidden:
 
-* TextStyle()
-* copyWith()
+- TextStyle()
+- copyWith()
 
 ---
 
 ### Spacing
 
-* 8.h / 16.h
-* 8.w
+- 8.h / 16.h
+- 8.w
+
+### Fixed Sets
+
+- Use enums for repeated fixed values like weekday chips, status groups, and other small option sets instead of literal lists.
 
 ---
 
 ### Icons
 
-* Use `MyIcons`
+- Use `MyIcons`
 
 ---
 
@@ -196,10 +202,10 @@ Example:
 
 Handles:
 
-* loading
-* success
-* error
-* data
+- loading
+- success
+- error
+- data
 
 ---
 
@@ -207,14 +213,14 @@ Handles:
 
 Provides:
 
-* execute()
-* executeVoid()
+- execute()
+- executeVoid()
 
 Handles:
 
-* errors
-* loading
-* success messages
+- errors
+- loading
+- success messages
 
 ---
 
@@ -250,9 +256,9 @@ class BookingNotifier extends StateNotifier<GeneralState<void>>
 
 ### Pagination
 
-* PagedNotifier
-* PagedState
-* MySQL pagination
+- PagedNotifier
+- PagedState
+- MySQL pagination
 
 ---
 
@@ -270,9 +276,9 @@ ref.watchWhen(
 
 ## Controller Pattern
 
-* Controller = logic
-* UI = rendering only
-* Service = API
+- Controller = logic
+- UI = rendering only
+- Service = API
 
 ---
 
@@ -302,20 +308,20 @@ ref.invalidate(provider);
 
 ### Loading
 
-* Always shimmer
-* Never CircularProgressIndicator
+- Always shimmer
+- Never CircularProgressIndicator
 
 ---
 
 ## Success Messages Rule (Critical)
 
-* ❌ Forbidden:
+- ❌ Forbidden:
 
 ```dart
 setSuccessfullyMessage(tr.success);
 ```
 
-* ✅ Required:
+- ✅ Required:
 
 ```dart
 setSuccessfullyMessage(tr.bookingCancelledSuccefully);
@@ -329,9 +335,9 @@ setSuccessfullyMessage(tr.passwordChangedSuccessfully);
 
 ## API / Service Layer
 
-* DioClient
-* Endpoints
-* HandleErrorsResponse
+- DioClient
+- Endpoints
+- HandleErrorsResponse
 
 ---
 
@@ -346,9 +352,9 @@ context.pop();
 
 ## Performance Rules
 
-* const everywhere possible
-* avoid rebuilds
-* check mounted after await
+- const everywhere possible
+- avoid rebuilds
+- check mounted after await
 
 ---
 
@@ -364,11 +370,11 @@ dart run generate_styles.dart
 
 ## Checklist
 
-* [ ] no hardcoded text
-* [ ] no inline colors
-* [ ] shimmer exists
-* [ ] correct success message
-* [ ] widget reuse respected
+- [ ] no hardcoded text
+- [ ] no inline colors
+- [ ] shimmer exists
+- [ ] correct success message
+- [ ] widget reuse respected
 
 ---
 
@@ -377,3 +383,21 @@ dart run generate_styles.dart
 ```bash
 flutter analyze
 ```
+
+---
+
+## Generic Tabbed List Pattern
+
+When implementing any screen that shows one list split by tabs (status, category, stage, or type), follow this pattern instead of building each tab manually:
+
+- Use `DefaultTabController` + `TabBar` + `TabBarView` for the top-level segmentation.
+- Create a reusable `<Feature>NameListWidget` that receives:
+  - the source items list
+  - the active filter values (e.g. enum values)
+  - callbacks for row actions
+- Render list items inside the reusable widget using `ListView.separated`.
+- In each `TabBarView` child, call the same reusable list widget with different filter values (for example: pending/open/closed).
+- Keep business actions and dialogs in the parent screen and pass callbacks down to the reusable list widget.
+- Prefer enum-driven filters over hardcoded string checks.
+
+This keeps tab implementations consistent, reduces duplication, and ensures every tabbed list screen follows the same scalable structure.

@@ -113,10 +113,10 @@ class _ClientBookingServiceHostScreenState
                       onNext: (date, time) {
                         ref.read(bookingFlowDataProvider.notifier).state =
                             flowData.copyWith(
-                              selectedDate: date,
-                              selectedTime: time,
-                              isAm: time.hour < 12,
-                            );
+                          selectedDate: date,
+                          selectedTime: time,
+                          isAm: time.hour < 12,
+                        );
                         _goToNextPage();
                       },
                     )

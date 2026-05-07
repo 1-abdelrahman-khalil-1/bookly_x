@@ -51,8 +51,7 @@ class _AvailableOffersState extends ConsumerState<AvailableOffers>
                 visible: offers.length > 3,
                 child: TextButton(
                   onPressed: () {
-                    ViewAllOffersRoute(providers:
-                              providers).push(context);
+                    ViewAllOffersRoute(providers: providers).push(context);
                   },
                   child: Text(
                     tr.viewAll,

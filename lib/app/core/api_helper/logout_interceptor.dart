@@ -1,6 +1,10 @@
+import 'dart:developer';
 import 'dart:io';
 
+import 'package:bookly_x_client/app/core/data/agent_pref.dart';
+import 'package:bookly_x_client/app/core/data/lang_pref.dart';
 import 'package:dio/dio.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../data/user_pref.dart';
 import '../services/unauthorized_service.dart';
@@ -8,9 +12,10 @@ import 'endpoints.dart';
 
 class DioInterceptor extends Interceptor {
   final Dio dio;
+  final LangPrefs langPrefs;
   static Future<bool>? _refreshFuture;
 
-  DioInterceptor(this.dio);
+  DioInterceptor(this.dio, {required this.langPrefs});
 
   @override
   Future<void> onError(
@@ -78,20 +83,32 @@ class DioInterceptor extends Interceptor {
 
       // Use a separate Dio instance to avoid interceptors
       final refreshDio = Dio(BaseOptions(
+        headers: {
+          'Accept-Language': langPrefs.locale.toString(),
+          'platform': "APP",
+          'User-Agent': UserAgentPrefs.getUserAgent,
+        },
         baseUrl: Endpoints.baseUrl,
         connectTimeout: const Duration(seconds: 10),
         receiveTimeout: const Duration(seconds: 10),
       ));
 
+      refreshDio.interceptors.add(
+        PrettyDioLogger(
+          requestHeader: true,
+          requestBody: true,
+          logPrint: (object) => log(object.toString(), name: 'Refresh Token'),
+        ),
+      );
+
       final response = await refreshDio.post(
         Endpoints.refreshToken,
         data: {'refreshToken': refreshToken},
       );
-
       if (response.statusCode == 200 || response.statusCode == 201) {
         final resData = response.data;
-        final newToken = resData['token'];
-        final newRefreshToken = resData['refreshToken'];
+        final newToken = resData['data']['token'];
+        final newRefreshToken = resData['data']['refreshToken'];
 
         if (newToken != null) {
           await UserPrefs.setUserToken(newToken);
@@ -101,20 +118,27 @@ class DioInterceptor extends Interceptor {
           return true;
         }
       }
-    } catch (e) {
-      // Log error if needed
-    }
+    } catch (e) {}
     return false;
   }
 
   Future<Response> _retry(RequestOptions requestOptions) async {
-    final options = requestOptions;
-    if (options.headers.containsKey('Authorization')) {
-      options.headers['Authorization'] = UserPrefs.getUserToken();
-    }
-    options.extra['isRetry'] = true;
-
-    return dio.fetch(options);
+    return dio.request(
+      requestOptions.path,
+      data: requestOptions.data,
+      queryParameters: requestOptions.queryParameters,
+      options: Options(
+        method: requestOptions.method,
+        headers: {
+          ...requestOptions.headers,
+          'Authorization': UserPrefs.getUserToken(),
+        },
+        extra: {
+          ...requestOptions.extra,
+          'isRetry': true,
+        },
+      ),
+    );
   }
 
   Future<void> _handleLogout() async {

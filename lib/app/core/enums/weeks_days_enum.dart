@@ -1,13 +1,13 @@
 import 'package:bookly_x_client/generated/translations.g.dart';
 
 enum WeeksDaysEnum {
+  sunday,
   monday,
   tuesday,
   wednesday,
   thursday,
   friday,
-  saturday,
-  sunday;
+  saturday;
 
   static WeeksDaysEnum fromString(String day) {
     switch (day.toLowerCase()) {
@@ -48,4 +48,24 @@ enum WeeksDaysEnum {
         return tr.weekdays.sunday;
     }
   }
+
+  String get shortCode {
+    return switch (this) {
+      WeeksDaysEnum.monday => 'MON',
+      WeeksDaysEnum.tuesday => 'TUE',
+      WeeksDaysEnum.wednesday => 'WED',
+      WeeksDaysEnum.thursday => 'THU',
+      WeeksDaysEnum.friday => 'FRI',
+      WeeksDaysEnum.saturday => 'SAT',
+      WeeksDaysEnum.sunday => 'SUN',
+    };
+  }
+
+  bool get isMonday => this == WeeksDaysEnum.monday;
+  bool get isTuesday => this == WeeksDaysEnum.tuesday;
+  bool get isWednesday => this == WeeksDaysEnum.wednesday;
+  bool get isThursday => this == WeeksDaysEnum.thursday;
+  bool get isFriday => this == WeeksDaysEnum.friday;
+  bool get isSaturday => this == WeeksDaysEnum.saturday;
+  bool get isSunday => this == WeeksDaysEnum.sunday;
 }

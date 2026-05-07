@@ -3,7 +3,6 @@ import 'package:bookly_x_client/app/core/widgets/buttons/custom_button.dart';
 import 'package:bookly_x_client/app/core/widgets/custom_sized_box.dart';
 import 'package:bookly_x_client/generated/my_icons.dart';
 import 'package:bookly_x_client/generated/style_atoms.dart';
-import 'package:bookly_x_client/generated/translations.g.dart';
 import 'package:flutter/material.dart';
 
 class StaffAppointmentCard extends StatelessWidget {
@@ -53,93 +52,91 @@ class StaffAppointmentCard extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-          Container(
-            width: 4,
-            decoration: BoxDecoration(
-              color: accentColor,
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(20),
-                bottomLeft: Radius.circular(20),
+            Container(
+              width: 4,
+              decoration: BoxDecoration(
+                color: accentColor,
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  bottomLeft: Radius.circular(20),
+                ),
               ),
             ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(16, 16, 16, 14),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 4,
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(16, 16, 16, 14),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 4,
+                          ),
+                          decoration: BoxDecoration(
+                            color: statusBackground,
+                            borderRadius: BorderRadius.circular(999),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Badge(
+                                backgroundColor:
+                                    statusStyle.color ?? AppColors.primary,
+                                smallSize: 6,
+                              ),
+                              4.w,
+                              Text(statusLabel, style: statusStyle),
+                            ],
+                          ),
                         ),
-                        decoration: BoxDecoration(
-                          color: statusBackground,
-                          borderRadius: BorderRadius.circular(999),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
+                        const Spacer(),
+                        Row(
                           children: [
-                            Icon(
-                              statusLabel == tr.accepted
-                                  ? MyIcons.tickCircleOutline
-                                  : MyIcons.clockOutline,
-                              size: 12,
-                              color: statusStyle.color ?? AppColors.primary,
+                            const Icon(
+                              MyIcons.clockOutline,
+                              color: AppColors.textSub,
+                              size: 16,
                             ),
-                            const SizedBox(width: 4),
-                            Text(statusLabel, style: statusStyle),
+                            4.w,
+                            Text(timeLabel, style: context.regular14TextSub),
                           ],
                         ),
-                      ),
-                      const Spacer(),
-                      Row(
-                        children: [
-                          const Icon(
-                            MyIcons.clockOutline,
-                            color: AppColors.textSub,
-                            size: 16,
-                          ),
-                          const SizedBox(width: 4),
-                          Text(timeLabel, style: context.regular14TextSub),
-                        ],
-                      ),
-                    ],
-                  ),
-                  18.h,
-                  Text(customerName, style: context.bold18Primary),
-                  6.h,
-                  Row(
-                    children: [
-                      const Icon(
-                        MyIcons.scissorOutline,
-                        size: 16,
-                        color: AppColors.textSub,
-                      ),
-                      6.w,
-                      Text(serviceName, style: context.regular14TextSub),
-                    ],
-                  ),
-                  16.h,
-                  CustomButton(
-                    title: actionLabel,
-                    prefixIcon: actionIcon,
-                    prefixIconSize: 16,
-                    height: 42,
-                    borderRadius: 10,
-                    buttonColor: actionBackground,
-                    titleColor: actionTitleColor,
-                    prefixIconColor: actionTitleColor,
-                    onPress: () {},
-                  ),
-                ],
+                      ],
+                    ),
+                    18.h,
+                    Text(customerName, style: context.bold18Primary),
+                    6.h,
+                    Row(
+                      children: [
+                        const Icon(
+                          MyIcons.scissorOutline,
+                          size: 16,
+                          color: AppColors.textSub,
+                        ),
+                        6.w,
+                        Text(serviceName, style: context.regular14TextSub),
+                      ],
+                    ),
+                    16.h,
+                    CustomButton(
+                      title: actionLabel,
+                      prefixIcon: actionIcon,
+                      prefixIconSize: 16,
+                      height: 42,
+                      borderRadius: 10,
+                      buttonColor: actionBackground,
+                      titleColor: actionTitleColor,
+                      prefixIconColor: actionTitleColor,
+                      onPress: () {},
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
         ),
       ),
     );

@@ -35,7 +35,6 @@ class _ClientNotificationPreferencesScreenState
               SwitchListTile.adaptive(
                 title: Text(tr.offers),
                 subtitle: Text(tr.notifications),
-               
                 value: _offerAlerts,
                 onChanged: (value) => setState(() => _offerAlerts = value),
               ),

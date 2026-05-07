@@ -29,7 +29,8 @@ class ClientPaymentSuccessScreen extends StatelessWidget {
           children: [
             Expanded(
               child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
                 child: Column(
                   children: [
                     _SuccessBadge(),
@@ -50,19 +51,23 @@ class ClientPaymentSuccessScreen extends StatelessWidget {
                       title: tr.bookingInformation,
                       rows: [
                         _Row(label: tr.service, value: service?.name ?? ''),
-                        _Row(label: tr.rentalDate, value: flowData.formattedDateRange),
+                        _Row(
+                            label: tr.rentalDate,
+                            value: flowData.formattedDateRange),
                         _Row(label: tr.fullName, value: staff?.name ?? ''),
                       ],
                     ),
                     24.h,
                     Align(
                       alignment: AlignmentDirectional.centerStart,
-                      child: Text(tr.paymentDetail, style: context.semiBold14TextMain),
+                      child: Text(tr.paymentDetail,
+                          style: context.semiBold14TextMain),
                     ),
                     12.h,
                     _DetailRow(label: tr.paymentId, value: '#T000123B0J1'),
                     12.h,
-                    _DetailRow(label: tr.paymentDate, value: '01Jan2024 - 10:30 am'),
+                    _DetailRow(
+                        label: tr.paymentDate, value: '01Jan2024 - 10:30 am'),
                     12.h,
                     _DetailRow(
                       label: tr.placeService,

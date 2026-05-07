@@ -22,6 +22,7 @@ enum NotificationType {
         return Icons.info;
     }
   }
+
   bool get isBooking => this == NotificationType.booking;
   bool get isPromo => this == NotificationType.promo;
   bool get isPayment => this == NotificationType.payment;

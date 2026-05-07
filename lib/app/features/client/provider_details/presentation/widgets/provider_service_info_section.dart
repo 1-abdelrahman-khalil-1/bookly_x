@@ -37,7 +37,8 @@ class ProviderServiceInfoSection extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Icon(Icons.star_rounded, color: AppColors.primaryLight, size: 16),
+              const Icon(Icons.star_rounded,
+                  color: AppColors.primaryLight, size: 16),
               4.w,
               Text(
                 '$rating($reviewCount)',

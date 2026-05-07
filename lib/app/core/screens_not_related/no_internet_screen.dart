@@ -1,12 +1,14 @@
+import 'dart:async';
+
+import 'package:bookly_x_client/app/core/themes/app_colors.dart';
+import 'package:bookly_x_client/app/core/widgets/buttons/custom_button.dart';
+import 'package:bookly_x_client/app/core/widgets/custom_sized_box.dart';
+import 'package:bookly_x_client/generated/style_atoms.dart';
+import 'package:bookly_x_client/generated/translations.g.dart';
 import 'package:flutter/material.dart';
 
-import '/generated/style_atoms.dart';
-import '../../../generated/translations.g.dart';
 import '../enums/internet_status.dart';
 import '../services/internet_connection_service.dart';
-import '../themes/app_colors.dart';
-import '../widgets/buttons/custom_button.dart';
-import '../widgets/custom_sized_box.dart';
 
 // ignore: must_be_immutable
 class NoInternetScreen extends StatefulWidget {
@@ -20,47 +22,48 @@ class NoInternetScreen extends StatefulWidget {
 }
 
 class _NoInternetScreenState extends State<NoInternetScreen> {
+  StreamSubscription? _subscription;
+
   @override
   void initState() {
-    InternetConnectionService.event.on<ConnectionStatus>().listen((event) {
+    _subscription =
+        InternetConnectionService.event.on<ConnectionStatus>().listen((event) {
       if (event == ConnectionStatus.connected) widget.onRetry();
     });
     super.initState();
   }
 
   @override
+  void dispose() {
+    _subscription?.cancel();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Center(
-          child: Column(
-            children: [
-              const Expanded(flex: 2, child: SizedBox()),
-              const Icon(
-                Icons.wifi_off_rounded,
-                size: 100,
-                color: AppColors.primary,
-              ),
-              const Height(16),
-              Text(tr.noInternet, style: context.regular18Primary),
-              const Height(8),
-              Text(tr.checkInternetConnection, style: context.light14TextMain),
-              const Height(24),
-              CustomButton(
-                title: tr.tryAgain,
-                onPress: () {
-                  widget.isLoading = true;
-                  setState(() {});
-                  widget.onRetry();
-                },
-                isLoading: widget.isLoading,
-              ),
-              const Expanded(flex: 3, child: SizedBox()),
-            ],
-          ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Icon(
+          Icons.wifi_off_rounded,
+          size: 100,
+          color: AppColors.primary,
         ),
-      ),
+        const Height(16),
+        Text(tr.noInternet, style: context.regular18Primary),
+        const Height(8),
+        Text(tr.checkInternetConnection, style: context.light14TextMain),
+        const Height(24),
+        CustomButton(
+          title: tr.tryAgain,
+          onPress: () {
+            widget.isLoading = true;
+            setState(() {});
+            widget.onRetry();
+          },
+          isLoading: widget.isLoading,
+        ),
+      ],
     );
   }
 }

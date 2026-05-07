@@ -9,1019 +9,1132 @@ part of 'translations.g.dart';
 
 // Path: <root>
 typedef TranslationsEn = Translations; // ignore: unused_element
+
 class Translations with BaseTranslations<AppLocale, Translations> {
-	/// Returns the current translations of the given [context].
-	///
-	/// Usage:
-	/// final tr = Translations.of(context);
-	static Translations of(BuildContext context) => InheritedLocaleData.of<AppLocale, Translations>(context).translations;
+  /// Returns the current translations of the given [context].
+  ///
+  /// Usage:
+  /// final tr = Translations.of(context);
+  static Translations of(BuildContext context) =>
+      InheritedLocaleData.of<AppLocale, Translations>(context).translations;
 
-	/// You can call this constructor and build your own translation instance of this locale.
-	/// Constructing via the enum [AppLocale.build] is preferred.
-	Translations({Map<String, Node>? overrides, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver, TranslationMetadata<AppLocale, Translations>? meta})
-		: assert(overrides == null, 'Set "translation_overrides: true" in order to enable this feature.'),
-		  $meta = meta ?? TranslationMetadata(
-		    locale: AppLocale.en,
-		    overrides: overrides ?? {},
-		    cardinalResolver: cardinalResolver,
-		    ordinalResolver: ordinalResolver,
-		  ) {
-		$meta.setFlatMapFunction(_flatMapFunction);
-	}
+  /// You can call this constructor and build your own translation instance of this locale.
+  /// Constructing via the enum [AppLocale.build] is preferred.
+  Translations(
+      {Map<String, Node>? overrides,
+      PluralResolver? cardinalResolver,
+      PluralResolver? ordinalResolver,
+      TranslationMetadata<AppLocale, Translations>? meta})
+      : assert(overrides == null,
+            'Set "translation_overrides: true" in order to enable this feature.'),
+        $meta = meta ??
+            TranslationMetadata(
+              locale: AppLocale.en,
+              overrides: overrides ?? {},
+              cardinalResolver: cardinalResolver,
+              ordinalResolver: ordinalResolver,
+            ) {
+    $meta.setFlatMapFunction(_flatMapFunction);
+  }
 
-	/// Metadata for the translations of <en>.
-	@override final TranslationMetadata<AppLocale, Translations> $meta;
+  /// Metadata for the translations of <en>.
+  @override
+  final TranslationMetadata<AppLocale, Translations> $meta;
 
-	/// Access flat map
-	dynamic operator[](String key) => $meta.getTranslation(key);
+  /// Access flat map
+  dynamic operator [](String key) => $meta.getTranslation(key);
 
-	late final Translations _root = this; // ignore: unused_field
+  late final Translations _root = this; // ignore: unused_field
 
-	Translations $copyWith({TranslationMetadata<AppLocale, Translations>? meta}) => Translations(meta: meta ?? this.$meta);
+  Translations $copyWith(
+          {TranslationMetadata<AppLocale, Translations>? meta}) =>
+      Translations(meta: meta ?? this.$meta);
 
-	// Translations
+  // Translations
 
-	/// en: 'An error occurred'
-	String get errorOccurred => 'An error occurred';
+  /// en: 'An error occurred'
+  String get errorOccurred => 'An error occurred';
 
-	/// en: 'Something went wrong'
-	String get somethingWentWrong => 'Something went wrong';
+  /// en: 'Something went wrong'
+  String get somethingWentWrong => 'Something went wrong';
 
-	/// en: 'No Internet Connection'
-	String get noInternet => 'No Internet Connection';
+  /// en: 'No Internet Connection'
+  String get noInternet => 'No Internet Connection';
 
-	/// en: 'Please check your internet connection'
-	String get checkInternetConnection => 'Please check your internet connection';
+  /// en: 'Please check your internet connection'
+  String get checkInternetConnection => 'Please check your internet connection';
 
-	/// en: 'Try Again'
-	String get tryAgain => 'Try Again';
+  /// en: 'Try Again'
+  String get tryAgain => 'Try Again';
 
-	/// en: 'Loading'
-	String get loading => 'Loading';
+  /// en: 'Loading'
+  String get loading => 'Loading';
 
-	/// en: 'See More'
-	String get seeMore => 'See More';
+  /// en: 'See More'
+  String get seeMore => 'See More';
 
-	/// en: 'Search'
-	String get search => 'Search';
+  /// en: 'Search'
+  String get search => 'Search';
 
-	/// en: 'No results found'
-	String get noResultsFound => 'No results found';
+  /// en: 'No results found'
+  String get noResultsFound => 'No results found';
 
-	/// en: 'Male'
-	String get male => 'Male';
+  /// en: 'Male'
+  String get male => 'Male';
 
-	/// en: 'Female'
-	String get female => 'Female';
+  /// en: 'Female'
+  String get female => 'Female';
 
-	late final TranslationsWeekdaysEn weekdays = TranslationsWeekdaysEn._(_root);
+  late final TranslationsWeekdaysEn weekdays = TranslationsWeekdaysEn._(_root);
 
-	/// en: 'Disconnected'
-	String get disconnected => 'Disconnected';
+  /// en: 'Disconnected'
+  String get disconnected => 'Disconnected';
 
-	/// en: 'Connected'
-	String get connected => 'Connected';
+  /// en: 'Connected'
+  String get connected => 'Connected';
 
-	/// en: 'Weak Internet Connection'
-	String get internetWeak => 'Weak Internet Connection';
+  /// en: 'Weak Internet Connection'
+  String get internetWeak => 'Weak Internet Connection';
 
-	/// en: 'A server error occurred'
-	String get aServerErrorOccurred => 'A server error occurred';
+  /// en: 'A server error occurred'
+  String get aServerErrorOccurred => 'A server error occurred';
 
-	/// en: 'Something went wrong with the server. Please try again later.'
-	String get somethingWentWrongWithTheServerPleaseTryAgainLater => 'Something went wrong with the server. Please try again later.';
+  /// en: 'Something went wrong with the server. Please try again later.'
+  String get somethingWentWrongWithTheServerPleaseTryAgainLater =>
+      'Something went wrong with the server. Please try again later.';
 
-	/// en: 'No Internet Connection'
-	String get noInternetConnection => 'No Internet Connection';
+  /// en: 'No Internet Connection'
+  String get noInternetConnection => 'No Internet Connection';
 
-	/// en: 'Please check your internet connection and try again'
-	String get noInternetConnectionSubtitle => 'Please check your internet connection and try again';
+  /// en: 'Please check your internet connection and try again'
+  String get noInternetConnectionSubtitle =>
+      'Please check your internet connection and try again';
 
-	/// en: 'Please select'
-	String get pleaseSelect => 'Please select';
+  /// en: 'Please select'
+  String get pleaseSelect => 'Please select';
 
-	/// en: 'Close'
-	String get close => 'Close';
+  /// en: 'Close'
+  String get close => 'Close';
 
-	/// en: 'Search and select'
-	String get searchAndSelect => 'Search and select';
+  /// en: 'Search and select'
+  String get searchAndSelect => 'Search and select';
 
-	/// en: 'Phone Number'
-	String get phoneNumber => 'Phone Number';
+  /// en: 'Phone Number'
+  String get phoneNumber => 'Phone Number';
 
-	/// en: 'Enter your phone number'
-	String get enterYourPhoneNumber => 'Enter your phone number';
+  /// en: 'Enter your phone number'
+  String get enterYourPhoneNumber => 'Enter your phone number';
 
-	/// en: 'Please enter a valid phone number'
-	String get pleaseEnterAValidPhone => 'Please enter a valid phone number';
+  /// en: 'Please enter a valid phone number'
+  String get pleaseEnterAValidPhone => 'Please enter a valid phone number';
 
-	/// en: 'Search country'
-	String get searchCountry => 'Search country';
+  /// en: 'Search country'
+  String get searchCountry => 'Search country';
 
-	/// en: 'Enter'
-	String get enter => 'Enter';
+  /// en: 'Enter'
+  String get enter => 'Enter';
 
-	/// en: 'Camera'
-	String get camera => 'Camera';
+  /// en: 'Camera'
+  String get camera => 'Camera';
 
-	/// en: 'Gallery'
-	String get gallery => 'Gallery';
+  /// en: 'Gallery'
+  String get gallery => 'Gallery';
 
-	/// en: 'Select image to upload'
-	String get selectImageToUpload => 'Select image to upload';
+  /// en: 'Select image to upload'
+  String get selectImageToUpload => 'Select image to upload';
 
-	/// en: 'Image allowed formats'
-	String get imageAllowedFormats => 'Image allowed formats';
+  /// en: 'Image allowed formats'
+  String get imageAllowedFormats => 'Image allowed formats';
 
-	/// en: 'Submit'
-	String get submit => 'Submit';
+  /// en: 'Submit'
+  String get submit => 'Submit';
 
-	/// en: 'Cancel'
-	String get cancel => 'Cancel';
+  /// en: 'Cancel'
+  String get cancel => 'Cancel';
 
-	/// en: 'Delete'
-	String get delete => 'Delete';
+  /// en: 'Delete'
+  String get delete => 'Delete';
 
-	/// en: 'Edit'
-	String get edit => 'Edit';
+  /// en: 'Edit'
+  String get edit => 'Edit';
 
-	/// en: 'Save'
-	String get save => 'Save';
+  /// en: 'Save'
+  String get save => 'Save';
 
-	/// en: 'Done'
-	String get done => 'Done';
+  /// en: 'Done'
+  String get done => 'Done';
 
-	/// en: 'Ok'
-	String get ok => 'Ok';
+  /// en: 'Ok'
+  String get ok => 'Ok';
 
-	/// en: 'Failed'
-	String get failed => 'Failed';
+  /// en: 'Failed'
+  String get failed => 'Failed';
 
-	/// en: 'Success'
-	String get success => 'Success';
+  /// en: 'Success'
+  String get success => 'Success';
 
-	/// en: 'Warning'
-	String get warning => 'Warning';
+  /// en: 'Warning'
+  String get warning => 'Warning';
 
-	/// en: 'Error'
-	String get error => 'Error';
+  /// en: 'Error'
+  String get error => 'Error';
 
-	/// en: 'Info'
-	String get info => 'Info';
+  /// en: 'Info'
+  String get info => 'Info';
 
-	/// en: 'Skip'
-	String get skip => 'Skip';
+  /// en: 'Skip'
+  String get skip => 'Skip';
 
-	/// en: 'Next'
-	String get next => 'Next';
+  /// en: 'Next'
+  String get next => 'Next';
 
-	late final TranslationsOnboardingEn onboarding = TranslationsOnboardingEn._(_root);
+  late final TranslationsOnboardingEn onboarding =
+      TranslationsOnboardingEn._(_root);
 
-	/// en: 'Choose your role'
-	String get chooseYourRole => 'Choose your role';
+  /// en: 'Choose your role'
+  String get chooseYourRole => 'Choose your role';
 
-	/// en: 'Client'
-	String get client => 'Client';
+  /// en: 'Client'
+  String get client => 'Client';
 
-	/// en: 'Staff'
-	String get staff => 'Staff';
+  /// en: 'Staff'
+  String get staff => 'Staff';
 
-	/// en: 'Enjoy a seamless booking experience with the best service providers in your area.'
-	String get clientDescription => 'Enjoy a seamless booking experience with the best service providers in your area.';
+  /// en: 'Enjoy a seamless booking experience with the best service providers in your area.'
+  String get clientDescription =>
+      'Enjoy a seamless booking experience with the best service providers in your area.';
 
-	/// en: 'Manage your bookings effortlessly and expand your reach to customers.'
-	String get staffDescription => 'Manage your bookings effortlessly and expand your reach to customers.';
+  /// en: 'Manage your bookings effortlessly and expand your reach to customers.'
+  String get staffDescription =>
+      'Manage your bookings effortlessly and expand your reach to customers.';
 
-	/// en: 'Continue'
-	String get kContinue => 'Continue';
+  /// en: 'Continue'
+  String get kContinue => 'Continue';
 
-	/// en: 'Get Started Now'
-	String get getStarted => 'Get Started Now';
+  /// en: 'Get Started Now'
+  String get getStarted => 'Get Started Now';
 
-	/// en: 'Create an account or log in to explore about our app'
-	String get createAnAccountOrLogInToExploreAboutOurApp => 'Create an account or log in to explore about our app';
+  /// en: 'Create an account or log in to explore about our app'
+  String get createAnAccountOrLogInToExploreAboutOurApp =>
+      'Create an account or log in to explore about our app';
 
-	/// en: 'Log In'
-	String get login => 'Log In';
+  /// en: 'Log In'
+  String get login => 'Log In';
 
-	/// en: 'Sign Up'
-	String get signUp => 'Sign Up';
+  /// en: 'Sign Up'
+  String get signUp => 'Sign Up';
 
-	/// en: 'Email'
-	String get email => 'Email';
+  /// en: 'Email'
+  String get email => 'Email';
 
-	/// en: 'Password'
-	String get password => 'Password';
+  /// en: 'Password'
+  String get password => 'Password';
 
-	/// en: 'Remember Me'
-	String get rememberMe => 'Remember Me';
+  /// en: 'Remember Me'
+  String get rememberMe => 'Remember Me';
 
-	/// en: 'Forgot Password?'
-	String get forgotPassword => 'Forgot Password?';
+  /// en: 'Forgot Password?'
+  String get forgotPassword => 'Forgot Password?';
 
-	/// en: 'Continue with Google'
-	String get continueWithGoogle => 'Continue with Google';
+  /// en: 'Continue with Google'
+  String get continueWithGoogle => 'Continue with Google';
 
-	/// en: 'OR'
-	String get or => 'OR';
+  /// en: 'OR'
+  String get or => 'OR';
 
-	/// en: 'Full Name'
-	String get fullName => 'Full Name';
+  /// en: 'Full Name'
+  String get fullName => 'Full Name';
 
-	/// en: 'Full Name Required'
-	String get fullNameRequired => 'Full Name Required';
+  /// en: 'Full Name Required'
+  String get fullNameRequired => 'Full Name Required';
 
-	/// en: 'Enter your full name'
-	String get enterYourFullName => 'Enter your full name';
+  /// en: 'Enter your full name'
+  String get enterYourFullName => 'Enter your full name';
 
-	/// en: 'Email Required'
-	String get emailRequired => 'Email Required';
+  /// en: 'Email Required'
+  String get emailRequired => 'Email Required';
 
-	/// en: 'Enter Your Email'
-	String get enterYourEmail => 'Enter Your Email';
+  /// en: 'Enter Your Email'
+  String get enterYourEmail => 'Enter Your Email';
 
-	/// en: 'Password Required'
-	String get passwordRequired => 'Password Required';
+  /// en: 'Password Required'
+  String get passwordRequired => 'Password Required';
 
-	/// en: 'Enter Your Password'
-	String get enterYourPassword => 'Enter Your Password';
+  /// en: 'Enter Your Password'
+  String get enterYourPassword => 'Enter Your Password';
 
-	/// en: 'Full Name Should Be At Least Two Words'
-	String get fullNameShouldBeAtLeastTwoWords => 'Full Name Should Be At Least Two Words';
+  /// en: 'Full Name Should Be At Least Two Words'
+  String get fullNameShouldBeAtLeastTwoWords =>
+      'Full Name Should Be At Least Two Words';
 
-	/// en: 'You Forgot This Field'
-	String get youForgotThisField => 'You Forgot This Field';
+  /// en: 'You Forgot This Field'
+  String get youForgotThisField => 'You Forgot This Field';
 
-	/// en: 'Email Is Not Valid'
-	String get emailIsNotValid => 'Email Is Not Valid';
+  /// en: 'Email Is Not Valid'
+  String get emailIsNotValid => 'Email Is Not Valid';
 
-	/// en: 'Password Should Be At Least 8 '
-	String get passwordShouldBeAtLeast8 => 'Password Should Be At Least 8 ';
+  /// en: 'Password Should Be At Least 8 '
+  String get passwordShouldBeAtLeast8 => 'Password Should Be At Least 8 ';
 
-	/// en: 'Password Should Contain At Least One Character'
-	String get passwordShouldContainAtLeastOneCharacter => 'Password Should Contain At Least One Character';
+  /// en: 'Password Should Contain At Least One Character'
+  String get passwordShouldContainAtLeastOneCharacter =>
+      'Password Should Contain At Least One Character';
 
-	/// en: 'Password Should Contain At Least One Number'
-	String get passwordShouldContainAtLeastOneNumber => 'Password Should Contain At Least One Number';
+  /// en: 'Password Should Contain At Least One Number'
+  String get passwordShouldContainAtLeastOneNumber =>
+      'Password Should Contain At Least One Number';
 
-	/// en: 'Confirm Password'
-	String get confirmPassword => 'Confirm Password';
+  /// en: 'Confirm Password'
+  String get confirmPassword => 'Confirm Password';
 
-	/// en: 'Passwords Do Not Match'
-	String get passwordsDoNotMatch => 'Passwords Do Not Match';
+  /// en: 'Passwords Do Not Match'
+  String get passwordsDoNotMatch => 'Passwords Do Not Match';
 
-	/// en: 'End Time Must Be After Start Time'
-	String get endTimeMustBeAfterStartTime => 'End Time Must Be After Start Time';
+  /// en: 'End Time Must Be After Start Time'
+  String get endTimeMustBeAfterStartTime => 'End Time Must Be After Start Time';
 
-	/// en: 'Phone Number Required'
-	String get phoneNumberRequired => 'Phone Number Required';
+  /// en: 'Phone Number Required'
+  String get phoneNumberRequired => 'Phone Number Required';
 
-	/// en: 'By creating an account, you agree to the Terms of use'
-	String get byCreatingAnAccountYouAgreeToTheTermsOfUse => 'By creating an account, you agree to the Terms of use';
+  /// en: 'By creating an account, you agree to the Terms of use'
+  String get byCreatingAnAccountYouAgreeToTheTermsOfUse =>
+      'By creating an account, you agree to the Terms of use';
 
-	/// en: 'Already have an account?'
-	String get alreadyHaveAnAccount => 'Already have an account?';
+  /// en: 'Already have an account?'
+  String get alreadyHaveAnAccount => 'Already have an account?';
 
-	/// en: 'Sign Up With Google'
-	String get signUpWithGoogle => 'Sign Up With Google';
+  /// en: 'Sign Up With Google'
+  String get signUpWithGoogle => 'Sign Up With Google';
 
-	/// en: 'Reset Password'
-	String get resetPassword => 'Reset Password';
+  /// en: 'Reset Password'
+  String get resetPassword => 'Reset Password';
 
-	/// en: 'Enter your email address and we will send you a link to reset your password.'
-	String get enterYourEmailAddressAndWeWillSendYouALinkToResetYourPassword => 'Enter your email address and we will send you a link to reset your password.';
+  /// en: 'Enter your email address and we will send you a link to reset your password.'
+  String get enterYourEmailAddressAndWeWillSendYouALinkToResetYourPassword =>
+      'Enter your email address and we will send you a link to reset your password.';
 
-	/// en: 'Send Code'
-	String get sendCode => 'Send Code';
+  /// en: 'Send Code'
+  String get sendCode => 'Send Code';
 
-	/// en: 'Check you email'
-	String get checkYouEmail => 'Check you email';
+  /// en: 'Check you email'
+  String get checkYouEmail => 'Check you email';
 
-	/// en: 'We sent a reset link to {{email}}, Enter 6 digit code that mentioned in the email'
-	String weSentAResetLinkToEmailEnter6DigitCodeThatMentionedInTheEmail({required Object email}) => 'We sent a reset link to ${email}, Enter 6 digit code that mentioned in the email';
+  /// en: 'We sent a reset link to {{email}}, Enter 6 digit code that mentioned in the email'
+  String weSentAResetLinkToEmailEnter6DigitCodeThatMentionedInTheEmail(
+          {required Object email}) =>
+      'We sent a reset link to ${email}, Enter 6 digit code that mentioned in the email';
 
-	/// en: 'Did Not Receive The Code?'
-	String get didNotReceiveTheCode => 'Did Not Receive The Code?';
+  /// en: 'Did Not Receive The Code?'
+  String get didNotReceiveTheCode => 'Did Not Receive The Code?';
 
-	/// en: 'Resend Code'
-	String get resendCode => 'Resend Code';
+  /// en: 'Resend Code'
+  String get resendCode => 'Resend Code';
 
-	/// en: 'Verify Code'
-	String get verifyCode => 'Verify Code';
+  /// en: 'Verify Code'
+  String get verifyCode => 'Verify Code';
 
-	/// en: 'Set New Password'
-	String get setNewPassword => 'Set New Password';
+  /// en: 'Set New Password'
+  String get setNewPassword => 'Set New Password';
 
-	/// en: 'Update Password'
-	String get updatePassword => 'Update Password';
+  /// en: 'Update Password'
+  String get updatePassword => 'Update Password';
 
-	/// en: 'New Password'
-	String get newPassword => 'New Password';
+  /// en: 'New Password'
+  String get newPassword => 'New Password';
 
-	/// en: 'Your identity has been successfully verified. Please enter a new password to secure your account.'
-	String get yourIdentityHasBeenSuccessfullyVerifiedPleaseEnterANewPasswordToSecureYourAccount => 'Your identity has been successfully verified. Please enter a new password to secure your account.';
+  /// en: 'Your identity has been successfully verified. Please enter a new password to secure your account.'
+  String get yourIdentityHasBeenSuccessfullyVerifiedPleaseEnterANewPasswordToSecureYourAccount =>
+      'Your identity has been successfully verified. Please enter a new password to secure your account.';
 
-	/// en: 'Password Updated Successfully'
-	String get passwordUpdatedSuccessfully => 'Password Updated Successfully';
+  /// en: 'Password Updated Successfully'
+  String get passwordUpdatedSuccessfully => 'Password Updated Successfully';
 
-	/// en: 'Enter 6-digit code'
-	String get enter6DigitCode => 'Enter 6-digit code';
+  /// en: 'Enter 6-digit code'
+  String get enter6DigitCode => 'Enter 6-digit code';
 
-	/// en: 'We sent a verification code to your email'
-	String get weSentVerificationCodeToYourEmail => 'We sent a verification code to your email';
+  /// en: 'We sent a verification code to your email'
+  String get weSentVerificationCodeToYourEmail =>
+      'We sent a verification code to your email';
 
-	/// en: 'We sent a verification code to your phone'
-	String get weSentVerificationCodeToYourPhone => 'We sent a verification code to your phone';
+  /// en: 'We sent a verification code to your phone'
+  String get weSentVerificationCodeToYourPhone =>
+      'We sent a verification code to your phone';
 
-	/// en: 'Haven't got the code yet?'
-	String get haventGotTheCodeYet => 'Haven\'t got the code yet?';
+  /// en: 'Haven't got the code yet?'
+  String get haventGotTheCodeYet => 'Haven\'t got the code yet?';
 
-	/// en: 'remaining'
-	String get remaining => 'remaining';
+  /// en: 'remaining'
+  String get remaining => 'remaining';
 
-	/// en: 'Resend code in'
-	String get resendCodeIn => 'Resend code in';
+  /// en: 'Resend code in'
+  String get resendCodeIn => 'Resend code in';
 
-	/// en: 'seconds'
-	String get seconds => 'seconds';
+  /// en: 'seconds'
+  String get seconds => 'seconds';
 
-	/// en: 'Please Enter Valid Otp'
-	String get pleaseEnterValidOtp => 'Please Enter Valid Otp';
+  /// en: 'Please Enter Valid Otp'
+  String get pleaseEnterValidOtp => 'Please Enter Valid Otp';
 
-	/// en: 'Account Created Successfully'
-	String get accountCreatedSuccessfully => 'Account Created Successfully';
+  /// en: 'Account Created Successfully'
+  String get accountCreatedSuccessfully => 'Account Created Successfully';
 
-	/// en: 'Login Successfuly'
-	String get loginSuccessfuly => 'Login Successfuly';
+  /// en: 'Login Successfuly'
+  String get loginSuccessfuly => 'Login Successfuly';
 
-	/// en: 'Home'
-	String get home => 'Home';
+  /// en: 'Home'
+  String get home => 'Home';
 
-	/// en: 'Good morning,'
-	String get goodMorning => 'Good morning,';
+  /// en: 'Good morning,'
+  String get goodMorning => 'Good morning,';
 
-	/// en: 'Search services, providers...'
-	String get searchServicesProviders => 'Search services, providers...';
+  /// en: 'Search services, providers...'
+  String get searchServicesProviders => 'Search services, providers...';
 
-	/// en: 'Limited time!'
-	String get limitedTime => 'Limited time!';
+  /// en: 'Limited time!'
+  String get limitedTime => 'Limited time!';
 
-	/// en: 'Get Special Discount in today'
-	String get getSpecialDiscountInToday => 'Get Special Discount in today';
+  /// en: 'Get Special Discount in today'
+  String get getSpecialDiscountInToday => 'Get Special Discount in today';
 
-	/// en: 'Up to'
-	String get upTo => 'Up to';
+  /// en: 'Up to'
+  String get upTo => 'Up to';
 
-	/// en: 'All services Available || 16 hours & today'
-	String get allServicesAvailable => 'All services Available || 16 hours & today';
+  /// en: 'All services Available || 16 hours & today'
+  String get allServicesAvailable =>
+      'All services Available || 16 hours & today';
 
-	/// en: 'Claim Now'
-	String get claimNow => 'Claim Now';
+  /// en: 'Claim Now'
+  String get claimNow => 'Claim Now';
 
-	/// en: 'Categories'
-	String get categories => 'Categories';
+  /// en: 'Categories'
+  String get categories => 'Categories';
 
-	/// en: 'Nearby Providers'
-	String get nearbyProviders => 'Nearby Providers';
+  /// en: 'Nearby Providers'
+  String get nearbyProviders => 'Nearby Providers';
 
-	/// en: 'View All'
-	String get viewAll => 'View All';
+  /// en: 'View All'
+  String get viewAll => 'View All';
 
-	/// en: 'Rating'
-	String get rating => 'Rating';
+  /// en: 'Rating'
+  String get rating => 'Rating';
 
-	/// en: 'Earned'
-	String get earned => 'Earned';
+  /// en: 'Earned'
+  String get earned => 'Earned';
 
-	/// en: 'Rate'
-	String get rate => 'Rate';
+  /// en: 'Rate'
+  String get rate => 'Rate';
 
-	/// en: 'Get In Touch'
-	String get getInTouch => 'Get In Touch';
+  /// en: 'Get In Touch'
+  String get getInTouch => 'Get In Touch';
 
-	/// en: 'Explore'
-	String get explore => 'Explore';
+  /// en: 'Explore'
+  String get explore => 'Explore';
 
-	/// en: 'Bookings'
-	String get bookings => 'Bookings';
+  /// en: 'Bookings'
+  String get bookings => 'Bookings';
 
-	/// en: 'Offers'
-	String get offers => 'Offers';
+  /// en: 'Offers'
+  String get offers => 'Offers';
 
-	/// en: 'Settings'
-	String get settings => 'Settings';
+  /// en: 'Settings'
+  String get settings => 'Settings';
 
-	/// en: 'Pending'
-	String get pending => 'Pending';
+  /// en: 'Pending'
+  String get pending => 'Pending';
 
-	/// en: 'Upcoming'
-	String get upcoming => 'Upcoming';
+  /// en: 'Upcoming'
+  String get upcoming => 'Upcoming';
 
-	/// en: 'Complete'
-	String get complete => 'Complete';
+  /// en: 'Complete'
+  String get complete => 'Complete';
 
-	/// en: 'Waiting for payment'
-	String get waitingForPayment => 'Waiting for payment';
+  /// en: 'Waiting for payment'
+  String get waitingForPayment => 'Waiting for payment';
 
-	/// en: 'Total Paid'
-	String get totalPaid => 'Total Paid';
+  /// en: 'Total Paid'
+  String get totalPaid => 'Total Paid';
 
-	/// en: 'Confirmed'
-	String get confirmed => 'Confirmed';
+  /// en: 'Confirmed'
+  String get confirmed => 'Confirmed';
 
-	/// en: 'Contact'
-	String get contact => 'Contact';
+  /// en: 'Canceled'
+  String get canceled => 'Canceled';
 
-	/// en: 'Directions'
-	String get directions => 'Directions';
+  /// en: 'Contact'
+  String get contact => 'Contact';
 
-	/// en: 'Pay'
-	String get pay => 'Pay';
+  /// en: 'Directions'
+  String get directions => 'Directions';
 
-	/// en: 'Reschedule'
-	String get reschedule => 'Reschedule';
+  /// en: 'Pay'
+  String get pay => 'Pay';
 
-	/// en: 'Are you sure you want to Cancel your Booking permanently?'
-	String get cancelBookingTitle => 'Are you sure you want to Cancel your Booking permanently?';
+  /// en: 'Reschedule'
+  String get reschedule => 'Reschedule';
 
-	/// en: 'Are you sure you want to Delete your Booking permanently?'
-	String get deleteBookingTitle => 'Are you sure you want to Delete your Booking permanently?';
+  /// en: 'Are you sure you want to Cancel your Booking permanently?'
+  String get cancelBookingTitle =>
+      'Are you sure you want to Cancel your Booking permanently?';
 
-	/// en: 'By doing this, your booking will be cancelled permanently and you will not be able to recover your booking anymore.'
-	String get cancelBookingMessage => 'By doing this, your booking will be cancelled permanently and you will not be able to recover your booking anymore.';
+  /// en: 'Are you sure you want to Delete your Booking permanently?'
+  String get deleteBookingTitle =>
+      'Are you sure you want to Delete your Booking permanently?';
 
-	/// en: 'No bookings yet'
-	String get noBookingsYet => 'No bookings yet';
+  /// en: 'By doing this, your booking will be cancelled permanently and you will not be able to recover your booking anymore.'
+  String get cancelBookingMessage =>
+      'By doing this, your booking will be cancelled permanently and you will not be able to recover your booking anymore.';
 
-	/// en: 'With'
-	String get kWith => 'With';
+  /// en: 'No bookings yet'
+  String get noBookingsYet => 'No bookings yet';
 
-	/// en: 'min'
-	String get minutes => 'min';
+  /// en: 'With'
+  String get kWith => 'With';
 
-	/// en: 'Notifications'
-	String get notifications => 'Notifications';
+  /// en: 'min'
+  String get minutes => 'min';
 
-	/// en: 'Today'
-	String get today => 'Today';
+  /// en: 'Notifications'
+  String get notifications => 'Notifications';
 
-	/// en: 'Yesterday'
-	String get yesterday => 'Yesterday';
+  /// en: 'Today'
+  String get today => 'Today';
 
-	/// en: 'Older'
-	String get older => 'Older';
+  /// en: 'Yesterday'
+  String get yesterday => 'Yesterday';
 
-	/// en: 'Mark as read'
-	String get markAsRead => 'Mark as read';
+  /// en: 'Older'
+  String get older => 'Older';
 
-	/// en: 'No notifications yet'
-	String get noNotifications => 'No notifications yet';
+  /// en: 'Mark as read'
+  String get markAsRead => 'Mark as read';
 
-	/// en: 'Language'
-	String get language => 'Language';
+  /// en: 'No notifications yet'
+  String get noNotifications => 'No notifications yet';
 
-	/// en: 'Choose your preferred language'
-	String get chooseYourPreferredLanguage => 'Choose your preferred language';
+  /// en: 'Language'
+  String get language => 'Language';
 
-	/// en: 'Available Near You'
-	String get availableNearYou => 'Available Near You';
+  /// en: 'Choose your preferred language'
+  String get chooseYourPreferredLanguage => 'Choose your preferred language';
 
-	/// en: 'Top Offers'
-	String get topOffers => 'Top Offers';
+  /// en: 'Available Near You'
+  String get availableNearYou => 'Available Near You';
 
-	/// en: 'Available Offers'
-	String get availableOffers => 'Available Offers';
+  /// en: 'Top Offers'
+  String get topOffers => 'Top Offers';
 
-	/// en: 'All Services'
-	String get allServices => 'All Services';
+  /// en: 'Available Offers'
+  String get availableOffers => 'Available Offers';
 
-	/// en: 'Spas'
-	String get spas => 'Spas';
+  /// en: 'All Services'
+  String get allServices => 'All Services';
 
-	/// en: 'Clinics'
-	String get clinics => 'Clinics';
+  /// en: 'Spas'
+  String get spas => 'Spas';
 
-	/// en: 'Barbers'
-	String get barbers => 'Barbers';
+  /// en: 'Clinics'
+  String get clinics => 'Clinics';
 
-	/// en: 'Something Happened Error'
-	String get somethingHappenedError => 'Something Happened Error';
+  /// en: 'Barbers'
+  String get barbers => 'Barbers';
 
-	/// en: 'Available Services'
-	String get availableServices => 'Available Services';
+  /// en: 'Something Happened Error'
+  String get somethingHappenedError => 'Something Happened Error';
 
-	/// en: 'Description'
-	String get description => 'Description';
+  /// en: 'Available Services'
+  String get availableServices => 'Available Services';
 
-	/// en: 'About Me'
-	String get aboutMe => 'About Me';
+  /// en: 'Description'
+  String get description => 'Description';
 
-	/// en: 'Read More'
-	String get readMore => 'Read More';
+  /// en: 'About Me'
+  String get aboutMe => 'About Me';
 
-	/// en: 'Review'
-	String get review => 'Review';
+  /// en: 'Read More'
+  String get readMore => 'Read More';
 
-	/// en: 'Reviews'
-	String get reviews => 'Reviews';
+  /// en: 'Review'
+  String get review => 'Review';
 
-	/// en: 'work place'
-	String get workPlace => 'work place';
+  /// en: 'Reviews'
+  String get reviews => 'Reviews';
 
-	/// en: 'Years Exp'
-	String get yearsExp => 'Years Exp';
+  /// en: 'work place'
+  String get workPlace => 'work place';
 
-	/// en: 'See All'
-	String get seeAll => 'See All';
+  /// en: 'Years Exp'
+  String get yearsExp => 'Years Exp';
 
-	/// en: 'Total Price'
-	String get totalPrice => 'Total Price';
+  /// en: 'See All'
+  String get seeAll => 'See All';
 
-	/// en: 'Booking Now'
-	String get bookingNow => 'Booking Now';
+  /// en: 'Total Price'
+  String get totalPrice => 'Total Price';
 
-	/// en: 'Owner'
-	String get owner => 'Owner';
+  /// en: 'Booking Now'
+  String get bookingNow => 'Booking Now';
 
-	/// en: 'No'
-	String get no => 'No';
+  /// en: 'Owner'
+  String get owner => 'Owner';
 
-	/// en: 'Yes'
-	String get yes => 'Yes';
+  /// en: 'No'
+  String get no => 'No';
 
-	/// en: 'Date'
-	String get date => 'Date';
+  /// en: 'Yes'
+  String get yes => 'Yes';
 
-	/// en: 'Time'
-	String get time => 'Time';
+  /// en: 'Date'
+  String get date => 'Date';
 
-	/// en: 'confirm'
-	String get confirm => 'confirm';
+  /// en: 'Time'
+  String get time => 'Time';
 
-	/// en: 'Please Select Date'
-	String get pleaseSelectDate => 'Please Select Date';
+  /// en: 'confirm'
+  String get confirm => 'confirm';
 
-	/// en: 'Booking services'
-	String get bookingServices => 'Booking services';
+  /// en: 'Please Select Date'
+  String get pleaseSelectDate => 'Please Select Date';
 
-	/// en: 'Select Service'
-	String get selectService => 'Select Service';
+  /// en: 'Booking services'
+  String get bookingServices => 'Booking services';
 
-	/// en: 'Select Staff'
-	String get selectStaff => 'Select Staff';
+  /// en: 'Select Service'
+  String get selectService => 'Select Service';
 
-	/// en: 'Time & Date'
-	String get timeAndDate => 'Time & Date';
+  /// en: 'Select Staff'
+  String get selectStaff => 'Select Staff';
 
-	/// en: 'services'
-	String get services => 'services';
+  /// en: 'Time & Date'
+  String get timeAndDate => 'Time & Date';
 
-	/// en: 'person'
-	String get person => 'person';
+  /// en: 'services'
+  String get services => 'services';
 
-	/// en: 'Book Now'
-	String get bookNow => 'Book Now';
+  /// en: 'person'
+  String get person => 'person';
 
-	/// en: 'Service'
-	String get service => 'Service';
+  /// en: 'Book Now'
+  String get bookNow => 'Book Now';
 
-	/// en: 'Specialist'
-	String get specialist => 'Specialist';
+  /// en: 'Service'
+  String get service => 'Service';
 
-	/// en: 'Rental Date'
-	String get rentalDate => 'Rental Date';
+  /// en: 'Specialist'
+  String get specialist => 'Specialist';
 
-	/// en: 'Booking information'
-	String get bookingInformation => 'Booking information';
+  /// en: 'Rental Date'
+  String get rentalDate => 'Rental Date';
 
-	/// en: 'Booking detail'
-	String get bookingDetail => 'Booking detail';
+  /// en: 'Booking information'
+  String get bookingInformation => 'Booking information';
 
-	/// en: 'Booking ID'
-	String get bookingId => 'Booking ID';
+  /// en: 'Booking detail'
+  String get bookingDetail => 'Booking detail';
 
-	/// en: 'Booking Date'
-	String get bookingDate => 'Booking Date';
+  /// en: 'Booking Management'
+  String get bookingManagement => 'Booking Management';
 
-	/// en: 'place service'
-	String get placeService => 'place service';
+  /// en: 'Booking ID'
+  String get bookingId => 'Booking ID';
 
-	/// en: 'Amount'
-	String get amount => 'Amount';
+  /// en: 'Booking Date'
+  String get bookingDate => 'Booking Date';
 
-	/// en: 'Service fee'
-	String get serviceFee => 'Service fee';
+  /// en: 'Review your booking history.'
+  String get reviewYourBookingHistory => 'Review your booking history.';
 
-	/// en: 'Tax'
-	String get tax => 'Tax';
+  /// en: 'place service'
+  String get placeService => 'place service';
 
-	/// en: 'Booking successful'
-	String get bookingSuccessful => 'Booking  successful';
+  /// en: 'Amount'
+  String get amount => 'Amount';
 
-	/// en: 'Your Booking has been successfully'
-	String get bookingSuccessMessage => 'Your Booking has been successfully';
+  /// en: 'Service fee'
+  String get serviceFee => 'Service fee';
 
-	/// en: 'Check Booking'
-	String get checkBooking => 'Check Booking';
+  /// en: 'Tax'
+  String get tax => 'Tax';
 
-	/// en: 'Pay now'
-	String get payNow => 'Pay now';
+  /// en: 'Booking successful'
+  String get bookingSuccessful => 'Booking  successful';
 
-	/// en: 'Secure Payment'
-	String get securePayment => 'Secure Payment';
+  /// en: 'Your Booking has been successfully'
+  String get bookingSuccessMessage => 'Your Booking has been successfully';
 
-	/// en: 'BOOKING SUMMARY'
-	String get bookingSummary => 'BOOKING SUMMARY';
+  /// en: 'Check Booking'
+  String get checkBooking => 'Check Booking';
 
-	/// en: 'Total Amount'
-	String get totalAmount => 'Total Amount';
+  /// en: 'Pay now'
+  String get payNow => 'Pay now';
 
-	/// en: 'Credit / Debit Card'
-	String get creditDebitCard => 'Credit / Debit Card';
+  /// en: 'Secure Payment'
+  String get securePayment => 'Secure Payment';
 
-	/// en: 'Card Number'
-	String get cardNumber => 'Card Number';
+  /// en: 'BOOKING SUMMARY'
+  String get bookingSummary => 'BOOKING SUMMARY';
 
-	/// en: 'Expiry Date'
-	String get expiryDate => 'Expiry Date';
+  /// en: 'Total Amount'
+  String get totalAmount => 'Total Amount';
 
-	/// en: 'Secured with 256-bit SSL encryption'
-	String get securedWithSSL => 'Secured with 256-bit SSL encryption';
+  /// en: 'Credit / Debit Card'
+  String get creditDebitCard => 'Credit / Debit Card';
 
-	/// en: 'Your payment is secure and encrypted'
-	String get yourPaymentIsSecureAndEncrypted => 'Your payment is secure and encrypted';
+  /// en: 'Card Number'
+  String get cardNumber => 'Card Number';
 
-	/// en: 'Payment Successful'
-	String get paymentSuccessful => 'Payment Successful';
+  /// en: 'Expiry Date'
+  String get expiryDate => 'Expiry Date';
 
-	/// en: 'Your Booking has been confirmed'
-	String get paymentSuccessMessage => 'Your Booking has been confirmed';
+  /// en: 'Secured with 256-bit SSL encryption'
+  String get securedWithSSL => 'Secured with 256-bit SSL encryption';
 
-	/// en: 'Payment detail'
-	String get paymentDetail => 'Payment detail';
+  /// en: 'Your payment is secure and encrypted'
+  String get yourPaymentIsSecureAndEncrypted =>
+      'Your payment is secure and encrypted';
 
-	/// en: 'Payment ID'
-	String get paymentId => 'Payment ID';
+  /// en: 'Payment Successful'
+  String get paymentSuccessful => 'Payment Successful';
 
-	/// en: 'Payment Date'
-	String get paymentDate => 'Payment Date';
+  /// en: 'Your Booking has been confirmed'
+  String get paymentSuccessMessage => 'Your Booking has been confirmed';
 
-	/// en: 'Download Receipt'
-	String get downloadReceipt => 'Download Receipt';
+  /// en: 'Payment detail'
+  String get paymentDetail => 'Payment detail';
 
-	/// en: 'Shar Your Receipt'
-	String get shareReceipt => 'Shar Your Receipt';
+  /// en: 'Payment ID'
+  String get paymentId => 'Payment ID';
 
-	/// en: 'Back to Home'
-	String get backToHome => 'Back to Home';
+  /// en: 'Payment Date'
+  String get paymentDate => 'Payment Date';
 
-	/// en: 'AM'
-	String get am => 'AM';
+  /// en: 'Download Receipt'
+  String get downloadReceipt => 'Download Receipt';
 
-	/// en: 'PM'
-	String get pm => 'PM';
+  /// en: 'Shar Your Receipt'
+  String get shareReceipt => 'Shar Your Receipt';
 
-	/// en: 'Start'
-	String get start => 'Start';
+  /// en: 'Back to Home'
+  String get backToHome => 'Back to Home';
 
-	/// en: 'Please Select Time'
-	String get pleaseSelectTime => 'Please Select Time';
+  /// en: 'AM'
+  String get am => 'AM';
 
-	/// en: 'Must be not greater Than 2MB'
-	String get mustBeNotGreaterThan2mb => 'Must be not greater Than 2MB';
+  /// en: 'PM'
+  String get pm => 'PM';
 
-	/// en: 'Edit Profile'
-	String get editProfile => 'Edit Profile';
+  /// en: 'Start'
+  String get start => 'Start';
 
-	/// en: 'Manage notification preferences'
-	String get manageNotificationPreferences => 'Manage notification preferences';
+  /// en: 'Please Select Time'
+  String get pleaseSelectTime => 'Please Select Time';
 
-	/// en: 'Privacy & Security'
-	String get privacyAndSecurity => 'Privacy & Security';
+  /// en: 'Must be not greater Than 2MB'
+  String get mustBeNotGreaterThan2mb => 'Must be not greater Than 2MB';
 
-	/// en: 'Manage Privacy Settings'
-	String get managePrivacySettings => 'Manage Privacy Settings';
+  /// en: 'Edit Profile'
+  String get editProfile => 'Edit Profile';
 
-	/// en: 'Invite Friends'
-	String get inviteFriends => 'Invite Friends';
+  /// en: 'Manage notification preferences'
+  String get manageNotificationPreferences => 'Manage notification preferences';
 
-	/// en: 'Invite your friends to join our app'
-	String get inviteYourFriendsToJoinOurApp => 'Invite your friends to join our app';
+  /// en: 'Privacy & Security'
+  String get privacyAndSecurity => 'Privacy & Security';
 
-	/// en: 'This feature is coming soon'
-	String get thisFeatureIsComingSoon => 'This feature is coming soon';
+  /// en: 'Manage Privacy Settings'
+  String get managePrivacySettings => 'Manage Privacy Settings';
 
-	/// en: 'log out'
-	String get logOut => 'log out';
+  /// en: 'Invite Friends'
+  String get inviteFriends => 'Invite Friends';
 
-	/// en: 'favorites'
-	String get favorites => 'favorites';
+  /// en: 'Invite your friends to join our app'
+  String get inviteYourFriendsToJoinOurApp =>
+      'Invite your friends to join our app';
 
-	/// en: 'Manage Favorites'
-	String get manageFavorites => 'Manage Favorites';
+  /// en: 'This feature is coming soon'
+  String get thisFeatureIsComingSoon => 'This feature is coming soon';
 
-	/// en: 'Profile Updated Successfully'
-	String get profileUpdatedSuccessfully => 'Profile Updated Successfully';
+  /// en: 'log out'
+  String get logOut => 'log out';
 
-	/// en: 'Profile Setting'
-	String get profileSetting => 'Profile Setting';
+  /// en: 'favorites'
+  String get favorites => 'favorites';
 
-	/// en: 'Good morning, Alex'
-	String get goodMorningAlex => 'Good morning, Alex';
+  /// en: 'Manage Favorites'
+  String get manageFavorites => 'Manage Favorites';
 
-	/// en: 'Here is your schedule for today.'
-	String get hereIsYourScheduleForToday => 'Here is your schedule for today.';
+  /// en: 'Profile Updated Successfully'
+  String get profileUpdatedSuccessfully => 'Profile Updated Successfully';
 
-	/// en: 'View full'
-	String get viewFull => 'View full';
+  /// en: 'Profile Setting'
+  String get profileSetting => 'Profile Setting';
 
-	/// en: 'Specialties'
-	String get specialties => 'Specialties';
+  /// en: 'Good morning, Alex'
+  String get goodMorningAlex => 'Good morning, Alex';
 
-	/// en: 'Work Schedule'
-	String get workSchedule => 'Work Schedule';
+  /// en: 'Here is your schedule for today.'
+  String get hereIsYourScheduleForToday => 'Here is your schedule for today.';
 
-	/// en: 'Select All'
-	String get selectAll => 'Select All';
+  /// en: 'View full'
+  String get viewFull => 'View full';
 
-	/// en: 'Edit Schedule'
-	String get editSchedule => 'Edit Schedule';
+  /// en: 'Specialties'
+  String get specialties => 'Specialties';
 
-	/// en: 'Edit Work Schedule'
-	String get editWorkSchedule => 'Edit Work Schedule';
+  /// en: 'Work Schedule'
+  String get workSchedule => 'Work Schedule';
 
-	/// en: 'Same for all days'
-	String get sameForAllDays => 'Same for all days';
+  /// en: 'Select All'
+  String get selectAll => 'Select All';
 
-	/// en: 'Individual days'
-	String get individualDays => 'Individual days';
+  /// en: 'Edit Schedule'
+  String get editSchedule => 'Edit Schedule';
 
-	/// en: 'Working Days'
-	String get workingDays => 'Working Days';
+  /// en: 'Edit Work Schedule'
+  String get editWorkSchedule => 'Edit Work Schedule';
 
-	/// en: 'Working Hours'
-	String get workingHours => 'Working Hours';
+  /// en: 'Same for all days'
+  String get sameForAllDays => 'Same for all days';
 
-	/// en: 'Save Changes'
-	String get saveChanges => 'Save Changes';
+  /// en: 'Individual days'
+  String get individualDays => 'Individual days';
 
-	/// en: 'Start Time'
-	String get startTime => 'Start Time';
+  /// en: 'Working Days'
+  String get workingDays => 'Working Days';
 
-	/// en: 'End Time'
-	String get endTime => 'End Time';
+  /// en: 'Working Hours'
+  String get workingHours => 'Working Hours';
 
-	/// en: 'You're all caught up! Enjoy your free time or check your upcoming schedule.'
-	String get noAppointmentsDescription => 'You\'re all caught up! Enjoy your free time or check your upcoming schedule.';
+  /// en: 'Save Changes'
+  String get saveChanges => 'Save Changes';
 
-	/// en: '(1,245 reviews)'
-	String get reviewsCount => '(1,245 reviews)';
+  /// en: 'Start Time'
+  String get startTime => 'Start Time';
 
-	/// en: 'James Miller'
-	String get jamesMiller => 'James Miller';
+  /// en: 'End Time'
+  String get endTime => 'End Time';
 
-	/// en: 'Sarah Chen'
-	String get sampleSecondCustomerName => 'Sarah Chen';
+  /// en: 'You're all caught up! Enjoy your free time or check your upcoming schedule.'
+  String get noAppointmentsDescription =>
+      'You\'re all caught up! Enjoy your free time or check your upcoming schedule.';
 
-	/// en: 'Senior Specialist'
-	String get seniorSpecialist => 'Senior Specialist';
+  /// en: '(1,245 reviews)'
+  String get reviewsCount => '(1,245 reviews)';
 
-	/// en: 'Full Grooming'
-	String get fullGrooming => 'Full Grooming';
+  /// en: 'James Miller'
+  String get jamesMiller => 'James Miller';
 
-	/// en: 'Haircut & Styling'
-	String get haircutStyling => 'Haircut & Styling';
+  /// en: 'Sarah Chen'
+  String get sampleSecondCustomerName => 'Sarah Chen';
 
-	/// en: 'Hair Styling'
-	String get hairStyling => 'Hair Styling';
+  /// en: 'Senior Specialist'
+  String get seniorSpecialist => 'Senior Specialist';
 
-	/// en: 'Beard Trim'
-	String get beardTrim => 'Beard Trim';
+  /// en: 'Full Grooming'
+  String get fullGrooming => 'Full Grooming';
 
-	/// en: 'Skin Care'
-	String get skinCare => 'Skin Care';
+  /// en: 'Haircut & Styling'
+  String get haircutStyling => 'Haircut & Styling';
 
-	/// en: 'Scalp Massage'
-	String get scalpMassage => 'Scalp Massage';
+  /// en: 'Hair Styling'
+  String get hairStyling => 'Hair Styling';
 
-	/// en: 'james.m@example.com'
-	String get sampleEmail => 'james.m@example.com';
+  /// en: 'Beard Trim'
+  String get beardTrim => 'Beard Trim';
 
-	/// en: '(555) 123-4567'
-	String get samplePhone => '(555) 123-4567';
+  /// en: 'Skin Care'
+  String get skinCare => 'Skin Care';
 
-	/// en: '32'
-	String get sampleAge => '32';
+  /// en: 'Scalp Massage'
+  String get scalpMassage => 'Scalp Massage';
 
-	/// en: 'Oct 2021'
-	String get sampleJoinedDate => 'Oct 2021';
+  /// en: 'james.m@example.com'
+  String get sampleEmail => 'james.m@example.com';
 
-	/// en: 'Phone'
-	String get phone => 'Phone';
+  /// en: '(555) 123-4567'
+  String get samplePhone => '(555) 123-4567';
 
-	/// en: 'Age'
-	String get age => 'Age';
+  /// en: '32'
+  String get sampleAge => '32';
 
-	/// en: 'Mon'
-	String get mon => 'Mon';
+  /// en: 'Oct 2021'
+  String get sampleJoinedDate => 'Oct 2021';
 
-	/// en: 'Tue'
-	String get tue => 'Tue';
+  /// en: 'Phone'
+  String get phone => 'Phone';
 
-	/// en: 'Wed'
-	String get wed => 'Wed';
+  /// en: 'Age'
+  String get age => 'Age';
 
-	/// en: 'Thu'
-	String get thu => 'Thu';
+  /// en: 'Mon'
+  String get mon => 'Mon';
 
-	/// en: 'Fri'
-	String get fri => 'Fri';
+  /// en: 'Tue'
+  String get tue => 'Tue';
 
-	/// en: 'Sat'
-	String get sat => 'Sat';
+  /// en: 'Wed'
+  String get wed => 'Wed';
 
-	/// en: 'Sun'
-	String get sun => 'Sun';
+  /// en: 'Thu'
+  String get thu => 'Thu';
 
-	/// en: 'Monday'
-	String get monday => 'Monday';
+  /// en: 'Fri'
+  String get fri => 'Fri';
 
-	/// en: 'Tuesday'
-	String get tuesday => 'Tuesday';
+  /// en: 'Sat'
+  String get sat => 'Sat';
 
-	/// en: 'Wednesday'
-	String get wednesday => 'Wednesday';
+  /// en: 'Sun'
+  String get sun => 'Sun';
 
-	/// en: 'Thursday'
-	String get thursday => 'Thursday';
+  /// en: 'Monday'
+  String get monday => 'Monday';
 
-	/// en: 'Friday'
-	String get friday => 'Friday';
+  /// en: 'Tuesday'
+  String get tuesday => 'Tuesday';
 
-	/// en: 'Saturday'
-	String get saturday => 'Saturday';
+  /// en: 'Wednesday'
+  String get wednesday => 'Wednesday';
 
-	/// en: 'Sunday'
-	String get sunday => 'Sunday';
+  /// en: 'Thursday'
+  String get thursday => 'Thursday';
 
-	/// en: 'This schedule will apply to all 5 selected working days.'
-	String get scheduleAppliesToFiveDays => 'This schedule will apply to all 5 selected working days.';
+  /// en: 'Friday'
+  String get friday => 'Friday';
 
-	/// en: 'Location Selected'
-	String get locationSelected => 'Location Selected';
+  /// en: 'Saturday'
+  String get saturday => 'Saturday';
 
-	/// en: 'Select Location'
-	String get selectLocation => 'Select Location';
+  /// en: 'Sunday'
+  String get sunday => 'Sunday';
 
-	/// en: 'Sorry Your Session Expired Please Login Again'
-	String get sorryYourSessionExpiredPleaseLoginAgain => 'Sorry Your Session Expired Please Login Again';
+  /// en: 'This schedule will apply to all {{days}} selected working days.'
+  String scheduleAppliesToDays({required Object days}) =>
+      'This schedule will apply to all ${days} selected working days.';
 
-	/// en: 'Revenue'
-	String get revenue => 'Revenue';
+  /// en: 'Location Selected'
+  String get locationSelected => 'Location Selected';
 
-	/// en: 'Completed'
-	String get completed => 'Completed';
+  /// en: 'Select Location'
+  String get selectLocation => 'Select Location';
 
-	/// en: 'This week'
-	String get thisWeek => 'This week';
+  /// en: 'Sorry Your Session Expired Please Login Again'
+  String get sorryYourSessionExpiredPleaseLoginAgain =>
+      'Sorry Your Session Expired Please Login Again';
 
-	/// en: 'Average'
-	String get average => 'Average';
+  /// en: 'Revenue'
+  String get revenue => 'Revenue';
 
-	/// en: 'Week Schedule'
-	String get weekSchedule => 'Week Schedule';
+  /// en: 'Completed'
+  String get completed => 'Completed';
 
-	/// en: 'Today's Schedule'
-	String get todaysSchedule => 'Today\'s Schedule';
+  /// en: 'This week'
+  String get thisWeek => 'This week';
 
-	/// en: 'View Details'
-	String get viewDetails => 'View Details';
+  /// en: 'Average'
+  String get average => 'Average';
 
-	/// en: 'Start Service'
-	String get startService => 'Start Service';
+  /// en: 'Week Schedule'
+  String get weekSchedule => 'Week Schedule';
 
-	/// en: 'Note:'
-	String get note => 'Note:';
+  /// en: 'Today's Schedule'
+  String get todaysSchedule => 'Today\'s Schedule';
 
-	/// en: 'Schedule'
-	String get schedule => 'Schedule';
+  /// en: 'View Details'
+  String get viewDetails => 'View Details';
 
-	/// en: 'Alerts'
-	String get alerts => 'Alerts';
+  /// en: 'Start Service'
+  String get startService => 'Start Service';
 
-	/// en: 'Income'
-	String get income => 'Income';
+  /// en: 'Note:'
+  String get note => 'Note:';
 
-	/// en: 'No Upcoming Appointments'
-	String get noUpcomingAppointments => 'No Upcoming Appointments';
+  /// en: 'Schedule'
+  String get schedule => 'Schedule';
 
-	/// en: 'No Appointments Today'
-	String get noAppointmentsToday => 'No Appointments Today';
+  /// en: 'Alerts'
+  String get alerts => 'Alerts';
 
-	/// en: 'Manage your booking requests and alerts'
-	String get manageYourBookingRequests => 'Manage your booking requests and alerts';
+  /// en: 'Income'
+  String get income => 'Income';
 
-	/// en: 'Accepted'
-	String get accepted => 'Accepted';
+  /// en: 'No Upcoming Appointments'
+  String get noUpcomingAppointments => 'No Upcoming Appointments';
 
-	/// en: 'In Progress'
-	String get inProgress => 'In Progress';
+  /// en: 'No Appointments Today'
+  String get noAppointmentsToday => 'No Appointments Today';
 
-	/// en: 'Rejected'
-	String get rejected => 'Rejected';
+  /// en: 'Manage your booking requests and alerts'
+  String get manageYourBookingRequests =>
+      'Manage your booking requests and alerts';
 
-	/// en: 'Accept'
-	String get accept => 'Accept';
+  /// en: 'Accepted'
+  String get accepted => 'Accepted';
 
-	/// en: 'Reject'
-	String get reject => 'Reject';
+  /// en: 'In Progress'
+  String get inProgress => 'In Progress';
 
-	/// en: 'Duration'
-	String get duration => 'Duration';
+  /// en: 'Rejected'
+  String get rejected => 'Rejected';
 
-	/// en: 'cancelled'
-	String get cancelled => 'cancelled';
+  /// en: 'Accept'
+  String get accept => 'Accept';
 
-	/// en: 'Booking cancelled for'
-	String get bookingCancelledFor => 'Booking cancelled for';
+  /// en: 'Reject'
+  String get reject => 'Reject';
 
-	/// en: 'ago'
-	String get ago => 'ago';
+  /// en: 'Duration'
+  String get duration => 'Duration';
 
-	/// en: 'min ago'
-	String get minAgo => 'min ago';
+  /// en: 'cancelled'
+  String get cancelled => 'cancelled';
 
-	/// en: 'Joined'
-	String get joined => 'Joined';
+  /// en: 'Booking cancelled for'
+  String get bookingCancelledFor => 'Booking cancelled for';
 
-	/// en: 'hour ago'
-	String get hourAgo => 'hour ago';
+  /// en: 'ago'
+  String get ago => 'ago';
 
-	/// en: 'This field is required'
-	String get thisFieldIsRequired => 'This field is required';
+  /// en: 'min ago'
+  String get minAgo => 'min ago';
 
-	/// en: 'Password must be at least 8 characters'
-	String get passwordMustBeAtLeast8Characters => 'Password must be at least 8 characters';
+  /// en: 'Joined'
+  String get joined => 'Joined';
+
+  /// en: 'hour ago'
+  String get hourAgo => 'hour ago';
+
+  /// en: 'This field is required'
+  String get thisFieldIsRequired => 'This field is required';
+
+  /// en: 'Password must be at least 8 characters'
+  String get passwordMustBeAtLeast8Characters =>
+      'Password must be at least 8 characters';
+
+  /// en: 'Privacy Policy'
+  String get privacyPolicy => 'Privacy Policy';
+
+  /// en: 'Daily'
+  String get daily => 'Daily';
+
+  /// en: 'Weekly'
+  String get weekly => 'Weekly';
+
+  /// en: 'Monthly'
+  String get monthly => 'Monthly';
+
+  /// en: 'Total Earnings'
+  String get totalEarnings => 'Total Earnings';
+
+  /// en: 'Avg/Service'
+  String get avgService => 'Avg/Service';
+
+  /// en: 'Weekly Earnings'
+  String get weeklyEarnings => 'Weekly Earnings';
+
+  /// en: 'vs last week'
+  String get vsLastWeek => 'vs last week';
+
+  /// en: 'Monthly Trend'
+  String get monthlyTrend => 'Monthly Trend';
+
+  /// en: 'Last 30 days'
+  String get last30Days => 'Last 30 days';
+
+  /// en: 'Recent Services'
+  String get recentServices => 'Recent Services';
+
+  /// en: 'Appointment Details'
+  String get appointmentDetails => 'Appointment Details';
+
+  /// en: 'Appointment Notes'
+  String get appointmentNotes => 'Appointment Notes';
+
+  /// en: 'Attachments'
+  String get attachments => 'Attachments';
+
+  /// en: 'Complete Service'
+  String get completeService => 'Complete Service';
+
+  /// en: 'Contact Client'
+  String get contactClient => 'Contact Client';
+
+  /// en: 'Open'
+  String get open => 'Open';
+
+  /// en: 'Closed'
+  String get closed => 'Closed';
+
+  /// en: 'No Appointments'
+  String get noAppointments => 'No Appointments';
+
+  /// en: 'Logout Successfully'
+  String get logoutSuccessfully => 'Logout Successfully';
+
+  /// en: 'Are you sure you want to logout?'
+  String get areYouSureYouWantToLogout => 'Are you sure you want to logout?';
 }
 
 // Path: weekdays
 class TranslationsWeekdaysEn {
-	TranslationsWeekdaysEn._(this._root);
+  TranslationsWeekdaysEn._(this._root);
 
-	final Translations _root; // ignore: unused_field
+  final Translations _root; // ignore: unused_field
 
-	// Translations
+  // Translations
 
-	/// en: 'Monday'
-	String get monday => 'Monday';
+  /// en: 'Monday'
+  String get monday => 'Monday';
 
-	/// en: 'Tuesday'
-	String get tuesday => 'Tuesday';
+  /// en: 'Tuesday'
+  String get tuesday => 'Tuesday';
 
-	/// en: 'Wednesday'
-	String get wednesday => 'Wednesday';
+  /// en: 'Wednesday'
+  String get wednesday => 'Wednesday';
 
-	/// en: 'Thursday'
-	String get thursday => 'Thursday';
+  /// en: 'Thursday'
+  String get thursday => 'Thursday';
 
-	/// en: 'Friday'
-	String get friday => 'Friday';
+  /// en: 'Friday'
+  String get friday => 'Friday';
 
-	/// en: 'Saturday'
-	String get saturday => 'Saturday';
+  /// en: 'Saturday'
+  String get saturday => 'Saturday';
 
-	/// en: 'Sunday'
-	String get sunday => 'Sunday';
+  /// en: 'Sunday'
+  String get sunday => 'Sunday';
 }
 
 // Path: onboarding
 class TranslationsOnboardingEn {
-	TranslationsOnboardingEn._(this._root);
+  TranslationsOnboardingEn._(this._root);
 
-	final Translations _root; // ignore: unused_field
+  final Translations _root; // ignore: unused_field
 
-	// Translations
+  // Translations
 
-	/// en: 'Get Started'
-	String get getStarted => 'Get Started';
+  /// en: 'Get Started'
+  String get getStarted => 'Get Started';
 
-	/// en: 'Find Trusted Doctors'
-	String get doctorTitle => 'Find Trusted Doctors';
+  /// en: 'Find Trusted Doctors'
+  String get doctorTitle => 'Find Trusted Doctors';
 
-	/// en: 'Search and book appointments with top-rated doctors.'
-	String get doctorSubtitle => 'Search and book appointments with top-rated doctors.';
+  /// en: 'Search and book appointments with top-rated doctors.'
+  String get doctorSubtitle =>
+      'Search and book appointments with top-rated doctors.';
 
-	/// en: 'Discover Professional Barbers'
-	String get barberTitle => 'Discover Professional Barbers';
+  /// en: 'Discover Professional Barbers'
+  String get barberTitle => 'Discover Professional Barbers';
 
-	/// en: 'Book appointments with the best barbers in town.'
-	String get barberSubtitle => 'Book appointments with the best barbers in town.';
+  /// en: 'Book appointments with the best barbers in town.'
+  String get barberSubtitle =>
+      'Book appointments with the best barbers in town.';
 
-	/// en: 'Relax and Rejuvenate'
-	String get spaTitle => 'Relax and Rejuvenate';
+  /// en: 'Relax and Rejuvenate'
+  String get spaTitle => 'Relax and Rejuvenate';
 
-	/// en: 'Book premium spa experiences designed for your comfort.'
-	String get spaSubtitle => 'Book premium spa experiences designed for your comfort.';
+  /// en: 'Book premium spa experiences designed for your comfort.'
+  String get spaSubtitle =>
+      'Book premium spa experiences designed for your comfort.';
 }
 
 /// The flat map containing all translations for locale <en>.
@@ -1030,329 +1143,379 @@ class TranslationsOnboardingEn {
 /// The Dart AOT compiler has issues with very large switch statements,
 /// so the map is split into smaller functions (512 entries each).
 extension on Translations {
-	dynamic _flatMapFunction(String path) {
-		return switch (path) {
-			'errorOccurred' => 'An error occurred',
-			'somethingWentWrong' => 'Something went wrong',
-			'noInternet' => 'No Internet Connection',
-			'checkInternetConnection' => 'Please check your internet connection',
-			'tryAgain' => 'Try Again',
-			'loading' => 'Loading',
-			'seeMore' => 'See More',
-			'search' => 'Search',
-			'noResultsFound' => 'No results found',
-			'male' => 'Male',
-			'female' => 'Female',
-			'weekdays.monday' => 'Monday',
-			'weekdays.tuesday' => 'Tuesday',
-			'weekdays.wednesday' => 'Wednesday',
-			'weekdays.thursday' => 'Thursday',
-			'weekdays.friday' => 'Friday',
-			'weekdays.saturday' => 'Saturday',
-			'weekdays.sunday' => 'Sunday',
-			'disconnected' => 'Disconnected',
-			'connected' => 'Connected',
-			'internetWeak' => 'Weak Internet Connection',
-			'aServerErrorOccurred' => 'A server error occurred',
-			'somethingWentWrongWithTheServerPleaseTryAgainLater' => 'Something went wrong with the server. Please try again later.',
-			'noInternetConnection' => 'No Internet Connection',
-			'noInternetConnectionSubtitle' => 'Please check your internet connection and try again',
-			'pleaseSelect' => 'Please select',
-			'close' => 'Close',
-			'searchAndSelect' => 'Search and select',
-			'phoneNumber' => 'Phone Number',
-			'enterYourPhoneNumber' => 'Enter your phone number',
-			'pleaseEnterAValidPhone' => 'Please enter a valid phone number',
-			'searchCountry' => 'Search country',
-			'enter' => 'Enter',
-			'camera' => 'Camera',
-			'gallery' => 'Gallery',
-			'selectImageToUpload' => 'Select image to upload',
-			'imageAllowedFormats' => 'Image allowed formats',
-			'submit' => 'Submit',
-			'cancel' => 'Cancel',
-			'delete' => 'Delete',
-			'edit' => 'Edit',
-			'save' => 'Save',
-			'done' => 'Done',
-			'ok' => 'Ok',
-			'failed' => 'Failed',
-			'success' => 'Success',
-			'warning' => 'Warning',
-			'error' => 'Error',
-			'info' => 'Info',
-			'skip' => 'Skip',
-			'next' => 'Next',
-			'onboarding.getStarted' => 'Get Started',
-			'onboarding.doctorTitle' => 'Find Trusted Doctors',
-			'onboarding.doctorSubtitle' => 'Search and book appointments with top-rated doctors.',
-			'onboarding.barberTitle' => 'Discover Professional Barbers',
-			'onboarding.barberSubtitle' => 'Book appointments with the best barbers in town.',
-			'onboarding.spaTitle' => 'Relax and Rejuvenate',
-			'onboarding.spaSubtitle' => 'Book premium spa experiences designed for your comfort.',
-			'chooseYourRole' => 'Choose your role',
-			'client' => 'Client',
-			'staff' => 'Staff',
-			'clientDescription' => 'Enjoy a seamless booking experience with the best service providers in your area.',
-			'staffDescription' => 'Manage your bookings effortlessly and expand your reach to customers.',
-			'kContinue' => 'Continue',
-			'getStarted' => 'Get Started Now',
-			'createAnAccountOrLogInToExploreAboutOurApp' => 'Create an account or log in to explore about our app',
-			'login' => 'Log In',
-			'signUp' => 'Sign Up',
-			'email' => 'Email',
-			'password' => 'Password',
-			'rememberMe' => 'Remember Me',
-			'forgotPassword' => 'Forgot Password?',
-			'continueWithGoogle' => 'Continue with Google',
-			'or' => 'OR',
-			'fullName' => 'Full Name',
-			'fullNameRequired' => 'Full Name Required',
-			'enterYourFullName' => 'Enter your full name',
-			'emailRequired' => 'Email Required',
-			'enterYourEmail' => 'Enter Your Email',
-			'passwordRequired' => 'Password Required',
-			'enterYourPassword' => 'Enter Your Password',
-			'fullNameShouldBeAtLeastTwoWords' => 'Full Name Should Be At Least Two Words',
-			'youForgotThisField' => 'You Forgot This Field',
-			'emailIsNotValid' => 'Email Is Not Valid',
-			'passwordShouldBeAtLeast8' => 'Password Should Be At Least 8 ',
-			'passwordShouldContainAtLeastOneCharacter' => 'Password Should Contain At Least One Character',
-			'passwordShouldContainAtLeastOneNumber' => 'Password Should Contain At Least One Number',
-			'confirmPassword' => 'Confirm Password',
-			'passwordsDoNotMatch' => 'Passwords Do Not Match',
-			'endTimeMustBeAfterStartTime' => 'End Time Must Be After Start Time',
-			'phoneNumberRequired' => 'Phone Number Required',
-			'byCreatingAnAccountYouAgreeToTheTermsOfUse' => 'By creating an account, you agree to the Terms of use',
-			'alreadyHaveAnAccount' => 'Already have an account?',
-			'signUpWithGoogle' => 'Sign Up With Google',
-			'resetPassword' => 'Reset Password',
-			'enterYourEmailAddressAndWeWillSendYouALinkToResetYourPassword' => 'Enter your email address and we will send you a link to reset your password.',
-			'sendCode' => 'Send Code',
-			'checkYouEmail' => 'Check you email',
-			'weSentAResetLinkToEmailEnter6DigitCodeThatMentionedInTheEmail' => ({required Object email}) => 'We sent a reset link to ${email}, Enter 6 digit code that mentioned in the email',
-			'didNotReceiveTheCode' => 'Did Not Receive The Code?',
-			'resendCode' => 'Resend Code',
-			'verifyCode' => 'Verify Code',
-			'setNewPassword' => 'Set New Password',
-			'updatePassword' => 'Update Password',
-			'newPassword' => 'New Password',
-			'yourIdentityHasBeenSuccessfullyVerifiedPleaseEnterANewPasswordToSecureYourAccount' => 'Your identity has been successfully verified. Please enter a new password to secure your account.',
-			'passwordUpdatedSuccessfully' => 'Password Updated Successfully',
-			'enter6DigitCode' => 'Enter 6-digit code',
-			'weSentVerificationCodeToYourEmail' => 'We sent a verification code to your email',
-			'weSentVerificationCodeToYourPhone' => 'We sent a verification code to your phone',
-			'haventGotTheCodeYet' => 'Haven\'t got the code yet?',
-			'remaining' => 'remaining',
-			'resendCodeIn' => 'Resend code in',
-			'seconds' => 'seconds',
-			'pleaseEnterValidOtp' => 'Please Enter Valid Otp',
-			'accountCreatedSuccessfully' => 'Account Created Successfully',
-			'loginSuccessfuly' => 'Login Successfuly',
-			'home' => 'Home',
-			'goodMorning' => 'Good morning,',
-			'searchServicesProviders' => 'Search services, providers...',
-			'limitedTime' => 'Limited time!',
-			'getSpecialDiscountInToday' => 'Get Special Discount in today',
-			'upTo' => 'Up to',
-			'allServicesAvailable' => 'All services Available || 16 hours & today',
-			'claimNow' => 'Claim Now',
-			'categories' => 'Categories',
-			'nearbyProviders' => 'Nearby Providers',
-			'viewAll' => 'View All',
-			'rating' => 'Rating',
-			'earned' => 'Earned',
-			'rate' => 'Rate',
-			'getInTouch' => 'Get In Touch',
-			'explore' => 'Explore',
-			'bookings' => 'Bookings',
-			'offers' => 'Offers',
-			'settings' => 'Settings',
-			'pending' => 'Pending',
-			'upcoming' => 'Upcoming',
-			'complete' => 'Complete',
-			'waitingForPayment' => 'Waiting for payment',
-			'totalPaid' => 'Total Paid',
-			'confirmed' => 'Confirmed',
-			'contact' => 'Contact',
-			'directions' => 'Directions',
-			'pay' => 'Pay',
-			'reschedule' => 'Reschedule',
-			'cancelBookingTitle' => 'Are you sure you want to Cancel your Booking permanently?',
-			'deleteBookingTitle' => 'Are you sure you want to Delete your Booking permanently?',
-			'cancelBookingMessage' => 'By doing this, your booking will be cancelled permanently and you will not be able to recover your booking anymore.',
-			'noBookingsYet' => 'No bookings yet',
-			'kWith' => 'With',
-			'minutes' => 'min',
-			'notifications' => 'Notifications',
-			'today' => 'Today',
-			'yesterday' => 'Yesterday',
-			'older' => 'Older',
-			'markAsRead' => 'Mark as read',
-			'noNotifications' => 'No notifications yet',
-			'language' => 'Language',
-			'chooseYourPreferredLanguage' => 'Choose your preferred language',
-			'availableNearYou' => 'Available Near You',
-			'topOffers' => 'Top Offers',
-			'availableOffers' => 'Available Offers',
-			'allServices' => 'All Services',
-			'spas' => 'Spas',
-			'clinics' => 'Clinics',
-			'barbers' => 'Barbers',
-			'somethingHappenedError' => 'Something Happened Error',
-			'availableServices' => 'Available Services',
-			'description' => 'Description',
-			'aboutMe' => 'About Me',
-			'readMore' => 'Read More',
-			'review' => 'Review',
-			'reviews' => 'Reviews',
-			'workPlace' => 'work place',
-			'yearsExp' => 'Years Exp',
-			'seeAll' => 'See All',
-			'totalPrice' => 'Total Price',
-			'bookingNow' => 'Booking Now',
-			'owner' => 'Owner',
-			'no' => 'No',
-			'yes' => 'Yes',
-			'date' => 'Date',
-			'time' => 'Time',
-			'confirm' => 'confirm',
-			'pleaseSelectDate' => 'Please Select Date',
-			'bookingServices' => 'Booking services',
-			'selectService' => 'Select Service',
-			'selectStaff' => 'Select Staff',
-			'timeAndDate' => 'Time & Date',
-			'services' => 'services',
-			'person' => 'person',
-			'bookNow' => 'Book Now',
-			'service' => 'Service',
-			'specialist' => 'Specialist',
-			'rentalDate' => 'Rental Date',
-			'bookingInformation' => 'Booking information',
-			'bookingDetail' => 'Booking detail',
-			'bookingId' => 'Booking ID',
-			'bookingDate' => 'Booking Date',
-			'placeService' => 'place service',
-			'amount' => 'Amount',
-			'serviceFee' => 'Service fee',
-			'tax' => 'Tax',
-			'bookingSuccessful' => 'Booking  successful',
-			'bookingSuccessMessage' => 'Your Booking has been successfully',
-			'checkBooking' => 'Check Booking',
-			'payNow' => 'Pay now',
-			'securePayment' => 'Secure Payment',
-			'bookingSummary' => 'BOOKING SUMMARY',
-			'totalAmount' => 'Total Amount',
-			'creditDebitCard' => 'Credit / Debit Card',
-			'cardNumber' => 'Card Number',
-			'expiryDate' => 'Expiry Date',
-			'securedWithSSL' => 'Secured with 256-bit SSL encryption',
-			'yourPaymentIsSecureAndEncrypted' => 'Your payment is secure and encrypted',
-			'paymentSuccessful' => 'Payment Successful',
-			'paymentSuccessMessage' => 'Your Booking has been confirmed',
-			'paymentDetail' => 'Payment detail',
-			'paymentId' => 'Payment ID',
-			'paymentDate' => 'Payment Date',
-			'downloadReceipt' => 'Download Receipt',
-			'shareReceipt' => 'Shar Your Receipt',
-			'backToHome' => 'Back to Home',
-			'am' => 'AM',
-			'pm' => 'PM',
-			'start' => 'Start',
-			'pleaseSelectTime' => 'Please Select Time',
-			'mustBeNotGreaterThan2mb' => 'Must be not greater Than 2MB',
-			'editProfile' => 'Edit Profile',
-			'manageNotificationPreferences' => 'Manage notification preferences',
-			'privacyAndSecurity' => 'Privacy & Security',
-			'managePrivacySettings' => 'Manage Privacy Settings',
-			'inviteFriends' => 'Invite Friends',
-			'inviteYourFriendsToJoinOurApp' => 'Invite your friends to join our app',
-			'thisFeatureIsComingSoon' => 'This feature is coming soon',
-			'logOut' => 'log out',
-			'favorites' => 'favorites',
-			'manageFavorites' => 'Manage Favorites',
-			'profileUpdatedSuccessfully' => 'Profile Updated Successfully',
-			'profileSetting' => 'Profile Setting',
-			'goodMorningAlex' => 'Good morning, Alex',
-			'hereIsYourScheduleForToday' => 'Here is your schedule for today.',
-			'viewFull' => 'View full',
-			'specialties' => 'Specialties',
-			'workSchedule' => 'Work Schedule',
-			'selectAll' => 'Select All',
-			'editSchedule' => 'Edit Schedule',
-			'editWorkSchedule' => 'Edit Work Schedule',
-			'sameForAllDays' => 'Same for all days',
-			'individualDays' => 'Individual days',
-			'workingDays' => 'Working Days',
-			'workingHours' => 'Working Hours',
-			'saveChanges' => 'Save Changes',
-			'startTime' => 'Start Time',
-			'endTime' => 'End Time',
-			'noAppointmentsDescription' => 'You\'re all caught up! Enjoy your free time or check your upcoming schedule.',
-			'reviewsCount' => '(1,245 reviews)',
-			'jamesMiller' => 'James Miller',
-			'sampleSecondCustomerName' => 'Sarah Chen',
-			'seniorSpecialist' => 'Senior Specialist',
-			'fullGrooming' => 'Full Grooming',
-			'haircutStyling' => 'Haircut & Styling',
-			'hairStyling' => 'Hair Styling',
-			'beardTrim' => 'Beard Trim',
-			'skinCare' => 'Skin Care',
-			'scalpMassage' => 'Scalp Massage',
-			'sampleEmail' => 'james.m@example.com',
-			'samplePhone' => '(555) 123-4567',
-			'sampleAge' => '32',
-			'sampleJoinedDate' => 'Oct 2021',
-			'phone' => 'Phone',
-			'age' => 'Age',
-			'mon' => 'Mon',
-			'tue' => 'Tue',
-			'wed' => 'Wed',
-			'thu' => 'Thu',
-			'fri' => 'Fri',
-			'sat' => 'Sat',
-			'sun' => 'Sun',
-			'monday' => 'Monday',
-			'tuesday' => 'Tuesday',
-			'wednesday' => 'Wednesday',
-			'thursday' => 'Thursday',
-			'friday' => 'Friday',
-			'saturday' => 'Saturday',
-			'sunday' => 'Sunday',
-			'scheduleAppliesToFiveDays' => 'This schedule will apply to all 5 selected working days.',
-			'locationSelected' => 'Location Selected',
-			'selectLocation' => 'Select Location',
-			'sorryYourSessionExpiredPleaseLoginAgain' => 'Sorry Your Session Expired Please Login Again',
-			'revenue' => 'Revenue',
-			'completed' => 'Completed',
-			'thisWeek' => 'This week',
-			'average' => 'Average',
-			'weekSchedule' => 'Week Schedule',
-			'todaysSchedule' => 'Today\'s Schedule',
-			'viewDetails' => 'View Details',
-			'startService' => 'Start Service',
-			'note' => 'Note:',
-			'schedule' => 'Schedule',
-			'alerts' => 'Alerts',
-			'income' => 'Income',
-			'noUpcomingAppointments' => 'No Upcoming Appointments',
-			'noAppointmentsToday' => 'No Appointments Today',
-			'manageYourBookingRequests' => 'Manage your booking requests and alerts',
-			'accepted' => 'Accepted',
-			'inProgress' => 'In Progress',
-			'rejected' => 'Rejected',
-			'accept' => 'Accept',
-			'reject' => 'Reject',
-			'duration' => 'Duration',
-			'cancelled' => 'cancelled',
-			'bookingCancelledFor' => 'Booking cancelled for',
-			'ago' => 'ago',
-			'minAgo' => 'min ago',
-			'joined' => 'Joined',
-			'hourAgo' => 'hour ago',
-			'thisFieldIsRequired' => 'This field is required',
-			'passwordMustBeAtLeast8Characters' => 'Password must be at least 8 characters',
-			_ => null,
-		};
-	}
+  dynamic _flatMapFunction(String path) {
+    return switch (path) {
+      'errorOccurred' => 'An error occurred',
+      'somethingWentWrong' => 'Something went wrong',
+      'noInternet' => 'No Internet Connection',
+      'checkInternetConnection' => 'Please check your internet connection',
+      'tryAgain' => 'Try Again',
+      'loading' => 'Loading',
+      'seeMore' => 'See More',
+      'search' => 'Search',
+      'noResultsFound' => 'No results found',
+      'male' => 'Male',
+      'female' => 'Female',
+      'weekdays.monday' => 'Monday',
+      'weekdays.tuesday' => 'Tuesday',
+      'weekdays.wednesday' => 'Wednesday',
+      'weekdays.thursday' => 'Thursday',
+      'weekdays.friday' => 'Friday',
+      'weekdays.saturday' => 'Saturday',
+      'weekdays.sunday' => 'Sunday',
+      'disconnected' => 'Disconnected',
+      'connected' => 'Connected',
+      'internetWeak' => 'Weak Internet Connection',
+      'aServerErrorOccurred' => 'A server error occurred',
+      'somethingWentWrongWithTheServerPleaseTryAgainLater' =>
+        'Something went wrong with the server. Please try again later.',
+      'noInternetConnection' => 'No Internet Connection',
+      'noInternetConnectionSubtitle' =>
+        'Please check your internet connection and try again',
+      'pleaseSelect' => 'Please select',
+      'close' => 'Close',
+      'searchAndSelect' => 'Search and select',
+      'phoneNumber' => 'Phone Number',
+      'enterYourPhoneNumber' => 'Enter your phone number',
+      'pleaseEnterAValidPhone' => 'Please enter a valid phone number',
+      'searchCountry' => 'Search country',
+      'enter' => 'Enter',
+      'camera' => 'Camera',
+      'gallery' => 'Gallery',
+      'selectImageToUpload' => 'Select image to upload',
+      'imageAllowedFormats' => 'Image allowed formats',
+      'submit' => 'Submit',
+      'cancel' => 'Cancel',
+      'delete' => 'Delete',
+      'edit' => 'Edit',
+      'save' => 'Save',
+      'done' => 'Done',
+      'ok' => 'Ok',
+      'failed' => 'Failed',
+      'success' => 'Success',
+      'warning' => 'Warning',
+      'error' => 'Error',
+      'info' => 'Info',
+      'skip' => 'Skip',
+      'next' => 'Next',
+      'onboarding.getStarted' => 'Get Started',
+      'onboarding.doctorTitle' => 'Find Trusted Doctors',
+      'onboarding.doctorSubtitle' =>
+        'Search and book appointments with top-rated doctors.',
+      'onboarding.barberTitle' => 'Discover Professional Barbers',
+      'onboarding.barberSubtitle' =>
+        'Book appointments with the best barbers in town.',
+      'onboarding.spaTitle' => 'Relax and Rejuvenate',
+      'onboarding.spaSubtitle' =>
+        'Book premium spa experiences designed for your comfort.',
+      'chooseYourRole' => 'Choose your role',
+      'client' => 'Client',
+      'staff' => 'Staff',
+      'clientDescription' =>
+        'Enjoy a seamless booking experience with the best service providers in your area.',
+      'staffDescription' =>
+        'Manage your bookings effortlessly and expand your reach to customers.',
+      'kContinue' => 'Continue',
+      'getStarted' => 'Get Started Now',
+      'createAnAccountOrLogInToExploreAboutOurApp' =>
+        'Create an account or log in to explore about our app',
+      'login' => 'Log In',
+      'signUp' => 'Sign Up',
+      'email' => 'Email',
+      'password' => 'Password',
+      'rememberMe' => 'Remember Me',
+      'forgotPassword' => 'Forgot Password?',
+      'continueWithGoogle' => 'Continue with Google',
+      'or' => 'OR',
+      'fullName' => 'Full Name',
+      'fullNameRequired' => 'Full Name Required',
+      'enterYourFullName' => 'Enter your full name',
+      'emailRequired' => 'Email Required',
+      'enterYourEmail' => 'Enter Your Email',
+      'passwordRequired' => 'Password Required',
+      'enterYourPassword' => 'Enter Your Password',
+      'fullNameShouldBeAtLeastTwoWords' =>
+        'Full Name Should Be At Least Two Words',
+      'youForgotThisField' => 'You Forgot This Field',
+      'emailIsNotValid' => 'Email Is Not Valid',
+      'passwordShouldBeAtLeast8' => 'Password Should Be At Least 8 ',
+      'passwordShouldContainAtLeastOneCharacter' =>
+        'Password Should Contain At Least One Character',
+      'passwordShouldContainAtLeastOneNumber' =>
+        'Password Should Contain At Least One Number',
+      'confirmPassword' => 'Confirm Password',
+      'passwordsDoNotMatch' => 'Passwords Do Not Match',
+      'endTimeMustBeAfterStartTime' => 'End Time Must Be After Start Time',
+      'phoneNumberRequired' => 'Phone Number Required',
+      'byCreatingAnAccountYouAgreeToTheTermsOfUse' =>
+        'By creating an account, you agree to the Terms of use',
+      'alreadyHaveAnAccount' => 'Already have an account?',
+      'signUpWithGoogle' => 'Sign Up With Google',
+      'resetPassword' => 'Reset Password',
+      'enterYourEmailAddressAndWeWillSendYouALinkToResetYourPassword' =>
+        'Enter your email address and we will send you a link to reset your password.',
+      'sendCode' => 'Send Code',
+      'checkYouEmail' => 'Check you email',
+      'weSentAResetLinkToEmailEnter6DigitCodeThatMentionedInTheEmail' => (
+              {required Object email}) =>
+          'We sent a reset link to ${email}, Enter 6 digit code that mentioned in the email',
+      'didNotReceiveTheCode' => 'Did Not Receive The Code?',
+      'resendCode' => 'Resend Code',
+      'verifyCode' => 'Verify Code',
+      'setNewPassword' => 'Set New Password',
+      'updatePassword' => 'Update Password',
+      'newPassword' => 'New Password',
+      'yourIdentityHasBeenSuccessfullyVerifiedPleaseEnterANewPasswordToSecureYourAccount' =>
+        'Your identity has been successfully verified. Please enter a new password to secure your account.',
+      'passwordUpdatedSuccessfully' => 'Password Updated Successfully',
+      'enter6DigitCode' => 'Enter 6-digit code',
+      'weSentVerificationCodeToYourEmail' =>
+        'We sent a verification code to your email',
+      'weSentVerificationCodeToYourPhone' =>
+        'We sent a verification code to your phone',
+      'haventGotTheCodeYet' => 'Haven\'t got the code yet?',
+      'remaining' => 'remaining',
+      'resendCodeIn' => 'Resend code in',
+      'seconds' => 'seconds',
+      'pleaseEnterValidOtp' => 'Please Enter Valid Otp',
+      'accountCreatedSuccessfully' => 'Account Created Successfully',
+      'loginSuccessfuly' => 'Login Successfuly',
+      'home' => 'Home',
+      'goodMorning' => 'Good morning,',
+      'searchServicesProviders' => 'Search services, providers...',
+      'limitedTime' => 'Limited time!',
+      'getSpecialDiscountInToday' => 'Get Special Discount in today',
+      'upTo' => 'Up to',
+      'allServicesAvailable' => 'All services Available || 16 hours & today',
+      'claimNow' => 'Claim Now',
+      'categories' => 'Categories',
+      'nearbyProviders' => 'Nearby Providers',
+      'viewAll' => 'View All',
+      'rating' => 'Rating',
+      'earned' => 'Earned',
+      'rate' => 'Rate',
+      'getInTouch' => 'Get In Touch',
+      'explore' => 'Explore',
+      'bookings' => 'Bookings',
+      'offers' => 'Offers',
+      'settings' => 'Settings',
+      'pending' => 'Pending',
+      'upcoming' => 'Upcoming',
+      'complete' => 'Complete',
+      'waitingForPayment' => 'Waiting for payment',
+      'totalPaid' => 'Total Paid',
+      'confirmed' => 'Confirmed',
+      'canceled' => 'Canceled',
+      'contact' => 'Contact',
+      'directions' => 'Directions',
+      'pay' => 'Pay',
+      'reschedule' => 'Reschedule',
+      'cancelBookingTitle' =>
+        'Are you sure you want to Cancel your Booking permanently?',
+      'deleteBookingTitle' =>
+        'Are you sure you want to Delete your Booking permanently?',
+      'cancelBookingMessage' =>
+        'By doing this, your booking will be cancelled permanently and you will not be able to recover your booking anymore.',
+      'noBookingsYet' => 'No bookings yet',
+      'kWith' => 'With',
+      'minutes' => 'min',
+      'notifications' => 'Notifications',
+      'today' => 'Today',
+      'yesterday' => 'Yesterday',
+      'older' => 'Older',
+      'markAsRead' => 'Mark as read',
+      'noNotifications' => 'No notifications yet',
+      'language' => 'Language',
+      'chooseYourPreferredLanguage' => 'Choose your preferred language',
+      'availableNearYou' => 'Available Near You',
+      'topOffers' => 'Top Offers',
+      'availableOffers' => 'Available Offers',
+      'allServices' => 'All Services',
+      'spas' => 'Spas',
+      'clinics' => 'Clinics',
+      'barbers' => 'Barbers',
+      'somethingHappenedError' => 'Something Happened Error',
+      'availableServices' => 'Available Services',
+      'description' => 'Description',
+      'aboutMe' => 'About Me',
+      'readMore' => 'Read More',
+      'review' => 'Review',
+      'reviews' => 'Reviews',
+      'workPlace' => 'work place',
+      'yearsExp' => 'Years Exp',
+      'seeAll' => 'See All',
+      'totalPrice' => 'Total Price',
+      'bookingNow' => 'Booking Now',
+      'owner' => 'Owner',
+      'no' => 'No',
+      'yes' => 'Yes',
+      'date' => 'Date',
+      'time' => 'Time',
+      'confirm' => 'confirm',
+      'pleaseSelectDate' => 'Please Select Date',
+      'bookingServices' => 'Booking services',
+      'selectService' => 'Select Service',
+      'selectStaff' => 'Select Staff',
+      'timeAndDate' => 'Time & Date',
+      'services' => 'services',
+      'person' => 'person',
+      'bookNow' => 'Book Now',
+      'service' => 'Service',
+      'specialist' => 'Specialist',
+      'rentalDate' => 'Rental Date',
+      'bookingInformation' => 'Booking information',
+      'bookingDetail' => 'Booking detail',
+      'bookingManagement' => 'Booking Management',
+      'bookingId' => 'Booking ID',
+      'bookingDate' => 'Booking Date',
+      'reviewYourBookingHistory' => 'Review your booking history.',
+      'placeService' => 'place service',
+      'amount' => 'Amount',
+      'serviceFee' => 'Service fee',
+      'tax' => 'Tax',
+      'bookingSuccessful' => 'Booking  successful',
+      'bookingSuccessMessage' => 'Your Booking has been successfully',
+      'checkBooking' => 'Check Booking',
+      'payNow' => 'Pay now',
+      'securePayment' => 'Secure Payment',
+      'bookingSummary' => 'BOOKING SUMMARY',
+      'totalAmount' => 'Total Amount',
+      'creditDebitCard' => 'Credit / Debit Card',
+      'cardNumber' => 'Card Number',
+      'expiryDate' => 'Expiry Date',
+      'securedWithSSL' => 'Secured with 256-bit SSL encryption',
+      'yourPaymentIsSecureAndEncrypted' =>
+        'Your payment is secure and encrypted',
+      'paymentSuccessful' => 'Payment Successful',
+      'paymentSuccessMessage' => 'Your Booking has been confirmed',
+      'paymentDetail' => 'Payment detail',
+      'paymentId' => 'Payment ID',
+      'paymentDate' => 'Payment Date',
+      'downloadReceipt' => 'Download Receipt',
+      'shareReceipt' => 'Shar Your Receipt',
+      'backToHome' => 'Back to Home',
+      'am' => 'AM',
+      'pm' => 'PM',
+      'start' => 'Start',
+      'pleaseSelectTime' => 'Please Select Time',
+      'mustBeNotGreaterThan2mb' => 'Must be not greater Than 2MB',
+      'editProfile' => 'Edit Profile',
+      'manageNotificationPreferences' => 'Manage notification preferences',
+      'privacyAndSecurity' => 'Privacy & Security',
+      'managePrivacySettings' => 'Manage Privacy Settings',
+      'inviteFriends' => 'Invite Friends',
+      'inviteYourFriendsToJoinOurApp' => 'Invite your friends to join our app',
+      'thisFeatureIsComingSoon' => 'This feature is coming soon',
+      'logOut' => 'log out',
+      'favorites' => 'favorites',
+      'manageFavorites' => 'Manage Favorites',
+      'profileUpdatedSuccessfully' => 'Profile Updated Successfully',
+      'profileSetting' => 'Profile Setting',
+      'goodMorningAlex' => 'Good morning, Alex',
+      'hereIsYourScheduleForToday' => 'Here is your schedule for today.',
+      'viewFull' => 'View full',
+      'specialties' => 'Specialties',
+      'workSchedule' => 'Work Schedule',
+      'selectAll' => 'Select All',
+      'editSchedule' => 'Edit Schedule',
+      'editWorkSchedule' => 'Edit Work Schedule',
+      'sameForAllDays' => 'Same for all days',
+      'individualDays' => 'Individual days',
+      'workingDays' => 'Working Days',
+      'workingHours' => 'Working Hours',
+      'saveChanges' => 'Save Changes',
+      'startTime' => 'Start Time',
+      'endTime' => 'End Time',
+      'noAppointmentsDescription' =>
+        'You\'re all caught up! Enjoy your free time or check your upcoming schedule.',
+      'reviewsCount' => '(1,245 reviews)',
+      'jamesMiller' => 'James Miller',
+      'sampleSecondCustomerName' => 'Sarah Chen',
+      'seniorSpecialist' => 'Senior Specialist',
+      'fullGrooming' => 'Full Grooming',
+      'haircutStyling' => 'Haircut & Styling',
+      'hairStyling' => 'Hair Styling',
+      'beardTrim' => 'Beard Trim',
+      'skinCare' => 'Skin Care',
+      'scalpMassage' => 'Scalp Massage',
+      'sampleEmail' => 'james.m@example.com',
+      'samplePhone' => '(555) 123-4567',
+      'sampleAge' => '32',
+      'sampleJoinedDate' => 'Oct 2021',
+      'phone' => 'Phone',
+      'age' => 'Age',
+      'mon' => 'Mon',
+      'tue' => 'Tue',
+      'wed' => 'Wed',
+      'thu' => 'Thu',
+      'fri' => 'Fri',
+      'sat' => 'Sat',
+      'sun' => 'Sun',
+      'monday' => 'Monday',
+      'tuesday' => 'Tuesday',
+      'wednesday' => 'Wednesday',
+      'thursday' => 'Thursday',
+      'friday' => 'Friday',
+      'saturday' => 'Saturday',
+      'sunday' => 'Sunday',
+      'scheduleAppliesToDays' => ({required Object days}) =>
+          'This schedule will apply to all ${days} selected working days.',
+      'locationSelected' => 'Location Selected',
+      'selectLocation' => 'Select Location',
+      'sorryYourSessionExpiredPleaseLoginAgain' =>
+        'Sorry Your Session Expired Please Login Again',
+      'revenue' => 'Revenue',
+      'completed' => 'Completed',
+      'thisWeek' => 'This week',
+      'average' => 'Average',
+      'weekSchedule' => 'Week Schedule',
+      'todaysSchedule' => 'Today\'s Schedule',
+      'viewDetails' => 'View Details',
+      'startService' => 'Start Service',
+      'note' => 'Note:',
+      'schedule' => 'Schedule',
+      'alerts' => 'Alerts',
+      'income' => 'Income',
+      'noUpcomingAppointments' => 'No Upcoming Appointments',
+      'noAppointmentsToday' => 'No Appointments Today',
+      'manageYourBookingRequests' => 'Manage your booking requests and alerts',
+      'accepted' => 'Accepted',
+      'inProgress' => 'In Progress',
+      'rejected' => 'Rejected',
+      'accept' => 'Accept',
+      'reject' => 'Reject',
+      'duration' => 'Duration',
+      'cancelled' => 'cancelled',
+      'bookingCancelledFor' => 'Booking cancelled for',
+      'ago' => 'ago',
+      'minAgo' => 'min ago',
+      'joined' => 'Joined',
+      'hourAgo' => 'hour ago',
+      'thisFieldIsRequired' => 'This field is required',
+      'passwordMustBeAtLeast8Characters' =>
+        'Password must be at least 8 characters',
+      'privacyPolicy' => 'Privacy Policy',
+      'daily' => 'Daily',
+      'weekly' => 'Weekly',
+      'monthly' => 'Monthly',
+      'totalEarnings' => 'Total Earnings',
+      'avgService' => 'Avg/Service',
+      'weeklyEarnings' => 'Weekly Earnings',
+      'vsLastWeek' => 'vs last week',
+      'monthlyTrend' => 'Monthly Trend',
+      'last30Days' => 'Last 30 days',
+      'recentServices' => 'Recent Services',
+      'appointmentDetails' => 'Appointment Details',
+      'appointmentNotes' => 'Appointment Notes',
+      'attachments' => 'Attachments',
+      'completeService' => 'Complete Service',
+      'contactClient' => 'Contact Client',
+      'open' => 'Open',
+      'closed' => 'Closed',
+      'noAppointments' => 'No Appointments',
+      'logoutSuccessfully' => 'Logout Successfully',
+      'areYouSureYouWantToLogout' => 'Are you sure you want to logout?',
+      _ => null,
+    };
+  }
 }

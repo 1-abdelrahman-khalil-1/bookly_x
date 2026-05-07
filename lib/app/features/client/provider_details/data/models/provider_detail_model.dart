@@ -63,8 +63,7 @@ class ProviderDetailModel {
                 .toList() ??
             [],
         reviews: (json['reviews'] as List<dynamic>?)
-                ?.map(
-                    (e) => ReviewModel.fromJson(e as Map<String, dynamic>))
+                ?.map((e) => ReviewModel.fromJson(e as Map<String, dynamic>))
                 .toList() ??
             [],
       );

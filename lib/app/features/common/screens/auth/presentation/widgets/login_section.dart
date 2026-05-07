@@ -1,4 +1,3 @@
-
 import 'package:bookly_x_client/app/core/data/user_pref.dart';
 import 'package:bookly_x_client/app/core/themes/app_colors.dart';
 import 'package:bookly_x_client/app/core/utils/show_message.dart';

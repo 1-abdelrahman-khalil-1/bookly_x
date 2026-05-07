@@ -1,21 +1,27 @@
+import 'package:bookly_x_client/app/core/enums/weeks_days_enum.dart';
 import 'package:bookly_x_client/app/core/themes/app_colors.dart';
 import 'package:bookly_x_client/app/core/widgets/custom_sized_box.dart';
-import 'package:bookly_x_client/app/features/staff/profile/presentation/widgets/staff_time_field.dart';
+import 'package:bookly_x_client/app/core/widgets/custom_time_picker_field.dart';
 import 'package:bookly_x_client/generated/my_icons.dart';
 import 'package:bookly_x_client/generated/style_atoms.dart';
 import 'package:bookly_x_client/generated/translations.g.dart';
 import 'package:flutter/material.dart';
 
-class StaffSameForAllDaysSection extends StatelessWidget {
+class StaffSameForAllDaysSection extends StatefulWidget {
   const StaffSameForAllDaysSection({
     super.key,
-    required this.onStartTap,
-    required this.onEndTap,
+    required this.days,
   });
 
-  final VoidCallback onStartTap;
-  final VoidCallback onEndTap;
+  final List<WeeksDaysEnum> days;
 
+  @override
+  State<StaffSameForAllDaysSection> createState() =>
+      _StaffSameForAllDaysSectionState();
+}
+
+class _StaffSameForAllDaysSectionState
+    extends State<StaffSameForAllDaysSection> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,35 +33,57 @@ class StaffSameForAllDaysSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // days
+          Container(
+            color: AppColors.white,
+            padding: const EdgeInsets.all(12),
+            width: double.infinity,
+            child: Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: List.generate(WeeksDaysEnum.values.length, (index) {
+                final day = WeeksDaysEnum.values[index];
+                return ChoiceChip(
+                  label: Text(
+                    day.shortCode,
+                    style: widget.days.contains(day)
+                        ? context.regular14White
+                        : context.regular14,
+                  ),
+                  selected: widget.days.contains(day),
+                  backgroundColor: widget.days.contains(day)
+                      ? AppColors.primary
+                      : AppColors.textBorders,
+                  onSelected: (value) {
+                    setState(() {
+                      if (value) {
+                        widget.days.add(day);
+                      } else {
+                        widget.days.remove(day);
+                      }
+                    });
+                  },
+                );
+              }),
+            ),
+          ),
           Row(
             children: [
               Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(tr.startTime, style: context.regular12TextSub),
-                    8.h,
-                    StaffTimeField(
-                      value: '09:00\nAM',
-                      onTap: onStartTap,
-                    ),
-                  ],
+                child: CustomTimePickerField(
+                  title: tr.startTime,
+                  initialTime: const TimeOfDay(hour: 9, minute: 0),
+                  onTimeSelected: (time) {},
                 ),
               ),
               12.w,
               const Icon(MyIcons.arrowRightOutline, color: AppColors.textSub),
               12.w,
               Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(tr.endTime, style: context.regular12TextSub),
-                    8.h,
-                    StaffTimeField(
-                      value: '06:00\nPM',
-                      onTap: onEndTap,
-                    ),
-                  ],
+                child: CustomTimePickerField(
+                  title: tr.endTime,
+                  initialTime: const TimeOfDay(hour: 10, minute: 12),
+                  onTimeSelected: (time) {},
                 ),
               ),
             ],
@@ -78,7 +106,9 @@ class StaffSameForAllDaysSection extends StatelessWidget {
                 8.w,
                 Expanded(
                   child: Text(
-                    tr.scheduleAppliesToFiveDays,
+                    tr.scheduleAppliesToDays(
+                      days: widget.days.length,
+                    ),
                     style: context.regular14TextSub,
                   ),
                 ),

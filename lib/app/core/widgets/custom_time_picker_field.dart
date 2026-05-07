@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import 'custom_text_form_field.dart';
 
@@ -8,16 +9,17 @@ class CustomTimePickerField extends StatefulWidget {
   final String? Function(String?)? validator;
   final TextEditingController? controller;
   final void Function(String?)? onSaved;
-  final String hint;
-
+  final String title;
+  final bool readOnly;
   const CustomTimePickerField({
     super.key,
     this.initialTime,
     this.onTimeSelected,
-    this.hint = "Enter time",
     this.validator,
+    required this.title,
     this.controller,
     this.onSaved,
+    this.readOnly = false,
   });
 
   @override
@@ -30,9 +32,14 @@ class _CustomTimePickerFieldState extends State<CustomTimePickerField> {
   @override
   void initState() {
     super.initState();
-    final formattedTime =
-        '${widget.initialTime?.hour.toString().padLeft(2, '0')}:${widget.initialTime?.minute.toString().padLeft(2, '0')}';
-    _selectedTime = formattedTime;
+    _selectedTime = _formatTime(widget.initialTime);
+  }
+
+  String _formatTime(TimeOfDay? time) {
+    if (time == null) return '';
+    return DateFormat.jm().format(
+      DateTime(0, 1, 1, time.hour, time.minute),
+    );
   }
 
   Future<void> _pickTime() async {
@@ -49,10 +56,8 @@ class _CustomTimePickerFieldState extends State<CustomTimePickerField> {
 
     if (picked != null && widget.controller != null) {
       setState(() {
-        final String formattedTime =
-            '${picked.hour.toString().padLeft(2, '0')}:${picked.minute.toString().padLeft(2, '0')}';
-        _selectedTime = formattedTime;
-        widget.controller?.text = formattedTime;
+        _selectedTime = _formatTime(picked);
+        widget.controller?.text = _selectedTime!;
       });
 
       if (widget.onTimeSelected != null) {
@@ -66,8 +71,9 @@ class _CustomTimePickerFieldState extends State<CustomTimePickerField> {
     return CustomTextFormField(
       controller: widget.controller,
       readOnly: true,
-      onPressed: _pickTime,
-      hint: widget.hint,
+      hint: _selectedTime,
+      onPressed: widget.readOnly ? null : _pickTime,
+      title: widget.title,
       validator: widget.validator,
       onSaved: widget.onSaved,
     );

@@ -1,4 +1,4 @@
-﻿import 'package:bookly_x_client/app/features/client/home/data/models/category_model.dart';
+import 'package:bookly_x_client/app/features/client/home/data/models/category_model.dart';
 
 class ProviderModel {
   final String id;

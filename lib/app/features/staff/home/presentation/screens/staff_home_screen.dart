@@ -1,173 +1,214 @@
-import 'package:bookly_x_client/app/core/constants/constants.dart';
-import 'package:bookly_x_client/app/core/extensions/context_extensions.dart';
+import 'package:bookly_x_client/app/core/enums/booking_status.dart';
+import 'package:bookly_x_client/app/core/enums/weeks_days_enum.dart';
+import 'package:bookly_x_client/app/core/extensions/date_time_exensions.dart';
+import 'package:bookly_x_client/app/core/screens_not_related/future_provider_screen.dart';
 import 'package:bookly_x_client/app/core/themes/app_colors.dart';
 import 'package:bookly_x_client/app/core/widgets/custom_sized_box.dart';
-import 'package:bookly_x_client/app/core/widgets/images/custom_cached_network_image.dart';
+import 'package:bookly_x_client/app/core/widgets/custom_transform_arabic.dart';
+import 'package:bookly_x_client/app/core/widgets/shimmer/booking_card_shimmer.dart';
+import 'package:bookly_x_client/app/features/staff/home/presentation/controllers/staff_home_future_provider.dart';
 import 'package:bookly_x_client/app/features/staff/home/presentation/widgets/staff_appointment_card.dart';
 import 'package:bookly_x_client/app/features/staff/home/presentation/widgets/staff_empty_schedule_state.dart';
+import 'package:bookly_x_client/app/features/staff/home/presentation/widgets/staff_home_header.dart';
+import 'package:bookly_x_client/app/features/staff/home/presentation/widgets/staff_schedule_shimmer.dart';
 import 'package:bookly_x_client/app/features/staff/home/presentation/widgets/staff_week_chip.dart';
-import 'package:bookly_x_client/app/features/staff/main_screen/data/enums/staff_week_day.dart';
 import 'package:bookly_x_client/generated/my_icons.dart';
 import 'package:bookly_x_client/generated/style_atoms.dart';
 import 'package:bookly_x_client/generated/translations.g.dart';
-import 'package:bookly_x_client/router/auto_router.gr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class StaffHomeScreen extends StatelessWidget {
+class StaffHomeScreen extends ConsumerStatefulWidget {
   const StaffHomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final appointmentCards = <Widget>[
-      StaffAppointmentCard(
-        accentColor: AppColors.primary2,
-        statusLabel: tr.accepted,
-        statusStyle: context.semiBold14Primary,
-        statusBackground: AppColors.lightBlue,
-        timeLabel: '10:00 AM',
-        customerName: tr.jamesMiller,
-        serviceName: tr.fullGrooming,
-        actionLabel: tr.startService,
-        actionBackground: AppColors.primary2,
-        actionTitleColor: AppColors.white,
-        actionIcon: MyIcons.playOutline,
-      ),
-      StaffAppointmentCard(
-        accentColor: AppColors.warning,
-        statusLabel: tr.inProgress,
-        statusStyle: context.semiBold14Warning,
-        statusBackground: AppColors.warningLight,
-        timeLabel: '10:00 AM',
-        customerName: tr.sampleSecondCustomerName,
-        serviceName: tr.haircutStyling,
-        actionLabel: tr.kContinue,
-        actionBackground: AppColors.textBorders,
-        actionTitleColor: AppColors.primary2,
-        actionIcon: MyIcons.arrowRightOutline,
-      ),
-    ];
+  ConsumerState<StaffHomeScreen> createState() => _StaffHomeScreenState();
+}
 
+class _StaffHomeScreenState extends ConsumerState<StaffHomeScreen> {
+  @override
+  Widget build(BuildContext context) {
+    final selectedDate = ref.watch(selectedDateProvider);
     return Scaffold(
-      backgroundColor: AppColors.whiteCatskillWhite,
       body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Stack(
-                    clipBehavior: Clip.none,
-                    children: [
-                      const CustomCachedNetworkImage(
-                        imgUrl: Constants.tempImage,
-                        width: 40,
-                        height: 40,
-                        borderRadius: BorderRadius.all(Radius.circular(30)),
-                      ),
-                      Positioned(
-                        bottom: -2,
-                        right: -2,
-                        child: Container(
-                          width: 11,
-                          height: 11,
-                          decoration: BoxDecoration(
-                            color: AppColors.success,
-                            shape: BoxShape.circle,
-                            border:
-                                Border.all(color: AppColors.white, width: 2),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  16.w,
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(tr.goodMorningAlex, style: context.bold16),
-                        4.h,
-                        Text(
-                          tr.hereIsYourScheduleForToday,
-                          style: context.regular14TextSub,
-                        ),
-                      ],
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () => context.push(const StaffProfileRoute()),
-                    child: Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: AppColors.white,
-                        shape: BoxShape.circle,
-                        border: Border.all(color: AppColors.textBorders),
-                      ),
-                      child: const Icon(
-                        MyIcons.setting2Outline,
-                        color: AppColors.primary,
-                        size: 20,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              24.h,
-              Row(
-                children: [
-                  Text(tr.thisWeek, style: context.bold18Primary),
-                  const Spacer(),
-                  TextButton.icon(
-                    onPressed: () {},
-                    style: TextButton.styleFrom(
-                      foregroundColor: AppColors.primary,
-                      padding: EdgeInsets.zero,
-                      minimumSize: Size.zero,
-                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    ),
-                    icon: const Icon(MyIcons.arrowRightOutline, size: 18),
-                    label: Text(tr.viewFull, style: context.semiBold14Primary),
-                  ),
-                ],
-              ),
-              12.h,
-              SizedBox(
-                height: 88,
-                child: ListView.separated(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: StaffWeekDay.values.length,
-                  separatorBuilder: (_, __) => 10.w,
-                  itemBuilder: (context, index) {
-                    final day = StaffWeekDay.values[index];
-                    return StaffWeekChip(
-                      day: day,
-                      dayNumber: '${12 + index}',
-                      isSelected: day == StaffWeekDay.wednesday,
-                    );
-                  },
-                ),
-              ),
-              24.h,
-              Text(tr.todaysSchedule, style: context.bold18Primary),
-              16.h,
-              if (appointmentCards.isEmpty)
-                const StaffEmptyScheduleState()
-              else
-                Column(
+        child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: ref.watchWhen(
+              provider: staffHomeFutureProvider,
+              skipLoadingOnReload: true,
+              loading: StaffScheduleShimmer.new,
+              data: (data) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    for (final card in appointmentCards) ...[
-                      card,
-                      16.h,
-                    ],
+                    const StaffHomeHeader(),
+                    24.h,
+                    Expanded(
+                      child: RefreshIndicator(
+                        onRefresh: () async =>
+                            ref.invalidate(staffHomeFutureProvider),
+                        child: ListView(
+                          children: [
+                            Row(
+                              children: [
+                                Text(tr.thisWeek, style: context.bold18Primary),
+                                const Spacer(),
+                                GestureDetector(
+                                  onTap: () {},
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        tr.viewFull,
+                                        style: context.semiBold14Primary,
+                                      ),
+                                      6.w,
+                                      // ignore: prefer_const_constructors
+                                      CustomTransformArabic(
+                                        child: const Icon(
+                                            MyIcons.arrowRightOutline,
+                                            size: 15,
+                                            color: AppColors.primary),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            12.h,
+                            SizedBox(
+                              height: 88,
+                              child: ListView.separated(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: 7,
+                                separatorBuilder: (_, __) => 10.w,
+                                itemBuilder: (context, index) {
+                                  final date =
+                                      DateTime.now().add(Duration(days: index));
+                                  final day =
+                                      WeeksDaysEnum.values[date.weekday % 7];
+                                  final isSelected =
+                                      date.year == selectedDate.year &&
+                                          date.month == selectedDate.month &&
+                                          date.day == selectedDate.day;
+                                  final now = DateTime.now();
+
+                                  final isToday = date.year == now.year &&
+                                      date.month == now.month &&
+                                      date.day == now.day;
+                                  return StaffWeekChip(
+                                    day: day,
+                                    dayNumber: isToday
+                                        ? tr.today
+                                        : date.day.toString(),
+                                    isSelected: isSelected,
+                                    onTap: () {
+                                      ref
+                                          .read(selectedDateProvider.notifier)
+                                          .state = date;
+                                    },
+                                  );
+                                },
+                              ),
+                            ),
+                            24.h,
+                            Text(
+                              selectedDate.isToday
+                                  ? tr.todaysSchedule
+                                  : WeeksDaysEnum
+                                      .values[selectedDate.weekday % 7]
+                                      .displayName,
+                              style: context.bold18Primary,
+                            ),
+                            16.h,
+                            ref.watchWhen(
+                              provider: staffHomeFutureProvider,
+                              loading: () => ListView.separated(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: 3,
+                                separatorBuilder: (_, __) => 20.h,
+                                itemBuilder: (context, index) => const Padding(
+                                  padding: EdgeInsets.only(bottom: 8),
+                                  child: BookingCardShimmer(),
+                                ),
+                              ),
+                              data: (schedules) {
+                                if (schedules.isEmpty) {
+                                  return const StaffEmptyScheduleState();
+                                }
+
+                                return ListView.separated(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemCount: schedules.length,
+                                  separatorBuilder: (_, __) => 20.h,
+                                  itemBuilder: (context, index) {
+                                    final item = schedules[index];
+                                    final status =
+                                        BookingStatusX.fromString(item.status);
+                                    final actionInfo = _getActionInfo(status);
+
+                                    return StaffAppointmentCard(
+                                      statusLabel: status.displayLabel,
+                                      statusStyle: context.semiBold12Primary
+                                          .copyWith(color: status.color),
+                                      statusBackground: status.lightColor,
+                                      accentColor: status.color,
+                                      timeLabel: item.scheduledAt.formattedTime,
+                                      customerName: item.clientName,
+                                      serviceName: item.serviceName,
+                                      actionLabel: actionInfo.label,
+                                      actionIcon: actionInfo.icon,
+                                      actionBackground: actionInfo.bg,
+                                      actionTitleColor: actionInfo.text,
+                                    );
+                                  },
+                                );
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ],
-                ),
-            ],
-          ),
-        ),
+                );
+              },
+            )),
       ),
     );
+  }
+
+  ({String label, IconData icon, Color bg, Color text}) _getActionInfo(
+      BookingStatus status) {
+    switch (status) {
+      case BookingStatus.pending:
+        return (
+          label: tr.accept,
+          icon: MyIcons.tickCircleOutline,
+          bg: AppColors.primary,
+          text: AppColors.white
+        );
+      case BookingStatus.confirmed:
+        return (
+          label: tr.start,
+          icon: MyIcons.playCircleOutline,
+          bg: AppColors.successBadge,
+          text: AppColors.white
+        );
+      case BookingStatus.inProgress:
+        return (
+          label: tr.complete,
+          icon: MyIcons.tickCircleOutline,
+          bg: AppColors.successBadge,
+          text: AppColors.white
+        );
+      default:
+        return (
+          label: tr.viewDetails,
+          icon: MyIcons.eyeOutline,
+          bg: AppColors.textPlaceholder,
+          text: AppColors.primary
+        );
+    }
   }
 }

@@ -28,7 +28,8 @@ class ClientBookingSuccessScreen extends StatelessWidget {
           children: [
             Expanded(
               child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
                 child: Column(
                   children: [
                     _SuccessBadge(),
@@ -48,21 +49,27 @@ class ClientBookingSuccessScreen extends StatelessWidget {
                     _InfoCard(
                       title: tr.bookingInformation,
                       rows: [
-                        _InfoCardRow(label: tr.service, value: service?.name ?? ''),
+                        _InfoCardRow(
+                            label: tr.service, value: service?.name ?? ''),
                         _InfoCardRow(
                           label: tr.rentalDate,
                           value: flowData.formattedDateRange,
                         ),
-                        _InfoCardRow(label: tr.fullName, value: staff?.name ?? ''),
+                        _InfoCardRow(
+                            label: tr.fullName, value: staff?.name ?? ''),
                       ],
                     ),
                     24.h,
                     _DetailSection(
                       title: tr.bookingDetail,
                       rows: [
-                        _InfoCardRow(label: tr.bookingId, value: '#T000123B0J1'),
-                        _InfoCardRow(label: tr.bookingDate, value: '01Jan2024 - 10:30 am'),
-                        _InfoCardRow(label: tr.placeService, value: 'Xp center massage'),
+                        _InfoCardRow(
+                            label: tr.bookingId, value: '#T000123B0J1'),
+                        _InfoCardRow(
+                            label: tr.bookingDate,
+                            value: '01Jan2024 - 10:30 am'),
+                        _InfoCardRow(
+                            label: tr.placeService, value: 'Xp center massage'),
                         _InfoCardRow(
                           label: tr.amount,
                           value: '${service?.price.toInt() ?? 0} EG',

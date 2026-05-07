@@ -31,9 +31,11 @@ extension ONExt on WidgetRef {
                 onRetry: () => invalidate(provider),
               );
             } else {
-              return ServerErrorScreen(
-                isLoading: watch(provider).isLoading,
-                onRetry: () => invalidate(provider),
+              return Center(
+                child: ServerErrorScreen(
+                  isLoading: watch(provider).isLoading,
+                  onRetry: () => invalidate(provider),
+                ),
               );
             }
           },

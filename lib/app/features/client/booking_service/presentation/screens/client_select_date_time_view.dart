@@ -26,7 +26,7 @@ class ClientSelectDateTimeView extends ConsumerStatefulWidget {
 }
 
 class _ClientSelectDateTimeViewState
-  extends ConsumerState<ClientSelectDateTimeView> {
+    extends ConsumerState<ClientSelectDateTimeView> {
   DateTime? _selectedDate;
   TimeOfDay? _selectedTime;
 
@@ -97,7 +97,8 @@ class _ClientSelectDateTimeViewState
       );
     }
 
-    final timeSlots = ref.watch(bookingAvailableTimeSlotsProvider(_selectedDate!));
+    final timeSlots =
+        ref.watch(bookingAvailableTimeSlotsProvider(_selectedDate!));
 
     return Wrap(
       spacing: 12,

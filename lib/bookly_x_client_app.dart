@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:bookly_x_client/app/core/themes/app_colors.dart';
 import 'package:bookly_x_client/app/core/themes/app_theme.dart';
 import 'package:bookly_x_client/generated/translations.g.dart';
 import 'package:bookly_x_client/router/auto_router.dart';
@@ -21,7 +22,9 @@ class BooklyXClientApp extends StatelessWidget {
         navigatorObservers: () => [MyObserver()],
       ),
       title: 'Bookly X Client',
-      theme: AppTheme.lightTheme,
+      theme: AppTheme.lightTheme.copyWith(
+        scaffoldBackgroundColor: AppColors.whiteCatskillWhite,
+      ),
       themeMode: ThemeMode.light,
       locale: locale,
       debugShowCheckedModeBanner: false,

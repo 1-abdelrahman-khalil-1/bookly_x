@@ -8,8 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class CommonSetNewPasswordSection extends ConsumerStatefulWidget {
-  const CommonSetNewPasswordSection(
-      {super.key, required this.onPasswordReset});
+  const CommonSetNewPasswordSection({super.key, required this.onPasswordReset});
   final VoidCallback onPasswordReset;
 
   @override

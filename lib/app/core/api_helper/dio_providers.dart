@@ -37,7 +37,7 @@ final dioProvider = Provider<Dio>((ref) {
       ),
     ),
     // if (appFlavor.isAliceEnabled) alice.getDioInterceptor(),
-    DioInterceptor(dio),
+    DioInterceptor(dio, langPrefs: ref.read(langPrefsProvider)),
   ]);
   return dio;
 });

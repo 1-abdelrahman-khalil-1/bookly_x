@@ -32,7 +32,6 @@ class DioClient {
           path,
           queryParameters: {...query},
           options: Options(
-            validateStatus: (_) => true,
             headers: {
               if (attachToken) 'Authorization': token ?? await userToken,
               ...headers,
@@ -61,7 +60,6 @@ class DioClient {
           queryParameters: {...query},
           data: body,
           options: Options(
-            validateStatus: (_) => true,
             headers: {
               'Accept-Language': langPrefs.locale.toString(),
               'platform': "APP",
@@ -90,7 +88,6 @@ class DioClient {
           queryParameters: {...query},
           data: body,
           options: Options(
-            validateStatus: (_) => true,
             headers: {
               'Accept-Language': langPrefs.locale.toString(),
               'platform': "APP",
@@ -119,7 +116,6 @@ class DioClient {
           queryParameters: {...query},
           data: body,
           options: Options(
-            validateStatus: (_) => true,
             headers: {
               'Accept-Language': langPrefs.locale.toString(),
               'platform': "APP",
@@ -148,7 +144,6 @@ class DioClient {
           queryParameters: {...query},
           data: body,
           options: Options(
-            validateStatus: (_) => true,
             headers: {
               'Accept-Language': langPrefs.locale.toString(),
               'User-Agent': UserAgentPrefs.getUserAgent,
@@ -175,23 +170,31 @@ Future<Response> validateResponse(Future<Response> Function() zone) async {
     return res;
   } on DioException catch (e, st) {
     log(st.toString());
+
+    // 1. Immediate connection errors
+    if (e.type == DioExceptionType.connectionError) {
+      throw NoInternetConnection();
+    }
+
+    // 2. Response errors
+    if (e.response != null) {
+      if (e.response?.statusCode == HttpStatus.internalServerError) {
+        throw InternalServerError();
+      }
+      return e.response!;
+    }
+
+    // 3. Network checks for other errors
     final hasConnection = await InternetConnection().hasInternetAccess;
     if (!hasConnection) {
       throw NoInternetConnection();
     }
-    if (e.response?.statusCode == HttpStatus.internalServerError) {
-      throw InternalServerError();
-    }
-    if (e.response?.statusCode == HttpStatus.unauthorized) {
-      throw UnAuthorized(e.response!);
-    }
+
     if (e.type == DioExceptionType.connectionTimeout ||
         e.type == DioExceptionType.receiveTimeout ||
         e.type == DioExceptionType.sendTimeout ||
-        e.type == DioExceptionType.unknown) {
-      if (!hasConnection) {
-        throw NoInternetConnection();
-      }
+        e.type == DioExceptionType.unknown ||
+        e.type == DioExceptionType.connectionError) {
       throw InternalServerError();
     }
     rethrow;

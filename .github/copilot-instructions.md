@@ -18,6 +18,8 @@
 - Always search before creating (widgets, models, enums)
 - Detect patterns from codebase first — never invent
 - Follow architecture strictly, but create a new screen folder when a screen is split into its own feature surface
+- When asked to create a new standalone screen, create a new feature folder under `lib/app/features/<module>/<feature_name>/`
+- If the new screen is a details/child flow of an existing feature (for example: booking details), place it inside the existing feature instead of creating another feature root
 - Reuse existing widgets before creating new ones
 - Do NOT introduce new state management or architecture
 - Follow design system strictly (colors, typography, spacing)
@@ -377,3 +379,21 @@ dart run generate_styles.dart
 ```bash
 flutter analyze
 ```
+
+---
+
+## Generic Tabbed List Pattern
+
+When implementing any screen that shows one list split by tabs (status, category, stage, or type), follow this pattern instead of building each tab manually:
+
+- Use `DefaultTabController` + `TabBar` + `TabBarView` for the top-level segmentation.
+- Create a reusable `<Feature>NameListWidget` that receives:
+  - the source items list
+  - the active filter values (e.g. enum values)
+  - callbacks for row actions
+- Render list items inside the reusable widget using `ListView.separated`.
+- In each `TabBarView` child, call the same reusable list widget with different filter values (for example: pending/open/closed).
+- Keep business actions and dialogs in the parent screen and pass callbacks down to the reusable list widget.
+- Prefer enum-driven filters over hardcoded string checks.
+
+This keeps tab implementations consistent, reduces duplication, and ensures every tabbed list screen follows the same scalable structure.
