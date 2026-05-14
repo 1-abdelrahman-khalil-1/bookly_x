@@ -1,10 +1,10 @@
 import 'package:bookly_x_client/app/core/enums/booking_status.dart';
 import 'package:bookly_x_client/app/core/extensions/context_extensions.dart';
 import 'package:bookly_x_client/app/core/extensions/date_time_exensions.dart';
+import 'package:bookly_x_client/app/core/models/booking_model.dart';
 import 'package:bookly_x_client/app/core/themes/app_colors.dart';
 import 'package:bookly_x_client/app/core/widgets/custom_sized_box.dart';
 import 'package:bookly_x_client/app/core/widgets/images/custom_cached_network_image.dart';
-import 'package:bookly_x_client/app/core/models/booking_model.dart';
 import 'package:bookly_x_client/generated/my_icons.dart';
 import 'package:bookly_x_client/generated/style_atoms.dart';
 import 'package:bookly_x_client/generated/translations.g.dart';
@@ -88,7 +88,7 @@ class _StaffBookingCardState extends State<StaffBookingCard> {
                     child: Row(
                       children: [
                         CustomCachedNetworkImage(
-                          imgUrl: widget.booking.avatarUrl,
+                          imgUrl: widget.booking.client.avatarUrl,
                           width: 56,
                           height: 56,
                           boxShape: BoxShape.circle,
@@ -105,7 +105,7 @@ class _StaffBookingCardState extends State<StaffBookingCard> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                widget.booking.clientName,
+                                widget.booking.client.name,
                                 style: context.bold20Primary
                                     .copyWith(color: AppColors.textMain),
                                 maxLines: 1,
@@ -117,8 +117,8 @@ class _StaffBookingCardState extends State<StaffBookingCard> {
                                 children: [
                                   Container(
                                     padding: const EdgeInsets.symmetric(
-                                      horizontal: 14,
-                                      vertical: 6,
+                                      horizontal: 6,
+                                      vertical: 2,
                                     ),
                                     decoration: BoxDecoration(
                                       color: badgeBackground,
@@ -126,12 +126,12 @@ class _StaffBookingCardState extends State<StaffBookingCard> {
                                       border: Border.all(
                                         color:
                                             accentColor.withValues(alpha: 0.3),
-                                        width: 1.5,
+                                        width: 1,
                                       ),
                                     ),
                                     child: Text(
                                       widget.booking.status.displayLabel,
-                                      style: context.bold14Primary.copyWith(
+                                      style: context.regular12Primary.copyWith(
                                         color: accentColor,
                                       ),
                                     ),
@@ -141,7 +141,7 @@ class _StaffBookingCardState extends State<StaffBookingCard> {
                               16.h,
                               Expanded(
                                 child: Text(
-                                  '${widget.booking.dateTime.formattedDate} - ${widget.booking.dateTime.formattedTime}',
+                                  '${widget.booking.scheduledAt.formattedDate} - ${widget.booking.scheduledAt.formattedTime}',
                                   style: context.regular14TextSub,
                                 ),
                               ),
@@ -155,7 +155,7 @@ class _StaffBookingCardState extends State<StaffBookingCard> {
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Text(
-                                '\$${widget.booking.price.toStringAsFixed(0)}',
+                                '\$${widget.booking.service.price.toStringAsFixed(0)}',
                                 style: context.bold20Primary
                                     .copyWith(color: AppColors.textSub),
                               ),

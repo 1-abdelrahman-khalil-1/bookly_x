@@ -1,4 +1,3 @@
-import 'package:bookly_x_client/app/core/enums/booking_status.dart';
 import 'package:bookly_x_client/app/core/extensions/context_extensions.dart';
 import 'package:bookly_x_client/app/core/widgets/custom_appbar.dart';
 import 'package:bookly_x_client/app/features/client/bookings/data/models/booking_data.dart';

@@ -27,9 +27,9 @@ class StaffReviewModel {
       rating: (json['rating'] as num?)?.toDouble() ?? 0,
       comment: json['comment'] as String?,
       reviewerRole: StaffReviewerRole.fromString(
-        json['reviewerRole']?.toString(),
+        json['reviewer_role']?.toString(),
       ),
-      createdAt: DateTime.tryParse(json['createdAt']?.toString() ?? ''),
+      createdAt: DateTime.tryParse(json['created_at']?.toString() ?? ''),
       client: json['client'] is Map<String, dynamic>
           ? StaffReviewClientModel.fromJson(
               json['client'] as Map<String, dynamic>)
@@ -39,7 +39,7 @@ class StaffReviewModel {
               json['service'] as Map<String, dynamic>,
             )
           : null,
-      appointmentId: (json['appointmentId'] as num?)?.toInt(),
+      appointmentId: (json['appointment_id'] as num?)?.toInt(),
     );
   }
 
@@ -47,11 +47,11 @@ class StaffReviewModel {
         'id': id,
         'rating': rating,
         'comment': comment,
-        'reviewerRole': reviewerRole.name,
-        'createdAt': createdAt?.toIso8601String(),
+        'reviewer_role': reviewerRole.name,
+        'created_at': createdAt?.toIso8601String(),
         'client': client?.toJson(),
         'service': service?.toJson(),
-        'appointmentId': appointmentId,
+        'appointment_id': appointmentId,
       };
 }
 

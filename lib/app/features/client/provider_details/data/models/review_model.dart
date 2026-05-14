@@ -15,16 +15,16 @@ class ReviewModel {
 
   factory ReviewModel.fromJson(Map<String, dynamic> json) => ReviewModel(
         id: json['id']?.toString() ?? '',
-        reviewerName: json['reviewerName'] as String? ?? '',
-        avatarUrl: json['avatarUrl'] as String? ?? '',
+        reviewerName: json['reviewer_name'] as String? ?? '',
+        avatarUrl: json['avatar_url'] as String? ?? '',
         rating: (json['rating'] as num?)?.toDouble() ?? 0.0,
         comment: json['comment'] as String? ?? '',
       );
 
   Map<String, dynamic> toJson() => {
         'id': id,
-        'reviewerName': reviewerName,
-        'avatarUrl': avatarUrl,
+        'reviewer_name': reviewerName,
+        'avatar_url': avatarUrl,
         'rating': rating,
         'comment': comment,
       };

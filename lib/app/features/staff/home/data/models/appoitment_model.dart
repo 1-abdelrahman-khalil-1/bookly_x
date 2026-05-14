@@ -18,18 +18,18 @@ class AppoitmentModel {
   factory AppoitmentModel.fromJson(Map<String, dynamic> json) =>
       AppoitmentModel(
         id: json['id'] as int,
-        clientName: json['clientName'] as String,
-        serviceName: json['serviceName'] as String,
-        scheduledAt: DateTime.parse(json['scheduledAt'] as String),
+        clientName: json['client_name'] as String,
+        serviceName: json['service_name'] as String,
+        scheduledAt: DateTime.parse(json['scheduled_at'] as String),
         duration: json['duration'] as int,
         status: json['status'] as String,
       );
 
   Map<String, dynamic> toJson() => {
         'id': id,
-        'clientName': clientName,
-        'serviceName': serviceName,
-        'scheduledAt': scheduledAt.toIso8601String(),
+        'client_name': clientName,
+        'service_name': serviceName,
+        'scheduled_at': scheduledAt.toIso8601String(),
         'duration': duration,
         'status': status,
       };

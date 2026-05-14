@@ -96,9 +96,9 @@ class BookingCard extends StatelessWidget {
                       8.w,
                       // Status Badge
                       Container(
-                        height: 28,
+                        height: 20,
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 2),
+                            horizontal: 6, vertical: 2),
                         decoration: BoxDecoration(
                           color: status.color,
                           borderRadius: BorderRadius.circular(8),
@@ -106,7 +106,7 @@ class BookingCard extends StatelessWidget {
                         alignment: Alignment.center,
                         child: Text(
                           status.name,
-                          style: context.regular12White,
+                          style: context.regular11White,
                         ),
                       ),
                     ],

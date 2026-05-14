@@ -13,13 +13,13 @@ class Branch {
 
   factory Branch.fromJson(Map<String, dynamic> json) => Branch(
         id: (json['id'] as num?)?.toInt() ?? 0,
-        businessName: json['businessName']?.toString() ?? '',
+        businessName: json['business_name']?.toString() ?? '',
         category: StaffBranchCategory.fromString(json['category']?.toString()),
       );
 
   Map<String, dynamic> toJson() => {
         'id': id,
-        'businessName': businessName,
+        'business_name': businessName,
         'category': category.name,
       };
 }

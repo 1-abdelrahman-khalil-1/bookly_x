@@ -1,4 +1,5 @@
 import 'package:bookly_x_client/app/core/constants/constants.dart';
+import 'package:bookly_x_client/app/core/data/user_pref.dart';
 import 'package:bookly_x_client/app/core/extensions/context_extensions.dart';
 import 'package:bookly_x_client/app/core/themes/app_colors.dart';
 import 'package:bookly_x_client/app/core/widgets/custom_sized_box.dart';
@@ -8,28 +9,31 @@ import 'package:bookly_x_client/generated/style_atoms.dart';
 import 'package:bookly_x_client/generated/translations.g.dart';
 import 'package:bookly_x_client/router/auto_router.gr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class StaffHomeHeader extends StatelessWidget {
+class StaffHomeHeader extends ConsumerWidget {
   const StaffHomeHeader({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final user = ref.watch(userProvider);
     return Row(
       children: [
-        const CustomCachedNetworkImage(
-          imgUrl: Constants.tempImage,
+        CustomCachedNetworkImage(
+          imgUrl: user.staff?.profileImageUrl ?? Constants.tempImage,
           width: 50,
           height: 50,
-          borderRadius: BorderRadius.all(Radius.circular(30)),
+          borderRadius: const BorderRadius.all(Radius.circular(30)),
         ),
         16.w,
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(tr.goodMorningAlex, style: context.bold16),
+              Text("${tr.goodMorning} ${user.name.split(" ")[0]}",
+                  style: context.bold16),
               4.h,
               Text(
                 tr.hereIsYourScheduleForToday,

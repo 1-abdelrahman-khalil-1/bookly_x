@@ -27,6 +27,10 @@ void main() async {
       runApp(
         TranslationProvider(
           child: AppRestarter(
+            key: AppRestarter.stateKey,
+            onRestart: () {
+              globalRefContainer = ProviderContainer();
+            },
             child: UncontrolledProviderScope(
               container: globalRefContainer,
               child: const BooklyXClientApp(),

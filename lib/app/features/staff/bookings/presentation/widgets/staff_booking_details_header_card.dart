@@ -15,7 +15,7 @@ class StaffBookingDetailsHeaderCard extends StatelessWidget {
 
   final String serviceName;
   final BookingStatus status;
-  final double price;
+  final int price;
 
   @override
   Widget build(BuildContext context) {

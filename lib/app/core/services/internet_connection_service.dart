@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:event_bus/event_bus.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
@@ -42,10 +41,6 @@ class InternetConnectionService {
 
   static Future<bool> get isReallyDisconnected async {
     for (int i = 0; i < 2; i++) {
-      log(
-        ' isReallyDisconnected num ${i + 1}  ${DateTime.now()}',
-        name: 'ConnectionStatus',
-      );
       await Future.delayed(const Duration(seconds: 1));
       if (await _connection.hasInternetAccess) return false;
     }

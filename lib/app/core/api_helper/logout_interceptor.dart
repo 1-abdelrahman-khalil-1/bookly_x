@@ -23,6 +23,7 @@ class DioInterceptor extends Interceptor {
     ErrorInterceptorHandler handler,
   ) async {
     if (err.response == null) {
+      log("Logging out user due to network error", name: 'DioInterceptor');
       return handler.next(err);
     }
     final response = err.response!;
@@ -30,7 +31,7 @@ class DioInterceptor extends Interceptor {
     final isForbidden = response.statusCode == HttpStatus.forbidden;
 
     // Protection against infinite loops
-    if (err.requestOptions.extra['isRetry'] == true) {
+    if (err.requestOptions.extra['is_retry'] == true) {
       return handler.next(err);
     }
 
@@ -118,30 +119,34 @@ class DioInterceptor extends Interceptor {
           return true;
         }
       }
-    } catch (e) {}
+    } catch (e) {
+      log(
+        'Token refresh failed: $e',
+        name: 'DioInterceptor._doRefresh',
+        error: e,
+        stackTrace: StackTrace.current,
+      );
+    }
     return false;
   }
 
   Future<Response> _retry(RequestOptions requestOptions) async {
-    return dio.request(
-      requestOptions.path,
-      data: requestOptions.data,
-      queryParameters: requestOptions.queryParameters,
-      options: Options(
-        method: requestOptions.method,
+    return dio.fetch(
+      requestOptions.copyWith(
         headers: {
           ...requestOptions.headers,
           'Authorization': UserPrefs.getUserToken(),
         },
         extra: {
           ...requestOptions.extra,
-          'isRetry': true,
+          'is_retry': true,
         },
       ),
     );
   }
 
   Future<void> _handleLogout() async {
+    log("Logging out user due to unauthorized access", name: 'DioInterceptor');
     if (UserPrefs.isUserLoggedIn) {
       UnAuthorizedService.event.fire(HttpStatus.unauthorized);
     }

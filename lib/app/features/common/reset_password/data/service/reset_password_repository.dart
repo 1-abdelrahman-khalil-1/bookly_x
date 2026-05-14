@@ -36,6 +36,7 @@ class ResetPasswordService {
     final response = await _dio.post(
       Endpoints.verifyPasswordReset,
       body: {'email': email, 'code': code},
+      attachToken: false,
     );
     final res = response.data as Json;
     HandleErrorsResponse.handleErrorsResponse(
@@ -43,7 +44,7 @@ class ResetPasswordService {
       response: res,
     );
     final data = res['data'] as Json;
-    return data['resetToken'] as String;
+    return data['reset_token'] as String;
   }
 
   /// Step 3: Reset the password using [resetToken] and [newPassword].
@@ -54,9 +55,10 @@ class ResetPasswordService {
     final response = await _dio.post(
       Endpoints.resetPassword,
       body: {
-        'resetToken': resetToken,
-        'newPassword': newPassword,
+        'reset_token': resetToken,
+        'new_password': newPassword,
       },
+      attachToken: false,
     );
     final res = response.data as Json;
     HandleErrorsResponse.handleErrorsResponse(

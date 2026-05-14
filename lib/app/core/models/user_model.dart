@@ -36,10 +36,10 @@ class UserModel {
       phone: json['phone']?.toString() ?? '',
       role: _userTypeFromString(json['role']?.toString()),
       status: json['status']?.toString() ?? '',
-      createdAt: DateTime.tryParse(json['createdAt']?.toString() ?? ''),
-      updatedAt: DateTime.tryParse(json['updatedAt']?.toString() ?? ''),
-      emailVerified: json['emailVerified'] ?? false,
-      phoneVerified: json['phoneVerified'] ?? false,
+      createdAt: DateTime.tryParse(json['created_at']?.toString() ?? ''),
+      updatedAt: DateTime.tryParse(json['updated_at']?.toString() ?? ''),
+      emailVerified: json['email_verified'] ?? false,
+      phoneVerified: json['phone_verified'] ?? false,
       staff: json['staff'] != null ? StaffModel.fromJson(json['staff']) : null,
     );
   }
@@ -52,10 +52,10 @@ class UserModel {
       'phone': phone,
       'role': role.name,
       'status': status,
-      'createdAt': createdAt?.toIso8601String(),
-      'updatedAt': updatedAt?.toIso8601String(),
-      'emailVerified': emailVerified,
-      'phoneVerified': phoneVerified,
+      'created_at': createdAt?.toIso8601String(),
+      'updated_at': updatedAt?.toIso8601String(),
+      'email_verified': emailVerified,
+      'phone_verified': phoneVerified,
       'staff': staff?.toJson(),
     };
   }

@@ -46,21 +46,21 @@ class StaffModel {
   factory StaffModel.fromJson(Map<String, dynamic> json) {
     return StaffModel(
       id: (json['id'] as num?)?.toInt() ?? 0,
-      profileImageUrl: json['profileImageUrl'] as String?,
-      staffRole: StaffRole.fromString(json['staffRole']?.toString()),
+      profileImageUrl: json['profile_image_url'] as String?,
+      staffRole: StaffRole.fromString(json['staff_role']?.toString()),
       age: (json['age'] as num?)?.toInt() ?? 0,
       commissionPercentage:
-          (json['commissionPercentage'] as num?)?.toInt() ?? 0,
-      isActive: json['isActive'] as bool? ?? false,
-      createdAt: DateTime.tryParse(json['createdAt']?.toString() ?? ''),
-      updatedAt: DateTime.tryParse(json['updatedAt']?.toString() ?? ''),
+          (json['commission_percentage'] as num?)?.toInt() ?? 0,
+      isActive: json['is_active'] as bool? ?? false,
+      createdAt: DateTime.tryParse(json['created_at']?.toString() ?? ''),
+      updatedAt: DateTime.tryParse(json['updated_at']?.toString() ?? ''),
       branch: json['branch'] == null
           ? null
           : Branch.fromJson(json['branch'] as Map<String, dynamic>),
-      professionalProfile: json['professionalProfile'] == null
+      professionalProfile: json['professional_profile'] == null
           ? null
           : ProfessionalProfile.fromJson(
-              json['professionalProfile'] as Map<String, dynamic>),
+              json['professional_profile'] as Map<String, dynamic>),
       certificates: (json['certificates'] as List<dynamic>? ?? [])
           .whereType<Map<String, dynamic>>()
           .map(StaffCertificateModel.fromJson)
@@ -77,27 +77,27 @@ class StaffModel {
           .whereType<Map<String, dynamic>>()
           .map(StaffReviewModel.fromJson)
           .toList(),
-      averageRating: (json['averageRating'] as num?)?.toDouble() ?? 0,
-      reviewCount: (json['reviewCount'] as num?)?.toInt() ?? 0,
+      averageRating: (json['average_rating'] as num?)?.toDouble() ?? 0,
+      reviewCount: (json['review_count'] as num?)?.toInt() ?? 0,
     );
   }
 
   Map<String, dynamic> toJson() => {
         'id': id,
-        'profileImageUrl': profileImageUrl,
-        'staffRole': staffRole.name,
+        'profile_image_url': profileImageUrl,
+        'staff_role': staffRole.name,
         'age': age,
-        'commissionPercentage': commissionPercentage,
-        'isActive': isActive,
-        'createdAt': createdAt?.toIso8601String(),
-        'updatedAt': updatedAt?.toIso8601String(),
+        'commission_percentage': commissionPercentage,
+        'is_active': isActive,
+        'created_at': createdAt?.toIso8601String(),
+        'updated_at': updatedAt?.toIso8601String(),
         'branch': branch?.toJson(),
-        'professionalProfile': professionalProfile?.toJson(),
+        'professional_profile': professionalProfile?.toJson(),
         'certificates': certificates.map((e) => e.toJson()).toList(),
         'availabilities': availabilities.map((e) => e.toJson()).toList(),
         'services': services.map((e) => e.toJson()).toList(),
         'reviews': reviews.map((e) => e.toJson()).toList(),
-        'averageRating': averageRating,
-        'reviewCount': reviewCount,
+        'average_rating': averageRating,
+        'review_count': reviewCount,
       };
 }

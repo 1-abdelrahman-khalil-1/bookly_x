@@ -11,13 +11,13 @@ class OfferModel {
 
   factory OfferModel.fromJson(Map<String, dynamic> json) => OfferModel(
         id: json['id']?.toString() ?? '',
-        imageUrl: json['imageUrl'] as String? ?? '',
+        imageUrl: json['image_url'] as String? ?? '',
         discount: json['discount'] as String? ?? '',
       );
 
   Map<String, dynamic> toJson() => {
         'id': id,
-        'imageUrl': imageUrl,
+        'image_url': imageUrl,
         'discount': discount,
       };
 }

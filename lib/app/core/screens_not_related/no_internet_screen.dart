@@ -7,9 +7,6 @@ import 'package:bookly_x_client/generated/style_atoms.dart';
 import 'package:bookly_x_client/generated/translations.g.dart';
 import 'package:flutter/material.dart';
 
-import '../enums/internet_status.dart';
-import '../services/internet_connection_service.dart';
-
 // ignore: must_be_immutable
 class NoInternetScreen extends StatefulWidget {
   NoInternetScreen({super.key, required this.isLoading, required this.onRetry});
@@ -26,10 +23,10 @@ class _NoInternetScreenState extends State<NoInternetScreen> {
 
   @override
   void initState() {
-    _subscription =
-        InternetConnectionService.event.on<ConnectionStatus>().listen((event) {
-      if (event == ConnectionStatus.connected) widget.onRetry();
-    });
+    // _subscription =
+    //     InternetConnectionService.event.on<ConnectionStatus>().listen((event) {
+    //   if (event == ConnectionStatus.connected) widget.onRetry();
+    // });
     super.initState();
   }
 

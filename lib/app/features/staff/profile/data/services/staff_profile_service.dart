@@ -50,9 +50,9 @@ class StaffProfileService {
     final response = await _dio.post(
       Endpoints.staffAvailability,
       body: {
-        'dayOfWeek': dayOfWeek,
-        'startTime': startTime,
-        'endTime': endTime,
+        'day_of_week': dayOfWeek,
+        'start_time': startTime,
+        'end_time': endTime,
       },
     );
     final res = response.data;
@@ -74,9 +74,9 @@ class StaffProfileService {
     final response = await _dio.put(
       '${Endpoints.staffAvailability}/$availabilityId',
       body: {
-        if (dayOfWeek != null) 'dayOfWeek': dayOfWeek,
-        if (startTime != null) 'startTime': startTime,
-        if (endTime != null) 'endTime': endTime,
+        if (dayOfWeek != null) 'day_of_week': dayOfWeek,
+        if (startTime != null) 'start_time': startTime,
+        if (endTime != null) 'end_time': endTime,
       },
     );
     final res = response.data;

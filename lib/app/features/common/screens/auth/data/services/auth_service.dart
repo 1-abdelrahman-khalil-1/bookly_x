@@ -30,7 +30,7 @@ class AuthService {
     );
     final data = res['data'];
     String token = data['token'];
-    String refreshToken = data['refreshToken'];
+    String refreshToken = data['refresh_token'];
     await UserPrefs.setUserToken(token);
     await UserPrefs.setRefreshToken(refreshToken);
     await UserPrefs.setUser(data['user']);
@@ -40,7 +40,7 @@ class AuthService {
     final response = await _dio.post(
       Endpoints.refreshToken,
       body: {
-        "refreshToken": UserPrefs.getRefreshToken(),
+        "refresh_token": UserPrefs.getRefreshToken(),
       },
       attachToken: false,
     );
@@ -51,7 +51,7 @@ class AuthService {
     );
     final data = res['data'];
     String token = data['token'];
-    String refreshToken = data['refreshToken'];
+    String refreshToken = data['refresh_token'];
 
     await UserPrefs.setUserToken(token);
     await UserPrefs.setRefreshToken(refreshToken);

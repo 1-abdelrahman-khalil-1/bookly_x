@@ -8,10 +8,42 @@ enum BookingStatus {
   inProgress,
   complete,
   canceled,
-  rejected,
-}
+  rejected;
 
-extension BookingStatusX on BookingStatus {
+  String get apiValue {
+    switch (this) {
+      case BookingStatus.pending:
+        return 'pending';
+      case BookingStatus.confirmed:
+        return 'confirmed';
+      case BookingStatus.inProgress:
+        return 'in_progress';
+      case BookingStatus.complete:
+        return 'complete';
+      case BookingStatus.canceled:
+        return 'canceled';
+      case BookingStatus.rejected:
+        return 'rejected';
+    }
+  }
+
+  String get label {
+    switch (this) {
+      case BookingStatus.pending:
+        return tr.pending;
+      case BookingStatus.confirmed:
+        return tr.confirmed;
+      case BookingStatus.inProgress:
+        return tr.inProgress;
+      case BookingStatus.complete:
+        return tr.completed;
+      case BookingStatus.canceled:
+        return tr.canceled;
+      case BookingStatus.rejected:
+        return tr.rejected;
+    }
+  }
+
   Color get color {
     switch (this) {
       case BookingStatus.pending:

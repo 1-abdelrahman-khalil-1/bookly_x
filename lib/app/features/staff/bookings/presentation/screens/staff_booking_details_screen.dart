@@ -1,13 +1,15 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:bookly_x_client/app/core/enums/booking_status.dart';
+import 'package:bookly_x_client/app/core/models/booking_model.dart';
+import 'package:bookly_x_client/app/core/screens_not_related/future_provider_screen.dart';
 import 'package:bookly_x_client/app/core/themes/app_colors.dart';
 import 'package:bookly_x_client/app/core/widgets/buttons/custom_button.dart';
 import 'package:bookly_x_client/app/core/widgets/custom_appbar.dart';
 import 'package:bookly_x_client/app/core/widgets/custom_sized_box.dart';
-import 'package:bookly_x_client/app/core/models/booking_model.dart';
+import 'package:bookly_x_client/app/features/staff/bookings/presentation/controller/staff_bookings_future_providers.dart';
 import 'package:bookly_x_client/generated/my_icons.dart';
 import 'package:bookly_x_client/generated/translations.g.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../widgets/staff_booking_attachments_card.dart';
 import '../widgets/staff_booking_client_card.dart';
@@ -16,7 +18,7 @@ import '../widgets/staff_booking_details_header_card.dart';
 import '../widgets/staff_booking_notes_card.dart';
 
 @RoutePage()
-class StaffBookingDetailsScreen extends StatelessWidget {
+class StaffBookingDetailsScreen extends ConsumerWidget {
   const StaffBookingDetailsScreen({
     super.key,
     required this.booking,
@@ -25,43 +27,46 @@ class StaffBookingDetailsScreen extends StatelessWidget {
   final BookingModel booking;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: CustomAppbar(title: tr.appointmentDetails),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            StaffBookingDetailsHeaderCard(
-              serviceName: booking.serviceName,
-              status: booking.status,
-              price: booking.price,
-            ),
-            12.h,
-            StaffBookingClientCard(
-              name: booking.clientName,
-              phone: booking.clientPhone ?? '(555) 284-9182', // Mock phone
-              avatarUrl: booking.avatarUrl,
-              onCallPressed: () {
-                // Handle call action
-              },
-            ),
-            12.h,
-            StaffBookingDateDurationRow(
-              dateTime: booking.dateTime,
-              durationMinutes: booking.durationMinutes,
-            ),
-            if (booking.notes != null) ...[
+      body: ref.watchWhen(
+        provider: staffBookingByIdFutureProvider(booking.id),
+        data: (booking) => SingleChildScrollView(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              StaffBookingDetailsHeaderCard(
+                serviceName: booking.service.name,
+                status: booking.status,
+                price: booking.service.price,
+              ),
               12.h,
-              StaffBookingNotesCard(notes: booking.notes!),
-            ],
-            if (booking.hasAttachments) ...[
+              StaffBookingClientCard(
+                name: booking.client.name,
+                phone: booking.client.phone,
+                avatarUrl: booking.client.avatarUrl,
+                onCallPressed: () {
+                  // Handle call action
+                },
+              ),
               12.h,
-              StaffBookingAttachmentsCard(
-                  hasAttachments: booking.hasAttachments),
+              StaffBookingDateDurationRow(
+                dateTime: booking.scheduledAt,
+                durationMinutes: booking.service.durationMinutes,
+              ),
+              if (booking.notes != null) ...[
+                12.h,
+                StaffBookingNotesCard(notes: booking.notes!),
+              ],
+              if (booking.hasAttachments) ...[
+                12.h,
+                StaffBookingAttachmentsCard(
+                    hasAttachments: booking.hasAttachments),
+              ],
             ],
-          ],
+          ),
         ),
       ),
       bottomNavigationBar: Container(

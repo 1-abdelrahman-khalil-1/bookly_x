@@ -145,7 +145,7 @@ class _StaffHomeScreenState extends ConsumerState<StaffHomeScreen> {
                                   itemBuilder: (context, index) {
                                     final item = schedules[index];
                                     final status =
-                                        BookingStatusX.fromString(item.status);
+                                        BookingStatus.fromString(item.status);
                                     final actionInfo = _getActionInfo(status);
 
                                     return StaffAppointmentCard(

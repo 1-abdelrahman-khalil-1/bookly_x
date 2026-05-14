@@ -13,12 +13,12 @@ class AvailableServiceModel {
       AvailableServiceModel(
         id: json['id']?.toString() ?? '',
         name: json['name'] as String? ?? '',
-        imageUrl: json['imageUrl'] as String? ?? '',
+        imageUrl: json['image_url'] as String? ?? '',
       );
 
   Map<String, dynamic> toJson() => {
         'id': id,
         'name': name,
-        'imageUrl': imageUrl,
+        'image_url': imageUrl,
       };
 }

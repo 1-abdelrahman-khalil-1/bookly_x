@@ -24,11 +24,11 @@ class StaffCertificateModel {
       id: (json['id'] as num?)?.toInt() ?? 0,
       title: json['title']?.toString() ?? '',
       issuer: json['issuer']?.toString() ?? '',
-      issueDate: DateTime.tryParse(json['issueDate']?.toString() ?? ''),
-      expiryDate: DateTime.tryParse(json['expiryDate']?.toString() ?? ''),
-      fileUrl: json['fileUrl'] as String?,
+      issueDate: DateTime.tryParse(json['issue_date']?.toString() ?? ''),
+      expiryDate: DateTime.tryParse(json['expiry_date']?.toString() ?? ''),
+      fileUrl: json['file_url'] as String?,
       verified: json['verified'] as bool? ?? false,
-      createdAt: DateTime.tryParse(json['createdAt']?.toString() ?? ''),
+      createdAt: DateTime.tryParse(json['created_at']?.toString() ?? ''),
     );
   }
 
@@ -36,10 +36,10 @@ class StaffCertificateModel {
         'id': id,
         'title': title,
         'issuer': issuer,
-        'issueDate': issueDate?.toIso8601String(),
-        'expiryDate': expiryDate?.toIso8601String(),
-        'fileUrl': fileUrl,
+        'issue_date': issueDate?.toIso8601String(),
+        'expiry_date': expiryDate?.toIso8601String(),
+        'file_url': fileUrl,
         'verified': verified,
-        'createdAt': createdAt?.toIso8601String(),
+        'created_at': createdAt?.toIso8601String(),
       };
 }

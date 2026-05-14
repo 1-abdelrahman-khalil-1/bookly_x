@@ -23,16 +23,16 @@ class StaffAvailabilityModel {
   factory StaffAvailabilityModel.fromJson(Map<String, dynamic> json) {
     return StaffAvailabilityModel(
       id: (json['id'] as num?)?.toInt() ?? 0,
-      dayOfWeek: (json['dayOfWeek'] as num?)?.toInt() ?? 0,
-      startTime: json['startTime']?.toString() ?? '',
-      endTime: json['endTime']?.toString() ?? '',
+      dayOfWeek: (json['day_of_week'] as num?)?.toInt() ?? 0,
+      startTime: json['start_time']?.toString() ?? '',
+      endTime: json['end_time']?.toString() ?? '',
     );
   }
 
   Map<String, dynamic> toJson() => {
         'id': id,
-        'dayOfWeek': dayOfWeek,
-        'startTime': startTime,
-        'endTime': endTime,
+        'day_of_week': dayOfWeek,
+        'start_time': startTime,
+        'end_time': endTime,
       };
 }

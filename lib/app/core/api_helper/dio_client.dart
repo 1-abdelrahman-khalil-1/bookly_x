@@ -157,46 +157,55 @@ class DioClient {
       );
 }
 
-Future<Response> validateResponse(Future<Response> Function() zone) async {
+Future<Response> validateResponse(
+  Future<Response> Function() zone,
+) async {
   try {
     final res = await zone();
 
-    if (res.statusCode == 200 &&
-        res.data != null &&
+    // Handle empty successful response (only for 2xx that expect data)
+    if ((res.statusCode == HttpStatus.ok || res.statusCode == HttpStatus.created) &&
         res.data is String &&
-        (res.data! as String).isEmpty) {
+        (res.data as String).trim().isEmpty) {
       throw EmptyBadResponse();
     }
+
+    // Return response as-is; let services handle domain-specific errors via HandleErrorsResponse
     return res;
   } on DioException catch (e, st) {
-    log(st.toString());
+    log(
+      e.toString(),
+      name: 'validateResponse',
+      stackTrace: st,
+    );
 
-    // 1. Immediate connection errors
-    if (e.type == DioExceptionType.connectionError) {
-      throw NoInternetConnection();
-    }
-
-    // 2. Response errors
-    if (e.response != null) {
-      if (e.response?.statusCode == HttpStatus.internalServerError) {
-        throw InternalServerError();
-      }
-      return e.response!;
-    }
-
-    // 3. Network checks for other errors
-    final hasConnection = await InternetConnection().hasInternetAccess;
-    if (!hasConnection) {
-      throw NoInternetConnection();
-    }
-
+    // Timeout / connection related errors
     if (e.type == DioExceptionType.connectionTimeout ||
         e.type == DioExceptionType.receiveTimeout ||
         e.type == DioExceptionType.sendTimeout ||
-        e.type == DioExceptionType.unknown ||
-        e.type == DioExceptionType.connectionError) {
+        e.type == DioExceptionType.connectionError ||
+        e.type == DioExceptionType.unknown) {
+      final hasConnection = await InternetConnection().hasInternetAccess;
+
+      if (!hasConnection) {
+        throw NoInternetConnection();
+      }
       throw InternalServerError();
     }
+
+    // If Dio has a response (e.g., 4xx/5xx), let it propagate
+    if (e.response != null) {
+      return e.response!;
+    }
+
+    rethrow;
+  } catch (e, st) {
+    log(
+      e.toString(),
+      name: 'validateResponse',
+      stackTrace: st,
+    );
+
     rethrow;
   }
 }

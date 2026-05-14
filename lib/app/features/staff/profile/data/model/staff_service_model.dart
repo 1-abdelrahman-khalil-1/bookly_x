@@ -21,8 +21,8 @@ class StaffServiceModel {
       name: json['name']?.toString() ?? '',
       description: json['description'] as String?,
       price: (json['price'] as num?)?.toDouble() ?? 0,
-      durationMinutes: (json['durationMinutes'] as num?)?.toInt() ?? 0,
-      imageUrl: json['imageUrl'] as String?,
+      durationMinutes: (json['duration_minutes'] as num?)?.toInt() ?? 0,
+      imageUrl: json['image_url'] as String?,
     );
   }
 
@@ -31,7 +31,7 @@ class StaffServiceModel {
         'name': name,
         'description': description,
         'price': price,
-        'durationMinutes': durationMinutes,
-        'imageUrl': imageUrl,
+        'duration_minutes': durationMinutes,
+        'image_url': imageUrl,
       };
 }
