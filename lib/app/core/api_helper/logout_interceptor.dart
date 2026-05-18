@@ -23,7 +23,7 @@ class DioInterceptor extends Interceptor {
     ErrorInterceptorHandler handler,
   ) async {
     if (err.response == null) {
-      log("Logging out user due to network error", name: 'DioInterceptor');
+      log("Network error or no response", name: 'DioInterceptor');
       return handler.next(err);
     }
     final response = err.response!;
@@ -31,31 +31,36 @@ class DioInterceptor extends Interceptor {
     final isForbidden = response.statusCode == HttpStatus.forbidden;
 
     // Protection against infinite loops
-    if (err.requestOptions.extra['is_retry'] == true) {
-      return handler.next(err);
-    }
+    final isRetry = err.requestOptions.extra['is_retry'] == true;
+    final isRefreshPath =
+        response.requestOptions.path.contains(Endpoints.refreshToken);
 
-    if (isUnauthorized && UserPrefs.isUserLoggedIn) {
-      // Avoid infinite loop if refresh token itself fails
-      if (response.requestOptions.path.contains(Endpoints.refreshToken)) {
+    if (isUnauthorized) {
+      // If it's the refresh token itself failing, or already a retry, logout immediately
+      if (isRefreshPath || isRetry) {
         await _handleLogout();
         return handler.next(err);
       }
 
-      final success = await _refreshToken();
-      if (success) {
-        // Retry the request with the new token
-        try {
-          final retryResponse = await _retry(response.requestOptions);
-          return handler.resolve(retryResponse);
-        } catch (e) {
-          return handler.next(err);
+      // If we are logged in, try to refresh the token
+      if (UserPrefs.isUserLoggedIn) {
+        final success = await _refreshToken();
+        if (success) {
+          try {
+            final retryResponse = await _retry(response.requestOptions);
+            return handler.resolve(retryResponse);
+          } catch (e) {
+            await _handleLogout();
+            return handler.next(err);
+          }
         }
-      } else {
-        await _handleLogout();
-        return handler.next(err);
       }
-    } else if (isForbidden && UserPrefs.isUserLoggedIn) {
+
+      // If not logged in but got 401, or refresh failed, force logout/restart
+      await _handleLogout();
+      return handler.next(err);
+    } else if (isForbidden) {
+      // Always logout on forbidden for now, as it usually means a permanent issue
       await _handleLogout();
       return handler.next(err);
     }
@@ -147,8 +152,6 @@ class DioInterceptor extends Interceptor {
 
   Future<void> _handleLogout() async {
     log("Logging out user due to unauthorized access", name: 'DioInterceptor');
-    if (UserPrefs.isUserLoggedIn) {
-      UnAuthorizedService.event.fire(HttpStatus.unauthorized);
-    }
-  }
+    UnAuthorizedService.event.fire(HttpStatus.unauthorized);
+  } 
 }

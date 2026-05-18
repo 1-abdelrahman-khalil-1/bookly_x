@@ -11,7 +11,7 @@ class BookingModel {
 
   BookingModel({
     required this.id,
-    required this.client,
+    required this.client, 
     required this.status,
     required this.service,
     required this.scheduledAt,
