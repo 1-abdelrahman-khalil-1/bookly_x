@@ -377,7 +377,7 @@ class BookingFlowData {
   }
 
   Color get statusColor => AppColors.warning;
-  String get statusLabel => 'padening confirmation';
+  String get statusLabel => tr.pending;
   String get priceLabel =>
       selectedService != null ? '${selectedService!.price.toInt()}EG' : '';
 }

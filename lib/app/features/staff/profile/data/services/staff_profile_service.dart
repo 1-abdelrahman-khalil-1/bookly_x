@@ -28,17 +28,25 @@ class StaffProfileService {
     return UserModel.fromJson(data['user']);
   }
 
-  Future<List<StaffReviewModel>> getStaffReviews() async {
-    final response = await _dio.get(Endpoints.staffReview);
+  Future<List<StaffReviewModel>> getStaffReviews({
+    required int page,
+    required int limit,
+  }) async {
+    final response = await _dio.get(
+      Endpoints.staffReview,
+      query: {
+        'page': page,
+        'limit': limit,
+      },
+    );
     final res = response.data;
     HandleErrorsResponse.handleErrorsResponse(
       statusCode: response.statusCode,
       response: res,
     );
-    final data = res['data'] as List<dynamic>? ?? [];
-    return data
-        .whereType<Map<String, dynamic>>()
-        .map(StaffReviewModel.fromJson)
+    final data = res['data'] as Map<String, dynamic>? ?? {};
+    return (data['reviews'] as List)
+        .map((e) => StaffReviewModel.fromJson(e))
         .toList();
   }
 

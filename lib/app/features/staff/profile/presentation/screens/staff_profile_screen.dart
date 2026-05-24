@@ -1,15 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bookly_x_client/app/core/constants/constants.dart';
 import 'package:bookly_x_client/app/core/data/lang_pref.dart';
-import 'package:bookly_x_client/app/core/data/user_pref.dart';
 import 'package:bookly_x_client/app/core/enums/weeks_days_enum.dart';
 import 'package:bookly_x_client/app/core/extensions/context_extensions.dart';
 import 'package:bookly_x_client/app/core/extensions/date_time_exensions.dart';
 import 'package:bookly_x_client/app/core/models/user_model.dart';
 import 'package:bookly_x_client/app/core/screens_not_related/future_provider_screen.dart';
+import 'package:bookly_x_client/app/core/services/session_reset_service.dart';
 import 'package:bookly_x_client/app/core/themes/app_colors.dart';
 import 'package:bookly_x_client/app/core/utils/show_message.dart';
-import 'package:bookly_x_client/app/core/widgets/app_restarter.dart';
 import 'package:bookly_x_client/app/core/widgets/buttons/custom_button.dart';
 import 'package:bookly_x_client/app/core/widgets/custom_appbar.dart';
 import 'package:bookly_x_client/app/core/widgets/custom_sized_box.dart';
@@ -124,7 +123,7 @@ class StaffProfileScreen extends ConsumerWidget {
                     child: Row(
                       children: [
                         const Icon(
-                          MyIcons.smsStarBold,
+                          MyIcons.starBold,
                           color: AppColors.warningBadge,
                           size: 22,
                         ),
@@ -137,13 +136,15 @@ class StaffProfileScreen extends ConsumerWidget {
                           style: context.regular14TextSub,
                         ),
                         const Spacer(),
-                        GestureDetector(
-                          onTap: () => context.push(const StaffReviewsRoute()),
-                          child: Text(
-                            tr.viewAll,
-                            style: context.semiBold14Primary,
+                        if (staff!.reviewCount > 0)
+                          GestureDetector(
+                            onTap: () =>
+                                context.push(const StaffReviewsRoute()),
+                            child: Text(
+                              tr.viewAll,
+                              style: context.semiBold14Primary,
+                            ),
                           ),
-                        ),
                       ],
                     ),
                   ),
@@ -151,11 +152,11 @@ class StaffProfileScreen extends ConsumerWidget {
                   StaffInforamtionSection(user: data),
                   const Divider(
                       color: AppColors.textBorders, height: 40, thickness: 2),
-                  StaffSpecialitySection(services: staff?.services ?? const []),
+                  StaffSpecialitySection(services: staff.services ?? const []),
                   const Divider(
                       color: AppColors.textBorders, height: 40, thickness: 2),
                   WorkScheduleSection(
-                    availabilities: staff?.availabilities ?? const [],
+                    availabilities: staff.availabilities ?? const [],
                   ),
                   const Divider(
                       color: AppColors.textBorders, height: 40, thickness: 2),

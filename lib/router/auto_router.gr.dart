@@ -9,85 +9,87 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i30;
-import 'package:bookly_x_client/app/core/models/booking_model.dart' as _i35;
+import 'package:auto_route/auto_route.dart' as _i31;
+import 'package:bookly_x_client/app/core/models/booking_model.dart' as _i36;
 import 'package:bookly_x_client/app/features/client/booking_service/data/models/booking_service_model.dart'
-    as _i33;
+    as _i34;
 import 'package:bookly_x_client/app/features/client/booking_service/presentation/screens/client_booking_service_host_screen.dart'
     as _i4;
 import 'package:bookly_x_client/app/features/client/booking_service/presentation/screens/client_booking_success_screen.dart'
     as _i5;
 import 'package:bookly_x_client/app/features/client/booking_service/presentation/screens/client_payment_success_screen.dart'
-    as _i10;
+    as _i11;
 import 'package:bookly_x_client/app/features/client/booking_service/presentation/screens/client_secure_payment_screen.dart'
-    as _i12;
-import 'package:bookly_x_client/app/features/client/booking_service/presentation/screens/client_staff_info_screen.dart'
     as _i13;
+import 'package:bookly_x_client/app/features/client/booking_service/presentation/screens/client_staff_info_screen.dart'
+    as _i14;
 import 'package:bookly_x_client/app/features/client/bookings/data/models/booking_data.dart'
-    as _i32;
+    as _i33;
 import 'package:bookly_x_client/app/features/client/bookings/presentation/screens/client_booking_details_screen.dart'
     as _i3;
 import 'package:bookly_x_client/app/features/client/explore/presentation/screens/explore_screen.dart'
-    as _i14;
+    as _i15;
 import 'package:bookly_x_client/app/features/client/home/data/models/provider_model.dart'
-    as _i36;
+    as _i37;
 import 'package:bookly_x_client/app/features/client/home/presentation/screens/view_all_providers_screen.dart'
-    as _i29;
+    as _i30;
 import 'package:bookly_x_client/app/features/client/main_screen/presentation/screens/client_main_screen.dart'
     as _i7;
+import 'package:bookly_x_client/app/features/client/main_screen/presentation/screens/client_map_view_screen.dart'
+    as _i9;
 import 'package:bookly_x_client/app/features/client/offers/presentation/screens/offers_screen.dart'
-    as _i17;
+    as _i18;
 import 'package:bookly_x_client/app/features/client/offers/presentation/screens/view_all_offers_screen.dart'
-    as _i28;
+    as _i29;
 import 'package:bookly_x_client/app/features/client/provider_details/presentation/screens/provider_details_screen.dart'
-    as _i20;
+    as _i21;
 import 'package:bookly_x_client/app/features/client/setting/presentation/screens/client_edit_profile_screen.dart'
     as _i6;
 import 'package:bookly_x_client/app/features/client/setting/presentation/screens/client_manage_preferences_screen.dart'
     as _i8;
 import 'package:bookly_x_client/app/features/client/setting/presentation/screens/client_notification_preferences_screen.dart'
-    as _i9;
+    as _i10;
 import 'package:bookly_x_client/app/features/client/setting/presentation/screens/client_privacy_security_screen.dart'
-    as _i11;
+    as _i12;
 import 'package:bookly_x_client/app/features/client/setting/presentation/screens/setting_screen.dart'
-    as _i22;
+    as _i23;
 import 'package:bookly_x_client/app/features/common/reset_password/presentation/screens/reset_password_screen.dart'
-    as _i21;
+    as _i22;
 import 'package:bookly_x_client/app/features/common/screens/auth/presentation/screens/auth_screen.dart'
     as _i1;
 import 'package:bookly_x_client/app/features/common/screens/auth/presentation/screens/otp_verification_screen.dart'
-    as _i19;
+    as _i20;
 import 'package:bookly_x_client/app/features/common/screens/choose_role/presentation/screens/choose_role_screen.dart'
     as _i2;
 import 'package:bookly_x_client/app/features/common/screens/forget_password/presentation/screens/forget_password_screen.dart'
-    as _i15;
-import 'package:bookly_x_client/app/features/common/screens/notifications/presentation/screens/notifications_screen.dart'
     as _i16;
+import 'package:bookly_x_client/app/features/common/screens/notifications/presentation/screens/notifications_screen.dart'
+    as _i17;
 import 'package:bookly_x_client/app/features/common/screens/onBoarding_screen/onboarding_screen.dart'
-    as _i18;
+    as _i19;
 import 'package:bookly_x_client/app/features/common/screens/splash_screen/splash_screen.dart'
-    as _i23;
-import 'package:bookly_x_client/app/features/staff/bookings/presentation/screens/staff_booking_details_screen.dart'
     as _i24;
-import 'package:bookly_x_client/app/features/staff/main_screen/presentation/screens/staff_main_screen.dart'
+import 'package:bookly_x_client/app/features/staff/bookings/presentation/screens/staff_booking_details_screen.dart'
     as _i25;
-import 'package:bookly_x_client/app/features/staff/profile/presentation/screens/staff_profile_screen.dart'
+import 'package:bookly_x_client/app/features/staff/main_screen/presentation/screens/staff_main_screen.dart'
     as _i26;
-import 'package:bookly_x_client/app/features/staff/profile/presentation/screens/staff_reviews_screen.dart'
+import 'package:bookly_x_client/app/features/staff/profile/presentation/screens/staff_profile_screen.dart'
     as _i27;
-import 'package:collection/collection.dart' as _i37;
-import 'package:flutter/foundation.dart' as _i34;
-import 'package:flutter/material.dart' as _i31;
+import 'package:bookly_x_client/app/features/staff/profile/presentation/screens/staff_reviews_screen.dart'
+    as _i28;
+import 'package:collection/collection.dart' as _i38;
+import 'package:flutter/foundation.dart' as _i35;
+import 'package:flutter/material.dart' as _i32;
 
 /// generated route for
 /// [_i1.AuthScreen]
-class AuthRoute extends _i30.PageRouteInfo<void> {
-  const AuthRoute({List<_i30.PageRouteInfo>? children})
+class AuthRoute extends _i31.PageRouteInfo<void> {
+  const AuthRoute({List<_i31.PageRouteInfo>? children})
       : super(AuthRoute.name, initialChildren: children);
 
   static const String name = 'AuthRoute';
 
-  static _i30.PageInfo page = _i30.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
       return const _i1.AuthScreen();
@@ -97,13 +99,13 @@ class AuthRoute extends _i30.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.ChooseRoleScreen]
-class ChooseRoleRoute extends _i30.PageRouteInfo<void> {
-  const ChooseRoleRoute({List<_i30.PageRouteInfo>? children})
+class ChooseRoleRoute extends _i31.PageRouteInfo<void> {
+  const ChooseRoleRoute({List<_i31.PageRouteInfo>? children})
       : super(ChooseRoleRoute.name, initialChildren: children);
 
   static const String name = 'ChooseRoleRoute';
 
-  static _i30.PageInfo page = _i30.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
       return const _i2.ChooseRoleScreen();
@@ -114,11 +116,11 @@ class ChooseRoleRoute extends _i30.PageRouteInfo<void> {
 /// generated route for
 /// [_i3.ClientBookingDetailsScreen]
 class ClientBookingDetailsRoute
-    extends _i30.PageRouteInfo<ClientBookingDetailsRouteArgs> {
+    extends _i31.PageRouteInfo<ClientBookingDetailsRouteArgs> {
   ClientBookingDetailsRoute({
-    _i31.Key? key,
-    required _i32.BookingData booking,
-    List<_i30.PageRouteInfo>? children,
+    _i32.Key? key,
+    required _i33.BookingData booking,
+    List<_i31.PageRouteInfo>? children,
   }) : super(
           ClientBookingDetailsRoute.name,
           args: ClientBookingDetailsRouteArgs(key: key, booking: booking),
@@ -127,7 +129,7 @@ class ClientBookingDetailsRoute
 
   static const String name = 'ClientBookingDetailsRoute';
 
-  static _i30.PageInfo page = _i30.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<ClientBookingDetailsRouteArgs>();
@@ -142,9 +144,9 @@ class ClientBookingDetailsRoute
 class ClientBookingDetailsRouteArgs {
   const ClientBookingDetailsRouteArgs({this.key, required this.booking});
 
-  final _i31.Key? key;
+  final _i32.Key? key;
 
-  final _i32.BookingData booking;
+  final _i33.BookingData booking;
 
   @override
   String toString() {
@@ -164,13 +166,13 @@ class ClientBookingDetailsRouteArgs {
 
 /// generated route for
 /// [_i4.ClientBookingServiceHostScreen]
-class ClientBookingServiceHostRoute extends _i30.PageRouteInfo<void> {
-  const ClientBookingServiceHostRoute({List<_i30.PageRouteInfo>? children})
+class ClientBookingServiceHostRoute extends _i31.PageRouteInfo<void> {
+  const ClientBookingServiceHostRoute({List<_i31.PageRouteInfo>? children})
       : super(ClientBookingServiceHostRoute.name, initialChildren: children);
 
   static const String name = 'ClientBookingServiceHostRoute';
 
-  static _i30.PageInfo page = _i30.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
       return const _i4.ClientBookingServiceHostScreen();
@@ -181,11 +183,11 @@ class ClientBookingServiceHostRoute extends _i30.PageRouteInfo<void> {
 /// generated route for
 /// [_i5.ClientBookingSuccessScreen]
 class ClientBookingSuccessRoute
-    extends _i30.PageRouteInfo<ClientBookingSuccessRouteArgs> {
+    extends _i31.PageRouteInfo<ClientBookingSuccessRouteArgs> {
   ClientBookingSuccessRoute({
-    _i31.Key? key,
-    required _i33.BookingFlowData flowData,
-    List<_i30.PageRouteInfo>? children,
+    _i32.Key? key,
+    required _i34.BookingFlowData flowData,
+    List<_i31.PageRouteInfo>? children,
   }) : super(
           ClientBookingSuccessRoute.name,
           args: ClientBookingSuccessRouteArgs(key: key, flowData: flowData),
@@ -194,7 +196,7 @@ class ClientBookingSuccessRoute
 
   static const String name = 'ClientBookingSuccessRoute';
 
-  static _i30.PageInfo page = _i30.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<ClientBookingSuccessRouteArgs>();
@@ -209,9 +211,9 @@ class ClientBookingSuccessRoute
 class ClientBookingSuccessRouteArgs {
   const ClientBookingSuccessRouteArgs({this.key, required this.flowData});
 
-  final _i31.Key? key;
+  final _i32.Key? key;
 
-  final _i33.BookingFlowData flowData;
+  final _i34.BookingFlowData flowData;
 
   @override
   String toString() {
@@ -231,13 +233,13 @@ class ClientBookingSuccessRouteArgs {
 
 /// generated route for
 /// [_i6.ClientEditProfileScreen]
-class ClientEditProfileRoute extends _i30.PageRouteInfo<void> {
-  const ClientEditProfileRoute({List<_i30.PageRouteInfo>? children})
+class ClientEditProfileRoute extends _i31.PageRouteInfo<void> {
+  const ClientEditProfileRoute({List<_i31.PageRouteInfo>? children})
       : super(ClientEditProfileRoute.name, initialChildren: children);
 
   static const String name = 'ClientEditProfileRoute';
 
-  static _i30.PageInfo page = _i30.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
       return const _i6.ClientEditProfileScreen();
@@ -247,13 +249,13 @@ class ClientEditProfileRoute extends _i30.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i7.ClientMainScreen]
-class ClientMainRoute extends _i30.PageRouteInfo<void> {
-  const ClientMainRoute({List<_i30.PageRouteInfo>? children})
+class ClientMainRoute extends _i31.PageRouteInfo<void> {
+  const ClientMainRoute({List<_i31.PageRouteInfo>? children})
       : super(ClientMainRoute.name, initialChildren: children);
 
   static const String name = 'ClientMainRoute';
 
-  static _i30.PageInfo page = _i30.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
       return const _i7.ClientMainScreen();
@@ -263,13 +265,13 @@ class ClientMainRoute extends _i30.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i8.ClientManagePreferencesScreen]
-class ClientManagePreferencesRoute extends _i30.PageRouteInfo<void> {
-  const ClientManagePreferencesRoute({List<_i30.PageRouteInfo>? children})
+class ClientManagePreferencesRoute extends _i31.PageRouteInfo<void> {
+  const ClientManagePreferencesRoute({List<_i31.PageRouteInfo>? children})
       : super(ClientManagePreferencesRoute.name, initialChildren: children);
 
   static const String name = 'ClientManagePreferencesRoute';
 
-  static _i30.PageInfo page = _i30.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
       return const _i8.ClientManagePreferencesScreen();
@@ -278,30 +280,86 @@ class ClientManagePreferencesRoute extends _i30.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i9.ClientNotificationPreferencesScreen]
-class ClientNotificationPreferencesRoute extends _i30.PageRouteInfo<void> {
-  const ClientNotificationPreferencesRoute({List<_i30.PageRouteInfo>? children})
+/// [_i9.ClientMapViewScreen]
+class ClientMapViewRoute extends _i31.PageRouteInfo<ClientMapViewRouteArgs> {
+  ClientMapViewRoute({
+    bool myLocationButtonEnabled = true,
+    _i32.Key? key,
+    List<_i31.PageRouteInfo>? children,
+  }) : super(
+          ClientMapViewRoute.name,
+          args: ClientMapViewRouteArgs(
+            myLocationButtonEnabled: myLocationButtonEnabled,
+            key: key,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'ClientMapViewRoute';
+
+  static _i31.PageInfo page = _i31.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<ClientMapViewRouteArgs>(
+        orElse: () => const ClientMapViewRouteArgs(),
+      );
+      return _i9.ClientMapViewScreen(
+        myLocationButtonEnabled: args.myLocationButtonEnabled,
+        key: args.key,
+      );
+    },
+  );
+}
+
+class ClientMapViewRouteArgs {
+  const ClientMapViewRouteArgs({this.myLocationButtonEnabled = true, this.key});
+
+  final bool myLocationButtonEnabled;
+
+  final _i32.Key? key;
+
+  @override
+  String toString() {
+    return 'ClientMapViewRouteArgs{myLocationButtonEnabled: $myLocationButtonEnabled, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ClientMapViewRouteArgs) return false;
+    return myLocationButtonEnabled == other.myLocationButtonEnabled &&
+        key == other.key;
+  }
+
+  @override
+  int get hashCode => myLocationButtonEnabled.hashCode ^ key.hashCode;
+}
+
+/// generated route for
+/// [_i10.ClientNotificationPreferencesScreen]
+class ClientNotificationPreferencesRoute extends _i31.PageRouteInfo<void> {
+  const ClientNotificationPreferencesRoute({List<_i31.PageRouteInfo>? children})
       : super(ClientNotificationPreferencesRoute.name,
             initialChildren: children);
 
   static const String name = 'ClientNotificationPreferencesRoute';
 
-  static _i30.PageInfo page = _i30.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
-      return const _i9.ClientNotificationPreferencesScreen();
+      return const _i10.ClientNotificationPreferencesScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i10.ClientPaymentSuccessScreen]
+/// [_i11.ClientPaymentSuccessScreen]
 class ClientPaymentSuccessRoute
-    extends _i30.PageRouteInfo<ClientPaymentSuccessRouteArgs> {
+    extends _i31.PageRouteInfo<ClientPaymentSuccessRouteArgs> {
   ClientPaymentSuccessRoute({
-    _i31.Key? key,
-    required _i33.BookingFlowData flowData,
-    List<_i30.PageRouteInfo>? children,
+    _i32.Key? key,
+    required _i34.BookingFlowData flowData,
+    List<_i31.PageRouteInfo>? children,
   }) : super(
           ClientPaymentSuccessRoute.name,
           args: ClientPaymentSuccessRouteArgs(key: key, flowData: flowData),
@@ -310,11 +368,11 @@ class ClientPaymentSuccessRoute
 
   static const String name = 'ClientPaymentSuccessRoute';
 
-  static _i30.PageInfo page = _i30.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<ClientPaymentSuccessRouteArgs>();
-      return _i10.ClientPaymentSuccessScreen(
+      return _i11.ClientPaymentSuccessScreen(
         key: args.key,
         flowData: args.flowData,
       );
@@ -325,9 +383,9 @@ class ClientPaymentSuccessRoute
 class ClientPaymentSuccessRouteArgs {
   const ClientPaymentSuccessRouteArgs({this.key, required this.flowData});
 
-  final _i31.Key? key;
+  final _i32.Key? key;
 
-  final _i33.BookingFlowData flowData;
+  final _i34.BookingFlowData flowData;
 
   @override
   String toString() {
@@ -346,29 +404,29 @@ class ClientPaymentSuccessRouteArgs {
 }
 
 /// generated route for
-/// [_i11.ClientPrivacySecurityScreen]
-class ClientPrivacySecurityRoute extends _i30.PageRouteInfo<void> {
-  const ClientPrivacySecurityRoute({List<_i30.PageRouteInfo>? children})
+/// [_i12.ClientPrivacySecurityScreen]
+class ClientPrivacySecurityRoute extends _i31.PageRouteInfo<void> {
+  const ClientPrivacySecurityRoute({List<_i31.PageRouteInfo>? children})
       : super(ClientPrivacySecurityRoute.name, initialChildren: children);
 
   static const String name = 'ClientPrivacySecurityRoute';
 
-  static _i30.PageInfo page = _i30.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
-      return const _i11.ClientPrivacySecurityScreen();
+      return const _i12.ClientPrivacySecurityScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i12.ClientSecurePaymentScreen]
+/// [_i13.ClientSecurePaymentScreen]
 class ClientSecurePaymentRoute
-    extends _i30.PageRouteInfo<ClientSecurePaymentRouteArgs> {
+    extends _i31.PageRouteInfo<ClientSecurePaymentRouteArgs> {
   ClientSecurePaymentRoute({
-    _i31.Key? key,
-    required _i33.BookingFlowData flowData,
-    List<_i30.PageRouteInfo>? children,
+    _i32.Key? key,
+    required _i34.BookingFlowData flowData,
+    List<_i31.PageRouteInfo>? children,
   }) : super(
           ClientSecurePaymentRoute.name,
           args: ClientSecurePaymentRouteArgs(key: key, flowData: flowData),
@@ -377,11 +435,11 @@ class ClientSecurePaymentRoute
 
   static const String name = 'ClientSecurePaymentRoute';
 
-  static _i30.PageInfo page = _i30.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<ClientSecurePaymentRouteArgs>();
-      return _i12.ClientSecurePaymentScreen(
+      return _i13.ClientSecurePaymentScreen(
         key: args.key,
         flowData: args.flowData,
       );
@@ -392,9 +450,9 @@ class ClientSecurePaymentRoute
 class ClientSecurePaymentRouteArgs {
   const ClientSecurePaymentRouteArgs({this.key, required this.flowData});
 
-  final _i31.Key? key;
+  final _i32.Key? key;
 
-  final _i33.BookingFlowData flowData;
+  final _i34.BookingFlowData flowData;
 
   @override
   String toString() {
@@ -413,13 +471,13 @@ class ClientSecurePaymentRouteArgs {
 }
 
 /// generated route for
-/// [_i13.ClientStaffInfoScreen]
+/// [_i14.ClientStaffInfoScreen]
 class ClientStaffInfoRoute
-    extends _i30.PageRouteInfo<ClientStaffInfoRouteArgs> {
+    extends _i31.PageRouteInfo<ClientStaffInfoRouteArgs> {
   ClientStaffInfoRoute({
-    _i31.Key? key,
-    required _i33.StaffModel staff,
-    List<_i30.PageRouteInfo>? children,
+    _i32.Key? key,
+    required _i34.StaffModel staff,
+    List<_i31.PageRouteInfo>? children,
   }) : super(
           ClientStaffInfoRoute.name,
           args: ClientStaffInfoRouteArgs(key: key, staff: staff),
@@ -428,11 +486,11 @@ class ClientStaffInfoRoute
 
   static const String name = 'ClientStaffInfoRoute';
 
-  static _i30.PageInfo page = _i30.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<ClientStaffInfoRouteArgs>();
-      return _i13.ClientStaffInfoScreen(key: args.key, staff: args.staff);
+      return _i14.ClientStaffInfoScreen(key: args.key, staff: args.staff);
     },
   );
 }
@@ -440,9 +498,9 @@ class ClientStaffInfoRoute
 class ClientStaffInfoRouteArgs {
   const ClientStaffInfoRouteArgs({this.key, required this.staff});
 
-  final _i31.Key? key;
+  final _i32.Key? key;
 
-  final _i33.StaffModel staff;
+  final _i34.StaffModel staff;
 
   @override
   String toString() {
@@ -461,95 +519,95 @@ class ClientStaffInfoRouteArgs {
 }
 
 /// generated route for
-/// [_i14.ExploreScreen]
-class ExploreRoute extends _i30.PageRouteInfo<void> {
-  const ExploreRoute({List<_i30.PageRouteInfo>? children})
+/// [_i15.ExploreScreen]
+class ExploreRoute extends _i31.PageRouteInfo<void> {
+  const ExploreRoute({List<_i31.PageRouteInfo>? children})
       : super(ExploreRoute.name, initialChildren: children);
 
   static const String name = 'ExploreRoute';
 
-  static _i30.PageInfo page = _i30.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
-      return const _i14.ExploreScreen();
+      return const _i15.ExploreScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i15.ForgetPasswordScreen]
-class ForgetPasswordRoute extends _i30.PageRouteInfo<void> {
-  const ForgetPasswordRoute({List<_i30.PageRouteInfo>? children})
+/// [_i16.ForgetPasswordScreen]
+class ForgetPasswordRoute extends _i31.PageRouteInfo<void> {
+  const ForgetPasswordRoute({List<_i31.PageRouteInfo>? children})
       : super(ForgetPasswordRoute.name, initialChildren: children);
 
   static const String name = 'ForgetPasswordRoute';
 
-  static _i30.PageInfo page = _i30.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
-      return const _i15.ForgetPasswordScreen();
+      return const _i16.ForgetPasswordScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i16.NotificationsScreen]
-class NotificationsRoute extends _i30.PageRouteInfo<void> {
-  const NotificationsRoute({List<_i30.PageRouteInfo>? children})
+/// [_i17.NotificationsScreen]
+class NotificationsRoute extends _i31.PageRouteInfo<void> {
+  const NotificationsRoute({List<_i31.PageRouteInfo>? children})
       : super(NotificationsRoute.name, initialChildren: children);
 
   static const String name = 'NotificationsRoute';
 
-  static _i30.PageInfo page = _i30.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
-      return const _i16.NotificationsScreen();
+      return const _i17.NotificationsScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i17.OffersScreen]
-class OffersRoute extends _i30.PageRouteInfo<void> {
-  const OffersRoute({List<_i30.PageRouteInfo>? children})
+/// [_i18.OffersScreen]
+class OffersRoute extends _i31.PageRouteInfo<void> {
+  const OffersRoute({List<_i31.PageRouteInfo>? children})
       : super(OffersRoute.name, initialChildren: children);
 
   static const String name = 'OffersRoute';
 
-  static _i30.PageInfo page = _i30.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
-      return const _i17.OffersScreen();
+      return const _i18.OffersScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i18.OnboardingScreen]
-class OnboardingRoute extends _i30.PageRouteInfo<void> {
-  const OnboardingRoute({List<_i30.PageRouteInfo>? children})
+/// [_i19.OnboardingScreen]
+class OnboardingRoute extends _i31.PageRouteInfo<void> {
+  const OnboardingRoute({List<_i31.PageRouteInfo>? children})
       : super(OnboardingRoute.name, initialChildren: children);
 
   static const String name = 'OnboardingRoute';
 
-  static _i30.PageInfo page = _i30.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
-      return const _i18.OnboardingScreen();
+      return const _i19.OnboardingScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i19.OtpVerificationScreen]
+/// [_i20.OtpVerificationScreen]
 class OtpVerificationRoute
-    extends _i30.PageRouteInfo<OtpVerificationRouteArgs> {
+    extends _i31.PageRouteInfo<OtpVerificationRouteArgs> {
   OtpVerificationRoute({
-    _i34.Key? key,
-    required _i19.VerificationType verificationType,
+    _i35.Key? key,
+    required _i20.VerificationType verificationType,
     required String contactInfo,
     String? phoneNumber,
-    List<_i30.PageRouteInfo>? children,
+    List<_i31.PageRouteInfo>? children,
   }) : super(
           OtpVerificationRoute.name,
           args: OtpVerificationRouteArgs(
@@ -563,11 +621,11 @@ class OtpVerificationRoute
 
   static const String name = 'OtpVerificationRoute';
 
-  static _i30.PageInfo page = _i30.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<OtpVerificationRouteArgs>();
-      return _i19.OtpVerificationScreen(
+      return _i20.OtpVerificationScreen(
         key: args.key,
         verificationType: args.verificationType,
         contactInfo: args.contactInfo,
@@ -585,9 +643,9 @@ class OtpVerificationRouteArgs {
     this.phoneNumber,
   });
 
-  final _i34.Key? key;
+  final _i35.Key? key;
 
-  final _i19.VerificationType verificationType;
+  final _i20.VerificationType verificationType;
 
   final String contactInfo;
 
@@ -617,13 +675,13 @@ class OtpVerificationRouteArgs {
 }
 
 /// generated route for
-/// [_i20.ProviderDetailsScreen]
+/// [_i21.ProviderDetailsScreen]
 class ProviderDetailsRoute
-    extends _i30.PageRouteInfo<ProviderDetailsRouteArgs> {
+    extends _i31.PageRouteInfo<ProviderDetailsRouteArgs> {
   ProviderDetailsRoute({
-    _i31.Key? key,
+    _i32.Key? key,
     required String providerId,
-    List<_i30.PageRouteInfo>? children,
+    List<_i31.PageRouteInfo>? children,
   }) : super(
           ProviderDetailsRoute.name,
           args: ProviderDetailsRouteArgs(key: key, providerId: providerId),
@@ -632,11 +690,11 @@ class ProviderDetailsRoute
 
   static const String name = 'ProviderDetailsRoute';
 
-  static _i30.PageInfo page = _i30.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<ProviderDetailsRouteArgs>();
-      return _i20.ProviderDetailsScreen(
+      return _i21.ProviderDetailsScreen(
         key: args.key,
         providerId: args.providerId,
       );
@@ -647,7 +705,7 @@ class ProviderDetailsRoute
 class ProviderDetailsRouteArgs {
   const ProviderDetailsRouteArgs({this.key, required this.providerId});
 
-  final _i31.Key? key;
+  final _i32.Key? key;
 
   final String providerId;
 
@@ -668,61 +726,61 @@ class ProviderDetailsRouteArgs {
 }
 
 /// generated route for
-/// [_i21.ResetPasswordScreen]
-class ResetPasswordRoute extends _i30.PageRouteInfo<void> {
-  const ResetPasswordRoute({List<_i30.PageRouteInfo>? children})
+/// [_i22.ResetPasswordScreen]
+class ResetPasswordRoute extends _i31.PageRouteInfo<void> {
+  const ResetPasswordRoute({List<_i31.PageRouteInfo>? children})
       : super(ResetPasswordRoute.name, initialChildren: children);
 
   static const String name = 'ResetPasswordRoute';
 
-  static _i30.PageInfo page = _i30.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
-      return const _i21.ResetPasswordScreen();
+      return const _i22.ResetPasswordScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i22.SettingScreen]
-class SettingRoute extends _i30.PageRouteInfo<void> {
-  const SettingRoute({List<_i30.PageRouteInfo>? children})
+/// [_i23.SettingScreen]
+class SettingRoute extends _i31.PageRouteInfo<void> {
+  const SettingRoute({List<_i31.PageRouteInfo>? children})
       : super(SettingRoute.name, initialChildren: children);
 
   static const String name = 'SettingRoute';
 
-  static _i30.PageInfo page = _i30.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
-      return const _i22.SettingScreen();
+      return const _i23.SettingScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i23.SplashScreen]
-class SplashRoute extends _i30.PageRouteInfo<void> {
-  const SplashRoute({List<_i30.PageRouteInfo>? children})
+/// [_i24.SplashScreen]
+class SplashRoute extends _i31.PageRouteInfo<void> {
+  const SplashRoute({List<_i31.PageRouteInfo>? children})
       : super(SplashRoute.name, initialChildren: children);
 
   static const String name = 'SplashRoute';
 
-  static _i30.PageInfo page = _i30.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
-      return const _i23.SplashScreen();
+      return const _i24.SplashScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i24.StaffBookingDetailsScreen]
+/// [_i25.StaffBookingDetailsScreen]
 class StaffBookingDetailsRoute
-    extends _i30.PageRouteInfo<StaffBookingDetailsRouteArgs> {
+    extends _i31.PageRouteInfo<StaffBookingDetailsRouteArgs> {
   StaffBookingDetailsRoute({
-    _i31.Key? key,
-    required _i35.BookingModel booking,
-    List<_i30.PageRouteInfo>? children,
+    _i32.Key? key,
+    required _i36.BookingModel booking,
+    List<_i31.PageRouteInfo>? children,
   }) : super(
           StaffBookingDetailsRoute.name,
           args: StaffBookingDetailsRouteArgs(key: key, booking: booking),
@@ -731,11 +789,11 @@ class StaffBookingDetailsRoute
 
   static const String name = 'StaffBookingDetailsRoute';
 
-  static _i30.PageInfo page = _i30.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<StaffBookingDetailsRouteArgs>();
-      return _i24.StaffBookingDetailsScreen(
+      return _i25.StaffBookingDetailsScreen(
         key: args.key,
         booking: args.booking,
       );
@@ -746,9 +804,9 @@ class StaffBookingDetailsRoute
 class StaffBookingDetailsRouteArgs {
   const StaffBookingDetailsRouteArgs({this.key, required this.booking});
 
-  final _i31.Key? key;
+  final _i32.Key? key;
 
-  final _i35.BookingModel booking;
+  final _i36.BookingModel booking;
 
   @override
   String toString() {
@@ -767,60 +825,60 @@ class StaffBookingDetailsRouteArgs {
 }
 
 /// generated route for
-/// [_i25.StaffMainScreen]
-class StaffMainRoute extends _i30.PageRouteInfo<void> {
-  const StaffMainRoute({List<_i30.PageRouteInfo>? children})
+/// [_i26.StaffMainScreen]
+class StaffMainRoute extends _i31.PageRouteInfo<void> {
+  const StaffMainRoute({List<_i31.PageRouteInfo>? children})
       : super(StaffMainRoute.name, initialChildren: children);
 
   static const String name = 'StaffMainRoute';
 
-  static _i30.PageInfo page = _i30.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
-      return const _i25.StaffMainScreen();
+      return const _i26.StaffMainScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i26.StaffProfileScreen]
-class StaffProfileRoute extends _i30.PageRouteInfo<void> {
-  const StaffProfileRoute({List<_i30.PageRouteInfo>? children})
+/// [_i27.StaffProfileScreen]
+class StaffProfileRoute extends _i31.PageRouteInfo<void> {
+  const StaffProfileRoute({List<_i31.PageRouteInfo>? children})
       : super(StaffProfileRoute.name, initialChildren: children);
 
   static const String name = 'StaffProfileRoute';
 
-  static _i30.PageInfo page = _i30.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
-      return const _i26.StaffProfileScreen();
+      return const _i27.StaffProfileScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i27.StaffReviewsScreen]
-class StaffReviewsRoute extends _i30.PageRouteInfo<void> {
-  const StaffReviewsRoute({List<_i30.PageRouteInfo>? children})
+/// [_i28.StaffReviewsScreen]
+class StaffReviewsRoute extends _i31.PageRouteInfo<void> {
+  const StaffReviewsRoute({List<_i31.PageRouteInfo>? children})
       : super(StaffReviewsRoute.name, initialChildren: children);
 
   static const String name = 'StaffReviewsRoute';
 
-  static _i30.PageInfo page = _i30.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
-      return const _i27.StaffReviewsScreen();
+      return const _i28.StaffReviewsScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i28.ViewAllOffersScreen]
-class ViewAllOffersRoute extends _i30.PageRouteInfo<ViewAllOffersRouteArgs> {
+/// [_i29.ViewAllOffersScreen]
+class ViewAllOffersRoute extends _i31.PageRouteInfo<ViewAllOffersRouteArgs> {
   ViewAllOffersRoute({
-    _i31.Key? key,
-    required List<_i36.ProviderModel> providers,
-    List<_i30.PageRouteInfo>? children,
+    _i32.Key? key,
+    required List<_i37.ProviderModel> providers,
+    List<_i31.PageRouteInfo>? children,
   }) : super(
           ViewAllOffersRoute.name,
           args: ViewAllOffersRouteArgs(key: key, providers: providers),
@@ -829,11 +887,11 @@ class ViewAllOffersRoute extends _i30.PageRouteInfo<ViewAllOffersRouteArgs> {
 
   static const String name = 'ViewAllOffersRoute';
 
-  static _i30.PageInfo page = _i30.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<ViewAllOffersRouteArgs>();
-      return _i28.ViewAllOffersScreen(key: args.key, providers: args.providers);
+      return _i29.ViewAllOffersScreen(key: args.key, providers: args.providers);
     },
   );
 }
@@ -841,9 +899,9 @@ class ViewAllOffersRoute extends _i30.PageRouteInfo<ViewAllOffersRouteArgs> {
 class ViewAllOffersRouteArgs {
   const ViewAllOffersRouteArgs({this.key, required this.providers});
 
-  final _i31.Key? key;
+  final _i32.Key? key;
 
-  final List<_i36.ProviderModel> providers;
+  final List<_i37.ProviderModel> providers;
 
   @override
   String toString() {
@@ -855,7 +913,7 @@ class ViewAllOffersRouteArgs {
     if (identical(this, other)) return true;
     if (other is! ViewAllOffersRouteArgs) return false;
     return key == other.key &&
-        const _i37.ListEquality<_i36.ProviderModel>().equals(
+        const _i38.ListEquality<_i37.ProviderModel>().equals(
           providers,
           other.providers,
         );
@@ -864,17 +922,17 @@ class ViewAllOffersRouteArgs {
   @override
   int get hashCode =>
       key.hashCode ^
-      const _i37.ListEquality<_i36.ProviderModel>().hash(providers);
+      const _i38.ListEquality<_i37.ProviderModel>().hash(providers);
 }
 
 /// generated route for
-/// [_i29.ViewAllProvidersScreen]
+/// [_i30.ViewAllProvidersScreen]
 class ViewAllProvidersRoute
-    extends _i30.PageRouteInfo<ViewAllProvidersRouteArgs> {
+    extends _i31.PageRouteInfo<ViewAllProvidersRouteArgs> {
   ViewAllProvidersRoute({
-    _i31.Key? key,
-    required List<_i36.ProviderModel> providers,
-    List<_i30.PageRouteInfo>? children,
+    _i32.Key? key,
+    required List<_i37.ProviderModel> providers,
+    List<_i31.PageRouteInfo>? children,
   }) : super(
           ViewAllProvidersRoute.name,
           args: ViewAllProvidersRouteArgs(key: key, providers: providers),
@@ -883,11 +941,11 @@ class ViewAllProvidersRoute
 
   static const String name = 'ViewAllProvidersRoute';
 
-  static _i30.PageInfo page = _i30.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<ViewAllProvidersRouteArgs>();
-      return _i29.ViewAllProvidersScreen(
+      return _i30.ViewAllProvidersScreen(
         key: args.key,
         providers: args.providers,
       );
@@ -898,9 +956,9 @@ class ViewAllProvidersRoute
 class ViewAllProvidersRouteArgs {
   const ViewAllProvidersRouteArgs({this.key, required this.providers});
 
-  final _i31.Key? key;
+  final _i32.Key? key;
 
-  final List<_i36.ProviderModel> providers;
+  final List<_i37.ProviderModel> providers;
 
   @override
   String toString() {
@@ -912,7 +970,7 @@ class ViewAllProvidersRouteArgs {
     if (identical(this, other)) return true;
     if (other is! ViewAllProvidersRouteArgs) return false;
     return key == other.key &&
-        const _i37.ListEquality<_i36.ProviderModel>().equals(
+        const _i38.ListEquality<_i37.ProviderModel>().equals(
           providers,
           other.providers,
         );
@@ -921,5 +979,5 @@ class ViewAllProvidersRouteArgs {
   @override
   int get hashCode =>
       key.hashCode ^
-      const _i37.ListEquality<_i36.ProviderModel>().hash(providers);
+      const _i38.ListEquality<_i37.ProviderModel>().hash(providers);
 }

@@ -2,8 +2,10 @@ abstract class Endpoints {
   Endpoints._();
 
   static const getBaseUrl = '';
-  static const baseUrl = 'http://10.0.2.2:3000';
-
+//  static const baseUrl = 'http://10.0.2.2:3000';
+//  static const baseUrl = 'https://bookly-x.up.railway.app';
+  static const baseUrl = 'https://unfilial-vernie-vortiginous.ngrok-free.dev';
+  
   static const login = '/auth/login';
   static const refreshToken = '/auth/refresh';
   static const requestPasswordReset = '/auth/request-password-reset';
@@ -14,6 +16,6 @@ abstract class Endpoints {
   static const staffSchedule = '/staff/schedule';
   static const staffAppointments = '/staff/appointments';
   static const staffProfile = '/staff/profile';
-  static const staffReview = '/staff/review';
+  static const staffReview = '/reviews';
   static const staffAvailability = '/staff/availability';
 }

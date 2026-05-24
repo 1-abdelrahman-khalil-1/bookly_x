@@ -4,7 +4,6 @@ import 'package:bookly_x_client/app/core/extensions/date_time_exensions.dart';
 import 'package:bookly_x_client/app/core/screens_not_related/future_provider_screen.dart';
 import 'package:bookly_x_client/app/core/themes/app_colors.dart';
 import 'package:bookly_x_client/app/core/widgets/custom_sized_box.dart';
-import 'package:bookly_x_client/app/core/widgets/custom_transform_arabic.dart';
 import 'package:bookly_x_client/app/core/widgets/shimmer/booking_card_shimmer.dart';
 import 'package:bookly_x_client/app/features/staff/home/presentation/controllers/staff_home_future_provider.dart';
 import 'package:bookly_x_client/app/features/staff/home/presentation/widgets/staff_appointment_card.dart';
@@ -49,31 +48,7 @@ class _StaffHomeScreenState extends ConsumerState<StaffHomeScreen> {
                             ref.invalidate(staffHomeFutureProvider),
                         child: ListView(
                           children: [
-                            Row(
-                              children: [
-                                Text(tr.thisWeek, style: context.bold18Primary),
-                                const Spacer(),
-                                GestureDetector(
-                                  onTap: () {},
-                                  child: Row(
-                                    children: [
-                                      Text(
-                                        tr.viewFull,
-                                        style: context.semiBold14Primary,
-                                      ),
-                                      6.w,
-                                      // ignore: prefer_const_constructors
-                                      CustomTransformArabic(
-                                        child: const Icon(
-                                            MyIcons.arrowRightOutline,
-                                            size: 15,
-                                            color: AppColors.primary),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
+                            Text(tr.thisWeek, style: context.bold18Primary),
                             12.h,
                             SizedBox(
                               height: 88,
@@ -144,8 +119,7 @@ class _StaffHomeScreenState extends ConsumerState<StaffHomeScreen> {
                                   separatorBuilder: (_, __) => 20.h,
                                   itemBuilder: (context, index) {
                                     final item = schedules[index];
-                                    final status =
-                                        BookingStatus.fromString(item.status);
+                                    final status = item.status;
                                     final actionInfo = _getActionInfo(status);
 
                                     return StaffAppointmentCard(
@@ -155,8 +129,8 @@ class _StaffHomeScreenState extends ConsumerState<StaffHomeScreen> {
                                       statusBackground: status.lightColor,
                                       accentColor: status.color,
                                       timeLabel: item.scheduledAt.formattedTime,
-                                      customerName: item.clientName,
-                                      serviceName: item.serviceName,
+                                      customerName: item.client.name,
+                                      serviceName: item.service.name,
                                       actionLabel: actionInfo.label,
                                       actionIcon: actionInfo.icon,
                                       actionBackground: actionInfo.bg,

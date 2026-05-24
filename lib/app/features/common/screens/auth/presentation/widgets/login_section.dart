@@ -62,8 +62,14 @@ class _LoginSectionState extends ConsumerState<LoginSection> {
             ),
             CustomTextFormField(
               title: tr.password,
+              isPassword: true,
               controller: _passwordController,
-              validator: (val) => ValidationHelper.validatePassword(val),
+              validator: (val) {
+                if ((val?.isEmpty ?? false)) {
+                  return tr.passwordRequired;
+                }
+                return null;
+              },
             ),
             Row(
               children: [

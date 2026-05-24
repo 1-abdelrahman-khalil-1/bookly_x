@@ -16,7 +16,7 @@ class _ClientManagePreferencesScreenState
     extends State<ClientManagePreferencesScreen> {
   bool _favoriteServices = true;
   bool _offersAndDeals = true;
-  bool _languageUpdates = false;
+  final bool _languageUpdates = false;
 
   @override
   Widget build(BuildContext context) {
@@ -37,12 +37,6 @@ class _ClientManagePreferencesScreenState
                 subtitle: Text(tr.availableOffers),
                 value: _offersAndDeals,
                 onChanged: (value) => setState(() => _offersAndDeals = value),
-              ),
-              SwitchListTile.adaptive(
-                title: Text(tr.language),
-                subtitle: Text(tr.chooseYourPreferredLanguage),
-                value: _languageUpdates,
-                onChanged: (value) => setState(() => _languageUpdates = value),
               ),
             ],
           ),

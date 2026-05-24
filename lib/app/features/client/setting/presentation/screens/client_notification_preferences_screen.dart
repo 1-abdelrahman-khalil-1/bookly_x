@@ -16,7 +16,7 @@ class _ClientNotificationPreferencesScreenState
     extends State<ClientNotificationPreferencesScreen> {
   bool _bookingAlerts = true;
   bool _offerAlerts = true;
-  bool _appNotifications = true;
+  final bool _appNotifications = true;
 
   @override
   Widget build(BuildContext context) {
@@ -37,12 +37,6 @@ class _ClientNotificationPreferencesScreenState
                 subtitle: Text(tr.notifications),
                 value: _offerAlerts,
                 onChanged: (value) => setState(() => _offerAlerts = value),
-              ),
-              SwitchListTile.adaptive(
-                title: Text(tr.notifications),
-                subtitle: Text(tr.manageNotificationPreferences),
-                value: _appNotifications,
-                onChanged: (value) => setState(() => _appNotifications = value),
               ),
             ],
           ),

@@ -33,7 +33,7 @@ const _mockOffers = [
   ),
 ];
 
-const _mockProviders = [
+const mockProviders = [
   ProviderModel(
     id: 'p1',
     name: 'Ahmed Hassan',
@@ -46,19 +46,23 @@ const _mockProviders = [
     rate: r'$50/hr',
     verified: true,
     category: CategoryModel(id: '1', name: 'SPA', image: ''),
+    latitude: 30.1360,
+    longitude: 31.7150,
   ),
   ProviderModel(
     id: 'p2',
-    name: 'Sara Youssef',
+    name: 'Samer Youssef',
     image:
-        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=600&fit=crop',
+        'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&h=600&fit=crop',
     description:
-        'Certified nail technician and beauty specialist\nwith 8 years of experience.',
+        'Certified massage therapist and wellness specialist\nwith 8 years of experience.',
     rating: '4.7',
     earned: r'$30k+',
     rate: r'$35/hr',
     verified: false,
     category: CategoryModel(id: '1', name: 'SPA', image: ''),
+    latitude: 30.1420,
+    longitude: 31.7230,
   ),
   ProviderModel(
     id: 'p3',
@@ -72,6 +76,8 @@ const _mockProviders = [
     rate: r'$45/hr',
     verified: true,
     category: CategoryModel(id: '2', name: 'Barber', image: ''),
+    latitude: 30.1280,
+    longitude: 31.7080,
   ),
   ProviderModel(
     id: 'p4',
@@ -85,6 +91,8 @@ const _mockProviders = [
     rate: r'$40/hr',
     verified: true,
     category: CategoryModel(id: '2', name: 'Barber', image: ''),
+    latitude: 30.1500,
+    longitude: 31.7350,
   ),
   ProviderModel(
     id: 'p5',
@@ -98,77 +106,14 @@ const _mockProviders = [
     rate: r'$120/hr',
     verified: true,
     category: CategoryModel(id: '3', name: 'Clinic', image: ''),
-  ),
-  ProviderModel(
-    id: 'p5',
-    name: 'Dr. Mahmoud Ali',
-    image:
-        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=600&fit=crop',
-    description:
-        'Board-certified dermatologist offering\npremium skincare and aesthetic treatments.',
-    rating: '5.0',
-    earned: r'$80k+',
-    rate: r'$120/hr',
-    verified: true,
-    category: CategoryModel(id: '3', name: 'Clinic', image: ''),
-  ),
-  ProviderModel(
-    id: 'p5',
-    name: 'Dr. Mahmoud Ali',
-    image:
-        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=600&fit=crop',
-    description:
-        'Board-certified dermatologist offering\npremium skincare and aesthetic treatments.',
-    rating: '5.0',
-    earned: r'$80k+',
-    rate: r'$120/hr',
-    verified: true,
-    category: CategoryModel(id: '3', name: 'Clinic', image: ''),
-  ),
-  ProviderModel(
-    id: 'p5',
-    name: 'Dr. Mahmoud Ali',
-    image:
-        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=600&fit=crop',
-    description:
-        'Board-certified dermatologist offering\npremium skincare and aesthetic treatments.',
-    rating: '5.0',
-    earned: r'$80k+',
-    rate: r'$120/hr',
-    verified: true,
-    category: CategoryModel(id: '3', name: 'Clinic', image: ''),
-  ),
-  ProviderModel(
-    id: 'p5',
-    name: 'Dr. Mahmoud Ali',
-    image:
-        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=600&fit=crop',
-    description:
-        'Board-certified dermatologist offering\npremium skincare and aesthetic treatments.',
-    rating: '5.0',
-    earned: r'$80k+',
-    rate: r'$120/hr',
-    verified: true,
-    category: CategoryModel(id: '3', name: 'Clinic', image: ''),
-  ),
-  ProviderModel(
-    id: 'p5',
-    name: 'Dr. Mahmoud Ali',
-    image:
-        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=600&fit=crop',
-    description:
-        'Board-certified dermatologist offering\npremium skincare and aesthetic treatments.',
-    rating: '5.0',
-    earned: r'$80k+',
-    rate: r'$120/hr',
-    verified: true,
-    category: CategoryModel(id: '3', name: 'Clinic', image: ''),
+    latitude: 30.1190,
+    longitude: 31.6990,
   ),
   ProviderModel(
     id: 'p6',
-    name: 'Dr. Nadia Hassan',
+    name: 'Dr. Nader Hassan',
     image:
-        'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=600&fit=crop',
+        'https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&h=600&fit=crop',
     description:
         'General physician with a focus on\npreventive care and wellness programs.',
     rating: '4.8',
@@ -176,6 +121,8 @@ const _mockProviders = [
     rate: r'$90/hr',
     verified: true,
     category: CategoryModel(id: '3', name: 'Clinic', image: ''),
+    latitude: 30.1310,
+    longitude: 31.7280,
   ),
 ];
 
@@ -201,6 +148,6 @@ final providersFutureProvider =
   (ref, categoryId) async {
     // TODO: replace with real repo call
     await Future.delayed(const Duration(seconds: 1));
-    return _mockProviders.where((p) => p.category.id == categoryId).toList();
+    return mockProviders.where((p) => p.category.id == categoryId).toList();
   },
 );

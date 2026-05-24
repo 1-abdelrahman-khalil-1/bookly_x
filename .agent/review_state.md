@@ -2,7 +2,7 @@
 
 ## Last Review Date
 
-2026-05-13 16:30
+2026-05-19 20:50
 
 ## Reviewed Files
 
@@ -25,3 +25,8 @@
 | lib/app/features/staff/profile/data/services/staff_profile_service.dart | ✅ Clean | 2026-05-13 |
 | lib/app/features/common/reset_password/data/service/reset_password_repository.dart | ✅ Clean | 2026-05-13 |
 | lib/app/core/api_helper/logout_interceptor.dart | ✅ Clean | 2026-05-13 |
+| lib/app/features/client/home/data/models/provider_model.dart | ✅ Clean | 2026-05-19 |
+| lib/app/features/client/home/presentation/controller/client_home_future_providers.dart | ✅ Clean | 2026-05-19 |
+| lib/app/features/client/main_screen/presentation/controller/main_providers.dart | ✅ Clean | 2026-05-19 |
+| lib/app/features/client/main_screen/presentation/screens/client_map_view_screen.dart | ✅ Clean | 2026-05-19 |
+| lib/app/features/client/main_screen/presentation/screens/client_main_screen.dart | ✅ Clean | 2026-05-19 |

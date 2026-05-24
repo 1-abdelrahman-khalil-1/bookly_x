@@ -11,7 +11,7 @@ class BookingModel {
 
   BookingModel({
     required this.id,
-    required this.client, 
+    required this.client,
     required this.status,
     required this.service,
     required this.scheduledAt,
@@ -92,9 +92,9 @@ class Client {
 
   factory Client.fromJson(Map<String, dynamic> json) {
     return Client(
-      id: json['id'] as int,
-      name: json['name'] as String,
-      phone: json['phone'] as String,
+      id: json['id'] as int? ?? 0,
+      name: json['name'] as String? ?? "",
+      phone: json['phone'] as String? ?? "",
       avatarUrl: json['avatar_url'] as String?,
     );
   }
@@ -123,11 +123,11 @@ class ServiceModel {
   });
   factory ServiceModel.fromJson(Map<String, dynamic> json) {
     return ServiceModel(
-        id: json['id'] as int,
-        name: json['name'],
-        description: json['description'],
-        price: json['price'],
-        durationMinutes: json['duration_minutes']);
+        id: json['id'] as int? ?? 0,
+        name: json['name'] as String? ?? "",
+        description: json['description'] as String? ?? "",
+        price: json['price'] as int? ?? 0,
+        durationMinutes: json['duration_minutes'] as int? ?? 0);
   }
 
   Map<String, dynamic> toJson() {

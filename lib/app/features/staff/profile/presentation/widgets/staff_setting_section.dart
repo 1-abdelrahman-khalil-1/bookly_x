@@ -71,6 +71,7 @@ class StaffSettingSection extends StatelessWidget {
                           Expanded(
                             child: CustomButtonOutlined(
                               title: tr.cancel,
+                              buttonColor: AppColors.primaryLightHover,
                               onPress: () => ContextExtentions(context).pop(),
                             ),
                           ),
@@ -79,12 +80,7 @@ class StaffSettingSection extends StatelessWidget {
                             child: CustomButton(
                               title: tr.confirm,
                               onPress: () async {
-                                await UserPrefs.logout();
-                                AppRestarter.restart();
-                                if (context.mounted) {
-                                  context
-                                      .pushAndPopAll(const ChooseRoleRoute());
-                                }
+                                await SessionResetService.logoutAndReset();
                                 setSuccessfullyMessage(tr.logoutSuccessfully);
                               },
                             ),

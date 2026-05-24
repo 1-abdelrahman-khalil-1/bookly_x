@@ -19,6 +19,7 @@ class StaffReviewCard extends StatelessWidget {
     final createdAt = review.createdAt;
     return Container(
       padding: const EdgeInsets.all(14),
+      margin: const EdgeInsets.only(bottom: 12),
       decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadius.circular(16),
@@ -31,14 +32,14 @@ class StaffReviewCard extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  review.client?.name.isNotEmpty == true
-                      ? review.client!.name
+                  review.reviewer.name.isNotEmpty == true
+                      ? review.reviewer.name
                       : '-',
                   style: context.semiBold16,
                 ),
               ),
               const Icon(
-                MyIcons.smsStarBold,
+                MyIcons.starBold,
                 color: AppColors.warningBadge,
                 size: 18,
               ),
@@ -50,17 +51,13 @@ class StaffReviewCard extends StatelessWidget {
             ],
           ),
           8.h,
-          Text(
-            review.comment ?? '-',
-            style: context.regular14TextSub,
-          ),
-          10.h,
+          if (review.comment.isNotEmpty) ...[
+            Text(review.comment, style: context.regular14TextSub),
+            12.h,
+          ],
           Row(
             children: [
-              Text(
-                review.service?.name ?? '-',
-                style: context.semiBold12,
-              ),
+              Text(review.service.name, style: context.semiBold12),
               const Spacer(),
               Text(
                 createdAt == null

@@ -265,7 +265,7 @@
   "noAppointmentsDescription": "You're all caught up! Enjoy your free time or check your upcoming schedule.",
   "reviewsCount": "(1,245 reviews)",
   "jamesMiller": "James Miller",
-  "sampleSecondCustomerName": "Sarah Chen",
+  "sampleSecondCustomerName": "Samer Chen",
   "seniorSpecialist": "Senior Specialist",
   "fullGrooming": "Full Grooming",
   "haircutStyling": "Haircut & Styling",
@@ -346,5 +346,8 @@
   "closed": "Closed",
   "noAppointments": "No Appointments",
   "logoutSuccessfully": "Logout Successfully",
-  "areYouSureYouWantToLogout": "Are you sure you want to logout?"
+  "areYouSureYouWantToLogout": "Are you sure you want to logout?",
+  "loadingMoreItems": "Loading More Items",
+  "noItemsFound": "No Items Found",
+  "thisListIsCurrentlyEmpty": "This List Is Currently Empty"
 }

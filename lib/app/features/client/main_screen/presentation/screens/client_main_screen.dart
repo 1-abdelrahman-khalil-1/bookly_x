@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bookly_x_client/app/core/themes/app_colors.dart';
-import 'package:bookly_x_client/app/core/widgets/map_screen.dart';
 import 'package:bookly_x_client/app/features/client/bookings/presentation/screens/bookings_screen.dart';
 import 'package:bookly_x_client/app/features/client/home/presentation/screens/client_home_screen.dart';
 import 'package:bookly_x_client/app/features/client/main_screen/presentation/controller/main_providers.dart';
+import 'package:bookly_x_client/app/features/client/main_screen/presentation/screens/client_map_view_screen.dart';
 import 'package:bookly_x_client/app/features/client/offers/presentation/screens/offers_screen.dart';
 import 'package:bookly_x_client/app/features/client/setting/presentation/screens/setting_screen.dart';
 import 'package:bookly_x_client/generated/my_icons.dart';
@@ -12,7 +12,6 @@ import 'package:bookly_x_client/generated/translations.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:map_location_picker/map_location_picker.dart';
 
 @RoutePage()
 class ClientMainScreen extends ConsumerWidget {
@@ -23,10 +22,7 @@ class ClientMainScreen extends ConsumerWidget {
     final selectedIndex = ref.watch(selectedTabProvider);
     final pages = [
       const ClientHomeScreen(),
-      MapScreen(
-        currentLatLng: const LatLng(30.1360, 31.7150),
-        onLocationSelected: (latLng, address) {},
-      ),
+      const ClientMapViewScreen(),
       const BookingsScreen(),
       const OffersScreen(),
       const SettingScreen(),

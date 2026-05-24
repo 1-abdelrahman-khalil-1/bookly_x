@@ -10,6 +10,8 @@ class ProviderModel {
   final String rate;
   final bool verified;
   final CategoryModel category;
+  final double? latitude;
+  final double? longitude;
 
   const ProviderModel({
     required this.id,
@@ -21,6 +23,8 @@ class ProviderModel {
     required this.rate,
     required this.verified,
     required this.category,
+    this.latitude,
+    this.longitude,
   });
 
   factory ProviderModel.fromJson(Map<String, dynamic> json) => ProviderModel(
@@ -34,6 +38,8 @@ class ProviderModel {
         verified: json['verified'] as bool? ?? false,
         category: CategoryModel.fromJson(
             json['category'] as Map<String, dynamic>? ?? {}),
+        latitude: (json['latitude'] as num?)?.toDouble(),
+        longitude: (json['longitude'] as num?)?.toDouble(),
       );
 
   Map<String, dynamic> toJson() => {
@@ -46,5 +52,7 @@ class ProviderModel {
         'rate': rate,
         'verified': verified,
         'category': category.toJson(),
+        if (latitude != null) 'latitude': latitude,
+        if (longitude != null) 'longitude': longitude,
       };
 }

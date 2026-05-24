@@ -75,38 +75,38 @@ final _mockProviderDetails = <String, ProviderDetailModel>{
   ),
   'p2': const ProviderDetailModel(
     id: 'p2',
-    name: 'Hair & Nail Care',
-    serviceCategory: 'Beauty',
+    name: 'Grooming & Hair Styling',
+    serviceCategory: 'Barber',
     coverImageUrl:
-        'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=1170',
+        'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=1170',
     galleryUrls: [
-      'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=200',
-      'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=200',
+      'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=200',
+      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200',
       'https://images.unsplash.com/photo-1560869713-7d0a29430803?w=200',
     ],
     description:
-        'Sara\'s Beauty Studio specializes in luxury nail art and advanced '
-        'hair treatments. Offering gel nails, acrylic extensions, keratin '
-        'therapy, and more in a relaxing boutique atmosphere.',
+        'Samer\'s Grooming Studio specializes in luxury styling and advanced '
+        'hair treatments. Offering precision haircuts, scalp therapy, hair '
+        'keratin, and more in a relaxing boutique atmosphere.',
     rating: 4.7,
     reviewCount: 210,
-    sellerName: 'Sara\'s Beauty Studio',
-    ownerName: 'Sara Youssef',
+    sellerName: 'Samer\'s Grooming Studio',
+    ownerName: 'Samer Youssef',
     sellerAvatarUrl:
-        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100',
+        'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100',
     isVerified: false,
     totalPrice: 0,
     currency: 'EG',
     services: [
       AvailableServiceModel(
         id: 's4',
-        name: 'Gel Nails',
+        name: 'Precision Haircut',
         imageUrl:
-            'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=200',
+            'https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=200',
       ),
       AvailableServiceModel(
         id: 's5',
-        name: 'Keratin',
+        name: 'Hair Keratin',
         imageUrl:
             'https://images.unsplash.com/photo-1560869713-7d0a29430803?w=200',
       ),
@@ -114,11 +114,11 @@ final _mockProviderDetails = <String, ProviderDetailModel>{
     reviews: [
       ReviewModel(
         id: 'r3',
-        reviewerName: 'Laura',
+        reviewerName: 'Larry',
         avatarUrl:
-            'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100',
+            'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100',
         rating: 5.0,
-        comment: 'Amazing nail art! Sara is super talented and professional.',
+        comment: 'Amazing haircut! Samer is super talented and professional.',
       ),
     ],
   ),

@@ -20,6 +20,12 @@ final prefsProvider = Provider<SharedPreferences>(
   (ref) => throw UnimplementedError(),
 );
 
+void resetGlobalProviderContainer() {
+  final oldContainer = globalRefContainer;
+  globalRefContainer = ProviderContainer();
+  WidgetsBinding.instance.addPostFrameCallback((_) => oldContainer.dispose());
+}
+
 void main() async {
   await runZonedGuarded(
     () async {
@@ -28,10 +34,8 @@ void main() async {
         TranslationProvider(
           child: AppRestarter(
             key: AppRestarter.stateKey,
-            onRestart: () {
-              globalRefContainer = ProviderContainer();
-            },
-            child: UncontrolledProviderScope(
+            onRestart: resetGlobalProviderContainer,
+            builder: (_) => UncontrolledProviderScope(
               container: globalRefContainer,
               child: const BooklyXClientApp(),
             ),

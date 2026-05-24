@@ -52,11 +52,11 @@ const _clientMockProviders = [
   ),
   ProviderModel(
     id: 'p2',
-    name: 'Sara Youssef',
+    name: 'Samer Youssef',
     image:
-        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=600&fit=crop',
+        'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&h=600&fit=crop',
     description:
-        'Certified nail technician and beauty specialist\nwith 8 years of experience.',
+        'Certified massage therapist and wellness specialist\nwith 8 years of experience.',
     rating: '4.7',
     earned: r'$30k+',
     rate: r'$35/hr',
@@ -117,9 +117,9 @@ const _clientMockProviders = [
   ),
   ProviderModel(
     id: 'p6',
-    name: 'Dr. Nadia Hassan',
+    name: 'Dr. Nader Hassan',
     image:
-        'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=600&fit=crop',
+        'https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&h=600&fit=crop',
     description:
         'General physician with a focus on\npreventive care and wellness programs.',
     rating: '4.8',

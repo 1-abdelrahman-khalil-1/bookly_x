@@ -1,10 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bookly_x_client/app/core/data/lang_pref.dart';
-import 'package:bookly_x_client/app/core/data/user_pref.dart';
 import 'package:bookly_x_client/app/core/extensions/context_extensions.dart';
+import 'package:bookly_x_client/app/core/services/session_reset_service.dart';
 import 'package:bookly_x_client/app/core/themes/app_colors.dart';
 import 'package:bookly_x_client/app/core/utils/show_message.dart';
-import 'package:bookly_x_client/app/core/widgets/app_restarter.dart';
 import 'package:bookly_x_client/app/core/widgets/custom_sized_box.dart';
 import 'package:bookly_x_client/app/core/widgets/custom_transform_arabic.dart';
 import 'package:bookly_x_client/app/core/widgets/images/custom_upload_image.dart';
@@ -156,11 +155,7 @@ class SettingScreen extends StatelessWidget {
             //logout
             GestureDetector(
               onTap: () async {
-                await UserPrefs.logout();
-                AppRestarter.restart();
-                if (context.mounted) {
-                  context.pushAndPopAll(const ChooseRoleRoute());
-                }
+                await SessionResetService.logoutAndReset();
                 setSuccessfullyMessage(tr.logoutSuccessfully);
               },
               child: Row(
