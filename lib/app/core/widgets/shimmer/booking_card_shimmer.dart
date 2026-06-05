@@ -1,4 +1,4 @@
-import 'package:bookly_x_client/app/core/themes/app_colors.dart';
+﻿import 'package:bookly_x/app/core/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 

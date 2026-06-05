@@ -1,11 +1,11 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:bookly_x_client/app/core/widgets/custom_appbar.dart';
-import 'package:bookly_x_client/app/core/widgets/custom_pagination.dart';
-import 'package:bookly_x_client/app/features/staff/profile/presentation/controllers/staff_reviews_future_provider.dart';
-import 'package:bookly_x_client/app/features/staff/profile/presentation/widgets/staff_review_card.dart';
-import 'package:bookly_x_client/app/features/staff/profile/presentation/widgets/staff_reviews_shimmer.dart';
-import 'package:bookly_x_client/generated/style_atoms.dart';
-import 'package:bookly_x_client/generated/translations.g.dart';
+﻿import 'package:auto_route/auto_route.dart';
+import 'package:bookly_x/app/core/widgets/custom_appbar.dart';
+import 'package:bookly_x/app/core/widgets/custom_pagination.dart';
+import 'package:bookly_x/app/features/staff/profile/presentation/controllers/staff_reviews_future_provider.dart';
+import 'package:bookly_x/app/features/staff/profile/presentation/widgets/staff_review_card.dart';
+import 'package:bookly_x/app/features/staff/profile/presentation/widgets/staff_reviews_shimmer.dart';
+import 'package:bookly_x/generated/style_atoms.dart';
+import 'package:bookly_x/generated/translations.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

@@ -1,7 +1,7 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:bookly_x_client/app/core/themes/app_colors.dart';
-import 'package:bookly_x_client/app/core/widgets/images/custom_cached_network_image.dart';
-import 'package:bookly_x_client/app/features/client/provider_details/presentation/widgets/provider_gallery_strip.dart';
+﻿import 'package:auto_route/auto_route.dart';
+import 'package:bookly_x/app/core/themes/app_colors.dart';
+import 'package:bookly_x/app/core/widgets/images/custom_cached_network_image.dart';
+import 'package:bookly_x/app/features/client/provider_details/presentation/widgets/provider_gallery_strip.dart';
 import 'package:flutter/material.dart';
 
 class ProviderDetailsHeader extends StatelessWidget {

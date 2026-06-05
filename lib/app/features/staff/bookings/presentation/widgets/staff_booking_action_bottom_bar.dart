@@ -1,7 +1,7 @@
-import 'package:bookly_x_client/app/core/enums/booking_status.dart';
-import 'package:bookly_x_client/app/core/themes/app_colors.dart';
-import 'package:bookly_x_client/app/core/widgets/buttons/custom_button.dart';
-import 'package:bookly_x_client/generated/translations.g.dart';
+﻿import 'package:bookly_x/app/core/enums/booking_status.dart';
+import 'package:bookly_x/app/core/themes/app_colors.dart';
+import 'package:bookly_x/app/core/widgets/buttons/custom_button.dart';
+import 'package:bookly_x/generated/translations.g.dart';
 import 'package:flutter/material.dart';
 
 class StaffBookingActionBottomBar extends StatelessWidget {

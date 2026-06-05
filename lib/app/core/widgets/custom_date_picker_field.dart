@@ -1,7 +1,7 @@
-import 'package:bookly_x_client/app/core/data/lang_pref.dart';
-import 'package:bookly_x_client/app/core/themes/app_colors.dart';
-import 'package:bookly_x_client/generated/my_icons.dart';
-import 'package:bookly_x_client/generated/style_atoms.dart';
+﻿import 'package:bookly_x/app/core/data/lang_pref.dart';
+import 'package:bookly_x/app/core/themes/app_colors.dart';
+import 'package:bookly_x/generated/my_icons.dart';
+import 'package:bookly_x/generated/style_atoms.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

@@ -1,4 +1,4 @@
-import 'package:bookly_x_client/app/features/client/booking_service/data/models/booking_service_model.dart';
+﻿import 'package:bookly_x/app/features/client/booking_service/data/models/booking_service_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

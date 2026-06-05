@@ -1,7 +1,7 @@
-import 'package:bookly_x_client/app/core/data/user_pref.dart';
-import 'package:bookly_x_client/app/core/mixins/internet_error_handler_mixin.dart';
-import 'package:bookly_x_client/app/core/models/general_state.dart';
-import 'package:bookly_x_client/app/features/common/reset_password/data/service/reset_password_repository.dart';
+﻿import 'package:bookly_x/app/core/data/user_pref.dart';
+import 'package:bookly_x/app/core/mixins/internet_error_handler_mixin.dart';
+import 'package:bookly_x/app/core/models/general_state.dart';
+import 'package:bookly_x/app/features/common/reset_password/data/service/reset_password_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final resetPasswordNotifierProvider =

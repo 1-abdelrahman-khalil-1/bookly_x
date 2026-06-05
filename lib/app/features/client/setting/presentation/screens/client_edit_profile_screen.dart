@@ -1,12 +1,12 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:bookly_x_client/app/core/themes/app_colors.dart';
-import 'package:bookly_x_client/app/core/utils/show_message.dart';
-import 'package:bookly_x_client/app/core/widgets/buttons/custom_button.dart';
-import 'package:bookly_x_client/app/core/widgets/custom_appbar.dart';
-import 'package:bookly_x_client/app/core/widgets/custom_sized_box.dart';
-import 'package:bookly_x_client/app/core/widgets/custom_text_form_field.dart';
-import 'package:bookly_x_client/app/core/widgets/images/custom_upload_image.dart';
-import 'package:bookly_x_client/generated/translations.g.dart';
+﻿import 'package:auto_route/auto_route.dart';
+import 'package:bookly_x/app/core/themes/app_colors.dart';
+import 'package:bookly_x/app/core/utils/show_message.dart';
+import 'package:bookly_x/app/core/widgets/buttons/custom_button.dart';
+import 'package:bookly_x/app/core/widgets/custom_appbar.dart';
+import 'package:bookly_x/app/core/widgets/custom_sized_box.dart';
+import 'package:bookly_x/app/core/widgets/custom_text_form_field.dart';
+import 'package:bookly_x/app/core/widgets/images/custom_upload_image.dart';
+import 'package:bookly_x/generated/translations.g.dart';
 import 'package:flutter/material.dart';
 
 @RoutePage()

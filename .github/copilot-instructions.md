@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-**Name**: bookly_x_client
+**Name**: bookly_x
 **Type**: Flutter Mobile Application
 **SDK/Runtime Version**: ^3.5.0
 **State Management**: Riverpod — (FutureProvider + StateNotifier + StateProvider + watchWhen pattern)

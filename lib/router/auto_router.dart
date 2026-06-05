@@ -1,7 +1,7 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:bookly_x_client/app/core/data/routing_pref.dart';
-import 'package:bookly_x_client/generated/translations.g.dart';
-import 'package:bookly_x_client/router/auto_router.gr.dart';
+﻿import 'package:auto_route/auto_route.dart';
+import 'package:bookly_x/app/core/data/routing_pref.dart';
+import 'package:bookly_x/generated/translations.g.dart';
+import 'package:bookly_x/router/auto_router.gr.dart';
 import 'package:flutter/widgets.dart';
 
 @AutoRouterConfig()

@@ -1,14 +1,14 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:bookly_x_client/app/core/utils/show_message.dart';
-import 'package:bookly_x_client/app/core/widgets/auth_form.dart';
-import 'package:bookly_x_client/app/core/widgets/custom_sized_box.dart';
-import 'package:bookly_x_client/app/core/widgets/logo_name.dart';
-import 'package:bookly_x_client/app/features/common/reset_password/presentation/widgets/common_otp_confirmation_section.dart';
-import 'package:bookly_x_client/app/features/common/reset_password/presentation/widgets/common_reset_password_section.dart';
-import 'package:bookly_x_client/app/features/common/reset_password/presentation/widgets/common_set_new_password_section.dart';
-import 'package:bookly_x_client/generated/assets.dart';
-import 'package:bookly_x_client/generated/translations.g.dart';
-import 'package:bookly_x_client/router/auto_router.gr.dart';
+﻿import 'package:auto_route/auto_route.dart';
+import 'package:bookly_x/app/core/utils/show_message.dart';
+import 'package:bookly_x/app/core/widgets/auth_form.dart';
+import 'package:bookly_x/app/core/widgets/custom_sized_box.dart';
+import 'package:bookly_x/app/core/widgets/logo_name.dart';
+import 'package:bookly_x/app/features/common/reset_password/presentation/widgets/common_otp_confirmation_section.dart';
+import 'package:bookly_x/app/features/common/reset_password/presentation/widgets/common_reset_password_section.dart';
+import 'package:bookly_x/app/features/common/reset_password/presentation/widgets/common_set_new_password_section.dart';
+import 'package:bookly_x/generated/assets.dart';
+import 'package:bookly_x/generated/translations.g.dart';
+import 'package:bookly_x/router/auto_router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

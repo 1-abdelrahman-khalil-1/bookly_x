@@ -1,14 +1,14 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:bookly_x_client/app/core/data/user_pref.dart';
-import 'package:bookly_x_client/app/core/themes/app_colors.dart';
-import 'package:bookly_x_client/app/core/widgets/auth_form.dart';
-import 'package:bookly_x_client/app/core/widgets/custom_sized_box.dart';
-import 'package:bookly_x_client/app/core/widgets/logo_name.dart';
-import 'package:bookly_x_client/app/features/common/screens/auth/presentation/widgets/login_section.dart';
-import 'package:bookly_x_client/app/features/common/screens/auth/presentation/widgets/sign_up_section.dart';
-import 'package:bookly_x_client/generated/assets.dart';
-import 'package:bookly_x_client/generated/style_atoms.dart';
-import 'package:bookly_x_client/generated/translations.g.dart';
+﻿import 'package:auto_route/auto_route.dart';
+import 'package:bookly_x/app/core/data/user_pref.dart';
+import 'package:bookly_x/app/core/themes/app_colors.dart';
+import 'package:bookly_x/app/core/widgets/auth_form.dart';
+import 'package:bookly_x/app/core/widgets/custom_sized_box.dart';
+import 'package:bookly_x/app/core/widgets/logo_name.dart';
+import 'package:bookly_x/app/features/common/screens/auth/presentation/widgets/login_section.dart';
+import 'package:bookly_x/app/features/common/screens/auth/presentation/widgets/sign_up_section.dart';
+import 'package:bookly_x/generated/assets.dart';
+import 'package:bookly_x/generated/style_atoms.dart';
+import 'package:bookly_x/generated/translations.g.dart';
 import 'package:flutter/material.dart';
 
 @RoutePage()

@@ -1,11 +1,11 @@
-import 'package:bookly_x_client/app/core/extensions/context_extensions.dart';
-import 'package:bookly_x_client/app/core/themes/app_colors.dart';
-import 'package:bookly_x_client/app/core/utils/show_message.dart';
-import 'package:bookly_x_client/app/core/widgets/buttons/custom_button.dart';
-import 'package:bookly_x_client/app/core/widgets/custom_calendar.dart';
-import 'package:bookly_x_client/app/core/widgets/custom_sized_box.dart';
-import 'package:bookly_x_client/generated/style_atoms.dart';
-import 'package:bookly_x_client/generated/translations.g.dart';
+﻿import 'package:bookly_x/app/core/extensions/context_extensions.dart';
+import 'package:bookly_x/app/core/themes/app_colors.dart';
+import 'package:bookly_x/app/core/utils/show_message.dart';
+import 'package:bookly_x/app/core/widgets/buttons/custom_button.dart';
+import 'package:bookly_x/app/core/widgets/custom_calendar.dart';
+import 'package:bookly_x/app/core/widgets/custom_sized_box.dart';
+import 'package:bookly_x/generated/style_atoms.dart';
+import 'package:bookly_x/generated/translations.g.dart';
 import 'package:flutter/material.dart';
 
 class ReschudleBookingDialog extends StatefulWidget {

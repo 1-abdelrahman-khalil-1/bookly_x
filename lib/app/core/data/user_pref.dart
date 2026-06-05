@@ -1,9 +1,9 @@
-import 'dart:convert';
+﻿import 'dart:convert';
 
-import 'package:bookly_x_client/app/core/constants/constants.dart';
-import 'package:bookly_x_client/app/core/data/pref.dart';
-import 'package:bookly_x_client/app/core/enums/user_type.dart';
-import 'package:bookly_x_client/app/core/models/user_model.dart';
+import 'package:bookly_x/app/core/constants/constants.dart';
+import 'package:bookly_x/app/core/data/pref.dart';
+import 'package:bookly_x/app/core/enums/user_type.dart';
+import 'package:bookly_x/app/core/models/user_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final userProvider = Provider<UserModel>((ref) {

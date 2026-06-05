@@ -1,4 +1,4 @@
-import 'package:bookly_x_client/app/core/enums/booking_status.dart';
+﻿import 'package:bookly_x/app/core/enums/booking_status.dart';
 import 'package:flutter/material.dart';
 
 class BookingData {

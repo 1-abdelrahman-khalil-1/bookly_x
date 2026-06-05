@@ -1,17 +1,17 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:bookly_x_client/app/core/data/lang_pref.dart';
-import 'package:bookly_x_client/app/core/extensions/context_extensions.dart';
-import 'package:bookly_x_client/app/core/services/session_reset_service.dart';
-import 'package:bookly_x_client/app/core/themes/app_colors.dart';
-import 'package:bookly_x_client/app/core/utils/show_message.dart';
-import 'package:bookly_x_client/app/core/widgets/custom_sized_box.dart';
-import 'package:bookly_x_client/app/core/widgets/custom_transform_arabic.dart';
-import 'package:bookly_x_client/app/core/widgets/images/custom_upload_image.dart';
-import 'package:bookly_x_client/generated/my_icons.dart';
-import 'package:bookly_x_client/generated/style_atoms.dart';
-import 'package:bookly_x_client/generated/translations.g.dart';
-import 'package:bookly_x_client/main.dart';
-import 'package:bookly_x_client/router/auto_router.gr.dart';
+﻿import 'package:auto_route/auto_route.dart';
+import 'package:bookly_x/app/core/data/lang_pref.dart';
+import 'package:bookly_x/app/core/extensions/context_extensions.dart';
+import 'package:bookly_x/app/core/services/session_reset_service.dart';
+import 'package:bookly_x/app/core/themes/app_colors.dart';
+import 'package:bookly_x/app/core/utils/show_message.dart';
+import 'package:bookly_x/app/core/widgets/custom_sized_box.dart';
+import 'package:bookly_x/app/core/widgets/custom_transform_arabic.dart';
+import 'package:bookly_x/app/core/widgets/images/custom_upload_image.dart';
+import 'package:bookly_x/generated/my_icons.dart';
+import 'package:bookly_x/generated/style_atoms.dart';
+import 'package:bookly_x/generated/translations.g.dart';
+import 'package:bookly_x/main.dart';
+import 'package:bookly_x/router/auto_router.gr.dart';
 import 'package:flutter/material.dart';
 
 @RoutePage()

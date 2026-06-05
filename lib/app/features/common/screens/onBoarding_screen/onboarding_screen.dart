@@ -1,11 +1,11 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:bookly_x_client/app/core/data/routing_pref.dart';
-import 'package:bookly_x_client/app/core/widgets/logo_name.dart';
-import 'package:bookly_x_client/app/features/common/screens/onBoarding_screen/widgets/onboarding_page_widget.dart';
-import 'package:bookly_x_client/generated/assets.dart';
-import 'package:bookly_x_client/generated/style_atoms.dart';
-import 'package:bookly_x_client/generated/translations.g.dart';
-import 'package:bookly_x_client/router/auto_router.gr.dart';
+﻿import 'package:auto_route/auto_route.dart';
+import 'package:bookly_x/app/core/data/routing_pref.dart';
+import 'package:bookly_x/app/core/widgets/logo_name.dart';
+import 'package:bookly_x/app/features/common/screens/onBoarding_screen/widgets/onboarding_page_widget.dart';
+import 'package:bookly_x/generated/assets.dart';
+import 'package:bookly_x/generated/style_atoms.dart';
+import 'package:bookly_x/generated/translations.g.dart';
+import 'package:bookly_x/router/auto_router.gr.dart';
 import 'package:flutter/material.dart';
 
 @RoutePage()

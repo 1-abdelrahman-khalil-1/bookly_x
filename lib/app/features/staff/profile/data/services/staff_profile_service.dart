@@ -1,11 +1,11 @@
-import 'package:bookly_x_client/app/core/api_helper/dio_client.dart';
-import 'package:bookly_x_client/app/core/api_helper/dio_providers.dart';
-import 'package:bookly_x_client/app/core/api_helper/endpoints.dart';
-import 'package:bookly_x_client/app/core/api_helper/handle_errors_response.dart';
-import 'package:bookly_x_client/app/core/data/user_pref.dart';
-import 'package:bookly_x_client/app/core/models/user_model.dart';
-import 'package:bookly_x_client/app/features/staff/profile/data/model/staff_availability_model.dart';
-import 'package:bookly_x_client/app/features/staff/profile/data/model/staff_review_model.dart';
+﻿import 'package:bookly_x/app/core/api_helper/dio_client.dart';
+import 'package:bookly_x/app/core/api_helper/dio_providers.dart';
+import 'package:bookly_x/app/core/api_helper/endpoints.dart';
+import 'package:bookly_x/app/core/api_helper/handle_errors_response.dart';
+import 'package:bookly_x/app/core/data/user_pref.dart';
+import 'package:bookly_x/app/core/models/user_model.dart';
+import 'package:bookly_x/app/features/staff/profile/data/model/staff_availability_model.dart';
+import 'package:bookly_x/app/features/staff/profile/data/model/staff_review_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final staffProfileServiceProvider = Provider(

@@ -1,5 +1,5 @@
-import 'package:bookly_x_client/app/core/models/booking_model.dart';
-import 'package:bookly_x_client/app/features/staff/bookings/data/service/staff_booking_service.dart';
+﻿import 'package:bookly_x/app/core/models/booking_model.dart';
+import 'package:bookly_x/app/features/staff/bookings/data/service/staff_booking_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final staffBookingsFutureProvider =

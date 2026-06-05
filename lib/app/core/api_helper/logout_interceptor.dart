@@ -1,8 +1,8 @@
-import 'dart:developer';
+﻿import 'dart:developer';
 import 'dart:io';
 
-import 'package:bookly_x_client/app/core/data/agent_pref.dart';
-import 'package:bookly_x_client/app/core/data/lang_pref.dart';
+import 'package:bookly_x/app/core/data/agent_pref.dart';
+import 'package:bookly_x/app/core/data/lang_pref.dart';
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 

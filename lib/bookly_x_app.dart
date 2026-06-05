@@ -1,17 +1,17 @@
-import 'dart:developer';
+﻿import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:bookly_x_client/app/core/themes/app_colors.dart';
-import 'package:bookly_x_client/app/core/themes/app_theme.dart';
-import 'package:bookly_x_client/generated/translations.g.dart';
-import 'package:bookly_x_client/router/auto_router.dart';
+import 'package:bookly_x/app/core/themes/app_colors.dart';
+import 'package:bookly_x/app/core/themes/app_theme.dart';
+import 'package:bookly_x/generated/translations.g.dart';
+import 'package:bookly_x/router/auto_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 final appRouter = AppRouter();
 
-class BooklyXClientApp extends StatelessWidget {
-  const BooklyXClientApp({super.key});
+class BooklyXApp extends StatelessWidget {
+  const BooklyXApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class BooklyXClientApp extends StatelessWidget {
       routerConfig: appRouter.config(
         navigatorObservers: () => [MyObserver()],
       ),
-      title: 'Bookly X Client',
+      title: 'Bookly X',
       theme: AppTheme.lightTheme.copyWith(
         scaffoldBackgroundColor: AppColors.whiteCatskillWhite,
       ),

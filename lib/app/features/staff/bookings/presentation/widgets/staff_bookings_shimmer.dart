@@ -1,4 +1,4 @@
-import 'package:bookly_x_client/app/core/widgets/shimmer/booking_card_shimmer.dart';
+﻿import 'package:bookly_x/app/core/widgets/shimmer/booking_card_shimmer.dart';
 import 'package:flutter/material.dart';
 
 class StaffBookingsShimmer extends StatelessWidget {

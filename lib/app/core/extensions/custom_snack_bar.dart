@@ -1,6 +1,6 @@
-import 'package:bookly_x_client/app/core/extensions/context_extensions.dart';
-import 'package:bookly_x_client/generated/my_icons.dart';
-import 'package:bookly_x_client/generated/style_atoms.dart';
+﻿import 'package:bookly_x/app/core/extensions/context_extensions.dart';
+import 'package:bookly_x/generated/my_icons.dart';
+import 'package:bookly_x/generated/style_atoms.dart';
 import 'package:flutter/material.dart';
 
 import '../../../generated/translations.g.dart';

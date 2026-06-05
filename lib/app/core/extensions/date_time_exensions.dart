@@ -1,4 +1,4 @@
-import 'package:bookly_x_client/generated/translations.g.dart';
+﻿import 'package:bookly_x/generated/translations.g.dart';
 import 'package:intl/intl.dart' show DateFormat;
 
 extension DateTimeFormat on DateTime {

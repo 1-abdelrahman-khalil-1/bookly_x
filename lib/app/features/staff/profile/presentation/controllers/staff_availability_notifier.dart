@@ -1,7 +1,7 @@
-import 'package:bookly_x_client/app/core/mixins/internet_error_handler_mixin.dart';
-import 'package:bookly_x_client/app/core/models/general_state.dart';
-import 'package:bookly_x_client/app/features/staff/profile/data/model/staff_availability_model.dart';
-import 'package:bookly_x_client/app/features/staff/profile/data/services/staff_profile_service.dart';
+﻿import 'package:bookly_x/app/core/mixins/internet_error_handler_mixin.dart';
+import 'package:bookly_x/app/core/models/general_state.dart';
+import 'package:bookly_x/app/features/staff/profile/data/model/staff_availability_model.dart';
+import 'package:bookly_x/app/features/staff/profile/data/services/staff_profile_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final staffAvailabilityNotifierProvider =

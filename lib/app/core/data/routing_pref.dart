@@ -1,8 +1,8 @@
-import 'dart:developer';
+﻿import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:bookly_x_client/app/core/data/user_pref.dart';
-import 'package:bookly_x_client/router/auto_router.gr.dart'
+import 'package:bookly_x/app/core/data/user_pref.dart';
+import 'package:bookly_x/router/auto_router.gr.dart'
     show ChooseRoleRoute, OnboardingRoute, ClientMainRoute, StaffMainRoute;
 
 import 'pref.dart';

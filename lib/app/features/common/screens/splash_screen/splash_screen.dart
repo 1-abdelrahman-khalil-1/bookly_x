@@ -1,6 +1,6 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:bookly_x_client/app/core/data/routing_pref.dart';
-import 'package:bookly_x_client/generated/assets.dart';
+﻿import 'package:auto_route/auto_route.dart';
+import 'package:bookly_x/app/core/data/routing_pref.dart';
+import 'package:bookly_x/generated/assets.dart';
 import 'package:flutter/material.dart';
 
 @RoutePage()

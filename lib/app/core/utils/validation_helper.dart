@@ -1,5 +1,5 @@
-import 'package:bookly_x_client/app/core/utils/show_message.dart';
-import 'package:bookly_x_client/generated/translations.g.dart';
+﻿import 'package:bookly_x/app/core/utils/show_message.dart';
+import 'package:bookly_x/generated/translations.g.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/foundation.dart';
 import 'package:intl_phone_field/countries.dart';

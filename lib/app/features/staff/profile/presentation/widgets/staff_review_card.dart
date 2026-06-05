@@ -1,9 +1,9 @@
-import 'package:bookly_x_client/app/core/extensions/date_time_exensions.dart';
-import 'package:bookly_x_client/app/core/themes/app_colors.dart';
-import 'package:bookly_x_client/app/core/widgets/custom_sized_box.dart';
-import 'package:bookly_x_client/app/features/staff/profile/data/model/staff_review_model.dart';
-import 'package:bookly_x_client/generated/my_icons.dart';
-import 'package:bookly_x_client/generated/style_atoms.dart';
+﻿import 'package:bookly_x/app/core/extensions/date_time_exensions.dart';
+import 'package:bookly_x/app/core/themes/app_colors.dart';
+import 'package:bookly_x/app/core/widgets/custom_sized_box.dart';
+import 'package:bookly_x/app/features/staff/profile/data/model/staff_review_model.dart';
+import 'package:bookly_x/generated/my_icons.dart';
+import 'package:bookly_x/generated/style_atoms.dart';
 import 'package:flutter/material.dart';
 
 class StaffReviewCard extends StatelessWidget {

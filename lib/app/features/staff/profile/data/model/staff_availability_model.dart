@@ -1,4 +1,4 @@
-import 'package:bookly_x_client/app/core/enums/weeks_days_enum.dart';
+﻿import 'package:bookly_x/app/core/enums/weeks_days_enum.dart';
 
 class StaffAvailabilityModel {
   final int id;

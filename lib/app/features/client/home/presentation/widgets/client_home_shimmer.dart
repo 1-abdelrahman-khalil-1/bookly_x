@@ -1,4 +1,4 @@
-import 'package:bookly_x_client/app/core/widgets/custom_sized_box.dart';
+﻿import 'package:bookly_x/app/core/widgets/custom_sized_box.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 

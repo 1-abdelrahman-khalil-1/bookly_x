@@ -1,8 +1,8 @@
-import 'package:bookly_x_client/app/core/widgets/custom_sized_box.dart';
-import 'package:bookly_x_client/app/features/staff/earnings/presentation/widgets/monthly_trend_chart_card.dart';
-import 'package:bookly_x_client/app/features/staff/earnings/presentation/widgets/recent_services_list.dart';
-import 'package:bookly_x_client/app/features/staff/earnings/presentation/widgets/total_earnings_summary_card.dart';
-import 'package:bookly_x_client/app/features/staff/earnings/presentation/widgets/weekly_earnings_chart_card.dart';
+﻿import 'package:bookly_x/app/core/widgets/custom_sized_box.dart';
+import 'package:bookly_x/app/features/staff/earnings/presentation/widgets/monthly_trend_chart_card.dart';
+import 'package:bookly_x/app/features/staff/earnings/presentation/widgets/recent_services_list.dart';
+import 'package:bookly_x/app/features/staff/earnings/presentation/widgets/total_earnings_summary_card.dart';
+import 'package:bookly_x/app/features/staff/earnings/presentation/widgets/weekly_earnings_chart_card.dart';
 import 'package:flutter/material.dart';
 
 class EarningsDashboardWidget extends StatelessWidget {

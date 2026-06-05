@@ -1,9 +1,9 @@
-import 'dart:developer';
+﻿import 'dart:developer';
 
-import 'package:bookly_x_client/app/core/data/user_pref.dart';
-import 'package:bookly_x_client/app/core/widgets/app_restarter.dart';
-import 'package:bookly_x_client/bookly_x_client_app.dart';
-import 'package:bookly_x_client/router/auto_router.gr.dart';
+import 'package:bookly_x/app/core/data/user_pref.dart';
+import 'package:bookly_x/app/core/widgets/app_restarter.dart';
+import 'package:bookly_x/bookly_x_app.dart';
+import 'package:bookly_x/router/auto_router.gr.dart';
 
 class SessionResetService {
   SessionResetService._();

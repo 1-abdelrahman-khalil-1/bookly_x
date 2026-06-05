@@ -1,7 +1,7 @@
-import 'package:bookly_x_client/app/core/themes/app_colors.dart';
-import 'package:bookly_x_client/app/features/staff/main_screen/data/enums/staff_week_day.dart';
-import 'package:bookly_x_client/generated/style_atoms.dart';
-import 'package:bookly_x_client/generated/translations.g.dart';
+﻿import 'package:bookly_x/app/core/themes/app_colors.dart';
+import 'package:bookly_x/app/features/staff/main_screen/data/enums/staff_week_day.dart';
+import 'package:bookly_x/generated/style_atoms.dart';
+import 'package:bookly_x/generated/translations.g.dart';
 import 'package:flutter/material.dart';
 
 class StaffWeekLabelChip extends StatelessWidget {

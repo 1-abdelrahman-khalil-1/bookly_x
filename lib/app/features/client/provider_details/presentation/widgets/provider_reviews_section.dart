@@ -1,9 +1,9 @@
-import 'package:bookly_x_client/app/core/themes/app_colors.dart';
-import 'package:bookly_x_client/app/core/widgets/custom_sized_box.dart';
-import 'package:bookly_x_client/app/core/widgets/images/custom_cached_network_image.dart';
-import 'package:bookly_x_client/app/features/client/provider_details/data/models/review_model.dart';
-import 'package:bookly_x_client/generated/style_atoms.dart';
-import 'package:bookly_x_client/generated/translations.g.dart';
+﻿import 'package:bookly_x/app/core/themes/app_colors.dart';
+import 'package:bookly_x/app/core/widgets/custom_sized_box.dart';
+import 'package:bookly_x/app/core/widgets/images/custom_cached_network_image.dart';
+import 'package:bookly_x/app/features/client/provider_details/data/models/review_model.dart';
+import 'package:bookly_x/generated/style_atoms.dart';
+import 'package:bookly_x/generated/translations.g.dart';
 import 'package:flutter/material.dart';
 
 /// Section header + horizontally scrollable review cards.

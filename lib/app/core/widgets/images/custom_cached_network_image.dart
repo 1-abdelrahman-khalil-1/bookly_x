@@ -1,6 +1,6 @@
-import 'dart:math';
+﻿import 'dart:math';
 
-import 'package:bookly_x_client/app/core/themes/app_colors.dart';
+import 'package:bookly_x/app/core/themes/app_colors.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

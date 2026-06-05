@@ -1,10 +1,10 @@
-import 'package:bookly_x_client/app/core/api_helper/exceptions.dart';
-import 'package:bookly_x_client/app/core/screens_not_related/no_internet_screen.dart';
-import 'package:bookly_x_client/app/core/screens_not_related/server_error_screen.dart';
-import 'package:bookly_x_client/app/core/themes/app_colors.dart';
-import 'package:bookly_x_client/generated/style_atoms.dart';
-import 'package:bookly_x_client/generated/translations.g.dart';
-import 'package:bookly_x_client/main.dart';
+﻿import 'package:bookly_x/app/core/api_helper/exceptions.dart';
+import 'package:bookly_x/app/core/screens_not_related/no_internet_screen.dart';
+import 'package:bookly_x/app/core/screens_not_related/server_error_screen.dart';
+import 'package:bookly_x/app/core/themes/app_colors.dart';
+import 'package:bookly_x/generated/style_atoms.dart';
+import 'package:bookly_x/generated/translations.g.dart';
+import 'package:bookly_x/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

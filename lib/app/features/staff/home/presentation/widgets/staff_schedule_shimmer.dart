@@ -1,7 +1,7 @@
-import 'package:bookly_x_client/app/core/widgets/custom_sized_box.dart';
-import 'package:bookly_x_client/app/core/widgets/shimmer/booking_card_shimmer.dart';
-import 'package:bookly_x_client/app/core/widgets/shimmer/shimmer_box.dart';
-import 'package:bookly_x_client/app/features/staff/home/presentation/widgets/staff_home_header.dart';
+﻿import 'package:bookly_x/app/core/widgets/custom_sized_box.dart';
+import 'package:bookly_x/app/core/widgets/shimmer/booking_card_shimmer.dart';
+import 'package:bookly_x/app/core/widgets/shimmer/shimmer_box.dart';
+import 'package:bookly_x/app/features/staff/home/presentation/widgets/staff_home_header.dart';
 import 'package:flutter/material.dart';
 
 class StaffScheduleShimmer extends StatelessWidget {

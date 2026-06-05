@@ -1,14 +1,14 @@
-import 'dart:async';
+﻿import 'dart:async';
 import 'dart:developer';
 
-import 'package:bookly_x_client/app/core/data/lang_pref.dart';
-import 'package:bookly_x_client/app/core/data/pref.dart';
-import 'package:bookly_x_client/app/core/data/user_pref.dart';
-import 'package:bookly_x_client/app/core/services/internet_connection_service.dart';
-import 'package:bookly_x_client/app/core/services/unauthorized_service.dart';
-import 'package:bookly_x_client/app/core/widgets/app_restarter.dart';
-import 'package:bookly_x_client/bookly_x_client_app.dart';
-import 'package:bookly_x_client/generated/translations.g.dart';
+import 'package:bookly_x/app/core/data/lang_pref.dart';
+import 'package:bookly_x/app/core/data/pref.dart';
+import 'package:bookly_x/app/core/data/user_pref.dart';
+import 'package:bookly_x/app/core/services/internet_connection_service.dart';
+import 'package:bookly_x/app/core/services/unauthorized_service.dart';
+import 'package:bookly_x/app/core/widgets/app_restarter.dart';
+import 'package:bookly_x/bookly_x_app.dart';
+import 'package:bookly_x/generated/translations.g.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -37,7 +37,7 @@ void main() async {
             onRestart: resetGlobalProviderContainer,
             builder: (_) => UncontrolledProviderScope(
               container: globalRefContainer,
-              child: const BooklyXClientApp(),
+              child: const BooklyXApp(),
             ),
           ),
         ),

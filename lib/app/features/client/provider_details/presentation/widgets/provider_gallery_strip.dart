@@ -1,6 +1,6 @@
-import 'dart:ui';
+﻿import 'dart:ui';
 
-import 'package:bookly_x_client/app/core/widgets/images/custom_cached_network_image.dart';
+import 'package:bookly_x/app/core/widgets/images/custom_cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 /// Horizontally scrollable strip of thumbnail images that sits over the

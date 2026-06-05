@@ -1,5 +1,5 @@
-import 'package:bookly_x_client/app/features/client/provider_details/data/models/available_service_model.dart';
-import 'package:bookly_x_client/app/features/client/provider_details/data/models/review_model.dart';
+﻿import 'package:bookly_x/app/features/client/provider_details/data/models/available_service_model.dart';
+import 'package:bookly_x/app/features/client/provider_details/data/models/review_model.dart';
 
 class ProviderDetailModel {
   final String id;

@@ -1,9 +1,9 @@
-import 'package:bookly_x_client/app/core/widgets/custom_sized_box.dart';
-import 'package:bookly_x_client/app/features/client/home/data/models/provider_model.dart';
-import 'package:bookly_x_client/app/features/client/home/presentation/widgets/provider_card.dart';
-import 'package:bookly_x_client/generated/style_atoms.dart';
-import 'package:bookly_x_client/generated/translations.g.dart';
-import 'package:bookly_x_client/router/auto_router.gr.dart';
+﻿import 'package:bookly_x/app/core/widgets/custom_sized_box.dart';
+import 'package:bookly_x/app/features/client/home/data/models/provider_model.dart';
+import 'package:bookly_x/app/features/client/home/presentation/widgets/provider_card.dart';
+import 'package:bookly_x/generated/style_atoms.dart';
+import 'package:bookly_x/generated/translations.g.dart';
+import 'package:bookly_x/router/auto_router.gr.dart';
 import 'package:flutter/material.dart';
 
 class AvailableNearSection extends StatelessWidget {

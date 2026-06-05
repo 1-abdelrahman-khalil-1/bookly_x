@@ -1,4 +1,4 @@
-import 'package:bookly_x_client/generated/style_atoms.dart';
+﻿import 'package:bookly_x/generated/style_atoms.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';

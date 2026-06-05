@@ -1,9 +1,9 @@
-import 'package:bookly_x_client/app/core/widgets/buttons/custom_button.dart';
-import 'package:bookly_x_client/app/core/widgets/custom_sized_box.dart';
-import 'package:bookly_x_client/app/core/widgets/custom_text_form_field.dart';
-import 'package:bookly_x_client/app/features/common/reset_password/presentation/controllers/reset_password_notifier.dart';
-import 'package:bookly_x_client/generated/style_atoms.dart';
-import 'package:bookly_x_client/generated/translations.g.dart';
+﻿import 'package:bookly_x/app/core/widgets/buttons/custom_button.dart';
+import 'package:bookly_x/app/core/widgets/custom_sized_box.dart';
+import 'package:bookly_x/app/core/widgets/custom_text_form_field.dart';
+import 'package:bookly_x/app/features/common/reset_password/presentation/controllers/reset_password_notifier.dart';
+import 'package:bookly_x/generated/style_atoms.dart';
+import 'package:bookly_x/generated/translations.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

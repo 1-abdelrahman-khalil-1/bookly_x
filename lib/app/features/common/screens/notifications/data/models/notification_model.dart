@@ -1,4 +1,4 @@
-import 'package:bookly_x_client/app/features/common/screens/notifications/data/models/enum/notification_type.dart';
+﻿import 'package:bookly_x/app/features/common/screens/notifications/data/models/enum/notification_type.dart';
 
 class NotificationModel {
   final int id;

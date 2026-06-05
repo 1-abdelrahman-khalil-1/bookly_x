@@ -1,14 +1,14 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:bookly_x_client/app/core/widgets/custom_appbar.dart';
-import 'package:bookly_x_client/app/features/client/booking_service/data/models/booking_service_model.dart';
-import 'package:bookly_x_client/app/features/client/booking_service/presentation/controller/booking_flow_providers.dart';
-import 'package:bookly_x_client/app/features/client/booking_service/presentation/screens/client_confirm_booking_screen.dart';
-import 'package:bookly_x_client/app/features/client/booking_service/presentation/screens/client_select_date_time_view.dart';
-import 'package:bookly_x_client/app/features/client/booking_service/presentation/screens/client_select_service_screen.dart';
-import 'package:bookly_x_client/app/features/client/booking_service/presentation/screens/client_select_staff_screen.dart';
-import 'package:bookly_x_client/app/features/client/booking_service/presentation/widgets/booking_step_indicator.dart';
-import 'package:bookly_x_client/generated/translations.g.dart';
-import 'package:bookly_x_client/router/auto_router.gr.dart';
+﻿import 'package:auto_route/auto_route.dart';
+import 'package:bookly_x/app/core/widgets/custom_appbar.dart';
+import 'package:bookly_x/app/features/client/booking_service/data/models/booking_service_model.dart';
+import 'package:bookly_x/app/features/client/booking_service/presentation/controller/booking_flow_providers.dart';
+import 'package:bookly_x/app/features/client/booking_service/presentation/screens/client_confirm_booking_screen.dart';
+import 'package:bookly_x/app/features/client/booking_service/presentation/screens/client_select_date_time_view.dart';
+import 'package:bookly_x/app/features/client/booking_service/presentation/screens/client_select_service_screen.dart';
+import 'package:bookly_x/app/features/client/booking_service/presentation/screens/client_select_staff_screen.dart';
+import 'package:bookly_x/app/features/client/booking_service/presentation/widgets/booking_step_indicator.dart';
+import 'package:bookly_x/generated/translations.g.dart';
+import 'package:bookly_x/router/auto_router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

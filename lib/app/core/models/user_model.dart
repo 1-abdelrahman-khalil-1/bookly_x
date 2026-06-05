@@ -1,5 +1,5 @@
-import 'package:bookly_x_client/app/core/enums/user_type.dart';
-import 'package:bookly_x_client/app/features/staff/profile/data/model/staff_model.dart';
+﻿import 'package:bookly_x/app/core/enums/user_type.dart';
+import 'package:bookly_x/app/features/staff/profile/data/model/staff_model.dart';
 
 class UserModel {
   final int id;

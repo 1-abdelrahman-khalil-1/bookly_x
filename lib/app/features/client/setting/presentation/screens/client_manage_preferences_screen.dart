@@ -1,6 +1,6 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:bookly_x_client/app/core/widgets/custom_appbar.dart';
-import 'package:bookly_x_client/generated/translations.g.dart';
+﻿import 'package:auto_route/auto_route.dart';
+import 'package:bookly_x/app/core/widgets/custom_appbar.dart';
+import 'package:bookly_x/generated/translations.g.dart';
 import 'package:flutter/material.dart';
 
 @RoutePage()

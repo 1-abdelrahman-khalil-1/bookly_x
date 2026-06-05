@@ -1,6 +1,6 @@
-import 'package:bookly_x_client/app/core/themes/app_colors.dart';
-import 'package:bookly_x_client/app/features/staff/earnings/presentation/widgets/earnings_dashboard_widget.dart';
-import 'package:bookly_x_client/generated/translations.g.dart';
+﻿import 'package:bookly_x/app/core/themes/app_colors.dart';
+import 'package:bookly_x/app/features/staff/earnings/presentation/widgets/earnings_dashboard_widget.dart';
+import 'package:bookly_x/generated/translations.g.dart';
 import 'package:flutter/material.dart';
 
 class StaffEarningsScreen extends StatefulWidget {

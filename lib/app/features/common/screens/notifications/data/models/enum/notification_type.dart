@@ -1,4 +1,4 @@
-import 'package:bookly_x_client/generated/my_icons.dart';
+﻿import 'package:bookly_x/generated/my_icons.dart';
 import 'package:flutter/material.dart';
 
 enum NotificationType {

@@ -1,5 +1,5 @@
-import 'package:bookly_x_client/app/core/themes/app_colors.dart';
-import 'package:bookly_x_client/generated/my_icons.dart';
+﻿import 'package:bookly_x/app/core/themes/app_colors.dart';
+import 'package:bookly_x/generated/my_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 

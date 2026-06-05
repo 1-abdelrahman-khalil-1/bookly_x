@@ -1,6 +1,6 @@
-import 'package:bookly_x_client/app/features/client/provider_details/data/models/available_service_model.dart';
-import 'package:bookly_x_client/app/features/client/provider_details/data/models/provider_detail_model.dart';
-import 'package:bookly_x_client/app/features/client/provider_details/data/models/review_model.dart';
+﻿import 'package:bookly_x/app/features/client/provider_details/data/models/available_service_model.dart';
+import 'package:bookly_x/app/features/client/provider_details/data/models/provider_detail_model.dart';
+import 'package:bookly_x/app/features/client/provider_details/data/models/review_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // ---------------------------------------------------------------------------

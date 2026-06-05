@@ -1,13 +1,13 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:bookly_x_client/app/core/utils/show_message.dart';
-import 'package:bookly_x_client/app/core/widgets/buttons/custom_button.dart';
-import 'package:bookly_x_client/app/core/widgets/custom_sized_box.dart';
-import 'package:bookly_x_client/app/features/client/booking_service/data/models/booking_service_model.dart';
-import 'package:bookly_x_client/app/features/client/booking_service/presentation/controller/booking_flow_providers.dart';
-import 'package:bookly_x_client/app/features/client/booking_service/presentation/widgets/client_staff_card.dart';
-import 'package:bookly_x_client/generated/style_atoms.dart';
-import 'package:bookly_x_client/generated/translations.g.dart';
-import 'package:bookly_x_client/router/auto_router.gr.dart';
+﻿import 'package:auto_route/auto_route.dart';
+import 'package:bookly_x/app/core/utils/show_message.dart';
+import 'package:bookly_x/app/core/widgets/buttons/custom_button.dart';
+import 'package:bookly_x/app/core/widgets/custom_sized_box.dart';
+import 'package:bookly_x/app/features/client/booking_service/data/models/booking_service_model.dart';
+import 'package:bookly_x/app/features/client/booking_service/presentation/controller/booking_flow_providers.dart';
+import 'package:bookly_x/app/features/client/booking_service/presentation/widgets/client_staff_card.dart';
+import 'package:bookly_x/generated/style_atoms.dart';
+import 'package:bookly_x/generated/translations.g.dart';
+import 'package:bookly_x/router/auto_router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

@@ -1,9 +1,9 @@
-import 'dart:async';
+﻿import 'dart:async';
 import 'dart:developer';
 
-import 'package:bookly_x_client/app/core/services/session_reset_service.dart';
-import 'package:bookly_x_client/app/core/utils/show_message.dart';
-import 'package:bookly_x_client/generated/translations.g.dart';
+import 'package:bookly_x/app/core/services/session_reset_service.dart';
+import 'package:bookly_x/app/core/utils/show_message.dart';
+import 'package:bookly_x/generated/translations.g.dart';
 import 'package:event_bus/event_bus.dart';
 
 class UnAuthorizedService {

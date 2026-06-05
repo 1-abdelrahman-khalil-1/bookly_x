@@ -1,8 +1,8 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:bookly_x_client/app/core/themes/app_colors.dart';
-import 'package:bookly_x_client/app/core/widgets/images/custom_cached_network_image.dart';
-import 'package:bookly_x_client/app/features/client/booking_service/data/models/booking_service_model.dart';
-import 'package:bookly_x_client/generated/my_icons.dart';
+﻿import 'package:auto_route/auto_route.dart';
+import 'package:bookly_x/app/core/themes/app_colors.dart';
+import 'package:bookly_x/app/core/widgets/images/custom_cached_network_image.dart';
+import 'package:bookly_x/app/features/client/booking_service/data/models/booking_service_model.dart';
+import 'package:bookly_x/generated/my_icons.dart';
 import 'package:flutter/material.dart';
 
 class ClientStaffInfoHeaderSection extends StatelessWidget {

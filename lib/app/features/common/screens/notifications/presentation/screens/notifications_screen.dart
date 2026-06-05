@@ -1,11 +1,11 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:bookly_x_client/app/core/extensions/date_time_exensions.dart';
-import 'package:bookly_x_client/app/core/widgets/custom_appbar.dart';
-import 'package:bookly_x_client/app/features/common/screens/notifications/data/models/notification_model.dart';
-import 'package:bookly_x_client/app/features/common/screens/notifications/presentation/widgets/empty_notifications_widget.dart';
-import 'package:bookly_x_client/app/features/common/screens/notifications/presentation/widgets/notification_item.dart';
-import 'package:bookly_x_client/generated/style_atoms.dart';
-import 'package:bookly_x_client/generated/translations.g.dart';
+﻿import 'package:auto_route/auto_route.dart';
+import 'package:bookly_x/app/core/extensions/date_time_exensions.dart';
+import 'package:bookly_x/app/core/widgets/custom_appbar.dart';
+import 'package:bookly_x/app/features/common/screens/notifications/data/models/notification_model.dart';
+import 'package:bookly_x/app/features/common/screens/notifications/presentation/widgets/empty_notifications_widget.dart';
+import 'package:bookly_x/app/features/common/screens/notifications/presentation/widgets/notification_item.dart';
+import 'package:bookly_x/generated/style_atoms.dart';
+import 'package:bookly_x/generated/translations.g.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 

@@ -1,9 +1,9 @@
-import 'package:bookly_x_client/app/core/constants/constants.dart';
-import 'package:bookly_x_client/app/core/styles/app_text_field_border_styles.dart';
-import 'package:bookly_x_client/app/core/themes/app_colors.dart';
-import 'package:bookly_x_client/app/core/widgets/buttons/custom_ink_well.dart';
-import 'package:bookly_x_client/generated/style_atoms.dart';
-import 'package:bookly_x_client/generated/translations.g.dart';
+﻿import 'package:bookly_x/app/core/constants/constants.dart';
+import 'package:bookly_x/app/core/styles/app_text_field_border_styles.dart';
+import 'package:bookly_x/app/core/themes/app_colors.dart';
+import 'package:bookly_x/app/core/widgets/buttons/custom_ink_well.dart';
+import 'package:bookly_x/generated/style_atoms.dart';
+import 'package:bookly_x/generated/translations.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';

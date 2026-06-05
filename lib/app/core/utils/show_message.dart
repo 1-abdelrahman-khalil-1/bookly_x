@@ -1,4 +1,4 @@
-import 'package:bookly_x_client/bookly_x_client_app.dart';
+﻿import 'package:bookly_x/bookly_x_app.dart';
 import 'package:flutter/material.dart';
 
 import '../enums/snack_bar.dart';

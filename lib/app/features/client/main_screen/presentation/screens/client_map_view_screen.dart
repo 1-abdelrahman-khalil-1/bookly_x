@@ -1,11 +1,11 @@
-import 'dart:async';
+﻿import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:bookly_x_client/app/core/screens_not_related/future_provider_screen.dart';
-import 'package:bookly_x_client/app/features/client/main_screen/presentation/controller/main_providers.dart';
-import 'package:bookly_x_client/generated/style_atoms.dart';
-import 'package:bookly_x_client/generated/translations.g.dart';
-import 'package:bookly_x_client/router/auto_router.gr.dart';
+import 'package:bookly_x/app/core/screens_not_related/future_provider_screen.dart';
+import 'package:bookly_x/app/features/client/main_screen/presentation/controller/main_providers.dart';
+import 'package:bookly_x/generated/style_atoms.dart';
+import 'package:bookly_x/generated/translations.g.dart';
+import 'package:bookly_x/router/auto_router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:map_location_picker/map_location_picker.dart';

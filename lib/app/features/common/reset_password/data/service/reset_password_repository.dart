@@ -1,8 +1,8 @@
-import 'package:bookly_x_client/app/core/api_helper/dio_client.dart';
-import 'package:bookly_x_client/app/core/api_helper/dio_providers.dart';
-import 'package:bookly_x_client/app/core/api_helper/endpoints.dart';
-import 'package:bookly_x_client/app/core/api_helper/handle_errors_response.dart';
-import 'package:bookly_x_client/app/core/constants/constants.dart';
+﻿import 'package:bookly_x/app/core/api_helper/dio_client.dart';
+import 'package:bookly_x/app/core/api_helper/dio_providers.dart';
+import 'package:bookly_x/app/core/api_helper/endpoints.dart';
+import 'package:bookly_x/app/core/api_helper/handle_errors_response.dart';
+import 'package:bookly_x/app/core/constants/constants.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final resetPasswordServiceProvider = Provider<ResetPasswordService>(

@@ -3,9 +3,8 @@ abstract class Endpoints {
 
   static const getBaseUrl = '';
 //  static const baseUrl = 'http://10.0.2.2:3000';
-//  static const baseUrl = 'https://bookly-x.up.railway.app';
-  static const baseUrl = 'https://unfilial-vernie-vortiginous.ngrok-free.dev';
-  
+  static const baseUrl = 'https://bookly-x.up.railway.app';
+
   static const login = '/auth/login';
   static const refreshToken = '/auth/refresh';
   static const requestPasswordReset = '/auth/request-password-reset';
