@@ -1,4 +1,4 @@
-﻿import 'package:bookly_x/app/core/widgets/custom_sized_box.dart';
+import 'package:bookly_x/app/core/widgets/custom_sized_box.dart';
 import 'package:bookly_x/app/features/client/home/data/models/provider_model.dart';
 import 'package:bookly_x/app/features/client/home/presentation/controller/client_home_future_providers.dart';
 import 'package:bookly_x/app/features/client/offers/data/model/offer_model.dart';
@@ -29,11 +29,10 @@ class _AvailableOffersState extends ConsumerState<AvailableOffers>
   @override
   Widget build(BuildContext context) {
     final selectedCategory = ref.watch(selectedCategoryProvider);
-    final offers =
-        ref.watch(offersFutureProvider).asData?.value ?? <OfferModel>[];
-    final providers =
-        ref.watch(providersFutureProvider(selectedCategory)).asData?.value ??
-            <ProviderModel>[];
+    final dashboardAsync = ref.watch(clientDashboardProvider(selectedCategory));
+    
+    final offers = dashboardAsync.asData?.value.offers ?? <OfferModel>[];
+    final providers = dashboardAsync.asData?.value.nearbyBranches ?? <ProviderModel>[];
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

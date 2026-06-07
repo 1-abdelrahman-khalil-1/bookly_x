@@ -372,6 +372,15 @@ class TranslationsAr with BaseTranslations<AppLocale, Translations> implements T
 	@override String get loadingMoreItems => 'جاري تحميل المزيد من العناصر';
 	@override String get noItemsFound => 'لم يتم العثور على أي عناصر';
 	@override String get thisListIsCurrentlyEmpty => 'هذه القائمة فارغة حاليًا';
+	@override String get noActiveOffersToday => 'لا توجد عروض سارية اليوم';
+	@override String get checkBackLaterForExclusiveDeals => 'تفضل بزيارتنا لاحقًا للاطلاع على العروض الحصرية!';
+	@override String get nearest => 'الأقرب';
+	@override String get highestRated => 'الأعلى تقييماً';
+	@override String get cheapest => 'الأرخص';
+	@override String get featured => 'مميز';
+	@override String reviewsCountFormat({required Object count}) => '${count} تقييم';
+	@override String get searchServicesOrLocations => 'ابحث عن الخدمات أو المواقع...';
+	@override String get km => 'كم';
 }
 
 // Path: weekdays
@@ -761,6 +770,15 @@ extension on TranslationsAr {
 			'loadingMoreItems' => 'جاري تحميل المزيد من العناصر',
 			'noItemsFound' => 'لم يتم العثور على أي عناصر',
 			'thisListIsCurrentlyEmpty' => 'هذه القائمة فارغة حاليًا',
+			'noActiveOffersToday' => 'لا توجد عروض سارية اليوم',
+			'checkBackLaterForExclusiveDeals' => 'تفضل بزيارتنا لاحقًا للاطلاع على العروض الحصرية!',
+			'nearest' => 'الأقرب',
+			'highestRated' => 'الأعلى تقييماً',
+			'cheapest' => 'الأرخص',
+			'featured' => 'مميز',
+			'reviewsCountFormat' => ({required Object count}) => '${count} تقييم',
+			'searchServicesOrLocations' => 'ابحث عن الخدمات أو المواقع...',
+			'km' => 'كم',
 			_ => null,
 		};
 	}

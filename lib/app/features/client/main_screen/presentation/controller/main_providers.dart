@@ -1,7 +1,15 @@
-﻿import 'package:bookly_x/app/features/client/home/data/models/provider_model.dart';
 import 'package:bookly_x/app/features/client/home/presentation/controller/client_home_future_providers.dart';
+import 'package:bookly_x/app/features/client/main_screen/data/models/discovery_branch_model.dart';
+import 'package:bookly_x/app/features/client/main_screen/data/services/discovery_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:map_location_picker/map_location_picker.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+enum MapSortFilter {
+  nearest,
+  highestRated,
+  cheapest,
+  offers,
+}
 
 class ClientMapState {
   final List<Marker> marker;
@@ -15,44 +23,75 @@ class ClientMapState {
 
 final selectedTabProvider = StateProvider<int>((ref) => 0);
 
-final clientMapListFutureProvider = FutureProvider<List<ProviderModel>>((ref) async {
-  // Simulate API delay
-  await Future.delayed(const Duration(milliseconds: 500));
-  return mockProviders.where((p) => p.latitude != null && p.longitude != null).toList();
+final mapSearchQueryProvider = StateProvider<String>((ref) => '');
+final mapSortFilterProvider = StateProvider<MapSortFilter>((ref) => MapSortFilter.nearest);
+final selectedBranchIndexProvider = StateProvider<int>((ref) => 0);
+
+final discoveryResultsProvider = FutureProvider<List<DiscoveryBranchModel>>((ref) async {
+  final location = await ref.watch(clientLocationProvider.future);
+  final searchQuery = ref.watch(mapSearchQueryProvider);
+  final discoveryService = ref.watch(discoveryServiceProvider);
+
+  return discoveryService.searchBranches(
+    lat: location['lat']!,
+    lng: location['lng']!,
+    search: searchQuery,
+  );
+});
+
+final filteredDiscoveryResultsProvider = Provider<AsyncValue<List<DiscoveryBranchModel>>>((ref) {
+  final resultsAsync = ref.watch(discoveryResultsProvider);
+  final sortFilter = ref.watch(mapSortFilterProvider);
+
+  return resultsAsync.whenData((results) {
+    final list = List<DiscoveryBranchModel>.from(results);
+    if (sortFilter == MapSortFilter.nearest) {
+      list.sort((a, b) => a.distance.compareTo(b.distance));
+    } else if (sortFilter == MapSortFilter.highestRated) {
+      list.sort((a, b) => b.rating.compareTo(a.rating));
+    } else if (sortFilter == MapSortFilter.cheapest) {
+      // Locally shuffle or simulate cheapest order
+      list.shuffle(); 
+    } else if (sortFilter == MapSortFilter.offers) {
+      // Show featured or shuffle
+    }
+    return list;
+  });
 });
 
 final clientMapMarkersProvider = Provider<AsyncValue<ClientMapState>>((ref) {
-  final providersAsync = ref.watch(clientMapListFutureProvider);
+  final branchesAsync = ref.watch(filteredDiscoveryResultsProvider);
+  final selectedIndex = ref.watch(selectedBranchIndexProvider);
 
-  return providersAsync.when(
-    loading: () => const AsyncValue.loading(),
-    error: (err, stack) => AsyncValue.error(err, stack),
-    data: (providers) {
-      final List<Marker> markers = [];
-      final Map<MarkerId, String> markerToProviderId = {};
+  return branchesAsync.whenData((branches) {
+    final List<Marker> markers = [];
+    final Map<MarkerId, String> markerToProviderId = {};
 
-      for (final provider in providers) {
-        if (provider.latitude != null && provider.longitude != null) {
-          final markerId = MarkerId(provider.id);
-          markerToProviderId[markerId] = provider.id;
+    for (int i = 0; i < branches.length; i++) {
+      final branch = branches[i];
+      final markerId = MarkerId(branch.id.toString());
+      markerToProviderId[markerId] = branch.id.toString();
 
-          markers.add(
-            Marker(
-              markerId: markerId,
-              position: LatLng(provider.latitude!, provider.longitude!),
-              infoWindow: InfoWindow(
-                title: provider.name,
-                snippet: provider.description.replaceAll('\n', ' '),
-              ),
-            ),
-          );
-        }
-      }
+      final isSelected = i == selectedIndex;
 
-      return AsyncValue.data(ClientMapState(
-        marker: markers,
-        markerToProviderId: markerToProviderId,
-      ));
-    },
-  );
+      markers.add(
+        Marker(
+          markerId: markerId,
+          position: LatLng(branch.location.lat, branch.location.lng),
+          icon: BitmapDescriptor.defaultMarkerWithHue(
+            isSelected ? BitmapDescriptor.hueCyan : BitmapDescriptor.hueRed,
+          ),
+          infoWindow: InfoWindow(
+            title: branch.name,
+            snippet: '${branch.distance} km away',
+          ),
+        ),
+      );
+    }
+
+    return ClientMapState(
+      marker: markers,
+      markerToProviderId: markerToProviderId,
+    );
+  });
 });

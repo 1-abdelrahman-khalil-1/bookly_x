@@ -1,153 +1,38 @@
-﻿import 'package:bookly_x/app/features/client/home/data/models/category_model.dart';
-import 'package:bookly_x/app/features/client/home/data/models/provider_model.dart';
-import 'package:bookly_x/app/features/client/offers/data/model/offer_model.dart';
+import 'package:bookly_x/app/core/enums/client_category.dart';
+import 'package:bookly_x/app/core/services/location_service.dart';
+import 'package:bookly_x/app/features/client/home/data/models/category_model.dart';
+import 'package:bookly_x/app/features/client/home/data/models/client_dashboard_model.dart';
+import 'package:bookly_x/app/features/client/home/data/services/client_home_services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-// ---------------------------------------------------------------------------
-// Mock data – mirrors what the API would return
-// ---------------------------------------------------------------------------
-const _mockOffers = [
-  OfferModel(
-    id: 'o1',
-    imageUrl:
-        'https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&h=400&fit=crop',
-    discount: '40%',
-  ),
-  OfferModel(
-    id: 'o2',
-    imageUrl:
-        'https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=800&h=400&fit=crop',
-    discount: '25%',
-  ),
-  OfferModel(
-    id: 'o3',
-    imageUrl:
-        'https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=800&h=400&fit=crop',
-    discount: '25%',
-  ),
-  OfferModel(
-    id: 'o4',
-    imageUrl:
-        'https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=800&h=400&fit=crop',
-    discount: '25%',
-  ),
-];
-
-const mockProviders = [
-  ProviderModel(
-    id: 'p1',
-    name: 'Ahmed Hassan',
-    image:
-        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=600&fit=crop',
-    description:
-        'Professional spa therapist specialized in\ndeep tissue and relaxation massage.',
-    rating: '4.8',
-    earned: r'$45k+',
-    rate: r'$50/hr',
-    verified: true,
-    category: CategoryModel(id: '1', name: 'SPA', image: ''),
-    latitude: 30.1360,
-    longitude: 31.7150,
-  ),
-  ProviderModel(
-    id: 'p2',
-    name: 'Samer Youssef',
-    image:
-        'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&h=600&fit=crop',
-    description:
-        'Certified massage therapist and wellness specialist\nwith 8 years of experience.',
-    rating: '4.7',
-    earned: r'$30k+',
-    rate: r'$35/hr',
-    verified: false,
-    category: CategoryModel(id: '1', name: 'SPA', image: ''),
-    latitude: 30.1420,
-    longitude: 31.7230,
-  ),
-  ProviderModel(
-    id: 'p3',
-    name: 'Omar Khalil',
-    image:
-        'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=600&fit=crop',
-    description:
-        'Expert barber with 10+ years experience in\nmodern cuts and traditional grooming.',
-    rating: '4.9',
-    earned: r'$52k+',
-    rate: r'$45/hr',
-    verified: true,
-    category: CategoryModel(id: '2', name: 'Barber', image: ''),
-    latitude: 30.1280,
-    longitude: 31.7080,
-  ),
-  ProviderModel(
-    id: 'p4',
-    name: 'Khaled Nasser',
-    image:
-        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=600&fit=crop',
-    description:
-        'Traditional barber specializing in fades,\nbeards, and hot towel shaves.',
-    rating: '4.6',
-    earned: r'$28k+',
-    rate: r'$40/hr',
-    verified: true,
-    category: CategoryModel(id: '2', name: 'Barber', image: ''),
-    latitude: 30.1500,
-    longitude: 31.7350,
-  ),
-  ProviderModel(
-    id: 'p5',
-    name: 'Dr. Mahmoud Ali',
-    image:
-        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=600&fit=crop',
-    description:
-        'Board-certified dermatologist offering\npremium skincare and aesthetic treatments.',
-    rating: '5.0',
-    earned: r'$80k+',
-    rate: r'$120/hr',
-    verified: true,
-    category: CategoryModel(id: '3', name: 'Clinic', image: ''),
-    latitude: 30.1190,
-    longitude: 31.6990,
-  ),
-  ProviderModel(
-    id: 'p6',
-    name: 'Dr. Nader Hassan',
-    image:
-        'https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&h=600&fit=crop',
-    description:
-        'General physician with a focus on\npreventive care and wellness programs.',
-    rating: '4.8',
-    earned: r'$65k+',
-    rate: r'$90/hr',
-    verified: true,
-    category: CategoryModel(id: '3', name: 'Clinic', image: ''),
-    latitude: 30.1310,
-    longitude: 31.7280,
-  ),
-];
-
-// ---------------------------------------------------------------------------
-// Selected category – simple mutable state; defaults to the first category id
-// ---------------------------------------------------------------------------
-final selectedCategoryProvider = StateProvider<String>((ref) => '1');
-
-// ---------------------------------------------------------------------------
-// Offers – FutureProvider (re-fetch by invalidating the provider)
-// ---------------------------------------------------------------------------
-final offersFutureProvider = FutureProvider<List<OfferModel>>((ref) async {
-  // TODO: replace with real repo call
-  await Future.delayed(const Duration(seconds: 1));
-  return _mockOffers;
+final selectedCategoryProvider =
+    StateProvider<ClientCategory>((ref) => ClientCategory.spa);
+final clientLocationProvider = FutureProvider<Map<String, double>>((ref) async {
+  final pos = await LocationService.getCurrentLocation();
+  if (pos != null) {
+    return {'lat': pos.latitude, 'lng': pos.longitude};
+  }
+  return {
+    'lat': LocationService.defaultLatitude,
+    'lng': LocationService.defaultLongitude,
+  };
 });
 
-// ---------------------------------------------------------------------------
-// Providers list – depends on selected category; uses .family for filtering
-// ---------------------------------------------------------------------------
-final providersFutureProvider =
-    FutureProvider.family<List<ProviderModel>, String>(
-  (ref, categoryId) async {
-    // TODO: replace with real repo call
-    await Future.delayed(const Duration(seconds: 1));
-    return mockProviders.where((p) => p.category.id == categoryId).toList();
-  },
-);
+final clientDashboardProvider =
+    FutureProvider.family<ClientDashboardModel, ClientCategory>(
+        (ref, category) async {
+  final location = await ref.watch(clientLocationProvider.future);
+  final service = ref.watch(clientHomeServiceProvider);
+  return service.getDashboard(
+    lat: location['lat']!,
+    lng: location['lng']!,
+    category: category,
+  );
+});
+
+final clientCategoriesProvider =
+    FutureProvider<List<CategoryModel>>((ref) async {
+  final dashboard =
+      await ref.watch(clientDashboardProvider(ClientCategory.spa).future);
+  return dashboard.categories;
+});

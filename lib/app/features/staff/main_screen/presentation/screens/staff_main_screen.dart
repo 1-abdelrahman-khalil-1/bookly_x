@@ -1,4 +1,4 @@
-﻿import 'package:auto_route/auto_route.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:bookly_x/app/core/themes/app_colors.dart';
 import 'package:bookly_x/app/features/staff/bookings/presentation/screens/staff_bookings_screen.dart';
 import 'package:bookly_x/app/features/staff/earnings/presentation/screens/staff_earnings_screen.dart';
@@ -86,26 +86,3 @@ class StaffMainScreen extends ConsumerWidget {
   }
 }
 
-class _PlaceholderTab extends StatelessWidget {
-  const _PlaceholderTab({required this.title, required this.icon});
-
-  final String title;
-  final IconData icon;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.whiteCatskillWhite,
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(icon, color: AppColors.dodgerBlue, size: 40),
-            const SizedBox(height: 12),
-            Text(title, style: context.bold18Primary),
-          ],
-        ),
-      ),
-    );
-  }
-}

@@ -1,4 +1,4 @@
-﻿import 'package:auto_route/auto_route.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:bookly_x/app/core/constants/constants.dart';
 import 'package:bookly_x/app/core/data/lang_pref.dart';
 import 'package:bookly_x/app/core/enums/weeks_days_enum.dart';
@@ -152,11 +152,11 @@ class StaffProfileScreen extends ConsumerWidget {
                   StaffInforamtionSection(user: data),
                   const Divider(
                       color: AppColors.textBorders, height: 40, thickness: 2),
-                  StaffSpecialitySection(services: staff.services ?? const []),
+                  StaffSpecialitySection(services: staff.services),
                   const Divider(
                       color: AppColors.textBorders, height: 40, thickness: 2),
                   WorkScheduleSection(
-                    availabilities: staff.availabilities ?? const [],
+                    availabilities: staff.availabilities,
                   ),
                   const Divider(
                       color: AppColors.textBorders, height: 40, thickness: 2),

@@ -1,4 +1,7 @@
-﻿# Bookly X Client — Project Instructions
+# Bookly X Client — Project Instructions
+
+# SYSTEM INITIALIZATION & IDENTITY
+You are the dedicated autonomous AI Agent for the "Bookly X" Flutter production app. You must ingest, memorize, and strictly enforce the following execution rules for every single response, code generation, and plan. Deviating from these rules will break the production architecture.
 
 ## Project Overview
 
@@ -334,6 +337,7 @@ setSuccessfullyMessage(tr.passwordChangedSuccessfully);
 - DioClient
 - Endpoints
 - HandleErrorsResponse
+- Always upload images/files as binary (`multipart/form-data`) using `profile_image` or `image` fields, as public URLs are no longer supported.
 
 ---
 
@@ -375,6 +379,8 @@ dart run generate_styles.dart
 ---
 
 ## Pre-Check
+
+- **Never state that a task/implementation is finished without running `flutter analyze` and ensuring there are zero errors.**
 
 ```bash
 flutter analyze

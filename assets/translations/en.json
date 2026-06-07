@@ -349,5 +349,14 @@
   "areYouSureYouWantToLogout": "Are you sure you want to logout?",
   "loadingMoreItems": "Loading More Items",
   "noItemsFound": "No Items Found",
-  "thisListIsCurrentlyEmpty": "This List Is Currently Empty"
+  "thisListIsCurrentlyEmpty": "This List Is Currently Empty",
+  "noActiveOffersToday": "No Active Offers Today",
+  "checkBackLaterForExclusiveDeals": "Check back later for exclusive deals!",
+  "nearest": "Nearest",
+  "highestRated": "Highest Rated",
+  "cheapest": "Cheapest",
+  "featured": "Featured",
+  "reviewsCountFormat": "{{count}} reviews",
+  "searchServicesOrLocations": "Search services or locations...",
+  "km": "km"
 }

@@ -1043,6 +1043,33 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 
 	/// en: 'This List Is Currently Empty'
 	String get thisListIsCurrentlyEmpty => 'This List Is Currently Empty';
+
+	/// en: 'No Active Offers Today'
+	String get noActiveOffersToday => 'No Active Offers Today';
+
+	/// en: 'Check back later for exclusive deals!'
+	String get checkBackLaterForExclusiveDeals => 'Check back later for exclusive deals!';
+
+	/// en: 'Nearest'
+	String get nearest => 'Nearest';
+
+	/// en: 'Highest Rated'
+	String get highestRated => 'Highest Rated';
+
+	/// en: 'Cheapest'
+	String get cheapest => 'Cheapest';
+
+	/// en: 'Featured'
+	String get featured => 'Featured';
+
+	/// en: '{{count}} reviews'
+	String reviewsCountFormat({required Object count}) => '${count} reviews';
+
+	/// en: 'Search services or locations...'
+	String get searchServicesOrLocations => 'Search services or locations...';
+
+	/// en: 'km'
+	String get km => 'km';
 }
 
 // Path: weekdays
@@ -1460,6 +1487,15 @@ extension on Translations {
 			'loadingMoreItems' => 'Loading More Items',
 			'noItemsFound' => 'No Items Found',
 			'thisListIsCurrentlyEmpty' => 'This List Is Currently Empty',
+			'noActiveOffersToday' => 'No Active Offers Today',
+			'checkBackLaterForExclusiveDeals' => 'Check back later for exclusive deals!',
+			'nearest' => 'Nearest',
+			'highestRated' => 'Highest Rated',
+			'cheapest' => 'Cheapest',
+			'featured' => 'Featured',
+			'reviewsCountFormat' => ({required Object count}) => '${count} reviews',
+			'searchServicesOrLocations' => 'Search services or locations...',
+			'km' => 'km',
 			_ => null,
 		};
 	}

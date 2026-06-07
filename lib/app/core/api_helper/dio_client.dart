@@ -164,7 +164,8 @@ Future<Response> validateResponse(
     final res = await zone();
 
     // Handle empty successful response (only for 2xx that expect data)
-    if ((res.statusCode == HttpStatus.ok || res.statusCode == HttpStatus.created) &&
+    if ((res.statusCode == HttpStatus.ok ||
+            res.statusCode == HttpStatus.created) &&
         res.data is String &&
         (res.data as String).trim().isEmpty) {
       throw EmptyBadResponse();

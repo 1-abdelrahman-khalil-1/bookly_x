@@ -349,5 +349,14 @@
   "areYouSureYouWantToLogout": "هل أنت متأكد من أنك تريد تسجيل الخروج؟",
   "loadingMoreItems": "جاري تحميل المزيد من العناصر",
   "noItemsFound": "لم يتم العثور على أي عناصر",
-  "thisListIsCurrentlyEmpty": "هذه القائمة فارغة حاليًا"
+  "thisListIsCurrentlyEmpty": "هذه القائمة فارغة حاليًا",
+  "noActiveOffersToday": "لا توجد عروض سارية اليوم",
+  "checkBackLaterForExclusiveDeals": "تفضل بزيارتنا لاحقًا للاطلاع على العروض الحصرية!",
+  "nearest": "الأقرب",
+  "highestRated": "الأعلى تقييماً",
+  "cheapest": "الأرخص",
+  "featured": "مميز",
+  "reviewsCountFormat": "{{count}} تقييم",
+  "searchServicesOrLocations": "ابحث عن الخدمات أو المواقع...",
+  "km": "كم"
 }

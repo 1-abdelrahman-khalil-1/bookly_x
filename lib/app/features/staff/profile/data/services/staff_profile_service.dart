@@ -24,8 +24,8 @@ class StaffProfileService {
       response: res,
     );
     final data = res['data'];
-    await UserPrefs.setUser(data['user']);
-    return UserModel.fromJson(data['user']);
+    await UserPrefs.setUser(data);
+    return UserModel.fromJson(data);
   }
 
   Future<List<StaffReviewModel>> getStaffReviews({

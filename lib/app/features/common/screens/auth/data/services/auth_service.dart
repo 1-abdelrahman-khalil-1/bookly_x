@@ -3,6 +3,7 @@ import 'package:bookly_x/app/core/api_helper/dio_providers.dart';
 import 'package:bookly_x/app/core/api_helper/endpoints.dart';
 import 'package:bookly_x/app/core/api_helper/handle_errors_response.dart';
 import 'package:bookly_x/app/core/data/user_pref.dart';
+import 'package:bookly_x/main.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final authServiceProvider =
@@ -33,7 +34,6 @@ class AuthService {
     String refreshToken = data['refresh_token'];
     await UserPrefs.setUserToken(token);
     await UserPrefs.setRefreshToken(refreshToken);
-    await UserPrefs.setUser(data['user']);
   }
 
   Future<void> refreshToken() async {
